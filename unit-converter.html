@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Engineering Unit Converter | MECHCALC</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="calculator.css">
+
+    <style>
+        .converter-page {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px 70px;
+        }
+
+        .converter-hero {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .converter-hero h1 {
+            margin-bottom: 10px;
+        }
+
+        .converter-hero p {
+            color: #666;
+            font-size: 1.05rem;
+        }
+
+        .converter-quote {
+            background: #f5f7fa;
+            border-left: 4px solid #333;
+            padding: 16px 20px;
+            margin: 25px auto 35px;
+            max-width: 850px;
+            text-align: center;
+            font-style: italic;
+            border-radius: 6px;
+        }
+
+        .converter-box {
+            background: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .converter-box h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .category-select {
+            margin-bottom: 25px;
+        }
+
+        .category-select label,
+        .unit-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .category-select select,
+        .unit-group select,
+        .unit-group input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        .conversion-row {
+            display: grid;
+            grid-template-columns: 1fr 70px 1fr;
+            gap: 20px;
+            align-items: end;
+        }
+
+        .swap-area {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .swap-btn {
+            width: 48px;
+            height: 48px;
+            border: none;
+            border-radius: 50%;
+            background: #333;
+            color: white;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .swap-btn:hover {
+            transform: rotate(180deg);
+        }
+
+        .result-box {
+            margin-top: 30px;
+            background: #f5f7fa;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .result-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .result-value {
+            font-size: 2rem;
+            font-weight: 700;
+            word-break: break-word;
+        }
+
+        .result-equation {
+            margin-top: 10px;
+            color: #666;
+        }
+
+        .converter-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .converter-buttons button {
+            padding: 11px 24px;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .convert-btn {
+            background: #333;
+            color: white;
+        }
+
+        .reset-btn {
+            background: #e9ecef;
+            color: #222;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .info-card {
+            background: #f8f9fa;
+            padding: 22px;
+            border-radius: 10px;
+        }
+
+        .info-card h3 {
+            margin-top: 0;
+        }
+
+        .info-card ul {
+            margin-bottom: 0;
+            padding-left: 20px;
+        }
+
+        .quick-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .quick-table th,
+        .quick-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .quick-table th {
+            background: #f1f3f5;
+        }
+
+        .error-message {
+            display: none;
+            color: #b00020;
+            background: #fff0f1;
+            border: 1px solid #f3b5bd;
+            padding: 12px;
+            border-radius: 7px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .related-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .related-links a {
+            text-decoration: none;
+            background: #f1f3f5;
+            padding: 9px 14px;
+            border-radius: 6px;
+            color: #222;
+        }
+
+        @media (max-width: 700px) {
+            .conversion-row {
+                grid-template-columns: 1fr;
+            }
+
+            .swap-area {
+                margin: 5px 0;
+            }
+
+            .swap-btn {
+                transform: rotate(90deg);
+            }
+
+            .swap-btn:hover {
+                transform: rotate(270deg);
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .converter-box {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        ⚙ MECHCALC
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="index.html#calculators">Calculators</a>
+        <a href="index.html#formulas">Formulas</a>
+        <a href="engineering-resources.html">Resources</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#account">Login / Sign Up</a>
+    </nav>
+</header>
+
+
+<main class="converter-page">
+
+    <section class="converter-hero">
+        <h1>Engineering Unit Converter</h1>
+
+        <p>
+            Convert common mechanical engineering units quickly and accurately.
+        </p>
+    </section>
+
+
+    <div class="converter-quote">
+        “Correct units are the foundation of correct engineering calculations.”
+    </div>
+
+
+    <section class="converter-box">
+
+        <h2>Unit Converter</h2>
+
+        <div class="category-select">
+            <label for="category">Select Category</label>
+
+            <select id="category">
+                <option value="length">Length</option>
+                <option value="area">Area</option>
+                <option value="volume">Volume</option>
+                <option value="mass">Mass</option>
+                <option value="force">Force</option>
+                <option value="pressure">Pressure</option>
+                <option value="power">Power</option>
+                <option value="energy">Energy / Work</option>
+                <option value="torque">Torque</option>
+                <option value="velocity">Velocity</option>
+                <option value="temperature">Temperature</option>
+            </select>
+        </div>
+
+
+        <div class="conversion-row">
+
+            <div class="unit-group">
+
+                <label for="inputValue">From</label>
+
+                <input
+                    type="number"
+                    id="inputValue"
+                    value="1"
+                    step="any"
+                    placeholder="Enter value"
+                >
+
+                <select id="fromUnit"></select>
+
+            </div>
+
+
+            <div class="swap-area">
+
+                <button
+                    type="button"
+                    class="swap-btn"
+                    id="swapBtn"
+                    title="Swap units"
+                >
+                    ⇄
+                </button>
+
+            </div>
+
+
+            <div class="unit-group">
+
+                <label for="toUnit">To</label>
+
+                <select id="toUnit"></select>
+
+            </div>
+
+        </div>
+
+
+        <div class="error-message" id="errorMessage">
+            Please enter a valid numerical value.
+        </div>
+
+
+        <div class="result-box">
+
+            <div class="result-label">
+                RESULT
+            </div>
+
+            <div class="result-value" id="result">
+                1 m
+            </div>
+
+            <div class="result-equation" id="equation">
+                1 m = 1 m
+            </div>
+
+        </div>
+
+
+        <div class="converter-buttons">
+
+            <button
+                type="button"
+                class="convert-btn"
+                id="convertBtn"
+            >
+                Convert
+            </button>
+
+            <button
+                type="button"
+                class="reset-btn"
+                id="resetBtn"
+            >
+                Reset
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <section class="converter-box">
+
+        <h2>Engineering Information</h2>
+
+        <div class="info-grid">
+
+            <div class="info-card">
+
+                <h3>Why Unit Conversion Matters</h3>
+
+                <p>
+                    Engineering equations require compatible units.
+                    Converting values to a consistent unit system helps
+                    prevent calculation errors.
+                </p>
+
+                <ul>
+                    <li>Always check units before calculating.</li>
+                    <li>Use SI units when possible.</li>
+                    <li>Keep track of area and volume conversions carefully.</li>
+                    <li>Remember that squared and cubed units require special conversion factors.</li>
+                </ul>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <h3>Common SI Units</h3>
+
+                <ul>
+                    <li>Length → metre (m)</li>
+                    <li>Area → square metre (m²)</li>
+                    <li>Volume → cubic metre (m³)</li>
+                    <li>Mass → kilogram (kg)</li>
+                    <li>Force → newton (N)</li>
+                    <li>Pressure → pascal (Pa)</li>
+                    <li>Power → watt (W)</li>
+                    <li>Energy → joule (J)</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="converter-box">
+
+        <h2>Useful Engineering Conversions</h2>
+
+        <table class="quick-table">
+
+            <thead>
+                <tr>
+                    <th>Conversion</th>
+                    <th>Equivalent</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <tr>
+                    <td>1 inch</td>
+                    <td>25.4 mm</td>
+                </tr>
+
+                <tr>
+                    <td>1 ft</td>
+                    <td>0.3048 m</td>
+                </tr>
+
+                <tr>
+                    <td>1 kN</td>
+                    <td>1000 N</td>
+                </tr>
+
+                <tr>
+                    <td>1 MPa</td>
+                    <td>1,000,000 Pa</td>
+                </tr>
+
+                <tr>
+                    <td>1 bar</td>
+                    <td>100,000 Pa</td>
+                </tr>
+
+                <tr>
+                    <td>1 kW</td>
+                    <td>1000 W</td>
+                </tr>
+
+                <tr>
+                    <td>1 hp</td>
+                    <td>745.7 W</td>
+                </tr>
+
+                <tr>
+                    <td>1 L</td>
+                    <td>0.001 m³</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+
+    <section class="converter-box">
+
+        <h2>Related MECHCALC Tools</h2>
+
+        <div class="related-links">
+
+            <a href="engineering-resources.html">
+                Engineering Resources
+            </a>
+
+            <a href="pressure.html">
+                Pressure Calculator
+            </a>
+
+            <a href="force.html">
+                Force Calculator
+            </a>
+
+            <a href="power.html">
+                Power Calculator
+            </a>
+
+            <a href="density.html">
+                Density Calculator
+            </a>
+
+            <a href="reynolds-number.html">
+                Reynolds Number
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+    <p>© 2026 MECHCALC — Mechanical Engineering Calculators</p>
+</footer>
+
+
+<script>
+
+const unitData = {
+
+    length: {
+        units: {
+            mm: {
+                name: "mm",
+                factor: 0.001
+            },
+
+            cm: {
+                name: "cm",
+                factor: 0.01
+            },
+
+            m: {
+                name: "m",
+                factor: 1
+            },
+
+            km: {
+                name: "km",
+                factor: 1000
+            },
+
+            inch: {
+                name: "in",
+                factor: 0.0254
+            },
+
+            ft: {
+                name: "ft",
+                factor: 0.3048
+            }
+        }
+    },
+
+
+    area: {
+        units: {
+            "mm2": {
+                name: "mm²",
+                factor: 0.000001
+            },
+
+            "cm2": {
+                name: "cm²",
+                factor: 0.0001
+            },
+
+            "m2": {
+                name: "m²",
+                factor: 1
+            },
+
+            "in2": {
+                name: "in²",
+                factor: 0.00064516
+            },
+
+            "ft2": {
+                name: "ft²",
+                factor: 0.09290304
+            }
+        }
+    },
+
+
+    volume: {
+        units: {
+            "cm3": {
+                name: "cm³",
+                factor: 0.000001
+            },
+
+            "m3": {
+                name: "m³",
+                factor: 1
+            },
+
+            L: {
+                name: "L",
+                factor: 0.001
+            },
+
+            mL: {
+                name: "mL",
+                factor: 0.000001
+            },
+
+            "in3": {
+                name: "in³",
+                factor: 0.000016387064
+            },
+
+            "ft3": {
+                name: "ft³",
+                factor: 0.028316846592
+            }
+        }
+    },
+
+
+    mass: {
+        units: {
+            mg: {
+                name: "mg",
+                factor: 0.000001
+            },
+
+            g: {
+                name: "g",
+                factor: 0.001
+            },
+
+            kg: {
+                name: "kg",
+                factor: 1
+            },
+
+            tonne: {
+                name: "tonne",
+                factor: 1000
+            },
+
+            lb: {
+                name: "lb",
+                factor: 0.45359237
+            }
+        }
+    },
+
+
+    force: {
+        units: {
+            N: {
+                name: "N",
+                factor: 1
+            },
+
+            kN: {
+                name: "kN",
+                factor: 1000
+            },
+
+            MN: {
+                name: "MN",
+                factor: 1000000
+            },
+
+            lbf: {
+                name: "lbf",
+                factor: 4.4482216152605
+            }
+        }
+    },
+
+
+    pressure: {
+        units: {
+            Pa: {
+                name: "Pa",
+                factor: 1
+            },
+
+            kPa: {
+                name: "kPa",
+                factor: 1000
+            },
+
+            MPa: {
+                name: "MPa",
+                factor: 1000000
+            },
+
+            bar: {
+                name: "bar",
+                factor: 100000
+            },
+
+            psi: {
+                name: "psi",
+                factor: 6894.757293168
+            },
+
+            atm: {
+                name: "atm",
+                factor: 101325
+            }
+        }
+    },
+
+
+    power: {
+        units: {
+            W: {
+                name: "W",
+                factor: 1
+            },
+
+            kW: {
+                name: "kW",
+                factor: 1000
+            },
+
+            MW: {
+                name: "MW",
+                factor: 1000000
+            },
+
+            hp: {
+                name: "hp",
+                factor: 745.7
+            }
+        }
+    },
+
+
+    energy: {
+        units: {
+            J: {
+                name: "J",
+                factor: 1
+            },
+
+            kJ: {
+                name: "kJ",
+                factor: 1000
+            },
+
+            MJ: {
+                name: "MJ",
+                factor: 1000000
+            },
+
+            Wh: {
+                name: "Wh",
+                factor: 3600
+            },
+
+            kWh: {
+                name: "kWh",
+                factor: 3600000
+            }
+        }
+    },
+
+
+    torque: {
+        units: {
+            "Nm": {
+                name: "N·m",
+                factor: 1
+            },
+
+            "kNm": {
+                name: "kN·m",
+                factor: 1000
+            },
+
+            "Nmm": {
+                name: "N·mm",
+                factor: 0.001
+            },
+
+            "lbfft": {
+                name: "lbf·ft",
+                factor: 1.3558179483314
+            }
+        }
+    },
+
+
+    velocity: {
+        units: {
+            "mps": {
+                name: "m/s",
+                factor: 1
+            },
+
+            "kmh": {
+                name: "km/h",
+                factor: 0.2777777777777778
+            },
+
+            "kms": {
+                name: "km/s",
+                factor: 1000
+            },
+
+            "fps": {
+                name: "ft/s",
+                factor: 0.3048
+            },
+
+            "cmps": {
+                name: "cm/s",
+                factor: 0.01
+            }
+        }
+    }
+
+};
+
+
+const categorySelect = document.getElementById("category");
+const inputValue = document.getElementById("inputValue");
+const fromUnit = document.getElementById("fromUnit");
+const toUnit = document.getElementById("toUnit");
+const result = document.getElementById("result");
+const equation = document.getElementById("equation");
+const errorMessage = document.getElementById("errorMessage");
+const convertBtn = document.getElementById("convertBtn");
+const resetBtn = document.getElementById("resetBtn");
+const swapBtn = document.getElementById("swapBtn");
+
+
+function populateUnits() {
+
+    const category = categorySelect.value;
+
+    fromUnit.innerHTML = "";
+    toUnit.innerHTML = "";
+
+    if (category === "temperature") {
+
+        addOption(fromUnit, "C", "°C");
+        addOption(fromUnit, "F", "°F");
+        addOption(fromUnit, "K", "K");
+
+        addOption(toUnit, "C", "°C");
+        addOption(toUnit, "F", "°F");
+        addOption(toUnit, "K", "K");
+
+        fromUnit.value = "C";
+        toUnit.value = "F";
+
+        return;
+    }
+
+
+    const units = unitData[category].units;
+
+    Object.keys(units).forEach(key => {
+
+        addOption(
+            fromUnit,
+            key,
+            units[key].name
+        );
+
+        addOption(
+            toUnit,
+            key,
+            units[key].name
+        );
+
+    });
+
+
+    const keys = Object.keys(units);
+
+    if (keys.length > 1) {
+
+        fromUnit.value = keys[0];
+        toUnit.value = keys[1];
+
+    }
+
+}
+
+
+function addOption(select, value, text) {
+
+    const option = document.createElement("option");
+
+    option.value = value;
+    option.textContent = text;
+
+    select.appendChild(option);
+
+}
+
+
+function convertTemperature(value, from, to) {
+
+    let celsius;
+
+    if (from === "C") {
+        celsius = value;
+    }
+
+    else if (from === "F") {
+        celsius = (value - 32) * 5 / 9;
+    }
+
+    else if (from === "K") {
+        celsius = value - 273.15;
+    }
+
+
+    if (to === "C") {
+        return celsius;
+    }
+
+    else if (to === "F") {
+        return (celsius * 9 / 5) + 32;
+    }
+
+    else if (to === "K") {
+        return celsius + 273.15;
+    }
+
+}
+
+
+function formatNumber(value) {
+
+    if (!Number.isFinite(value)) {
+        return "Error";
+    }
+
+    if (Math.abs(value) >= 1e9 || (Math.abs(value) > 0 && Math.abs(value) < 0.000001)) {
+
+        return value.toExponential(6);
+
+    }
+
+    return Number(value.toFixed(10)).toLocaleString(
+        "en-US",
+        {
+            maximumFractionDigits: 10
+        }
+    );
+
+}
+
+
+function convert() {
+
+    const value = Number(inputValue.value);
+
+    if (!Number.isFinite(value)) {
+
+        errorMessage.style.display = "block";
+
+        result.textContent = "Invalid input";
+        equation.textContent = "";
+
+        return;
+    }
+
+
+    errorMessage.style.display = "none";
+
+
+    const category = categorySelect.value;
+
+    const from = fromUnit.value;
+    const to = toUnit.value;
+
+    let convertedValue;
+
+
+    if (category === "temperature") {
+
+        convertedValue = convertTemperature(
+            value,
+            from,
+            to
+        );
+
+    }
+
+    else {
+
+        const units = unitData[category].units;
+
+        const baseValue =
+            value * units[from].factor;
+
+        convertedValue =
+            baseValue / units[to].factor;
+
+    }
+
+
+    const fromName =
+        getUnitName(category, from);
+
+    const toName =
+        getUnitName(category, to);
+
+
+    result.textContent =
+        formatNumber(convertedValue) + " " + toName;
+
+
+    equation.textContent =
+        formatNumber(value) +
+        " " +
+        fromName +
+        " = " +
+        formatNumber(convertedValue) +
+        " " +
+        toName;
+
+}
+
+
+function getUnitName(category, unit) {
+
+    if (category === "temperature") {
+
+        if (unit === "C") return "°C";
+        if (unit === "F") return "°F";
+        if (unit === "K") return "K";
+
+    }
+
+
+    return unitData[category].units[unit].name;
+
+}
+
+
+function swapUnits() {
+
+    const currentFrom = fromUnit.value;
+    const currentTo = toUnit.value;
+
+    fromUnit.value = currentTo;
+    toUnit.value = currentFrom;
+
+    convert();
+
+}
+
+
+function resetConverter() {
+
+    categorySelect.value = "length";
+
+    populateUnits();
+
+    inputValue.value = "1";
+
+    errorMessage.style.display = "none";
+
+    convert();
+
+}
+
+
+categorySelect.addEventListener(
+    "change",
+    function() {
+
+        populateUnits();
+        convert();
+
+    }
+);
+
+
+inputValue.addEventListener(
+    "input",
+    convert
+);
+
+
+fromUnit.addEventListener(
+    "change",
+    convert
+);
+
+
+toUnit.addEventListener(
+    "change",
+    convert
+);
+
+
+convertBtn.addEventListener(
+    "click",
+    convert
+);
+
+
+resetBtn.addEventListener(
+    "click",
+    resetConverter
+);
+
+
+swapBtn.addEventListener(
+    "click",
+    swapUnits
+);
+
+
+/* Initial setup */
+
+populateUnits();
+convert();
+
+</script>
+
+</body>
+</html>

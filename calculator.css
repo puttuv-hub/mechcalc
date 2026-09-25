@@ -1,0 +1,713 @@
+/* =========================================================
+   MECHCALC
+   CALCULATOR PAGE STYLES
+   Stage 8
+   ========================================================= */
+
+
+/* =========================
+   CALCULATOR PAGE
+   ========================= */
+
+.calculator-page {
+    min-height: 100vh;
+}
+
+
+/* =========================
+   CALCULATOR HERO
+   ========================= */
+
+.calculator-hero {
+    background:
+        linear-gradient(
+            135deg,
+            #101820 0%,
+            #18232d 100%
+        );
+
+    color: white;
+
+    padding: 55px 20px;
+
+    text-align: center;
+
+    border-bottom: 4px solid #f59e0b;
+}
+
+
+.calculator-hero h1 {
+    font-size: 42px;
+
+    margin-bottom: 10px;
+
+    color: white;
+}
+
+
+.calculator-hero h1 span {
+    color: #f59e0b;
+}
+
+
+.calculator-hero p {
+    max-width: 700px;
+
+    margin: 0 auto;
+
+    color: #d1d5db;
+
+    font-size: 17px;
+}
+
+
+/* =========================
+   ENGINEERING QUOTE
+   ========================= */
+
+.engineering-quote {
+    max-width: 850px;
+
+    margin: 0 auto;
+
+    padding: 22px 25px;
+
+    text-align: center;
+
+    font-size: 17px;
+
+    font-style: italic;
+
+    color: #475467;
+
+    background: #fff7e6;
+
+    border-left: 5px solid #f59e0b;
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+
+/* =========================
+   MAIN CALCULATOR AREA
+   ========================= */
+
+.calculator-main {
+    width: 90%;
+
+    max-width: 1100px;
+
+    margin: 40px auto;
+}
+
+
+/* =========================
+   CALCULATOR GRID
+   ========================= */
+
+.calculator-layout {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.15fr)
+        minmax(0, 0.85fr);
+
+    gap: 25px;
+
+    align-items: start;
+}
+
+
+/* =========================
+   INPUT PANEL
+   ========================= */
+
+.input-panel {
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.08);
+
+    border-top: 4px solid #f59e0b;
+}
+
+
+.input-panel h2 {
+    color: #101820;
+
+    font-size: 25px;
+
+    margin-bottom: 8px;
+}
+
+
+.input-panel > p {
+    color: #667085;
+
+    font-size: 14px;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================
+   FORM GROUP
+   ========================= */
+
+.calculator-form-group {
+    margin-bottom: 22px;
+}
+
+
+.calculator-form-group label {
+    display: block;
+
+    color: #344054;
+
+    font-weight: bold;
+
+    margin-bottom: 8px;
+}
+
+
+.calculator-form-group input,
+.calculator-form-group select {
+    width: 100%;
+
+    padding: 13px;
+
+    border: 1px solid #d0d5dd;
+
+    border-radius: 7px;
+
+    font-size: 16px;
+
+    background: white;
+
+    color: #101820;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+
+.calculator-form-group input:focus,
+.calculator-form-group select:focus {
+    border-color: #f59e0b;
+
+    box-shadow:
+        0 0 0 3px rgba(245, 158, 11, 0.12);
+}
+
+
+/* =========================
+   INPUT + UNIT
+   ========================= */
+
+.calculator-input-row {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        120px;
+
+    gap: 10px;
+}
+
+
+/* =========================
+   CALCULATOR BUTTONS
+   ========================= */
+
+.calculator-buttons {
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 28px;
+}
+
+
+.calculator-buttons button {
+    flex: 1;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+
+.calculator-calculate-btn {
+    background: #f59e0b;
+
+    color: #101820;
+}
+
+
+.calculator-calculate-btn:hover {
+    background: #d97706;
+
+    transform: translateY(-1px);
+}
+
+
+.calculator-reset-btn {
+    background: #e5e7eb;
+
+    color: #101820;
+}
+
+
+.calculator-reset-btn:hover {
+    background: #d1d5db;
+}
+
+
+/* =========================
+   FORMULA PANEL
+   ========================= */
+
+.formula-panel {
+    background: #101820;
+
+    color: white;
+
+    padding: 30px;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.10);
+
+    position: sticky;
+
+    top: 25px;
+}
+
+
+.formula-panel h2 {
+    color: #f59e0b;
+
+    font-size: 24px;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================
+   FORMULA BOX
+   ========================= */
+
+.formula-box {
+    background: #18232d;
+
+    border: 1px solid #34404a;
+
+    border-radius: 10px;
+
+    padding: 25px;
+
+    text-align: center;
+
+    margin-bottom: 25px;
+}
+
+
+.formula-box .formula-main {
+    color: #f59e0b;
+
+    font-size: 30px;
+
+    font-weight: bold;
+
+    margin-bottom: 10px;
+}
+
+
+.formula-box p {
+    color: #d1d5db;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   CALCULATION STEPS
+   ========================= */
+
+.calculation-steps {
+    margin-top: 20px;
+}
+
+
+.calculation-steps h3 {
+    color: white;
+
+    margin-bottom: 12px;
+
+    font-size: 18px;
+}
+
+
+.calculation-steps p {
+    color: #d1d5db;
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   RESULT
+   ========================= */
+
+.calculator-result {
+    display: none;
+
+    margin-top: 25px;
+
+    background: #f8fafc;
+
+    border-left: 5px solid #f59e0b;
+
+    border-radius: 8px;
+
+    padding: 22px;
+}
+
+
+.calculator-result h2 {
+    color: #101820;
+
+    margin-bottom: 12px;
+
+    font-size: 21px;
+}
+
+
+.calculator-result-value {
+    color: #d97706;
+
+    font-size: 30px;
+
+    font-weight: bold;
+
+    margin-bottom: 12px;
+}
+
+
+.calculator-result p {
+    color: #475467;
+
+    margin: 7px 0;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   ENGINEERING INFORMATION
+   ========================= */
+
+.engineering-info {
+    margin-top: 30px;
+
+    background: white;
+
+    padding: 28px;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+
+.engineering-info h2 {
+    color: #101820;
+
+    font-size: 23px;
+
+    margin-bottom: 15px;
+}
+
+
+.engineering-info p {
+    color: #667085;
+
+    margin-bottom: 12px;
+}
+
+
+.engineering-info ul {
+    padding-left: 22px;
+
+    color: #667085;
+}
+
+
+.engineering-info li {
+    margin-bottom: 8px;
+}
+
+
+/* =========================
+   UNIT CONVERSION BOX
+   ========================= */
+
+.unit-info {
+    margin-top: 20px;
+
+    padding: 18px;
+
+    background: #fff7e6;
+
+    border-left: 4px solid #f59e0b;
+
+    border-radius: 8px;
+
+    color: #475467;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================
+   RELATED CALCULATORS
+   ========================= */
+
+.related-section {
+    margin-top: 45px;
+}
+
+
+.related-section h2 {
+    text-align: center;
+
+    color: #101820;
+
+    margin-bottom: 25px;
+}
+
+
+.related-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+
+.related-card {
+    background: white;
+
+    padding: 22px;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.06);
+
+    border-top: 3px solid #f59e0b;
+
+    text-decoration: none;
+
+    transition: 0.25s;
+}
+
+
+.related-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.10);
+}
+
+
+.related-card h3 {
+    color: #101820;
+
+    margin-bottom: 7px;
+
+    font-size: 18px;
+}
+
+
+.related-card p {
+    color: #667085;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   ERROR MESSAGE
+   ========================= */
+
+.calculator-error {
+    display: none;
+
+    margin-top: 18px;
+
+    padding: 14px;
+
+    background: #fef2f2;
+
+    color: #b42318;
+
+    border-left: 4px solid #ef4444;
+
+    border-radius: 7px;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   RESPONSIVE TABLET
+   ========================= */
+
+@media (max-width: 850px) {
+
+    .calculator-layout {
+        grid-template-columns: 1fr;
+    }
+
+
+    .formula-panel {
+        position: static;
+    }
+
+
+    .related-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .calculator-hero h1 {
+        font-size: 36px;
+    }
+
+}
+
+
+/* =========================
+   RESPONSIVE MOBILE
+   ========================= */
+
+@media (max-width: 600px) {
+
+    .calculator-main {
+        width: 94%;
+
+        margin: 25px auto;
+    }
+
+
+    .calculator-hero {
+        padding: 40px 18px;
+    }
+
+
+    .calculator-hero h1 {
+        font-size: 30px;
+    }
+
+
+    .calculator-hero p {
+        font-size: 15px;
+    }
+
+
+    .engineering-quote {
+        font-size: 15px;
+
+        padding: 18px;
+    }
+
+
+    .input-panel,
+    .formula-panel,
+    .engineering-info {
+        padding: 22px;
+    }
+
+
+    .calculator-input-row {
+        grid-template-columns: 1fr;
+    }
+
+
+    .calculator-buttons {
+        flex-direction: column;
+    }
+
+
+    .formula-box .formula-main {
+        font-size: 25px;
+    }
+
+
+    .calculator-result-value {
+        font-size: 25px;
+    }
+
+
+    .related-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================
+   SCROLL SAFETY
+   ========================= */
+
+html {
+    min-height: 100%;
+}
+
+
+body {
+    min-height: 100%;
+
+    height: auto;
+
+    overflow-x: hidden;
+
+    overflow-y: auto;
+}
+
+
+.calculator-page {
+    height: auto;
+
+    min-height: 100vh;
+
+    overflow: visible;
+}

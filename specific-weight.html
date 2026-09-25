@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Specific Weight Calculator - Calculate γ = ρ × g | MECHCALC</title>
+
+    <meta
+        name="description"
+        content="Use the MECHCALC Specific Weight Calculator to calculate specific weight from density and gravitational acceleration using γ = ρ × g. Get results in N/m³ and kN/m³ with step-by-step calculations."
+    >
+
+    <meta
+        name="keywords"
+        content="specific weight calculator, specific weight formula calculator, gamma rho g calculator, density gravity specific weight calculator, N/m3 calculator, kN/m3 calculator, fluid mechanics calculator, mechanical engineering specific weight calculator"
+    >
+
+    <meta name="author" content="Vishnu">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="theme-color" content="#0f172a">
+
+    <!-- Open Graph -->
+    <meta
+        property="og:title"
+        content="Specific Weight Calculator - Calculate γ = ρ × g | MECHCALC"
+    >
+    <meta
+        property="og:description"
+        content="Calculate specific weight from density and gravitational acceleration using γ = ρ × g. Get results in N/m³ and kN/m³ with MECHCALC."
+    >
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MECHCALC">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary">
+    <meta
+        name="twitter:title"
+        content="Specific Weight Calculator - γ = ρ × g | MECHCALC"
+    >
+    <meta
+        name="twitter:description"
+        content="Calculate specific weight from density and gravitational acceleration with accurate unit conversions and step-by-step calculations."
+    >
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Specific Weight Calculator",
+        "applicationCategory": "EngineeringApplication",
+        "applicationSubCategory": "Mechanical Engineering Calculator",
+        "operatingSystem": "Web",
+        "description": "Calculate specific weight from density and gravitational acceleration using the formula γ = ρ × g. Results are provided in N/m³ and kN/m³.",
+        "url": "specific-weight.html",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "creator": {
+            "@type": "Person",
+            "name": "Vishnu"
+        },
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "MECHCALC",
+            "url": "index.html"
+        }
+    }
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="calculator.css">
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        ⚙ MECHCALC
+    </div>
+
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#calculators">Calculators</a>
+        <a href="index.html#formulas">Formulas</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#account">Login / Sign Up</a>
+    </nav>
+
+</header>
+
+
+<main class="calculator-page">
+
+    <section class="calculator-hero">
+
+        <div class="container">
+
+            <h1>Specific Weight Calculator</h1>
+
+            <p>
+                Calculate the specific weight of a material or fluid
+                from its density and gravitational acceleration.
+            </p>
+
+            <div class="engineering-quote">
+                “Specific weight connects density with gravity.”
+            </div>
+
+            <a href="index.html#calculators" class="back-link">
+                ← Back to Calculators
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <section class="calculator-main">
+
+        <div class="calculator-layout">
+
+            <div class="input-panel">
+
+                <h2>Enter Values</h2>
+
+                <div class="calculator-form-group">
+
+                    <label for="density">
+                        Density
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="density"
+                            placeholder="Enter density"
+                            min="0"
+                            step="any"
+                        >
+
+                        <select id="densityUnit">
+
+                            <option value="kgm3">
+                                kg/m³
+                            </option>
+
+                            <option value="gcm3">
+                                g/cm³
+                            </option>
+
+                            <option value="kgL">
+                                kg/L
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="calculator-form-group">
+
+                    <label for="gravity">
+                        Gravitational Acceleration
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="gravity"
+                            value="9.81"
+                            min="0"
+                            step="any"
+                        >
+
+                        <select disabled>
+                            <option>m/s²</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="calculator-buttons">
+
+                    <button
+                        type="button"
+                        class="calculator-calculate-btn"
+                        onclick="calculateSpecificWeight()"
+                    >
+                        Calculate Specific Weight
+                    </button>
+
+                    <button
+                        type="button"
+                        class="calculator-reset-btn"
+                        onclick="resetCalculator()"
+                    >
+                        Reset
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="errorMessage"
+                    class="calculator-error"
+                    style="display:none;"
+                ></div>
+
+
+                <div
+                    id="resultBox"
+                    class="calculator-result"
+                    style="display:none;"
+                >
+
+                    <h3>Specific Weight</h3>
+
+                    <div
+                        id="mainResult"
+                        class="calculator-result-value"
+                    >
+                        0 N/m³
+                    </div>
+
+                    <div class="calculation-steps">
+
+                        <h4>Calculation Steps</h4>
+
+                        <div id="steps"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="formula-panel">
+
+                <h2>Engineering Formula</h2>
+
+                <div class="formula-box">
+
+                    <div class="formula-main">
+                        γ = ρ × g
+                    </div>
+
+                    <p>Where:</p>
+
+                    <ul>
+
+                        <li>
+                            <strong>γ</strong> = Specific weight
+                        </li>
+
+                        <li>
+                            <strong>ρ</strong> = Density
+                        </li>
+
+                        <li>
+                            <strong>g</strong> = Gravitational acceleration
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <div class="engineering-info">
+
+                    <h3>Engineering Information</h3>
+
+                    <p>
+                        Specific weight is the weight of a substance
+                        per unit volume.
+                    </p>
+
+                    <p>
+                        Its SI unit is:
+                    </p>
+
+                    <div class="formula-box">
+
+                        <div class="formula-main">
+                            N/m³
+                        </div>
+
+                    </div>
+
+                    <p>
+                        In engineering applications, specific weight
+                        is commonly expressed as <strong>kN/m³</strong>.
+                    </p>
+
+                    <p>
+                        For water near standard conditions:
+                    </p>
+
+                    <div class="formula-box">
+
+                        <div class="formula-main">
+                            γ ≈ 9.81 kN/m³
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="unit-info">
+
+                    <h3>Important Relationship</h3>
+
+                    <ul>
+
+                        <li>
+                            Density → kg/m³
+                        </li>
+
+                        <li>
+                            Specific weight → N/m³
+                        </li>
+
+                        <li>
+                            Specific weight = density × gravity
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="related-section">
+
+        <div class="container">
+
+            <h2>Related Calculators</h2>
+
+            <div class="related-grid">
+
+                <a href="density.html" class="related-card">
+
+                    <h3>Density Calculator</h3>
+
+                    <p>
+                        Calculate density from mass and volume.
+                    </p>
+
+                </a>
+
+
+                <a href="weight.html" class="related-card">
+
+                    <h3>Weight Calculator</h3>
+
+                    <p>
+                        Calculate gravitational force from mass.
+                    </p>
+
+                </a>
+
+
+                <a href="pressure.html" class="related-card">
+
+                    <h3>Pressure Calculator</h3>
+
+                    <p>
+                        Calculate pressure from force and area.
+                    </p>
+
+                </a>
+
+
+                <a href="force.html" class="related-card">
+
+                    <h3>Force Calculator</h3>
+
+                    <p>
+                        Calculate force using mass and acceleration.
+                    </p>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <p>
+        MECHCALC • Engineering Tools • Created by Vishnu
+    </p>
+
+</footer>
+
+
+<script>
+
+function convertDensityToKgPerM3(value, unit) {
+
+    if (unit === "kgm3") {
+        return value;
+    }
+
+    if (unit === "gcm3") {
+        return value * 1000;
+    }
+
+    if (unit === "kgL") {
+        return value * 1000;
+    }
+
+    return value;
+}
+
+
+function formatNumber(value) {
+
+    if (Math.abs(value) >= 1000000) {
+        return value.toExponential(6);
+    }
+
+    if (Math.abs(value) < 0.000001 && value !== 0) {
+        return value.toExponential(6);
+    }
+
+    return Number(value.toFixed(6)).toLocaleString();
+}
+
+
+function calculateSpecificWeight() {
+
+    const densityInput =
+        document.getElementById("density").value;
+
+    const gravityInput =
+        document.getElementById("gravity").value;
+
+    const densityUnit =
+        document.getElementById("densityUnit").value;
+
+    const errorMessage =
+        document.getElementById("errorMessage");
+
+    const resultBox =
+        document.getElementById("resultBox");
+
+
+    errorMessage.style.display = "none";
+    resultBox.style.display = "none";
+
+
+    if (
+        densityInput === "" ||
+        gravityInput === ""
+    ) {
+
+        errorMessage.textContent =
+            "Please enter density and gravitational acceleration.";
+
+        errorMessage.style.display =
+            "block";
+
+        return;
+    }
+
+
+    const density =
+        Number(densityInput);
+
+    const gravity =
+        Number(gravityInput);
+
+
+    if (
+        !Number.isFinite(density) ||
+        !Number.isFinite(gravity)
+    ) {
+
+        errorMessage.textContent =
+            "Please enter valid numerical values.";
+
+        errorMessage.style.display =
+            "block";
+
+        return;
+    }
+
+
+    if (density <= 0) {
+
+        errorMessage.textContent =
+            "Density must be greater than zero.";
+
+        errorMessage.style.display =
+            "block";
+
+        return;
+    }
+
+
+    if (gravity <= 0) {
+
+        errorMessage.textContent =
+            "Gravitational acceleration must be greater than zero.";
+
+        errorMessage.style.display =
+            "block";
+
+        return;
+    }
+
+
+    const densityKgM3 =
+        convertDensityToKgPerM3(
+            density,
+            densityUnit
+        );
+
+
+    const specificWeight =
+        densityKgM3 * gravity;
+
+    const specificWeightKNm3 =
+        specificWeight / 1000;
+
+
+    document.getElementById("mainResult").textContent =
+        formatNumber(specificWeight) + " N/m³";
+
+
+    document.getElementById("steps").innerHTML = `
+
+        <p>
+
+            <strong>
+                Step 1 — Convert density:
+            </strong>
+
+            <br>
+
+            ${formatNumber(density)} ${densityUnit}
+            =
+            ${formatNumber(densityKgM3)} kg/m³
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Step 2 — Use gravitational acceleration:
+            </strong>
+
+            <br>
+
+            g =
+            ${formatNumber(gravity)} m/s²
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Step 3 — Apply the formula:
+            </strong>
+
+            <br>
+
+            γ = ρ × g
+
+        </p>
+
+
+        <p>
+
+            γ =
+            ${formatNumber(densityKgM3)}
+            ×
+            ${formatNumber(gravity)}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Specific Weight =
+                ${formatNumber(specificWeight)} N/m³
+            </strong>
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Equivalent value:
+            </strong>
+
+            <br>
+
+            ${formatNumber(specificWeightKNm3)} kN/m³
+
+        </p>
+
+    `;
+
+
+    resultBox.style.display =
+        "block";
+}
+
+
+function resetCalculator() {
+
+    document.getElementById("density").value =
+        "";
+
+    document.getElementById("gravity").value =
+        "9.81";
+
+    document.getElementById("densityUnit").value =
+        "kgm3";
+
+    document.getElementById("errorMessage").style.display =
+        "none";
+
+    document.getElementById("resultBox").style.display =
+        "none";
+}
+
+</script>
+
+</body>
+</html>

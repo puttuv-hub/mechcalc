@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pump Power Calculator | MECHCALC</title>
+    <meta name="description" content="Calculate pump input power from flow rate, head, density and pump efficiency.">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="calculator.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="logo">⚙ MECHCALC</div>
+
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#calculators">Calculators</a>
+        <a href="index.html#formulas">Formulas</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#account">Login / Sign Up</a>
+    </nav>
+</header>
+
+
+<main class="calculator-page">
+
+    <!-- HERO -->
+    <section class="calculator-hero">
+
+        <h1>Pump Power Calculator</h1>
+
+        <p>
+            Calculate the hydraulic power and required pump input power
+            using flow rate, pump head, fluid density and efficiency.
+        </p>
+
+        <div class="engineering-quote">
+            “A pump converts mechanical energy into fluid energy.”
+        </div>
+
+    </section>
+
+
+    <!-- CALCULATOR -->
+    <section class="calculator-main">
+
+        <div class="calculator-layout">
+
+            <!-- INPUT PANEL -->
+            <div class="input-panel">
+
+                <h2>Enter Values</h2>
+
+
+                <!-- DENSITY -->
+                <div class="calculator-form-group">
+
+                    <label for="density">
+                        Fluid Density
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="density"
+                            value="1000"
+                            placeholder="Enter density"
+                            step="any"
+                        >
+
+                        <select id="densityUnit">
+                            <option value="kgm3">kg/m³</option>
+                            <option value="gcm3">g/cm³</option>
+                            <option value="kgl">kg/L</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FLOW RATE -->
+                <div class="calculator-form-group">
+
+                    <label for="flowRate">
+                        Flow Rate
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="flowRate"
+                            placeholder="Enter flow rate"
+                            step="any"
+                        >
+
+                        <select id="flowRateUnit">
+                            <option value="m3s">m³/s</option>
+                            <option value="ls">L/s</option>
+                            <option value="m3h">m³/h</option>
+                            <option value="lmin">L/min</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- HEAD -->
+                <div class="calculator-form-group">
+
+                    <label for="head">
+                        Pump Head
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="head"
+                            placeholder="Enter head"
+                            step="any"
+                        >
+
+                        <select id="headUnit">
+                            <option value="m">m</option>
+                            <option value="ft">ft</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EFFICIENCY -->
+                <div class="calculator-form-group">
+
+                    <label for="efficiency">
+                        Pump Efficiency
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="efficiency"
+                            value="80"
+                            placeholder="Enter efficiency"
+                            step="any"
+                        >
+
+                        <span class="input-unit">%</span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- GRAVITY -->
+                <div class="calculator-form-group">
+
+                    <label for="gravity">
+                        Gravitational Acceleration
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="gravity"
+                            value="9.81"
+                            step="any"
+                        >
+
+                        <span class="input-unit">m/s²</span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+                <div class="calculator-buttons">
+
+                    <button
+                        type="button"
+                        class="calculator-calculate-btn"
+                        onclick="calculatePumpPower()"
+                    >
+                        Calculate Pump Power
+                    </button>
+
+                    <button
+                        type="button"
+                        class="calculator-reset-btn"
+                        onclick="resetCalculator()"
+                    >
+                        Reset
+                    </button>
+
+                </div>
+
+
+                <!-- ERROR -->
+                <div
+                    id="errorMessage"
+                    class="calculator-error"
+                    style="display:none;"
+                ></div>
+
+            </div>
+
+
+            <!-- FORMULA PANEL -->
+            <div class="formula-panel">
+
+                <h2>Formula</h2>
+
+                <div class="formula-box">
+
+                    <div class="formula-main">
+                        P<sub>h</sub> = ρgQH
+                    </div>
+
+                    <p>
+                        Hydraulic power:
+                        <br>
+                        P<sub>h</sub> = ρ × g × Q × H
+                    </p>
+
+                    <p>
+                        Pump input power:
+                        <br>
+                        P<sub>in</sub> =
+                        P<sub>h</sub> / η
+                    </p>
+
+                </div>
+
+
+                <div class="engineering-info">
+
+                    <h3>Where:</h3>
+
+                    <p>
+                        <strong>ρ</strong> = Fluid density
+                    </p>
+
+                    <p>
+                        <strong>g</strong> = Gravitational acceleration
+                    </p>
+
+                    <p>
+                        <strong>Q</strong> = Flow rate
+                    </p>
+
+                    <p>
+                        <strong>H</strong> = Pump head
+                    </p>
+
+                    <p>
+                        <strong>η</strong> = Pump efficiency
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RESULT -->
+        <div
+            id="resultSection"
+            class="calculator-result"
+            style="display:none;"
+        >
+
+            <h2>Calculation Result</h2>
+
+            <div
+                id="resultValue"
+                class="calculator-result-value"
+            ></div>
+
+            <div
+                id="calculationSteps"
+                class="calculation-steps"
+            ></div>
+
+        </div>
+
+
+        <!-- ENGINEERING INFORMATION -->
+        <div class="unit-info">
+
+            <h2>Understanding Pump Power</h2>
+
+            <p>
+                A pump must supply energy to a fluid to overcome
+                elevation, pressure and flow resistance.
+            </p>
+
+            <p>
+                The ideal hydraulic power is:
+                <strong>P<sub>h</sub> = ρgQH</strong>
+            </p>
+
+            <p>
+                Because a real pump has efficiency losses, the actual
+                power required at the pump input is:
+                <strong>P<sub>in</sub> = P<sub>h</sub> / η</strong>
+            </p>
+
+            <ul>
+
+                <li>
+                    <strong>Higher flow rate:</strong>
+                    increases required power.
+                </li>
+
+                <li>
+                    <strong>Higher pump head:</strong>
+                    increases required power.
+                </li>
+
+                <li>
+                    <strong>Higher fluid density:</strong>
+                    increases required power.
+                </li>
+
+                <li>
+                    <strong>Higher efficiency:</strong>
+                    reduces required input power for the same hydraulic output.
+                </li>
+
+            </ul>
+
+            <p>
+                Pump efficiency must be entered as a percentage.
+                For example, 80% efficiency is entered as 80.
+            </p>
+
+        </div>
+
+
+        <!-- RELATED CALCULATORS -->
+        <section class="related-section">
+
+            <h2>Related Calculators</h2>
+
+            <div class="related-grid">
+
+                <a href="hydraulic-power.html" class="related-card">
+                    <h3>Hydraulic Power</h3>
+                    <p>
+                        Calculate hydraulic power from pressure and flow rate.
+                    </p>
+                </a>
+
+                <a href="continuity.html" class="related-card">
+                    <h3>Continuity Equation</h3>
+                    <p>
+                        Calculate flow velocity, area and flow rate.
+                    </p>
+                </a>
+
+                <a href="bernoulli.html" class="related-card">
+                    <h3>Bernoulli Equation</h3>
+                    <p>
+                        Calculate pressure, velocity and elevation changes.
+                    </p>
+                </a>
+
+            </div>
+
+        </section>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <p>
+        MECHCALC • Mechanical Engineering Tools • Created by Vishnu
+    </p>
+
+</footer>
+
+
+<script>
+
+    /*
+     * Convert density to kg/m³
+     */
+    function convertDensityToKgM3(value, unit) {
+
+        if (unit === "kgm3") {
+            return value;
+        }
+
+        if (unit === "gcm3") {
+            return value * 1000;
+        }
+
+        if (unit === "kgl") {
+            return value * 1000;
+        }
+
+        return value;
+    }
+
+
+    /*
+     * Convert flow rate to m³/s
+     */
+    function convertFlowRateToM3S(value, unit) {
+
+        if (unit === "m3s") {
+            return value;
+        }
+
+        if (unit === "ls") {
+            return value / 1000;
+        }
+
+        if (unit === "m3h") {
+            return value / 3600;
+        }
+
+        if (unit === "lmin") {
+            return value / 60000;
+        }
+
+        return value;
+    }
+
+
+    /*
+     * Convert head to metres
+     */
+    function convertHeadToMetres(value, unit) {
+
+        if (unit === "m") {
+            return value;
+        }
+
+        if (unit === "ft") {
+            return value * 0.3048;
+        }
+
+        return value;
+    }
+
+
+    /*
+     * Calculate pump power
+     *
+     * Hydraulic power:
+     * Ph = ρgQH
+     *
+     * Input power:
+     * Pin = Ph / η
+     */
+    function calculatePumpPower() {
+
+        const density =
+            parseFloat(
+                document.getElementById("density").value
+            );
+
+        const densityUnit =
+            document.getElementById("densityUnit").value;
+
+        const flowRate =
+            parseFloat(
+                document.getElementById("flowRate").value
+            );
+
+        const flowRateUnit =
+            document.getElementById("flowRateUnit").value;
+
+        const head =
+            parseFloat(
+                document.getElementById("head").value
+            );
+
+        const headUnit =
+            document.getElementById("headUnit").value;
+
+        const efficiency =
+            parseFloat(
+                document.getElementById("efficiency").value
+            );
+
+        const gravity =
+            parseFloat(
+                document.getElementById("gravity").value
+            );
+
+
+        const errorMessage =
+            document.getElementById("errorMessage");
+
+        const resultSection =
+            document.getElementById("resultSection");
+
+        const resultValue =
+            document.getElementById("resultValue");
+
+        const calculationSteps =
+            document.getElementById("calculationSteps");
+
+
+        errorMessage.style.display = "none";
+        errorMessage.textContent = "";
+
+
+        /*
+         * Validate numerical inputs
+         */
+        if (
+            !Number.isFinite(density) ||
+            !Number.isFinite(flowRate) ||
+            !Number.isFinite(head) ||
+            !Number.isFinite(efficiency) ||
+            !Number.isFinite(gravity)
+        ) {
+
+            showError(
+                "Please enter valid values in all fields."
+            );
+
+            return;
+        }
+
+
+        if (density <= 0) {
+
+            showError(
+                "Fluid density must be greater than zero."
+            );
+
+            return;
+        }
+
+
+        if (flowRate <= 0) {
+
+            showError(
+                "Flow rate must be greater than zero."
+            );
+
+            return;
+        }
+
+
+        if (head <= 0) {
+
+            showError(
+                "Pump head must be greater than zero."
+            );
+
+            return;
+        }
+
+
+        if (efficiency <= 0 || efficiency > 100) {
+
+            showError(
+                "Pump efficiency must be greater than 0% and no more than 100%."
+            );
+
+            return;
+        }
+
+
+        if (gravity <= 0) {
+
+            showError(
+                "Gravitational acceleration must be greater than zero."
+            );
+
+            return;
+        }
+
+
+        /*
+         * Convert inputs to SI units
+         */
+        const densityKgM3 =
+            convertDensityToKgM3(
+                density,
+                densityUnit
+            );
+
+        const flowRateM3S =
+            convertFlowRateToM3S(
+                flowRate,
+                flowRateUnit
+            );
+
+        const headM =
+            convertHeadToMetres(
+                head,
+                headUnit
+            );
+
+
+        /*
+         * Convert efficiency percentage to decimal
+         */
+        const efficiencyDecimal =
+            efficiency / 100;
+
+
+        /*
+         * Hydraulic power
+         *
+         * Ph = ρgQH
+         */
+        const hydraulicPowerW =
+            densityKgM3 *
+            gravity *
+            flowRateM3S *
+            headM;
+
+
+        /*
+         * Pump input power
+         *
+         * Pin = Ph / η
+         */
+        const pumpInputPowerW =
+            hydraulicPowerW /
+            efficiencyDecimal;
+
+
+        const hydraulicPowerKW =
+            hydraulicPowerW / 1000;
+
+        const pumpInputPowerKW =
+            pumpInputPowerW / 1000;
+
+        const pumpInputPowerHP =
+            pumpInputPowerW / 745.7;
+
+
+        /*
+         * Display result
+         */
+        resultSection.style.display = "block";
+
+        resultValue.innerHTML = `
+
+            <p>
+                Hydraulic Power =
+                <strong>
+                    ${hydraulicPowerW.toFixed(4)} W
+                </strong>
+            </p>
+
+            <p>
+                Hydraulic Power =
+                <strong>
+                    ${hydraulicPowerKW.toFixed(4)} kW
+                </strong>
+            </p>
+
+            <p>
+                Required Pump Input Power =
+                <strong>
+                    ${pumpInputPowerKW.toFixed(4)} kW
+                </strong>
+            </p>
+
+            <p>
+                Pump Input Power ≈
+                <strong>
+                    ${pumpInputPowerHP.toFixed(4)} hp
+                </strong>
+            </p>
+
+        `;
+
+
+        /*
+         * Calculation steps
+         */
+        calculationSteps.innerHTML = `
+
+            <p>
+                <strong>Step 1:</strong>
+                Convert all values into SI units.
+            </p>
+
+            <p>
+                ρ =
+                ${densityKgM3.toFixed(4)}
+                kg/m³
+            </p>
+
+            <p>
+                Q =
+                ${flowRateM3S.toExponential(6)}
+                m³/s
+            </p>
+
+            <p>
+                H =
+                ${headM.toFixed(4)}
+                m
+            </p>
+
+            <p>
+                η =
+                ${efficiencyDecimal.toFixed(4)}
+            </p>
+
+            <p>
+                <strong>Step 2:</strong>
+                Calculate hydraulic power.
+            </p>
+
+            <p>
+                P<sub>h</sub> = ρgQH
+            </p>
+
+            <p>
+                P<sub>h</sub> =
+                ${densityKgM3.toFixed(2)}
+                ×
+                ${gravity.toFixed(2)}
+                ×
+                ${flowRateM3S.toExponential(6)}
+                ×
+                ${headM.toFixed(2)}
+            </p>
+
+            <p>
+                P<sub>h</sub> =
+                <strong>
+                    ${hydraulicPowerW.toFixed(4)} W
+                </strong>
+            </p>
+
+            <p>
+                <strong>Step 3:</strong>
+                Calculate pump input power.
+            </p>
+
+            <p>
+                P<sub>in</sub> =
+                P<sub>h</sub> / η
+            </p>
+
+            <p>
+                P<sub>in</sub> =
+                ${hydraulicPowerW.toFixed(4)}
+                /
+                ${efficiencyDecimal.toFixed(4)}
+            </p>
+
+            <p>
+                <strong>Final Answer:</strong>
+                Pump Input Power =
+                <strong>
+                    ${pumpInputPowerKW.toFixed(4)} kW
+                </strong>
+            </p>
+
+        `;
+
+
+        resultSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }
+
+
+    /*
+     * Display error
+     */
+    function showError(message) {
+
+        const errorMessage =
+            document.getElementById("errorMessage");
+
+        errorMessage.textContent = message;
+        errorMessage.style.display = "block";
+
+    }
+
+
+    /*
+     * Reset calculator
+     */
+    function resetCalculator() {
+
+        document.getElementById("density").value = "1000";
+        document.getElementById("densityUnit").value = "kgm3";
+
+        document.getElementById("flowRate").value = "";
+        document.getElementById("flowRateUnit").value = "m3s";
+
+        document.getElementById("head").value = "";
+        document.getElementById("headUnit").value = "m";
+
+        document.getElementById("efficiency").value = "80";
+
+        document.getElementById("gravity").value = "9.81";
+
+        document.getElementById("errorMessage").style.display = "none";
+        document.getElementById("errorMessage").textContent = "";
+
+        document.getElementById("resultSection").style.display = "none";
+
+        document.getElementById("resultValue").innerHTML = "";
+        document.getElementById("calculationSteps").innerHTML = "";
+
+    }
+
+</script>
+
+</body>
+</html>

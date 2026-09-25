@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <!-- =====================================================
+         SEO
+         ===================================================== -->
+
+    <title>
+        Stress Calculator - Calculate Normal Stress (σ = F/A) | MECHCALC
+    </title>
+
+    <meta
+        name="description"
+        content="Use the MECHCALC Stress Calculator to calculate normal stress from applied force and cross-sectional area. Get results in MPa, Pa, and N/mm² with step-by-step calculations."
+    >
+
+    <meta
+        name="keywords"
+        content="stress calculator, normal stress calculator, stress formula, force area stress calculator, mechanical engineering stress calculator, MPa calculator"
+    >
+
+    <meta
+        name="author"
+        content="Vishnu"
+    >
+
+    <meta
+        name="robots"
+        content="index, follow"
+    >
+
+    <meta
+        name="googlebot"
+        content="index, follow"
+    >
+
+    <meta
+        name="theme-color"
+        content="#0f172a"
+    >
+
+
+    <!-- =====================================================
+         Open Graph SEO
+         ===================================================== -->
+
+    <meta
+        property="og:title"
+        content="Stress Calculator - Calculate Normal Stress | MECHCALC"
+    >
+
+    <meta
+        property="og:description"
+        content="Calculate normal stress using force and cross-sectional area. Get results in MPa, Pa, and N/mm² with step-by-step calculations."
+    >
+
+    <meta
+        property="og:type"
+        content="website"
+    >
+
+    <meta
+        property="og:site_name"
+        content="MECHCALC"
+    >
+
+
+    <!-- =====================================================
+         Twitter / X SEO
+         ===================================================== -->
+
+    <meta
+        name="twitter:card"
+        content="summary"
+    >
+
+    <meta
+        name="twitter:title"
+        content="Stress Calculator | MECHCALC"
+    >
+
+    <meta
+        name="twitter:description"
+        content="Calculate normal stress from force and cross-sectional area with the MECHCALC Stress Calculator."
+    >
+
+
+    <!-- Common website CSS -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <!-- Calculator-only CSS -->
+
+    <link
+        rel="stylesheet"
+        href="calculator.css"
+    >
+
+
+    <!-- =====================================================
+         STRUCTURED DATA
+         ===================================================== -->
+
+    <script type="application/ld+json">
+
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Stress Calculator",
+        "applicationCategory": "EngineeringApplication",
+        "applicationSubCategory": "Mechanical Engineering Calculator",
+        "operatingSystem": "Web",
+        "description": "Calculate normal stress from applied force and cross-sectional area.",
+        "url": "stress.html",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "creator": {
+            "@type": "Person",
+            "name": "Vishnu"
+        },
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "MECHCALC",
+            "url": "index.html"
+        }
+    }
+
+    </script>
+
+</head>
+
+
+<body class="calculator-page">
+
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <header>
+
+        <div class="logo">
+            <a href="index.html">⚙ MECHCALC</a>
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="index.html#calculators">
+                Calculators
+            </a>
+
+            <a href="index.html#formulas">
+                Formulas
+            </a>
+
+            <a href="index.html#about">
+                About
+            </a>
+
+            <a href="index.html#account">
+                Login / Sign Up
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =====================================================
+         CALCULATOR HERO
+         ===================================================== -->
+
+    <section class="calculator-hero">
+
+        <h1>
+            Stress <span>Calculator</span>
+        </h1>
+
+        <p>
+            Calculate normal stress from applied force
+            and cross-sectional area.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         MAIN CALCULATOR
+         ===================================================== -->
+
+    <main class="calculator-main">
+
+
+        <!-- Engineering Quote -->
+
+        <div class="engineering-quote">
+
+            “Strength begins with understanding the load.”
+
+        </div>
+
+
+        <!-- Back Link -->
+
+        <div style="margin-top: 25px;">
+
+            <a
+                href="index.html#calculators"
+                class="back-link"
+            >
+                ← Back to Calculators
+            </a>
+
+        </div>
+
+
+        <!-- Calculator Layout -->
+
+        <div class="calculator-layout">
+
+
+            <!-- =================================================
+                 INPUT PANEL
+                 ================================================= -->
+
+            <section class="input-panel">
+
+                <h2>
+                    Enter Values
+                </h2>
+
+                <p>
+                    Enter the applied force and cross-sectional
+                    area of the component.
+                </p>
+
+
+                <!-- Force -->
+
+                <div class="calculator-form-group">
+
+                    <label for="force">
+                        Applied Force
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="force"
+                            placeholder="Enter force"
+                            step="any"
+                            min="0"
+                        >
+
+                        <select id="forceUnit">
+
+                            <option value="N">
+                                N
+                            </option>
+
+                            <option value="kN">
+                                kN
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Area -->
+
+                <div class="calculator-form-group">
+
+                    <label for="area">
+                        Cross-Sectional Area
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="area"
+                            placeholder="Enter area"
+                            step="any"
+                            min="0"
+                        >
+
+                        <select id="areaUnit">
+
+                            <option value="mm2">
+                                mm²
+                            </option>
+
+                            <option value="cm2">
+                                cm²
+                            </option>
+
+                            <option value="m2">
+                                m²
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Buttons -->
+
+                <div class="calculator-buttons">
+
+                    <button
+                        type="button"
+                        class="calculator-calculate-btn"
+                        onclick="calculateStress()"
+                    >
+                        Calculate Stress
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="calculator-reset-btn"
+                        onclick="resetCalculator()"
+                    >
+                        Reset
+                    </button>
+
+                </div>
+
+
+                <!-- Error -->
+
+                <div
+                    id="errorMessage"
+                    class="calculator-error"
+                >
+                </div>
+
+
+                <!-- Result -->
+
+                <div
+                    id="result"
+                    class="calculator-result"
+                >
+
+                    <h2>
+                        Result
+                    </h2>
+
+                    <div
+                        id="resultValue"
+                        class="calculator-result-value"
+                    >
+                    </div>
+
+                    <p id="resultMPa">
+                    </p>
+
+                    <p id="resultPa">
+                    </p>
+
+                    <p id="resultNmm">
+                    </p>
+
+                    <div
+                        id="steps"
+                        class="calculation-steps"
+                    >
+
+                        <h3>
+                            Calculation
+                        </h3>
+
+                        <p id="step1">
+                        </p>
+
+                        <p id="step2">
+                        </p>
+
+                        <p id="step3">
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 FORMULA PANEL
+                 ================================================= -->
+
+            <aside class="formula-panel">
+
+                <h2>
+                    Engineering Formula
+                </h2>
+
+
+                <div class="formula-box">
+
+                    <div class="formula-main">
+                        σ = F / A
+                    </div>
+
+                    <p>
+                        Stress = Force ÷ Cross-sectional Area
+                    </p>
+
+                </div>
+
+
+                <div class="calculation-steps">
+
+                    <h3>
+                        Where:
+                    </h3>
+
+                    <p>
+                        <strong>σ</strong> = Stress
+                    </p>
+
+                    <p>
+                        <strong>F</strong> = Applied Force
+                    </p>
+
+                    <p>
+                        <strong>A</strong> = Cross-sectional Area
+                    </p>
+
+                </div>
+
+
+                <div class="unit-info">
+
+                    <strong>Important:</strong>
+
+                    <br>
+
+                    1 N/mm² = 1 MPa
+
+                    <br>
+
+                    1 MPa = 1,000,000 Pa
+
+                </div>
+
+            </aside>
+
+        </div>
+
+
+        <!-- =====================================================
+             ENGINEERING INFORMATION
+             ===================================================== -->
+
+        <section class="engineering-info">
+
+            <h2>
+                About Stress
+            </h2>
+
+            <p>
+                Stress is the internal resisting force developed
+                within a material when an external force acts on it.
+            </p>
+
+            <p>
+                For a uniformly loaded component, normal stress is
+                calculated by dividing the applied force by the
+                cross-sectional area.
+            </p>
+
+
+            <ul>
+
+                <li>
+                    Tensile stress occurs when a component is pulled.
+                </li>
+
+                <li>
+                    Compressive stress occurs when a component is pushed.
+                </li>
+
+                <li>
+                    Increasing the applied force increases stress.
+                </li>
+
+                <li>
+                    Increasing the cross-sectional area reduces stress
+                    for the same applied force.
+                </li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- =====================================================
+             RELATED CALCULATORS
+             ===================================================== -->
+
+        <section class="related-section">
+
+            <h2>
+                Related Engineering Calculators
+            </h2>
+
+
+            <div class="related-grid">
+
+                <a
+                    href="strain.html"
+                    class="related-card"
+                >
+
+                    <h3>
+                        Strain Calculator
+                    </h3>
+
+                    <p>
+                        Calculate deformation relative to
+                        original length.
+                    </p>
+
+                </a>
+
+
+                <a
+                    href="youngs-modulus.html"
+                    class="related-card"
+                >
+
+                    <h3>
+                        Young's Modulus
+                    </h3>
+
+                    <p>
+                        Calculate elastic modulus from
+                        stress and strain.
+                    </p>
+
+                </a>
+
+
+                <a
+                    href="pressure.html"
+                    class="related-card"
+                >
+
+                    <h3>
+                        Pressure Calculator
+                    </h3>
+
+                    <p>
+                        Calculate pressure from force
+                        and area.
+                    </p>
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer>
+
+        <p>
+
+            <strong>MECHCALC</strong>
+
+            • Engineering Tools
+
+            • Created by Vishnu
+
+        </p>
+
+    </footer>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script>
+
+        function calculateStress() {
+
+            const forceInput =
+                parseFloat(
+                    document.getElementById("force").value
+                );
+
+            const forceUnit =
+                document.getElementById("forceUnit").value;
+
+
+            const areaInput =
+                parseFloat(
+                    document.getElementById("area").value
+                );
+
+            const areaUnit =
+                document.getElementById("areaUnit").value;
+
+
+            const error =
+                document.getElementById("errorMessage");
+
+            const result =
+                document.getElementById("result");
+
+
+            /* ---------------------------------------------
+               Validation
+               --------------------------------------------- */
+
+            error.style.display = "none";
+            error.textContent = "";
+
+
+            if (
+                isNaN(forceInput) ||
+                isNaN(areaInput)
+            ) {
+
+                error.textContent =
+                    "Please enter values for both force and area.";
+
+                error.style.display = "block";
+
+                result.style.display = "none";
+
+                return;
+            }
+
+
+            if (
+                forceInput <= 0 ||
+                areaInput <= 0
+            ) {
+
+                error.textContent =
+                    "Force and area must be greater than zero.";
+
+                error.style.display = "block";
+
+                result.style.display = "none";
+
+                return;
+            }
+
+
+            /* ---------------------------------------------
+               Convert Force to Newtons
+               --------------------------------------------- */
+
+            let forceN;
+
+
+            if (forceUnit === "N") {
+
+                forceN = forceInput;
+
+            }
+            else if (forceUnit === "kN") {
+
+                forceN = forceInput * 1000;
+
+            }
+
+
+            /* ---------------------------------------------
+               Convert Area to mm²
+               --------------------------------------------- */
+
+            let areaMm2;
+
+
+            if (areaUnit === "mm2") {
+
+                areaMm2 = areaInput;
+
+            }
+            else if (areaUnit === "cm2") {
+
+                areaMm2 = areaInput * 100;
+
+            }
+            else if (areaUnit === "m2") {
+
+                areaMm2 = areaInput * 1000000;
+
+            }
+
+
+            /* ---------------------------------------------
+               Stress Calculation
+               --------------------------------------------- */
+
+            const stressMPa =
+                forceN / areaMm2;
+
+
+            const stressPa =
+                stressMPa * 1000000;
+
+
+            const stressNmm =
+                stressMPa;
+
+
+            const stressGPa =
+                stressMPa / 1000;
+
+
+            /* ---------------------------------------------
+               Display Result
+               --------------------------------------------- */
+
+            document.getElementById("resultValue").textContent =
+                stressMPa.toFixed(4) + " MPa";
+
+
+            document.getElementById("resultMPa").textContent =
+                "Stress = " +
+                stressMPa.toFixed(4) +
+                " MPa";
+
+
+            document.getElementById("resultPa").textContent =
+                "Stress = " +
+                stressPa.toLocaleString(
+                    undefined,
+                    {
+                        maximumFractionDigits: 2
+                    }
+                ) +
+                " Pa";
+
+
+            document.getElementById("resultNmm").textContent =
+                "Stress = " +
+                stressNmm.toFixed(4) +
+                " N/mm²";
+
+
+            /* ---------------------------------------------
+               Calculation Steps
+               --------------------------------------------- */
+
+            document.getElementById("step1").textContent =
+                "1. Converted force = " +
+                forceN.toLocaleString(
+                    undefined,
+                    {
+                        maximumFractionDigits: 4
+                    }
+                ) +
+                " N";
+
+
+            document.getElementById("step2").textContent =
+                "2. Converted area = " +
+                areaMm2.toLocaleString(
+                    undefined,
+                    {
+                        maximumFractionDigits: 4
+                    }
+                ) +
+                " mm²";
+
+
+            document.getElementById("step3").textContent =
+                "3. σ = F / A = " +
+                forceN.toFixed(4) +
+                " / " +
+                areaMm2.toFixed(4) +
+                " = " +
+                stressMPa.toFixed(4) +
+                " MPa";
+
+
+            /* ---------------------------------------------
+               Show Result
+               --------------------------------------------- */
+
+            result.style.display = "block";
+
+        }
+
+
+        /* =================================================
+           RESET
+           ================================================= */
+
+        function resetCalculator() {
+
+            document.getElementById("force").value = "";
+
+            document.getElementById("area").value = "";
+
+            document.getElementById("forceUnit").value = "N";
+
+            document.getElementById("areaUnit").value = "mm2";
+
+
+            document.getElementById("result").style.display =
+                "none";
+
+
+            document.getElementById("errorMessage").style.display =
+                "none";
+
+
+            document.getElementById("errorMessage").textContent =
+                "";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

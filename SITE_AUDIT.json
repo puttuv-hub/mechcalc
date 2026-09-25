@@ -1,0 +1,18 @@
+{
+  "status": "GitHub Pages package ready",
+  "html_files": 26,
+  "calculator_pages_expected": 23,
+  "calculator_pages_present": 23,
+  "css_files": [
+    "calculator.css",
+    "style.css"
+  ],
+  "markdown_fences_remaining": [],
+  "missing_local_files": {},
+  "javascript_syntax_errors": 0,
+  "jsonld_parse_errors": 0,
+  "notes": [
+    "Original MECHCALC design files preserved.",
+    "robots.txt and sitemap.xml should be updated to final absolute public URLs after the GitHub Pages URL/custom domain is known."
+  ]
+}

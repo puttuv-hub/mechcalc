@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bernoulli Equation Calculator | MECHCALC</title>
+    <meta name="description" content="Calculate pressure, velocity, elevation and head using the Bernoulli equation.">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="calculator.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="logo">⚙ MECHCALC</div>
+
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#calculators">Calculators</a>
+        <a href="index.html#formulas">Formulas</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#account">Login / Sign Up</a>
+    </nav>
+</header>
+
+
+<main class="calculator-page">
+
+    <!-- HERO -->
+    <section class="calculator-hero">
+
+        <h1>Bernoulli Equation Calculator</h1>
+
+        <p>
+            Calculate the unknown pressure, velocity, or elevation
+            in an ideal steady-flow system using Bernoulli's equation.
+        </p>
+
+        <div class="engineering-quote">
+            “Pressure, velocity and elevation exchange energy in flowing fluids.”
+        </div>
+
+    </section>
+
+
+    <!-- CALCULATOR -->
+    <section class="calculator-main">
+
+        <div class="calculator-layout">
+
+            <!-- INPUT PANEL -->
+            <div class="input-panel">
+
+                <h2>Enter Values</h2>
+
+                <p>
+                    Leave exactly <strong>one</strong> field blank.
+                    The calculator will determine that value.
+                </p>
+
+
+                <!-- PRESSURE 1 -->
+                <div class="calculator-form-group">
+
+                    <label for="pressure1">
+                        Pressure at Point 1
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="pressure1"
+                            placeholder="Leave blank if unknown"
+                            step="any"
+                        >
+
+                        <select id="pressure1Unit">
+                            <option value="pa">Pa</option>
+                            <option value="kpa">kPa</option>
+                            <option value="bar">bar</option>
+                            <option value="mpa">MPa</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- VELOCITY 1 -->
+                <div class="calculator-form-group">
+
+                    <label for="velocity1">
+                        Velocity at Point 1
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="velocity1"
+                            placeholder="Leave blank if unknown"
+                            step="any"
+                        >
+
+                        <select id="velocity1Unit">
+                            <option value="ms">m/s</option>
+                            <option value="kmh">km/h</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ELEVATION 1 -->
+                <div class="calculator-form-group">
+
+                    <label for="elevation1">
+                        Elevation at Point 1
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="elevation1"
+                            placeholder="Leave blank if unknown"
+                            step="any"
+                        >
+
+                        <select id="elevation1Unit">
+                            <option value="m">m</option>
+                            <option value="ft">ft</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PRESSURE 2 -->
+                <div class="calculator-form-group">
+
+                    <label for="pressure2">
+                        Pressure at Point 2
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="pressure2"
+                            placeholder="Leave blank if unknown"
+                            step="any"
+                        >
+
+                        <select id="pressure2Unit">
+                            <option value="pa">Pa</option>
+                            <option value="kpa">kPa</option>
+                            <option value="bar">bar</option>
+                            <option value="mpa">MPa</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- VELOCITY 2 -->
+                <div class="calculator-form-group">
+
+                    <label for="velocity2">
+                        Velocity at Point 2
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="velocity2"
+                            placeholder="Leave blank if unknown"
+                            step="any"
+                        >
+
+                        <select id="velocity2Unit">
+                            <option value="ms">m/s</option>
+                            <option value="kmh">km/h</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ELEVATION 2 -->
+                <div class="calculator-form-group">
+
+                    <label for="elevation2">
+                        Elevation at Point 2
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="elevation2"
+                            placeholder="Leave blank if unknown"
+                            step="any"
+                        >
+
+                        <select id="elevation2Unit">
+                            <option value="m">m</option>
+                            <option value="ft">ft</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DENSITY -->
+                <div class="calculator-form-group">
+
+                    <label for="density">
+                        Fluid Density
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="density"
+                            value="1000"
+                            step="any"
+                        >
+
+                        <select id="densityUnit">
+                            <option value="kgm3">kg/m³</option>
+                            <option value="gcm3">g/cm³</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- GRAVITY -->
+                <div class="calculator-form-group">
+
+                    <label for="gravity">
+                        Gravitational Acceleration
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="gravity"
+                            value="9.81"
+                            step="any"
+                        >
+
+                        <select id="gravityUnit">
+                            <option value="ms2">m/s²</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+                <div class="calculator-buttons">
+
+                    <button
+                        type="button"
+                        class="calculator-calculate-btn"
+                        onclick="calculateBernoulli()"
+                    >
+                        Calculate
+                    </button>
+
+                    <button
+                        type="button"
+                        class="calculator-reset-btn"
+                        onclick="resetCalculator()"
+                    >
+                        Reset
+                    </button>
+
+                </div>
+
+
+                <!-- ERROR -->
+                <div
+                    id="errorMessage"
+                    class="calculator-error"
+                    style="display:none;"
+                ></div>
+
+            </div>
+
+
+            <!-- FORMULA PANEL -->
+            <div class="formula-panel">
+
+                <h2>Bernoulli Equation</h2>
+
+                <div class="formula-box">
+
+                    <div class="formula-main">
+                        P₁/ρg + V₁²/2g + z₁
+                        =
+                        P₂/ρg + V₂²/2g + z₂
+                    </div>
+
+                    <p>
+                        This form expresses conservation of mechanical
+                        energy per unit weight for ideal steady incompressible flow.
+                    </p>
+
+                </div>
+
+
+                <div class="engineering-info">
+
+                    <h3>Assumptions</h3>
+
+                    <ul>
+
+                        <li>Steady flow</li>
+
+                        <li>Incompressible fluid</li>
+
+                        <li>Negligible friction losses</li>
+
+                        <li>No pump or turbine energy added or removed</li>
+
+                    </ul>
+
+                    <p>
+                        For real systems, pump head, turbine head and
+                        head losses may need to be included.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RESULT -->
+        <div
+            id="resultSection"
+            class="calculator-result"
+            style="display:none;"
+        >
+
+            <h2>Calculation Result</h2>
+
+            <div
+                id="resultValue"
+                class="calculator-result-value"
+            ></div>
+
+            <div
+                id="calculationSteps"
+                class="calculation-steps"
+            ></div>
+
+        </div>
+
+
+        <!-- ENGINEERING INFORMATION -->
+        <div class="unit-info">
+
+            <h2>Understanding Bernoulli's Equation</h2>
+
+            <p>
+                Bernoulli's equation relates pressure energy, kinetic
+                energy and potential energy along a streamline.
+            </p>
+
+            <ul>
+
+                <li>
+                    <strong>Pressure head:</strong>
+                    P / ρg
+                </li>
+
+                <li>
+                    <strong>Velocity head:</strong>
+                    V² / 2g
+                </li>
+
+                <li>
+                    <strong>Elevation head:</strong>
+                    z
+                </li>
+
+            </ul>
+
+            <p>
+                The three terms have units of metres of fluid head.
+            </p>
+
+        </div>
+
+
+        <!-- RELATED CALCULATORS -->
+        <section class="related-section">
+
+            <h2>Related Calculators</h2>
+
+            <div class="related-grid">
+
+                <a href="pressure.html" class="related-card">
+                    <h3>Pressure</h3>
+                    <p>
+                        Calculate pressure from force and area.
+                    </p>
+                </a>
+
+                <a href="reynolds-number.html" class="related-card">
+                    <h3>Reynolds Number</h3>
+                    <p>
+                        Determine the flow regime from fluid properties
+                        and flow conditions.
+                    </p>
+                </a>
+
+                <a href="density.html" class="related-card">
+                    <h3>Density</h3>
+                    <p>
+                        Calculate density from mass and volume.
+                    </p>
+                </a>
+
+            </div>
+
+        </section>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <p>
+        MECHCALC • Mechanical Engineering Tools • Created by Vishnu
+    </p>
+
+</footer>
+
+
+<script>
+
+    /*
+     * Parse an optional input.
+     * Blank fields return null.
+     */
+    function getOptionalValue(id) {
+
+        const value = document.getElementById(id).value.trim();
+
+        if (value === "") {
+            return null;
+        }
+
+        const number = parseFloat(value);
+
+        return Number.isFinite(number) ? number : NaN;
+    }
+
+
+    /*
+     * Convert pressure to Pa
+     */
+    function convertPressureToPa(value, unit) {
+
+        if (unit === "pa") {
+            return value;
+        }
+
+        if (unit === "kpa") {
+            return value * 1000;
+        }
+
+        if (unit === "bar") {
+            return value * 100000;
+        }
+
+        if (unit === "mpa") {
+            return value * 1000000;
+        }
+
+        return value;
+    }
+
+
+    /*
+     * Convert velocity to m/s
+     */
+    function convertVelocityToMS(value, unit) {
+
+        if (unit === "ms") {
+            return value;
+        }
+
+        if (unit === "kmh") {
+            return value / 3.6;
+        }
+
+        return value;
+    }
+
+
+    /*
+     * Convert elevation to metres
+     */
+    function convertElevationToM(value, unit) {
+
+        if (unit === "m") {
+            return value;
+        }
+
+        if (unit === "ft") {
+            return value * 0.3048;
+        }
+
+        return value;
+    }
+
+
+    /*
+     * Convert density to kg/m³
+     */
+    function convertDensityToKgM3(value, unit) {
+
+        if (unit === "kgm3") {
+            return value;
+        }
+
+        if (unit === "gcm3") {
+            return value * 1000;
+        }
+
+        return value;
+    }
+
+
+    /*
+     * Calculate Bernoulli equation.
+     *
+     * P₁/ρg + V₁²/2g + z₁
+     * =
+     * P₂/ρg + V₂²/2g + z₂
+     */
+    function calculateBernoulli() {
+
+        const pressure1 = getOptionalValue("pressure1");
+        const velocity1 = getOptionalValue("velocity1");
+        const elevation1 = getOptionalValue("elevation1");
+
+        const pressure2 = getOptionalValue("pressure2");
+        const velocity2 = getOptionalValue("velocity2");
+        const elevation2 = getOptionalValue("elevation2");
+
+        const density = parseFloat(
+            document.getElementById("density").value
+        );
+
+        const gravity = parseFloat(
+            document.getElementById("gravity").value
+        );
+
+
+        const pressure1Unit =
+            document.getElementById("pressure1Unit").value;
+
+        const pressure2Unit =
+            document.getElementById("pressure2Unit").value;
+
+        const velocity1Unit =
+            document.getElementById("velocity1Unit").value;
+
+        const velocity2Unit =
+            document.getElementById("velocity2Unit").value;
+
+        const elevation1Unit =
+            document.getElementById("elevation1Unit").value;
+
+        const elevation2Unit =
+            document.getElementById("elevation2Unit").value;
+
+        const densityUnit =
+            document.getElementById("densityUnit").value;
+
+
+        const errorMessage =
+            document.getElementById("errorMessage");
+
+        const resultSection =
+            document.getElementById("resultSection");
+
+        const resultValue =
+            document.getElementById("resultValue");
+
+        const calculationSteps =
+            document.getElementById("calculationSteps");
+
+
+        /*
+         * Clear previous error
+         */
+        errorMessage.style.display = "none";
+        errorMessage.textContent = "";
+
+
+        /*
+         * Check for invalid numeric input
+         */
+        const optionalValues = [
+            pressure1,
+            velocity1,
+            elevation1,
+            pressure2,
+            velocity2,
+            elevation2
+        ];
+
+        if (optionalValues.some(value => Number.isNaN(value))) {
+
+            showError(
+                "Please enter valid numerical values or leave exactly one field blank."
+            );
+
+            return;
+        }
+
+
+        /*
+         * Exactly one of the six main variables must be unknown.
+         */
+        const values = [
+            pressure1,
+            velocity1,
+            elevation1,
+            pressure2,
+            velocity2,
+            elevation2
+        ];
+
+        const unknownCount =
+            values.filter(value => value === null).length;
+
+
+        if (unknownCount !== 1) {
+
+            showError(
+                "Leave exactly one of the six pressure, velocity or elevation fields blank."
+            );
+
+            return;
+        }
+
+
+        /*
+         * Density and gravity validation
+         */
+        if (!Number.isFinite(density) || density <= 0) {
+
+            showError(
+                "Fluid density must be greater than zero."
+            );
+
+            return;
+        }
+
+
+        if (!Number.isFinite(gravity) || gravity <= 0) {
+
+            showError(
+                "Gravitational acceleration must be greater than zero."
+            );
+
+            return;
+        }
+
+
+        /*
+         * Convert density
+         */
+        const rho =
+            convertDensityToKgM3(
+                density,
+                densityUnit
+            );
+
+
+        /*
+         * Convert known values.
+         *
+         * Unknown values remain null.
+         */
+        const P1 =
+            pressure1 === null
+                ? null
+                : convertPressureToPa(
+                    pressure1,
+                    pressure1Unit
+                );
+
+        const V1 =
+            velocity1 === null
+                ? null
+                : convertVelocityToMS(
+                    velocity1,
+                    velocity1Unit
+                );
+
+        const Z1 =
+            elevation1 === null
+                ? null
+                : convertElevationToM(
+                    elevation1,
+                    elevation1Unit
+                );
+
+        const P2 =
+            pressure2 === null
+                ? null
+                : convertPressureToPa(
+                    pressure2,
+                    pressure2Unit
+                );
+
+        const V2 =
+            velocity2 === null
+                ? null
+                : convertVelocityToMS(
+                    velocity2,
+                    velocity2Unit
+                );
+
+        const Z2 =
+            elevation2 === null
+                ? null
+                : convertElevationToM(
+                    elevation2,
+                    elevation2Unit
+                );
+
+
+        /*
+         * Check known pressure, velocity and density values.
+         *
+         * Elevation may be positive, zero or negative.
+         */
+        if (P1 !== null && P1 < 0) {
+
+            showError(
+                "Pressure cannot be negative in this calculator."
+            );
+
+            return;
+        }
+
+        if (P2 !== null && P2 < 0) {
+
+            showError(
+                "Pressure cannot be negative in this calculator."
+            );
+
+            return;
+        }
+
+        if (V1 !== null && V1 < 0) {
+
+            showError(
+                "Velocity must be zero or greater."
+            );
+
+            return;
+        }
+
+        if (V2 !== null && V2 < 0) {
+
+            showError(
+                "Velocity must be zero or greater."
+            );
+
+            return;
+        }
+
+
+        /*
+         * Energy/head terms.
+         */
+        const pressureHead1 =
+            P1 === null ? null : P1 / (rho * gravity);
+
+        const velocityHead1 =
+            V1 === null ? null : (V1 * V1) / (2 * gravity);
+
+        const pressureHead2 =
+            P2 === null ? null : P2 / (rho * gravity);
+
+        const velocityHead2 =
+            V2 === null ? null : (V2 * V2) / (2 * gravity);
+
+
+        /*
+         * Calculate the unknown.
+         */
+        let answer;
+        let answerUnit;
+        let answerLabel;
+        let formulaSteps;
+
+
+        /*
+         * Unknown P1
+         */
+        if (P1 === null) {
+
+            const totalHead2 =
+                pressureHead2 +
+                velocityHead2 +
+                Z2;
+
+            const requiredPressureHead =
+                totalHead2 -
+                velocityHead1 -
+                Z1;
+
+            answer =
+                requiredPressureHead *
+                rho *
+                gravity;
+
+            answerUnit = "Pa";
+            answerLabel = "Pressure at Point 1";
+
+            formulaSteps = `
+                P₁/ρg =
+                P₂/ρg + V₂²/2g + z₂
+                − V₁²/2g − z₁
+            `;
+
+        }
+
+
+        /*
+         * Unknown V1
+         */
+        else if (V1 === null) {
+
+            const totalHead2 =
+                pressureHead2 +
+                velocityHead2 +
+                Z2;
+
+            const requiredVelocityHead =
+                totalHead2 -
+                pressureHead1 -
+                Z1;
+
+            if (requiredVelocityHead < 0) {
+
+                showError(
+                    "The calculated velocity head is negative. Check the supplied values."
+                );
+
+                return;
+            }
+
+            answer =
+                Math.sqrt(
+                    2 *
+                    gravity *
+                    requiredVelocityHead
+                );
+
+            answerUnit = "m/s";
+            answerLabel = "Velocity at Point 1";
+
+            formulaSteps = `
+                V₁²/2g =
+                P₂/ρg + V₂²/2g + z₂
+                − P₁/ρg − z₁
+            `;
+
+        }
+
+
+        /*
+         * Unknown Z1
+         */
+        else if (Z1 === null) {
+
+            const totalHead2 =
+                pressureHead2 +
+                velocityHead2 +
+                Z2;
+
+            answer =
+                totalHead2 -
+                pressureHead1 -
+                velocityHead1;
+
+            answerUnit = "m";
+            answerLabel = "Elevation at Point 1";
+
+            formulaSteps = `
+                z₁ =
+                P₂/ρg + V₂²/2g + z₂
+                − P₁/ρg − V₁²/2g
+            `;
+
+        }
+
+
+        /*
+         * Unknown P2
+         */
+        else if (P2 === null) {
+
+            const totalHead1 =
+                pressureHead1 +
+                velocityHead1 +
+                Z1;
+
+            const requiredPressureHead =
+                totalHead1 -
+                velocityHead2 -
+                Z2;
+
+            answer =
+                requiredPressureHead *
+                rho *
+                gravity;
+
+            answerUnit = "Pa";
+            answerLabel = "Pressure at Point 2";
+
+            formulaSteps = `
+                P₂/ρg =
+                P₁/ρg + V₁²/2g + z₁
+                − V₂²/2g − z₂
+            `;
+
+        }
+
+
+        /*
+         * Unknown V2
+         */
+        else if (V2 === null) {
+
+            const totalHead1 =
+                pressureHead1 +
+                velocityHead1 +
+                Z1;
+
+            const requiredVelocityHead =
+                totalHead1 -
+                pressureHead2 -
+                Z2;
+
+            if (requiredVelocityHead < 0) {
+
+                showError(
+                    "The calculated velocity head is negative. Check the supplied values."
+                );
+
+                return;
+            }
+
+            answer =
+                Math.sqrt(
+                    2 *
+                    gravity *
+                    requiredVelocityHead
+                );
+
+            answerUnit = "m/s";
+            answerLabel = "Velocity at Point 2";
+
+            formulaSteps = `
+                V₂²/2g =
+                P₁/ρg + V₁²/2g + z₁
+                − P₂/ρg − z₂
+            `;

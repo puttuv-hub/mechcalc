@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Specific Gravity Calculator - Calculate SG | MECHCALC</title>
+
+    <meta
+        name="description"
+        content="Use the MECHCALC Specific Gravity Calculator to calculate specific gravity from substance density and reference fluid density. Get accurate dimensionless SG results with step-by-step calculations."
+    >
+
+    <meta
+        name="keywords"
+        content="specific gravity calculator, SG calculator, specific gravity formula calculator, density ratio calculator, relative density calculator, fluid specific gravity calculator, mechanical engineering specific gravity calculator"
+    >
+
+    <meta name="author" content="Vishnu">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="theme-color" content="#0f172a">
+
+    <!-- Open Graph -->
+    <meta
+        property="og:title"
+        content="Specific Gravity Calculator - Calculate SG | MECHCALC"
+    >
+    <meta
+        property="og:description"
+        content="Calculate specific gravity from substance density and reference fluid density. Get accurate dimensionless SG results with MECHCALC."
+    >
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MECHCALC">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary">
+    <meta
+        name="twitter:title"
+        content="Specific Gravity Calculator - SG | MECHCALC"
+    >
+    <meta
+        name="twitter:description"
+        content="Calculate specific gravity from density values using SG = ρsubstance / ρreference with step-by-step calculations."
+    >
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Specific Gravity Calculator",
+        "applicationCategory": "EngineeringApplication",
+        "applicationSubCategory": "Mechanical Engineering Calculator",
+        "operatingSystem": "Web",
+        "description": "Calculate specific gravity by dividing the density of a substance by the density of a reference fluid. The result is dimensionless.",
+        "url": "specific-gravity.html",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "creator": {
+            "@type": "Person",
+            "name": "Vishnu"
+        },
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "MECHCALC",
+            "url": "index.html"
+        }
+    }
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="calculator.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="logo">⚙ MECHCALC</div>
+
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#calculators">Calculators</a>
+        <a href="index.html#formulas">Formulas</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#account">Login / Sign Up</a>
+    </nav>
+</header>
+
+
+<main class="calculator-page">
+
+    <section class="calculator-hero">
+
+        <h1>Specific Gravity Calculator</h1>
+
+        <p>
+            Calculate the specific gravity of a substance by comparing
+            its density with the density of a reference fluid.
+        </p>
+
+        <div class="engineering-quote">
+            “Specific gravity compares density without units.”
+        </div>
+
+    </section>
+
+
+    <section class="calculator-main">
+
+        <div class="calculator-layout">
+
+            <div class="input-panel">
+
+                <h2>Enter Values</h2>
+
+                <div class="calculator-form-group">
+
+                    <label for="substanceDensity">
+                        Density of Substance
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="substanceDensity"
+                            placeholder="Enter density"
+                            step="any"
+                        >
+
+                        <select id="substanceDensityUnit">
+                            <option value="kgm3">kg/m³</option>
+                            <option value="gcm3">g/cm³</option>
+                            <option value="kgL">kg/L</option>
+                            <option value="gL">g/L</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="calculator-form-group">
+
+                    <label for="referenceDensity">
+                        Reference Fluid Density
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="referenceDensity"
+                            placeholder="Enter reference density"
+                            step="any"
+                            value="1000"
+                        >
+
+                        <select id="referenceDensityUnit">
+                            <option value="kgm3">kg/m³</option>
+                            <option value="gcm3">g/cm³</option>
+                            <option value="kgL">kg/L</option>
+                            <option value="gL">g/L</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="calculator-buttons">
+
+                    <button
+                        type="button"
+                        class="calculator-calculate-btn"
+                        onclick="calculateSpecificGravity()"
+                    >
+                        Calculate Specific Gravity
+                    </button>
+
+                    <button
+                        type="button"
+                        class="calculator-reset-btn"
+                        onclick="resetCalculator()"
+                    >
+                        Reset
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="errorMessage"
+                    class="calculator-error"
+                    style="display: none;"
+                ></div>
+
+            </div>
+
+
+            <div class="formula-panel">
+
+                <h2>Formula</h2>
+
+                <div class="formula-box">
+
+                    <div class="formula-main">
+                        SG = ρ<sub>substance</sub> / ρ<sub>reference</sub>
+                    </div>
+
+                    <p>
+                        Specific Gravity is the ratio of the density
+                        of a substance to the density of a reference fluid.
+                    </p>
+
+                </div>
+
+
+                <div class="engineering-info">
+
+                    <h3>Reference Fluid</h3>
+
+                    <p>
+                        For liquids and solids, water is commonly used
+                        as the reference fluid.
+                    </p>
+
+                    <p>
+                        At approximately 4°C:
+                        <strong>ρ<sub>water</sub> ≈ 1000 kg/m³</strong>
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="resultSection"
+            class="calculator-result"
+            style="display: none;"
+        >
+
+            <h2>Calculation Result</h2>
+
+            <div
+                id="resultValue"
+                class="calculator-result-value"
+            ></div>
+
+            <div
+                id="calculationSteps"
+                class="calculation-steps"
+            ></div>
+
+        </div>
+
+
+        <div class="unit-info">
+
+            <h2>Understanding Specific Gravity</h2>
+
+            <p>
+                Specific gravity (SG) is a dimensionless quantity because
+                it is a ratio of two densities having the same units.
+            </p>
+
+            <p>
+                It helps engineers compare the density of a material
+                with a reference substance, commonly water for liquids
+                and solids.
+            </p>
+
+            <ul>
+
+                <li>
+                    <strong>SG &lt; 1:</strong>
+                    Substance is less dense than the reference fluid.
+                </li>
+
+                <li>
+                    <strong>SG = 1:</strong>
+                    Substance has the same density as the reference fluid.
+                </li>
+
+                <li>
+                    <strong>SG &gt; 1:</strong>
+                    Substance is denser than the reference fluid.
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <section class="related-section">
+
+            <h2>Related Calculators</h2>
+
+            <div class="related-grid">
+
+                <a href="density.html" class="related-card">
+                    <h3>Density</h3>
+                    <p>Calculate density from mass and volume.</p>
+                </a>
+
+                <a href="specific-weight.html" class="related-card">
+                    <h3>Specific Weight</h3>
+                    <p>
+                        Calculate specific weight from density and gravity.
+                    </p>
+                </a>
+
+                <a href="pressure.html" class="related-card">
+                    <h3>Pressure</h3>
+                    <p>Calculate pressure from force and area.</p>
+                </a>
+
+            </div>
+
+        </section>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+    <p>
+        MECHCALC • Mechanical Engineering Tools • Created by Vishnu
+    </p>
+</footer>
+
+
+<script>
+
+function convertDensityToKgM3(value, unit) {
+
+    if (unit === "kgm3") {
+        return value;
+    }
+
+    if (unit === "gcm3") {
+        return value * 1000;
+    }
+
+    if (unit === "kgL") {
+        return value * 1000;
+    }
+
+    if (unit === "gL") {
+        return value;
+    }
+
+    return value;
+}
+
+
+function calculateSpecificGravity() {
+
+    const substanceDensity =
+        parseFloat(
+            document.getElementById("substanceDensity").value
+        );
+
+    const substanceUnit =
+        document.getElementById("substanceDensityUnit").value;
+
+    const referenceDensity =
+        parseFloat(
+            document.getElementById("referenceDensity").value
+        );
+
+    const referenceUnit =
+        document.getElementById("referenceDensityUnit").value;
+
+    const errorMessage =
+        document.getElementById("errorMessage");
+
+    const resultSection =
+        document.getElementById("resultSection");
+
+    const resultValue =
+        document.getElementById("resultValue");
+
+    const calculationSteps =
+        document.getElementById("calculationSteps");
+
+
+    errorMessage.style.display = "none";
+    errorMessage.textContent = "";
+
+
+    if (
+        isNaN(substanceDensity) ||
+        isNaN(referenceDensity)
+    ) {
+
+        showError(
+            "Please enter both density values."
+        );
+
+        return;
+    }
+
+
+    if (substanceDensity <= 0) {
+
+        showError(
+            "Density of the substance must be greater than zero."
+        );
+
+        return;
+    }
+
+
+    if (referenceDensity <= 0) {
+
+        showError(
+            "Reference fluid density must be greater than zero."
+        );
+
+        return;
+    }
+
+
+    const substanceDensityKgM3 =
+        convertDensityToKgM3(
+            substanceDensity,
+            substanceUnit
+        );
+
+    const referenceDensityKgM3 =
+        convertDensityToKgM3(
+            referenceDensity,
+            referenceUnit
+        );
+
+
+    const specificGravity =
+        substanceDensityKgM3 /
+        referenceDensityKgM3;
+
+
+    resultSection.style.display = "block";
+
+    resultValue.innerHTML =
+        `Specific Gravity =
+        <strong>${specificGravity.toFixed(4)}</strong>`;
+
+
+    calculationSteps.innerHTML = `
+
+        <p>
+            <strong>Step 1:</strong>
+            Convert the substance density to kg/m³.
+        </p>
+
+        <p>
+            Substance density =
+            ${substanceDensityKgM3.toLocaleString()}
+            kg/m³
+        </p>
+
+        <p>
+            <strong>Step 2:</strong>
+            Convert the reference density to kg/m³.
+        </p>
+
+        <p>
+            Reference density =
+            ${referenceDensityKgM3.toLocaleString()}
+            kg/m³
+        </p>
+
+        <p>
+            <strong>Step 3:</strong>
+            Apply the specific gravity formula.
+        </p>
+
+        <p>
+            SG =
+            ${substanceDensityKgM3.toLocaleString()}
+            /
+            ${referenceDensityKgM3.toLocaleString()}
+        </p>
+
+        <p>
+            <strong>Final Answer:</strong>
+            SG =
+            ${specificGravity.toFixed(4)}
+        </p>
+
+    `;
+
+
+    resultSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+
+function showError(message) {
+
+    const errorMessage =
+        document.getElementById("errorMessage");
+
+    errorMessage.textContent = message;
+    errorMessage.style.display = "block";
+}
+
+
+function resetCalculator() {
+
+    document.getElementById("substanceDensity").value = "";
+
+    document.getElementById("substanceDensityUnit").value = "kgm3";
+
+    document.getElementById("referenceDensity").value = "1000";
+
+    document.getElementById("referenceDensityUnit").value = "kgm3";
+
+    document.getElementById("errorMessage").style.display = "none";
+
+    document.getElementById("errorMessage").textContent = "";
+
+    document.getElementById("resultSection").style.display = "none";
+
+    document.getElementById("resultValue").innerHTML = "";
+
+    document.getElementById("calculationSteps").innerHTML = "";
+}
+
+</script>
+
+</body>
+</html>

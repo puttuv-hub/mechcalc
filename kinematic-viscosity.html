@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kinematic Viscosity Calculator | MECHCALC</title>
+    <meta name="description" content="Calculate kinematic viscosity from dynamic viscosity and fluid density using the MECHCALC engineering calculator.">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="calculator.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="logo">⚙ MECHCALC</div>
+
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#calculators">Calculators</a>
+        <a href="index.html#formulas">Formulas</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#account">Login / Sign Up</a>
+    </nav>
+</header>
+
+
+<main class="calculator-page">
+
+    <!-- HERO -->
+    <section class="calculator-hero">
+
+        <h1>Kinematic Viscosity Calculator</h1>
+
+        <p>
+            Calculate kinematic viscosity from dynamic viscosity and
+            fluid density.
+        </p>
+
+        <div class="engineering-quote">
+            “Kinematic viscosity describes how readily a fluid flows under gravity.”
+        </div>
+
+    </section>
+
+
+    <!-- CALCULATOR -->
+    <section class="calculator-main">
+
+        <div class="calculator-layout">
+
+            <!-- INPUT PANEL -->
+            <div class="input-panel">
+
+                <h2>Enter Values</h2>
+
+
+                <!-- DYNAMIC VISCOSITY -->
+                <div class="calculator-form-group">
+
+                    <label for="dynamicViscosity">
+                        Dynamic Viscosity
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="dynamicViscosity"
+                            placeholder="Enter dynamic viscosity"
+                            step="any"
+                        >
+
+                        <select id="dynamicViscosityUnit">
+                            <option value="pas">Pa·s</option>
+                            <option value="mpas">mPa·s</option>
+                            <option value="cp">cP</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DENSITY -->
+                <div class="calculator-form-group">
+
+                    <label for="density">
+                        Fluid Density
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="density"
+                            placeholder="Enter fluid density"
+                            step="any"
+                        >
+
+                        <select id="densityUnit">
+                            <option value="kgm3">kg/m³</option>
+                            <option value="gcm3">g/cm³</option>
+                            <option value="kgL">kg/L</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+                <div class="calculator-buttons">
+
+                    <button
+                        type="button"
+                        class="calculator-calculate-btn"
+                        onclick="calculateKinematicViscosity()"
+                    >
+                        Calculate Kinematic Viscosity
+                    </button>
+
+                    <button
+                        type="button"
+                        class="calculator-reset-btn"
+                        onclick="resetCalculator()"
+                    >
+                        Reset
+                    </button>
+
+                </div>
+
+
+                <!-- ERROR -->
+                <div
+                    id="errorMessage"
+                    class="calculator-error"
+                    style="display:none;"
+                ></div>
+
+            </div>
+
+
+            <!-- FORMULA PANEL -->
+            <div class="formula-panel">
+
+                <h2>Formula</h2>
+
+                <div class="formula-box">
+
+                    <div class="formula-main">
+                        ν = μ / ρ
+                    </div>
+
+                    <p>
+                        Where:
+                        <br>
+                        ν = Kinematic viscosity
+                        <br>
+                        μ = Dynamic viscosity
+                        <br>
+                        ρ = Fluid density
+                    </p>
+
+                </div>
+
+
+                <div class="engineering-info">
+
+                    <h3>SI Unit</h3>
+
+                    <p>
+                        Kinematic viscosity is measured in
+                        <strong>m²/s</strong>.
+                    </p>
+
+                    <p>
+                        Common engineering unit:
+                        <strong>cSt</strong> (centistokes).
+                    </p>
+
+                    <p>
+                        1 cSt = 1 × 10⁻⁶ m²/s
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RESULT -->
+        <div
+            id="resultSection"
+            class="calculator-result"
+            style="display:none;"
+        >
+
+            <h2>Calculation Result</h2>
+
+            <div
+                id="resultValue"
+                class="calculator-result-value"
+            ></div>
+
+            <div
+                id="calculationSteps"
+                class="calculation-steps"
+            ></div>
+
+        </div>
+
+
+        <!-- ENGINEERING INFORMATION -->
+        <div class="unit-info">
+
+            <h2>Understanding Kinematic Viscosity</h2>
+
+            <p>
+                Kinematic viscosity is the ratio of dynamic viscosity
+                to fluid density.
+            </p>
+
+            <p>
+                It represents the diffusion of momentum through a fluid
+                and is particularly useful in fluid-flow calculations.
+            </p>
+
+            <ul>
+
+                <li>
+                    <strong>Dynamic viscosity:</strong>
+                    Resistance of a fluid to shearing.
+                </li>
+
+                <li>
+                    <strong>Kinematic viscosity:</strong>
+                    Dynamic viscosity divided by density.
+                </li>
+
+                <li>
+                    <strong>SI unit:</strong>
+                    m²/s
+                </li>
+
+                <li>
+                    <strong>Common unit:</strong>
+                    cSt
+                </li>
+
+                <li>
+                    <strong>1 cSt:</strong>
+                    1 × 10⁻⁶ m²/s
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- RELATED CALCULATORS -->
+        <section class="related-section">
+
+            <h2>Related Calculators</h2>
+
+            <div class="related-grid">
+
+                <a href="viscosity.html" class="related-card">
+                    <h3>Dynamic Viscosity</h3>
+                    <p>
+                        Calculate dynamic viscosity from shear stress
+                        and velocity gradient.
+                    </p>
+                </a>
+
+                <a href="density.html" class="related-card">
+                    <h3>Density</h3>
+                    <p>
+                        Calculate density from mass and volume.
+                    </p>
+                </a>
+
+                <a href="specific-gravity.html" class="related-card">
+                    <h3>Specific Gravity</h3>
+                    <p>
+                        Compare the density of a substance with a
+                        reference fluid.
+                    </p>
+                </a>
+
+            </div>
+
+        </section>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <p>
+        MECHCALC • Mechanical Engineering Tools • Created by Vishnu
+    </p>
+
+</footer>
+
+
+<script>
+
+    /*
+     * Convert dynamic viscosity to Pa·s
+     */
+    function convertDynamicViscosityToPaS(value, unit) {
+
+        if (unit === "pas") {
+            return value;
+        }
+
+        if (unit === "mpas") {
+            return value / 1000;
+        }
+
+        if (unit === "cp") {
+            /*
+             * 1 cP = 1 mPa·s = 0.001 Pa·s
+             */
+            return value / 1000;
+        }
+
+        return value;
+    }
+
+
+    /*
+     * Convert density to kg/m³
+     */
+    function convertDensityToKgM3(value, unit) {
+
+        if (unit === "kgm3") {
+            return value;
+        }
+
+        if (unit === "gcm3") {
+            return value * 1000;
+        }
+
+        if (unit === "kgL") {
+            return value * 1000;
+        }
+
+        return value;
+    }
+
+
+    /*
+     * Calculate kinematic viscosity
+     *
+     * ν = μ / ρ
+     */
+    function calculateKinematicViscosity() {
+
+        const dynamicViscosity =
+            parseFloat(
+                document.getElementById("dynamicViscosity").value
+            );
+
+        const dynamicViscosityUnit =
+            document.getElementById("dynamicViscosityUnit").value;
+
+        const density =
+            parseFloat(
+                document.getElementById("density").value
+            );
+
+        const densityUnit =
+            document.getElementById("densityUnit").value;
+
+        const errorMessage =
+            document.getElementById("errorMessage");
+
+        const resultSection =
+            document.getElementById("resultSection");
+
+        const resultValue =
+            document.getElementById("resultValue");
+
+        const calculationSteps =
+            document.getElementById("calculationSteps");
+
+
+        /*
+         * Clear previous error
+         */
+        errorMessage.style.display = "none";
+        errorMessage.textContent = "";
+
+
+        /*
+         * Validate inputs
+         */
+        if (
+            isNaN(dynamicViscosity) ||
+            isNaN(density)
+        ) {
+
+            showError(
+                "Please enter both dynamic viscosity and fluid density."
+            );
+
+            return;
+        }
+
+
+        if (dynamicViscosity <= 0) {
+
+            showError(
+                "Dynamic viscosity must be greater than zero."
+            );
+
+            return;
+        }
+
+
+        if (density <= 0) {
+
+            showError(
+                "Fluid density must be greater than zero."
+            );
+
+            return;
+        }
+
+
+        /*
+         * Convert values
+         */
+        const dynamicViscosityPaS =
+            convertDynamicViscosityToPaS(
+                dynamicViscosity,
+                dynamicViscosityUnit
+            );
+
+        const densityKgM3 =
+            convertDensityToKgM3(
+                density,
+                densityUnit
+            );
+
+
+        /*
+         * Kinematic viscosity
+         */
+        const kinematicViscosity =
+            dynamicViscosityPaS / densityKgM3;
+
+        const kinematicViscosityCSt =
+            kinematicViscosity * 1000000;
+
+
+        /*
+         * Display result
+         */
+        resultSection.style.display = "block";
+
+        resultValue.innerHTML = `
+            Kinematic Viscosity =
+            <strong>${kinematicViscosity.toExponential(6)} m²/s</strong>
+        `;
+
+
+        /*
+         * Calculation steps
+         */
+        calculationSteps.innerHTML = `
+
+            <p>
+                <strong>Step 1:</strong>
+                Convert dynamic viscosity to Pa·s.
+            </p>
+
+            <p>
+                Dynamic viscosity =
+                ${dynamicViscosityPaS.toExponential(6)}
+                Pa·s
+            </p>
+
+            <p>
+                <strong>Step 2:</strong>
+                Convert density to kg/m³.
+            </p>
+
+            <p>
+                Density =
+                ${densityKgM3.toLocaleString()}
+                kg/m³
+            </p>
+
+            <p>
+                <strong>Step 3:</strong>
+                Apply the formula.
+            </p>
+
+            <p>
+                ν = μ / ρ
+            </p>
+
+            <p>
+                ν =
+                ${dynamicViscosityPaS.toExponential(6)}
+                /
+                ${densityKgM3.toLocaleString()}
+            </p>
+
+            <p>
+                <strong>Final Answer:</strong>
+                ν =
+                <strong>${kinematicViscosity.toExponential(6)} m²/s</strong>
+            </p>
+
+            <p>
+                Equivalent =
+                <strong>${kinematicViscosityCSt.toFixed(4)} cSt</strong>
+            </p>
+
+        `;
+
+
+        /*
+         * Scroll to result
+         */
+        resultSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }
+
+
+    /*
+     * Display error
+     */
+    function showError(message) {
+
+        const errorMessage =
+            document.getElementById("errorMessage");
+
+        errorMessage.textContent = message;
+        errorMessage.style.display = "block";
+
+    }
+
+
+    /*
+     * Reset calculator
+     */
+    function resetCalculator() {
+
+        document.getElementById("dynamicViscosity").value = "";
+
+        document.getElementById("dynamicViscosityUnit").value = "pas";
+
+        document.getElementById("density").value = "";
+
+        document.getElementById("densityUnit").value = "kgm3";
+
+        document.getElementById("errorMessage").style.display = "none";
+
+        document.getElementById("errorMessage").textContent = "";
+
+        document.getElementById("resultSection").style.display = "none";
+
+        document.getElementById("resultValue").innerHTML = "";
+
+        document.getElementById("calculationSteps").innerHTML = "";
+
+    }
+
+</script>
+
+</body>
+</html>

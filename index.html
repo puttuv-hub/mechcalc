@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- ================= BASIC SEO ================= -->
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="MECHCALC provides free mechanical engineering calculators for stress, strain, force, torque, power, pressure, fluid mechanics, hydraulics, pumps and more."
+    >
+
+    <meta
+        name="keywords"
+        content="mechanical engineering calculators, engineering calculators, stress calculator, strain calculator, force calculator, torque calculator, power calculator, pressure calculator, fluid mechanics calculator, hydraulic calculator, pump calculator"
+    >
+
+    <meta
+        name="author"
+        content="MECHCALC"
+    >
+
+    <meta
+        name="robots"
+        content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    >
+
+    <meta
+        name="theme-color"
+        content="#2563eb"
+    >
+
+
+    <!-- ================= PAGE TITLE ================= -->
+
+    <title>
+        Mechanical Engineering Calculators | MECHCALC
+    </title>
+
+
+    <!-- ================= OPEN GRAPH SEO ================= -->
+
+    <meta
+        property="og:type"
+        content="website"
+    >
+
+    <meta
+        property="og:title"
+        content="Mechanical Engineering Calculators | MECHCALC"
+    >
+
+    <meta
+        property="og:description"
+        content="Free mechanical engineering calculators for mechanics, strength of materials, fluid mechanics, hydraulics and pump calculations."
+    >
+
+    <meta
+        property="og:site_name"
+        content="MECHCALC"
+    >
+
+    <meta
+        property="og:locale"
+        content="en_US"
+    >
+
+
+    <!-- ================= TWITTER / X SEO ================= -->
+
+    <meta
+        name="twitter:card"
+        content="summary"
+    >
+
+    <meta
+        name="twitter:title"
+        content="Mechanical Engineering Calculators | MECHCALC"
+    >
+
+    <meta
+        name="twitter:description"
+        content="Free mechanical engineering calculators for students, engineers and professionals."
+    >
+
+
+    <!-- ================= STYLES ================= -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+
+    <!-- ================= STRUCTURED DATA ================= -->
+
+    <script type="application/ld+json">
+
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "MECHCALC",
+        "description": "Free mechanical engineering calculators for students, engineers and professionals.",
+        "inLanguage": "en"
+    }
+
+    </script>
+
+
+    <script type="application/ld+json">
+
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "MECHCALC",
+        "description": "Free mechanical engineering calculators for mechanics, strength of materials, fluid mechanics, hydraulics and pump calculations.",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web Browser",
+        "browserRequirements": "Requires JavaScript",
+        "isAccessibleForFree": true
+    }
+
+    </script>
+
+
+    <style>
+
+        /* ================= STAGE 3 - CALCULATOR SEARCH & FILTERS ================= */
+
+        .calculator-tools {
+            max-width: 1000px;
+            margin: 0 auto 35px;
+            text-align: center;
+        }
+
+        .calculator-search {
+            width: 100%;
+            max-width: 650px;
+            padding: 15px 20px;
+            border: 1px solid #d7dce3;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+
+        .calculator-search:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+        }
+
+        .calculator-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .calculator-filter {
+            border: 1px solid #d7dce3;
+            background: #ffffff;
+            color: #333;
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.2s ease;
+        }
+
+        .calculator-filter:hover,
+        .calculator-filter.active {
+            background: #2563eb;
+            color: #ffffff;
+            border-color: #2563eb;
+        }
+
+        .calculator-card-home.hidden-calculator {
+            display: none;
+        }
+
+        .no-calculator-results {
+            display: none;
+            text-align: center;
+            width: 100%;
+            padding: 30px 15px;
+            font-size: 16px;
+            color: #666;
+            grid-column: 1 / -1;
+        }
+
+        @media (max-width: 600px) {
+
+            .calculator-search {
+                font-size: 15px;
+            }
+
+            .calculator-filter {
+                padding: 9px 13px;
+                font-size: 13px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div class="logo">
+
+            <a href="index.html" aria-label="MECHCALC Home">
+                ⚙ MECHCALC
+            </a>
+
+        </div>
+
+
+        <nav aria-label="Main navigation">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="#calculators">
+                Calculators
+            </a>
+
+            <a href="#formulas">
+                Formulas
+            </a>
+
+            <a href="engineering-resources.html">
+                Resources
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
+            <a href="#account">
+                Login / Sign Up
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- ================= HERO ================= -->
+
+    <main>
+
+        <section class="hero">
+
+            <h1>
+
+                Mechanical Engineering
+
+                <span>Calculators</span>
+
+            </h1>
+
+
+            <p>
+
+                Free, simple and fast mechanical engineering calculators
+
+                for students, engineers and professionals.
+
+            </p>
+
+
+            <a
+                href="#calculators"
+                class="hero-button"
+            >
+
+                Explore Calculators
+
+            </a>
+
+        </section>
+
+
+
+        <!-- ================= CALCULATORS ================= -->
+
+        <section
+            class="section container"
+            id="calculators"
+        >
+
+            <h2 class="section-title">
+
+                Mechanical Engineering Calculators
+
+            </h2>
+
+
+            <p class="section-subtitle">
+
+                Calculate important mechanical engineering quantities quickly
+
+                using practical engineering formulas.
+
+            </p>
+
+
+            <!-- ================= SEARCH & FILTERS ================= -->
+
+            <div class="calculator-tools">
+
+                <input
+                    type="search"
+                    id="calculatorSearch"
+                    class="calculator-search"
+                    placeholder="🔍 Search calculators..."
+                    aria-label="Search mechanical engineering calculators"
+                >
+
+
+                <div
+                    class="calculator-filters"
+                    id="calculatorFilters"
+                    aria-label="Calculator categories"
+                >
+
+                    <button
+                        type="button"
+                        class="calculator-filter active"
+                        data-filter="all"
+                    >
+                        All
+                    </button>
+
+                    <button
+                        type="button"
+                        class="calculator-filter"
+                        data-filter="mechanics"
+                    >
+                        Mechanics
+                    </button>
+
+                    <button
+                        type="button"
+                        class="calculator-filter"
+                        data-filter="strength"
+                    >
+                        Strength of Materials
+                    </button>
+
+                    <button
+                        type="button"
+                        class="calculator-filter"
+                        data-filter="fluid"
+                    >
+                        Fluid Mechanics
+                    </button>
+
+                    <button
+                        type="button"
+                        class="calculator-filter"
+                        data-filter="hydraulic"
+                    >
+                        Hydraulic &amp; Pump
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="calculator-grid">
+
+                <div
+                    class="no-calculator-results"
+                    id="noCalculatorResults"
+                >
+                    No calculators found. Try another search or category.
+                </div>
+
+
+                <!-- ================= STRENGTH OF MATERIALS ================= -->
+
+                <div
+                    class="calculator-card-home"
+                    data-category="strength"
+                >
+
+                    <h3>Stress Calculator</h3>
+
+                    <p>
+                        Calculate normal stress using applied force
+                        and cross-sectional area.
+                    </p>
+
+                    <a
+                        href="stress.html"
+                        class="calculator-button"
+                    >
+                        Calculate Stress
+                    </a>
+
+                </div>
+
+
+                <div
+                    class="calculator-card-home"
+                    data-category="strength"
+                >
+
+                    <h3>Strain Calculator</h3>
+
+                    <p>
+                        Calculate strain from original length
+                        and change in length.
+                    </p>
+
+                    <a
+                        href="strain.html"
+                        class="calculator-button"
+                    >
+                        Calculate Strain
+                    </a>
+
+                </div>
+
+
+                <div
+                    class="calculator-card-home"
+                    data-category="strength"
+                >
+
+                    <h3>Young's Modulus</h3>
+
+                    <p>
+                        Determine Young's modulus using stress
+                        and strain values.
+                    </p>
+
+                    <a
+                        href="youngs-modulus.html"
+                        class="calculator-button"
+                    >
+                        Calculate E
+                    </a>
+
+                </div>
+
+
+
+                <!-- ================= MECHANICS ================= -->
+
+                <div
+                    class="calculator-card-home"
+                    data-category="mechanics"
+                >
+
+                    <h3>Force Calculator</h3>
+
+                    <p>
+                        Calculate force using mass and acceleration.
+                    </p>
+
+                    <a
+                        href="force.html"
+                        class="calculator-button"
+                    >
+                        Calculate Force
+                    </a>
+
+                </div>
+
+
+                <div
+                    class="calculator-card-home"
+                    data-category="mechanics"
+                >
+
+                    <h3>Power Calculator</h3>
+
+                    <p>
+                        Calculate mechanical power from work
+                        and time.
+                    </p>
+
+                    <a
+                        href="power.html"
+                        class="calculator-button"
+                    >
+                        Calculate Power
+                    </a>
+
+                </div>
+
+
+                <div
+                    class="calculator-card-home"
+                    data-category="mechanics"
+                >
+
+                    <h3>Torque Calculator</h3>
+
+                    <p>
+                        Calculate torque from force, distance
+                        and angle.
+                    </p>
+
+                    <a
+                        href="torque.html"
+                        class="calculator-button"
+                    >
+                        Calculate Torque
+                    </a>
+
+                </div>
+
+
+                <div
+                    class="calculator-card-home"
+                    data-category="mechanics"
+                >
+
+                    <h3>Work Calculator</h3>
+
+                    <p>
+                        Calculate work from force, displacement
+                        and angle.
+                    </p>
+
+                    <a
+                        href="work.html"
+                        class="calculator-button"
+                    >
+                        Calculate Work
+                    </a>
+
+                </div>
+
+
+                <div
+                    class="calculator-card-home"
+                    data-category="mechanics"
+                >
+
+                    <h3>Kinetic Energy Calculator</h3>
+
+                    <p>
+                        Calculate kinetic energy from mass
+                        and velocity.
+                    </p>
+
+                    <a
+                        href="kinetic-energy.html"
+                        class="calculator-button"
+                    >
+                        Calculate Kinetic Energy
+                    </a>
+
+                </div>
+
+
+                <div
+                    class="calculator-card-home"
+                    data-category="mechanics"
+                >
+
+                    <h3>Weight Calculator</h3>
+
+                    <p>
+                        Calculate weight from mass and
+                        gravitational acceleration.
+                    </p>
+
+                    <a
+                        href="weight.html"
+                        class="calculator-button"
+                    >
+                        Calculate Weight
+                    </a>
+
+                </div>
+
+
+                <div
+                    class="calculator-card-home"
+                    data-category="mechanics"
+                >
+
+                    <h3>Mechanical Efficiency Calculator</h3>
+
+                    <p>
+                        Calculate mechanical efficiency from
+                        input and useful output power.
+                    </p>
+
+                    <a
+                        href="mechanical-efficiency.html"
+                        class="calculator-button"
+                    >
+                        Calculate Efficiency
+                    </a>
+
+                </div>
+
+
+
+                <!-- ================= FLUID MECHANICS ================= -->
+
+                <div
+                    class="calculator-card-home"
+                    data-category="fluid"
+                >
+
+                    <h3>Pressure Calculator</h3>
+
+                    <p>
+                        Calculate pressure from force and
+                        cross-sectional area.
+                    </p>
+
+                    <a
+                        href="pressure.html"
+                        class="calculator-button"
+                    >
+                        Calculate Pressure
+                    </a>
+
+                </div>
+
+
+                <div
+                    class="calculator-card-home"
+                    data-category="fluid"
+                >
+
+                    <h3>Density Calculator</h3>
+
+                    <p>
+                        Calculate density from mass
+                        and volume.
+                    </p>
+
+                    <a
+                        href="density.html"
+                        class="calculator-button"
+                    >
+                        Calculate Density
+                    </a>
+
+                </div>
+
+
+                <div
+                    class="calculator-card-home"
+                    data-category="fluid"
+                >
+
+                    <h3>Specific Weight Calculator</h3>
+
+                    <p>
+                        Calculate specific weight from density
+                        and gravitational acceleration.
+                    </p>
+
+                    <a
+                        href="specific-weight.html"
+                        class="calculator-button"
+                    >
+                        Calculate Specific Weight
+                    </a>
+
+                </div>
+
+
+                <div
+                    class="calculator-card-home"
+                    data-category="fluid"
+                >
+
+                    <h3>Specific Gravity Calculator</h3>
+
+                    <p>
+                        Calculate specific gravity by comparing
+                        substance and reference density.
+                    </p>
+
+                    <a
+                        href="specific-gravity.html"
+                        class="calculator-button"
+                    >
+                        Calculate Specific Gravity
+                    </a>
+
+                </div>
+
+
+                <div
+                    class="calculator-card-home"
+                    data-category="fluid"
+                >
+
+                    <h3>Viscosity Calculator</h3>
+
+                    <p>
+                        Calculate dynamic viscosity from shear
+                        stress and velocity gradient.
+                    </p>
+
+                    <a
+                        href="viscosity.html"
+                        class="calculator-button"
+                    >
+                        Calculate Viscosity
+                    </a>
+
+                </div>
+
+
+                <div
+                    class="calculator-card-home"
+                    data-category="fluid"
+                >
+
+                    <h3>Kinematic Viscosity Calculator</h3>
+
+                    <p>
+                        Calculate kinematic viscosity from dynamic
+                        viscosity and density.
+                    </p>
+
+                    <a
+                        href="kinematic-viscosity.html"
+                        class="calculator-button"
+                    >
+                        Calculate Kinematic Viscosity
+                    </a>
+
+                </div>
+
+
+                <div
+                    class="calculator-card-home"
+                    data-category="fluid"
+                >
+
+                    <h3>Reynolds Number Calculator</h3>
+
+                    <p>
+                        Determine the Reynolds number and identify
+                        the approximate flow regime.
+                    </p>
+
+                    <a
+                        href="reynolds-number.html"
+                        class="calculator-button"
+                    >
+                        Calculate Reynolds Number
+                    </a>
+
+                </div>
+
+
+                <div
+                    class="calculator-card-home"
+                    data-category="fluid"
+                >
+
+                    <h3>Bernoulli Equation Calculator</h3>
+
+                    <p>
+                        Solve for pressure, velocity or elevation
+                        using Bernoulli's equation.
+                    </p>
+
+                    <a
+                        href="bernoulli.html"
+                        class="calculator-button"
+                    >
+                        Calculate Bernoulli
+                    </a>
+
+                </div>
+
+
+                <div
+                    class="calculator-card-home"
+                    data-category="fluid"
+                >
+
+                    <h3>Continuity Equation Calculator</h3>
+
+                    <p>
+                        Calculate area, velocity and volumetric
+                        flow rate using continuity.
+                    </p>
+
+                    <a
+                        href="continuity.html"
+                        class="calculator-button"
+                    >
+                        Calculate Continuity
+                    </a>
+
+                </div>
+
+
+                <div
+                    class="calculator-card-home"
+                    data-category="fluid"
+                >
+
+                    <h3>Pipe Flow Rate Calculator</h3>
+
+                    <p>
+                        Calculate flow rate from pipe diameter
+                        and average fluid velocity.
+                    </p>
+
+                    <a
+                        href="pipe-flow-rate.html"
+                        class="calculator-button"
+                    >
+                        Calculate Flow Rate
+                    </a>
+
+                </div>
+
+
+                <div
+                    class="calculator-card-home"
+                    data-category="fluid"
+                >
+
+                    <h3>Head Loss Calculator</h3>
+
+                    <p>
+                        Calculate pipe friction head loss
+                        using the Darcy-Weisbach equation.
+                    </p>
+
+                    <a
+                        href="head-loss.html"
+                        class="calculator-button"
+                    >
+                        Calculate Head Loss
+                    </a>
+
+                </div>
+
+
+
+                <!-- ================= HYDRAULIC & PUMP ================= -->
+
+                <div
+                    class="calculator-card-home"
+                    data-category="hydraulic"
+                >
+
+                    <h3>Hydraulic Power Calculator</h3>
+
+                    <p>
+                        Calculate hydraulic power from pressure
+                        difference and flow rate.
+                    </p>
+
+                    <a
+                        href="hydraulic-power.html"
+                        class="calculator-button"
+                    >
+                        Calculate Hydraulic Power
+                    </a>
+
+                </div>
+
+
+                <div
+                    class="calculator-card-home"
+                    data-category="hydraulic"
+                >
+
+                    <h3>Pump Power Calculator</h3>
+
+                    <p>
+                        Calculate hydraulic power and required
+                        pump input power.
+                    </p>
+
+                    <a
+                        href="pump-power.html"
+                        class="calculator-button"
+                    >
+                        Calculate Pump Power
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= FEATURES ================= -->
+
+        <section class="section container">
+
+            <h2 class="section-title">
+
+                Why Use MECHCALC?
+
+            </h2>
+
+
+            <p class="section-subtitle">
+
+                Free online engineering tools built for
+                practical mechanical engineering calculations.
+
+            </p>
+
+
+
+            <div class="feature-grid">
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        ⚡
+                    </div>
+
+
+                    <h3>Fast Calculations</h3>
+
+                    <p>
+                        Get engineering results instantly without
+                        complicated calculations.
+                    </p>
+
+                </div>
+
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        📐
+                    </div>
+
+
+                    <h3>Engineering Formulas</h3>
+
+                    <p>
+                        Calculators are based on standard
+                        engineering formulas.
+                    </p>
+
+                </div>
+
+
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        📱
+                    </div>
+
+
+                    <h3>Mobile Friendly</h3>
+
+                    <p>
+                        Use MECHCALC comfortably on desktop,
+                        tablet and mobile devices.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= FORMULAS ================= -->
+
+        <section
+            class="section container"
+            id="formulas"
+        >
+
+            <h2 class="section-title">
+
+                Mechanical Engineering Formulas
+
+            </h2>
+
+
+            <p class="section-subtitle">
+
+                Fundamental mechanical engineering equations
+                used by students and engineers.
+
+            </p>
+
+
+
+            <div class="calculator-grid">
+
+
+                <div class="calculator-card-home">
+
+                    <h3>Stress</h3>
+
+                    <p>
+                        σ = F / A
+                    </p>
+
+                </div>
+
+
+
+                <div class="calculator-card-home">
+
+                    <h3>Strain</h3>
+
+                    <p>
+                        ε = ΔL / L₀
+                    </p>
+
+                </div>
+
+
+
+                <div class="calculator-card-home">
+
+                    <h3>Young's Modulus</h3>
+
+                    <p>
+                        E = σ / ε
+                    </p>
+
+                </div>
+
+
+
+                <div class="calculator-card-home">
+
+                    <h3>Force</h3>
+
+                    <p>
+                        F = m × a
+                    </p>
+
+                </div>
+
+
+
+                <div class="calculator-card-home">
+
+                    <h3>Pressure</h3>
+
+                    <p>
+                        P = F / A
+                    </p>
+
+                </div>
+
+
+
+                <div class="calculator-card-home">
+
+                    <h3>Power</h3>
+
+                    <p>
+                        P = W / t
+                    </p>
+
+                </div>
+
+
+
+                <div class="calculator-card-home">
+
+                    <h3>Torque</h3>
+
+                    <p>
+                        T = F × r × sin(θ)
+                    </p>
+
+                </div>
+
+
+
+                <div class="calculator-card-home">
+
+                    <h3>Work</h3>
+
+                    <p>
+                        W = F × d × cos(θ)
+                    </p>
+
+                </div>
+
+
+
+                <div class="calculator-card-home">
+
+                    <h3>Kinetic Energy</h3>
+
+                    <p>
+                        KE = ½ × m × v²
+                    </p>
+
+                </div>
+
+
+
+                <div class="calculator-card-home">
+
+                    <h3>Weight</h3>
+
+                    <p>
+                        W = m × g
+                    </p>
+
+                </div>
+
+
+
+                <div class="calculator-card-home">
+
+                    <h3>Density</h3>
+
+                    <p>
+                        ρ = m / V
+                    </p>
+
+                </div>
+
+
+
+                <div class="calculator-card-home">
+
+                    <h3>Specific Weight</h3>
+
+                    <p>
+                        γ = ρ × g
+                    </p>
+
+                </div>
+
+
+
+                <div class="calculator-card-home">
+
+                    <h3>Specific Gravity</h3>
+
+                    <p>
+                        SG = ρ<sub>substance</sub> /
+                        ρ<sub>reference</sub>
+                    </p>
+
+                </div>
+
+
+
+                <div class="calculator-card-home">
+
+                    <h3>Dynamic Viscosity</h3>
+
+                    <p>
+                        μ = τ / (du/dy)
+                    </p>
+
+                </div>
+
+
+
+                <div class="calculator-card-home">
+
+                    <h3>Kinematic Viscosity</h3>
+
+                    <p>
+                        ν = μ / ρ
+                    </p>
+
+                </div>
+
+
+
+                <div class="calculator-card-home">
+
+                    <h3>Reynolds Number</h3>
+
+                    <p>
+                        Re = ρVD / μ
+                    </p>
+
+                </div>
+
+
+
+                <div class="calculator-card-home">
+
+                    <h3>Bernoulli Equation</h3>
+
+                    <p>
+                        P/ρg + V²/2g + z = constant
+                    </p>
+
+                </div>
+
+
+
+                <div class="calculator-card-home">
+
+                    <h3>Continuity Equation</h3>
+
+                    <p>
+                        A₁V₁ = A₂V₂
+                    </p>
+
+                </div>
+
+
+
+                <div class="calculator-card-home">
+
+                    <h3>Hydraulic Power</h3>
+
+                    <p>
+                        P = ΔP × Q
+                    </p>
+
+                </div>
+
+
+
+                <div class="calculator-card-home">
+
+                    <h3>Pump Power</h3>
+
+                    <p>
+                        P<sub>h</sub> = ρgQH
+                    </p>
+
+                </div>
+
+
+
+                <div class="calculator-card-home">
+
+                    <h3>Pipe Flow Rate</h3>
+
+                    <p>
+                        Q = AV
+                    </p>
+
+                    <p>
+                        Q = πD²V / 4
+                    </p>
+
+                </div>
+
+
+
+                <div class="calculator-card-home">
+
+                    <h3>Head Loss</h3>
+
+                    <p>
+                        h<sub>f</sub> = f(L/D)(V²/2g)
+                    </p>
+
+                </div>
+
+
+
+                <div class="calculator-card-home">
+
+                    <h3>Mechanical Efficiency</h3>
+
+                    <p>
+                        η =
+                        (P<sub>out</sub> /
+                        P<sub>in</sub>) × 100
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= ACCOUNT ================= -->
+
+        <section
+            class="container"
+            id="account"
+        >
+
+            <div class="account-section">
+
+
+                <div class="account-info">
+
+                    <h2>MECHCALC Account</h2>
+
+                    <h3>
+                        Save your engineering work.
+                    </h3>
+
+                    <p>
+                        Create an account to access future features
+                        such as calculation history, saved calculations
+                        and personalized engineering tools.
+                    </p>
+
+
+                    <ul class="account-benefits">
+
+                        <li>✓ Save calculations</li>
+
+                        <li>✓ View calculation history</li>
+
+                        <li>✓ Access your tools from anywhere</li>
+
+                        <li>✓ Future engineering resources</li>
+
+                    </ul>
+
+                </div>
+
+
+
+                <!-- Demo Login -->
+
+                <div class="login-card">
+
+                    <h3>Login</h3>
+
+
+                    <form onsubmit="loginDemo(event)">
+
+                        <label for="email">
+                            Email
+                        </label>
+
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Enter your email"
+                            required
+                        >
+
+
+                        <label for="password">
+                            Password
+                        </label>
+
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            required
+                        >
+
+
+                        <div class="buttons">
+
+                            <button
+                                type="submit"
+                                class="calculate-btn"
+                            >
+                                Login
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="reset-btn"
+                                onclick="signupDemo()"
+                            >
+                                Sign Up
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= ABOUT ================= -->
+
+        <section
+            class="section container"
+            id="about"
+        >
+
+            <div class="about-box">
+
+                <h2 class="section-title">
+                    About MECHCALC
+                </h2>
+
+
+                <p>
+                    MECHCALC is a free engineering calculator platform
+                    designed to make mechanical engineering calculations
+                    simple and accessible.
+                </p>
+
+
+                <p>
+                    The platform is being developed with students,
+                    engineers and engineering enthusiasts in mind.
+                </p>
+
+
+                <p>
+                    More mechanical engineering calculators, engineering
+                    formulas and useful tools will be added over time.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+
+            <strong>MECHCALC</strong>
+
+            • Engineering Tools
+
+            • Created by Vishnu
+
+        </p>
+
+    </footer>
+
+
+
+    <!-- ================= STAGE 3 SEARCH & FILTER JAVASCRIPT ================= -->
+
+    <script>
+
+        const calculatorSearch =
+            document.getElementById("calculatorSearch");
+
+        const calculatorFilters =
+            document.querySelectorAll(".calculator-filter");
+
+        const calculatorCards =
+            document.querySelectorAll(
+                "#calculators .calculator-card-home[data-category]"
+            );
+
+        const noCalculatorResults =
+            document.getElementById("noCalculatorResults");
+
+
+        let activeCalculatorFilter = "all";
+
+
+        function filterCalculators() {
+
+            const searchTerm =
+                calculatorSearch.value.trim().toLowerCase();
+
+            let visibleCount = 0;
+
+
+            calculatorCards.forEach(function(card) {
+
+                const cardText =
+                    card.textContent.toLowerCase();
+
+                const category =
+                    card.getAttribute("data-category");
+
+
+                const matchesSearch =
+                    cardText.includes(searchTerm);
+
+
+                const matchesCategory =
+                    activeCalculatorFilter === "all" ||
+                    category === activeCalculatorFilter;
+
+
+                if (
+                    matchesSearch &&
+                    matchesCategory
+                ) {
+
+                    card.classList.remove(
+                        "hidden-calculator"
+                    );
+
+                    visibleCount++;
+
+                } else {
+
+                    card.classList.add(
+                        "hidden-calculator"
+                    );
+
+                }
+
+            });
+
+
+            noCalculatorResults.style.display =
+                visibleCount === 0
+                    ? "block"
+                    : "none";
+
+        }
+
+
+        if (calculatorSearch) {
+
+            calculatorSearch.addEventListener(
+                "input",
+                filterCalculators
+            );
+
+        }
+
+
+        calculatorFilters.forEach(function(button) {
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    calculatorFilters.forEach(
+                        function(filterButton) {
+
+                            filterButton.classList.remove(
+                                "active"
+                            );
+
+                        }
+                    );
+
+
+                    button.classList.add("active");
+
+
+                    activeCalculatorFilter =
+                        button.getAttribute(
+                            "data-filter"
+                        );
+
+
+                    filterCalculators();
+
+                }
+            );
+
+        });
+
+    </script>
+
+
+
+    <!-- ================= DEMO LOGIN ================= -->
+
+    <script>
+
+        function loginDemo(event) {
+
+            event.preventDefault();
+
+            alert(
+                "Login system will be connected to secure authentication in a future stage."
+            );
+
+        }
+
+
+        function signupDemo() {
+
+            alert(
+                "Account registration will be added in the authentication stage."
+            );
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

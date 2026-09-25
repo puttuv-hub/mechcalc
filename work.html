@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Work Calculator - Calculate Mechanical Work (W = F × d × cos θ) | MECHCALC</title>
+
+    <meta
+        name="description"
+        content="Use the MECHCALC Work Calculator to calculate mechanical work from force, displacement, and angle. Get results in J, kJ, MJ, and N·m with step-by-step calculations."
+    >
+
+    <meta
+        name="keywords"
+        content="work calculator, mechanical work calculator, work formula calculator, W=F×d calculator, force displacement work calculator, joule calculator, mechanical engineering work calculator, work energy calculator"
+    >
+
+    <meta name="author" content="Vishnu">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="theme-color" content="#0f172a">
+
+    <!-- Open Graph -->
+    <meta
+        property="og:title"
+        content="Work Calculator - Calculate Mechanical Work (W = F × d × cos θ) | MECHCALC"
+    >
+
+    <meta
+        property="og:description"
+        content="Calculate mechanical work from force, displacement, and angle. Get accurate results in J, kJ, MJ, and N·m with MECHCALC."
+    >
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MECHCALC">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary">
+
+    <meta
+        name="twitter:title"
+        content="Work Calculator - W = F × d × cos θ | MECHCALC"
+    >
+
+    <meta
+        name="twitter:description"
+        content="Calculate mechanical work from force, displacement, and angle with accurate unit conversions and step-by-step calculations."
+    >
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Work Calculator",
+        "applicationCategory": "EngineeringApplication",
+        "applicationSubCategory": "Mechanical Engineering Calculator",
+        "operatingSystem": "Web",
+        "description": "Calculate mechanical work from force, displacement, and angle using the formula W = F × d × cos(θ). Results are provided in joules, kilojoules, megajoules, and newton-metres.",
+        "url": "work.html",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "creator": {
+            "@type": "Person",
+            "name": "Vishnu"
+        },
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "MECHCALC",
+            "url": "index.html"
+        }
+    }
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="calculator.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="logo">
+        ⚙ MECHCALC
+    </div>
+
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#calculators">Calculators</a>
+        <a href="index.html#formulas">Formulas</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#account">Login / Sign Up</a>
+    </nav>
+</header>
+
+
+<main class="calculator-page">
+
+    <!-- HERO -->
+    <section class="calculator-hero">
+
+        <div class="container">
+
+            <h1>Work Calculator</h1>
+
+            <p>
+                Calculate mechanical work from force, displacement,
+                and the angle between them.
+            </p>
+
+            <div class="engineering-quote">
+                “Work connects force with movement.”
+            </div>
+
+            <a href="index.html#calculators" class="back-link">
+                ← Back to Calculators
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- CALCULATOR -->
+    <section class="calculator-main">
+
+        <div class="calculator-layout">
+
+            <!-- INPUT PANEL -->
+            <div class="input-panel">
+
+                <h2>Enter Values</h2>
+
+                <!-- FORCE -->
+                <div class="calculator-form-group">
+
+                    <label for="force">
+                        Force
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="force"
+                            placeholder="Enter force"
+                            min="0"
+                            step="any"
+                        >
+
+                        <select id="forceUnit">
+                            <option value="N">N</option>
+                            <option value="kN">kN</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DISTANCE -->
+                <div class="calculator-form-group">
+
+                    <label for="distance">
+                        Displacement / Distance
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="distance"
+                            placeholder="Enter distance"
+                            min="0"
+                            step="any"
+                        >
+
+                        <select id="distanceUnit">
+                            <option value="m">m</option>
+                            <option value="mm">mm</option>
+                            <option value="cm">cm</option>
+                            <option value="km">km</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ANGLE -->
+                <div class="calculator-form-group">
+
+                    <label for="angle">
+                        Angle Between Force and Displacement
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="angle"
+                            value="0"
+                            min="0"
+                            max="360"
+                            step="any"
+                        >
+
+                        <select disabled>
+                            <option>degrees (°)</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+                <div class="calculator-buttons">
+
+                    <button
+                        type="button"
+                        class="calculator-calculate-btn"
+                        onclick="calculateWork()"
+                    >
+                        Calculate Work
+                    </button>
+
+                    <button
+                        type="button"
+                        class="calculator-reset-btn"
+                        onclick="resetCalculator()"
+                    >
+                        Reset
+                    </button>
+
+                </div>
+
+
+                <!-- ERROR -->
+                <div
+                    id="errorMessage"
+                    class="calculator-error"
+                    style="display:none;"
+                ></div>
+
+
+                <!-- RESULT -->
+                <div
+                    id="resultBox"
+                    class="calculator-result"
+                    style="display:none;"
+                >
+
+                    <h3>Calculated Work</h3>
+
+                    <div
+                        id="mainResult"
+                        class="calculator-result-value"
+                    >
+                        0 J
+                    </div>
+
+                    <div class="calculation-steps">
+
+                        <h4>Calculation Steps</h4>
+
+                        <div id="steps"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FORMULA PANEL -->
+            <div class="formula-panel">
+
+                <h2>Engineering Formula</h2>
+
+                <div class="formula-box">
+
+                    <div class="formula-main">
+                        W = F × d × cos(θ)
+                    </div>
+
+                    <p>
+                        Where:
+                    </p>
+
+                    <ul>
+                        <li><strong>W</strong> = Work</li>
+                        <li><strong>F</strong> = Force</li>
+                        <li><strong>d</strong> = Displacement</li>
+                        <li><strong>θ</strong> = Angle between force and displacement</li>
+                    </ul>
+
+                </div>
+
+
+                <div class="engineering-info">
+
+                    <h3>Engineering Information</h3>
+
+                    <p>
+                        Mechanical work is performed when a force causes
+                        an object to move through a displacement.
+                    </p>
+
+                    <p>
+                        The SI unit of work is the
+                        <strong>joule (J)</strong>.
+                    </p>
+
+                    <p>
+                        When force and displacement are in the same
+                        direction, θ = 0° and:
+                    </p>
+
+                    <div class="formula-box">
+
+                        <div class="formula-main">
+                            W = F × d
+                        </div>
+
+                    </div>
+
+                    <p>
+                        When the force is perpendicular to displacement,
+                        θ = 90° and the mechanical work is zero.
+                    </p>
+
+                </div>
+
+
+                <div class="unit-info">
+
+                    <h3>Common Units</h3>
+
+                    <ul>
+                        <li>1 kJ = 1,000 J</li>
+                        <li>1 MJ = 1,000,000 J</li>
+                        <li>1 J = 1 N·m</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RELATED CALCULATORS -->
+    <section class="related-section">
+
+        <div class="container">
+
+            <h2>Related Calculators</h2>
+
+            <div class="related-grid">
+
+                <a href="force.html" class="related-card">
+                    <h3>Force Calculator</h3>
+                    <p>Calculate force using mass and acceleration.</p>
+                </a>
+
+                <a href="power.html" class="related-card">
+                    <h3>Power Calculator</h3>
+                    <p>Calculate power from work and time.</p>
+                </a>
+
+                <a href="torque.html" class="related-card">
+                    <h3>Torque Calculator</h3>
+                    <p>Calculate torque from force and moment arm.</p>
+                </a>
+
+                <a href="pressure.html" class="related-card">
+                    <h3>Pressure Calculator</h3>
+                    <p>Calculate pressure from force and area.</p>
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <p>
+        MECHCALC • Engineering Tools • Created by Vishnu
+    </p>
+
+</footer>
+
+
+<script>
+
+function convertForceToNewton(value, unit) {
+
+    if (unit === "N") {
+        return value;
+    }
+
+    if (unit === "kN") {
+        return value * 1000;
+    }
+
+    return value;
+}
+
+
+function convertDistanceToMetres(value, unit) {
+
+    if (unit === "m") {
+        return value;
+    }
+
+    if (unit === "mm") {
+        return value / 1000;
+    }
+
+    if (unit === "cm") {
+        return value / 100;
+    }
+
+    if (unit === "km") {
+        return value * 1000;
+    }
+
+    return value;
+}
+
+
+function formatNumber(value) {
+
+    if (Math.abs(value) >= 1000000) {
+        return value.toExponential(6);
+    }
+
+    if (Math.abs(value) < 0.000001 && value !== 0) {
+        return value.toExponential(6);
+    }
+
+    return Number(value.toFixed(6)).toLocaleString();
+}
+
+
+function calculateWork() {
+
+    const forceInput = document.getElementById("force").value;
+    const distanceInput = document.getElementById("distance").value;
+    const angleInput = document.getElementById("angle").value;
+
+    const forceUnit = document.getElementById("forceUnit").value;
+    const distanceUnit = document.getElementById("distanceUnit").value;
+
+    const errorMessage = document.getElementById("errorMessage");
+    const resultBox = document.getElementById("resultBox");
+
+    errorMessage.style.display = "none";
+    resultBox.style.display = "none";
+
+
+    // VALIDATION
+
+    if (
+        forceInput === "" ||
+        distanceInput === "" ||
+        angleInput === ""
+    ) {
+
+        errorMessage.textContent =
+            "Please enter force, displacement, and angle.";
+
+        errorMessage.style.display = "block";
+
+        return;
+    }
+
+
+    const force = Number(forceInput);
+    const distance = Number(distanceInput);
+    const angle = Number(angleInput);
+
+
+    if (!Number.isFinite(force) ||
+        !Number.isFinite(distance) ||
+        !Number.isFinite(angle)) {
+
+        errorMessage.textContent =
+            "Please enter valid numerical values.";
+
+        errorMessage.style.display = "block";
+
+        return;
+    }
+
+
+    if (force <= 0) {
+
+        errorMessage.textContent =
+            "Force must be greater than zero.";
+
+        errorMessage.style.display = "block";
+
+        return;
+    }
+
+
+    if (distance <= 0) {
+
+        errorMessage.textContent =
+            "Displacement must be greater than zero.";
+
+        errorMessage.style.display = "block";
+
+        return;
+    }
+
+
+    if (angle < 0 || angle > 360) {
+
+        errorMessage.textContent =
+            "Angle must be between 0° and 360°.";
+
+        errorMessage.style.display = "block";
+
+        return;
+    }
+
+
+    // CONVERSIONS
+
+    const forceN =
+        convertForceToNewton(force, forceUnit);
+
+    const distanceM =
+        convertDistanceToMetres(distance, distanceUnit);
+
+
+    // ANGLE
+
+    const angleRadians =
+        angle * Math.PI / 180;
+
+    const cosineValue =
+        Math.cos(angleRadians);
+
+
+    // WORK
+
+    const workJ =
+        forceN * distanceM * cosineValue;
+
+
+    // OTHER UNITS
+
+    const workKJ =
+        workJ / 1000;
+
+    const workMJ =
+        workJ / 1000000;
+
+    const workNm =
+        workJ;
+
+
+    // RESULT
+
+    document.getElementById("mainResult").textContent =
+        formatNumber(workJ) + " J";
+
+
+    document.getElementById("steps").innerHTML = `
+
+        <p>
+            <strong>Step 1 — Convert force:</strong><br>
+            ${formatNumber(force)} ${forceUnit}
+            =
+            ${formatNumber(forceN)} N
+        </p>
+
+        <p>
+            <strong>Step 2 — Convert displacement:</strong><br>
+            ${formatNumber(distance)} ${distanceUnit}
+            =
+            ${formatNumber(distanceM)} m
+        </p>
+
+        <p>
+            <strong>Step 3 — Convert angle:</strong><br>
+            θ = ${formatNumber(angle)}°
+        </p>
+
+        <p>
+            <strong>Step 4 — Calculate work:</strong><br>
+            W = F × d × cos(θ)
+        </p>
+
+        <p>
+            W =
+            ${formatNumber(forceN)} ×
+            ${formatNumber(distanceM)} ×
+            cos(${formatNumber(angle)}°)
+        </p>
+
+        <p>
+            <strong>Work = ${formatNumber(workJ)} J</strong>
+        </p>
+
+        <p>
+            <strong>Equivalent values:</strong><br>
+            ${formatNumber(workKJ)} kJ<br>
+            ${formatNumber(workMJ)} MJ<br>
+            ${formatNumber(workNm)} N·m
+        </p>
+
+    `;
+
+
+    resultBox.style.display = "block";
+}
+
+
+function resetCalculator() {
+
+    document.getElementById("force").value = "";
+
+    document.getElementById("distance").value = "";
+
+    document.getElementById("angle").value = "0";
+
+    document.getElementById("forceUnit").value = "N";
+
+    document.getElementById("distanceUnit").value = "m";
+
+    document.getElementById("errorMessage").style.display = "none";
+
+    document.getElementById("resultBox").style.display = "none";
+
+}
+
+</script>
+
+</body>
+</html>

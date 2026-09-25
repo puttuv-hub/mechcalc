@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <!-- =====================================================
+         SEO
+         ===================================================== -->
+
+    <title>
+        Young's Modulus Calculator - Calculate Elastic Modulus | MECHCALC
+    </title>
+
+    <meta
+        name="description"
+        content="Use the MECHCALC Young's Modulus Calculator to calculate elastic modulus from stress and strain. Get results in GPa, MPa, and Pa with step-by-step calculations."
+    >
+
+    <meta
+        name="keywords"
+        content="Young's modulus calculator, elastic modulus calculator, Young modulus formula, modulus of elasticity calculator, stress strain calculator, mechanical engineering calculator"
+    >
+
+    <meta
+        name="author"
+        content="Vishnu"
+    >
+
+    <meta
+        name="robots"
+        content="index, follow"
+    >
+
+    <meta
+        name="googlebot"
+        content="index, follow"
+    >
+
+    <meta
+        name="theme-color"
+        content="#0f172a"
+    >
+
+
+    <!-- =====================================================
+         OPEN GRAPH SEO
+         ===================================================== -->
+
+    <meta
+        property="og:title"
+        content="Young's Modulus Calculator - Calculate Elastic Modulus | MECHCALC"
+    >
+
+    <meta
+        property="og:description"
+        content="Calculate Young's modulus from stress and strain. Get elastic modulus results in GPa, MPa, and Pa with step-by-step calculations."
+    >
+
+    <meta
+        property="og:type"
+        content="website"
+    >
+
+    <meta
+        property="og:site_name"
+        content="MECHCALC"
+    >
+
+
+    <!-- =====================================================
+         TWITTER / X SEO
+         ===================================================== -->
+
+    <meta
+        name="twitter:card"
+        content="summary"
+    >
+
+    <meta
+        name="twitter:title"
+        content="Young's Modulus Calculator | MECHCALC"
+    >
+
+    <meta
+        name="twitter:description"
+        content="Calculate Young's modulus from stress and strain using the MECHCALC engineering calculator."
+    >
+
+
+    <!-- Common website CSS -->
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Calculator-only CSS -->
+
+    <link rel="stylesheet" href="calculator.css">
+
+
+    <!-- =====================================================
+         STRUCTURED DATA
+         ===================================================== -->
+
+    <script type="application/ld+json">
+
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Young's Modulus Calculator",
+        "applicationCategory": "EngineeringApplication",
+        "applicationSubCategory": "Mechanical Engineering Calculator",
+        "operatingSystem": "Web",
+        "description": "Calculate Young's modulus from stress and strain.",
+        "url": "youngs-modulus.html",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "creator": {
+            "@type": "Person",
+            "name": "Vishnu"
+        },
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "MECHCALC",
+            "url": "index.html"
+        }
+    }
+
+    </script>
+
+</head>
+
+
+<body class="calculator-page">
+
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <header>
+
+        <div class="logo">
+            <a href="index.html">⚙ MECHCALC</a>
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="index.html#calculators">
+                Calculators
+            </a>
+
+            <a href="index.html#formulas">
+                Formulas
+            </a>
+
+            <a href="index.html#about">
+                About
+            </a>
+
+            <a href="index.html#account">
+                Login / Sign Up
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =====================================================
+         CALCULATOR HERO
+         ===================================================== -->
+
+    <section class="calculator-hero">
+
+        <h1>
+            Young's Modulus <span>Calculator</span>
+        </h1>
+
+        <p>
+            Calculate Young's modulus from stress and strain
+            to determine the elastic stiffness of a material.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         MAIN CALCULATOR
+         ===================================================== -->
+
+    <main class="calculator-main">
+
+
+        <!-- Engineering Quote -->
+
+        <div class="engineering-quote">
+
+            “Materials reveal their character under load.”
+
+        </div>
+
+
+        <!-- Back Link -->
+
+        <div style="margin-top: 25px;">
+
+            <a
+                href="index.html#calculators"
+                class="back-link"
+            >
+                ← Back to Calculators
+            </a>
+
+        </div>
+
+
+        <!-- =================================================
+             CALCULATOR LAYOUT
+             ================================================= -->
+
+        <div class="calculator-layout">
+
+
+            <!-- =================================================
+                 INPUT PANEL
+                 ================================================= -->
+
+            <section class="input-panel">
+
+                <h2>
+                    Enter Values
+                </h2>
+
+                <p>
+                    Enter the material's stress and corresponding
+                    strain value.
+                </p>
+
+
+                <!-- Stress -->
+
+                <div class="calculator-form-group">
+
+                    <label for="stress">
+                        Stress (σ)
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="stress"
+                            placeholder="Enter stress"
+                            step="any"
+                            min="0"
+                        >
+
+                        <select id="stressUnit">
+
+                            <option value="MPa">
+                                MPa
+                            </option>
+
+                            <option value="GPa">
+                                GPa
+                            </option>
+
+                            <option value="Pa">
+                                Pa
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Strain -->
+
+                <div class="calculator-form-group">
+
+                    <label for="strain">
+                        Strain (ε)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="strain"
+                        placeholder="Enter strain, e.g. 0.001"
+                        step="any"
+                        min="0"
+                    >
+
+                </div>
+
+
+                <!-- Buttons -->
+
+                <div class="calculator-buttons">
+
+                    <button
+                        type="button"
+                        class="calculator-calculate-btn"
+                        onclick="calculateYoungsModulus()"
+                    >
+                        Calculate Modulus
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="calculator-reset-btn"
+                        onclick="resetCalculator()"
+                    >
+                        Reset
+                    </button>
+
+                </div>
+
+
+                <!-- Error -->
+
+                <div
+                    id="errorMessage"
+                    class="calculator-error"
+                >
+                </div>
+
+
+                <!-- Result -->
+
+                <div
+                    id="result"
+                    class="calculator-result"
+                >
+
+                    <h2>
+                        Result
+                    </h2>
+
+
+                    <div
+                        id="resultValue"
+                        class="calculator-result-value"
+                    >
+                    </div>
+
+
+                    <p id="resultMPa">
+                    </p>
+
+
+                    <p id="resultPa">
+                    </p>
+
+
+                    <div class="calculation-steps">
+
+                        <h3>
+                            Calculation
+                        </h3>
+
+
+                        <p id="step1">
+                        </p>
+
+
+                        <p id="step2">
+                        </p>
+
+
+                        <p id="step3">
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 FORMULA PANEL
+                 ================================================= -->
+
+            <aside class="formula-panel">
+
+                <h2>
+                    Engineering Formula
+                </h2>
+
+
+                <div class="formula-box">
+
+                    <div class="formula-main">
+                        E = σ / ε
+                    </div>
+
+                    <p>
+                        Young's Modulus = Stress ÷ Strain
+                    </p>
+
+                </div>
+
+
+                <div class="calculation-steps">
+
+                    <h3>
+                        Where:
+                    </h3>
+
+
+                    <p>
+                        <strong>E</strong> = Young's Modulus
+                    </p>
+
+
+                    <p>
+                        <strong>σ</strong> = Stress
+                    </p>
+
+
+                    <p>
+                        <strong>ε</strong> = Strain
+                    </p>
+
+                </div>
+
+
+                <div class="unit-info">
+
+                    <strong>Important:</strong>
+
+                    <br>
+
+                    Young's modulus has the same unit
+                    as stress.
+
+                    <br><br>
+
+                    Common engineering unit:
+
+                    <br>
+
+                    <strong>GPa</strong>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+
+        <!-- =====================================================
+             ENGINEERING INFORMATION
+             ===================================================== -->
+
+        <section class="engineering-info">
+
+            <h2>
+                About Young's Modulus
+            </h2>
+
+
+            <p>
+                Young's modulus is a measure of the stiffness
+                of a material within its elastic range.
+            </p>
+
+
+            <p>
+                It represents the relationship between normal
+                stress and normal strain in the linear elastic
+                region of a material.
+            </p>
+
+
+            <ul>
+
+                <li>
+                    A higher Young's modulus generally indicates
+                    a stiffer material.
+                </li>
+
+                <li>
+                    A lower Young's modulus indicates that the
+                    material deforms more for the same stress.
+                </li>
+
+                <li>
+                    Young's modulus is commonly expressed in GPa.
+                </li>
+
+                <li>
+                    The relationship applies in the linear
+                    elastic region.
+                </li>
+
+            </ul>
+
+
+            <div class="unit-info">
+
+                <strong>Typical approximate values:</strong>
+
+                <br><br>
+
+                Steel ≈ 200 GPa
+
+                <br>
+
+                Aluminium ≈ 69 GPa
+
+                <br>
+
+                Copper ≈ 110 GPa
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             RELATED CALCULATORS
+             ===================================================== -->
+
+        <section class="related-section">
+
+            <h2>
+                Related Engineering Calculators
+            </h2>
+
+
+            <div class="related-grid">
+
+
+                <a
+                    href="stress.html"
+                    class="related-card"
+                >
+
+                    <h3>
+                        Stress Calculator
+                    </h3>
+
+                    <p>
+                        Calculate stress from force
+                        and cross-sectional area.
+                    </p>
+
+                </a>
+
+
+                <a
+                    href="strain.html"
+                    class="related-card"
+                >
+
+                    <h3>
+                        Strain Calculator
+                    </h3>
+
+                    <p>
+                        Calculate deformation relative
+                        to original length.
+                    </p>
+
+                </a>
+
+
+                <a
+                    href="force.html"
+                    class="related-card"
+                >
+
+                    <h3>
+                        Force Calculator
+                    </h3>
+
+                    <p>
+                        Calculate force from mass
+                        and acceleration.
+                    </p>
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer>
+
+        <p>
+
+            <strong>MECHCALC</strong>
+
+            • Engineering Tools
+
+            • Created by Vishnu
+
+        </p>
+
+    </footer>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script>
+
+
+        /* =================================================
+           CONVERT STRESS TO PASCALS
+           ================================================= */
+
+        function convertStressToPa(value, unit) {
+
+            if (unit === "Pa") {
+
+                return value;
+
+            }
+
+
+            if (unit === "MPa") {
+
+                return value * 1000000;
+
+            }
+
+
+            if (unit === "GPa") {
+
+                return value * 1000000000;
+
+            }
+
+
+            return value;
+
+        }
+
+
+        /* =================================================
+           CALCULATE YOUNG'S MODULUS
+           ================================================= */
+
+        function calculateYoungsModulus() {
+
+
+            const stressInput =
+                parseFloat(
+                    document.getElementById(
+                        "stress"
+                    ).value
+                );
+
+
+            const strain =
+                parseFloat(
+                    document.getElementById(
+                        "strain"
+                    ).value
+                );
+
+
+            const stressUnit =
+                document.getElementById(
+                    "stressUnit"
+                ).value;
+
+
+            const error =
+                document.getElementById(
+                    "errorMessage"
+                );
+
+
+            const result =
+                document.getElementById(
+                    "result"
+                );
+
+
+            /* ---------------------------------------------
+               Clear previous error
+               --------------------------------------------- */
+
+            error.style.display = "none";
+
+            error.textContent = "";
+
+
+            /* ---------------------------------------------
+               Validate input
+               --------------------------------------------- */
+
+            if (
+                isNaN(stressInput) ||
+                isNaN(strain)
+            ) {
+
+                error.textContent =
+                    "Please enter both stress and strain.";
+
+                error.style.display = "block";
+
+                result.style.display = "none";
+
+                return;
+
+            }
+
+
+            if (stressInput <= 0) {
+
+                error.textContent =
+                    "Stress must be greater than zero.";
+
+                error.style.display = "block";
+
+                result.style.display = "none";
+
+                return;
+
+            }
+
+
+            if (strain <= 0) {
+
+                error.textContent =
+                    "Strain must be greater than zero.";
+
+                error.style.display = "block";
+
+                result.style.display = "none";
+
+                return;
+
+            }
+
+
+            /* ---------------------------------------------
+               Convert stress to Pa
+               --------------------------------------------- */
+
+            const stressPa =
+                convertStressToPa(
+                    stressInput,
+                    stressUnit
+                );
+
+
+            /* ---------------------------------------------
+               Young's Modulus
+               --------------------------------------------- */
+
+            const youngsModulusPa =
+                stressPa / strain;
+
+
+            const youngsModulusMPa =
+                youngsModulusPa / 1000000;
+
+
+            const youngsModulusGPa =
+                youngsModulusPa / 1000000000;
+
+
+            /* ---------------------------------------------
+               Display result
+               --------------------------------------------- */
+
+            document.getElementById(
+                "resultValue"
+            ).textContent =
+                youngsModulusGPa.toFixed(4) +
+                " GPa";
+
+
+            document.getElementById(
+                "resultMPa"
+            ).textContent =
+                "Young's Modulus = " +
+                youngsModulusMPa.toLocaleString(
+                    undefined,
+                    {
+                        maximumFractionDigits: 4
+                    }
+                ) +
+                " MPa";
+
+
+            document.getElementById(
+                "resultPa"
+            ).textContent =
+                "Young's Modulus = " +
+                youngsModulusPa.toLocaleString(
+                    undefined,
+                    {
+                        maximumFractionDigits: 2
+                    }
+                ) +
+                " Pa";
+
+
+            /* ---------------------------------------------
+               Calculation steps
+               --------------------------------------------- */
+
+            document.getElementById(
+                "step1"
+            ).textContent =
+                "1. Stress = " +
+                stressPa.toLocaleString(
+                    undefined,
+                    {
+                        maximumFractionDigits: 4
+                    }
+                ) +
+                " Pa";
+
+
+            document.getElementById(
+                "step2"
+            ).textContent =
+                "2. Strain = " +
+                strain;
+
+
+            document.getElementById(
+                "step3"
+            ).textContent =
+                "3. E = σ / ε = " +
+                stressPa.toLocaleString(
+                    undefined,
+                    {
+                        maximumFractionDigits: 4
+                    }
+                ) +
+                " / " +
+                strain +
+                " = " +
+                youngsModulusGPa.toFixed(4) +
+                " GPa";
+
+
+            /* ---------------------------------------------
+               Show result
+               --------------------------------------------- */
+
+            result.style.display = "block";
+
+        }
+
+
+        /* =================================================
+           RESET
+           ================================================= */
+
+        function resetCalculator() {
+
+
+            document.getElementById(
+                "stress"
+            ).value = "";
+
+
+            document.getElementById(
+                "strain"
+            ).value = "";
+
+
+            document.getElementById(
+                "stressUnit"
+            ).value = "MPa";
+
+
+            document.getElementById(
+                "result"
+            ).style.display = "none";
+
+
+            document.getElementById(
+                "errorMessage"
+            ).style.display = "none";
+
+
+            document.getElementById(
+                "errorMessage"
+            ).textContent = "";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

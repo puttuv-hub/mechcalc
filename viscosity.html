@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Viscosity Calculator - Calculate Dynamic Viscosity | MECHCALC</title>
+
+    <meta
+        name="description"
+        content="Use the MECHCALC Viscosity Calculator to calculate dynamic viscosity from shear stress and velocity gradient. Get results in Pa·s, mPa·s, and cP with step-by-step calculations."
+    >
+
+    <meta
+        name="keywords"
+        content="viscosity calculator, dynamic viscosity calculator, viscosity formula calculator, shear stress viscosity calculator, Newtonian fluid viscosity calculator, Pa s calculator, centipoise calculator, mechanical engineering viscosity calculator"
+    >
+
+    <meta name="author" content="Vishnu">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="theme-color" content="#0f172a">
+
+    <!-- Open Graph -->
+    <meta
+        property="og:title"
+        content="Viscosity Calculator - Calculate Dynamic Viscosity | MECHCALC"
+    >
+    <meta
+        property="og:description"
+        content="Calculate dynamic viscosity from shear stress and velocity gradient using μ = τ/(du/dy). Get results in Pa·s, mPa·s, and cP."
+    >
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MECHCALC">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary">
+    <meta
+        name="twitter:title"
+        content="Viscosity Calculator - Dynamic Viscosity | MECHCALC"
+    >
+    <meta
+        name="twitter:description"
+        content="Calculate dynamic viscosity from shear stress and velocity gradient with accurate unit conversions and step-by-step calculations."
+    >
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Viscosity Calculator",
+        "applicationCategory": "EngineeringApplication",
+        "applicationSubCategory": "Mechanical Engineering Calculator",
+        "operatingSystem": "Web",
+        "description": "Calculate dynamic viscosity from shear stress and velocity gradient using the formula μ = τ / (du/dy). Results are provided in Pa·s, mPa·s, and cP.",
+        "url": "viscosity.html",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "creator": {
+            "@type": "Person",
+            "name": "Vishnu"
+        },
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "MECHCALC",
+            "url": "index.html"
+        }
+    }
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="calculator.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="logo">⚙ MECHCALC</div>
+
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#calculators">Calculators</a>
+        <a href="index.html#formulas">Formulas</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#account">Login / Sign Up</a>
+    </nav>
+</header>
+
+
+<main class="calculator-page">
+
+    <section class="calculator-hero">
+
+        <h1>Viscosity Calculator</h1>
+
+        <p>
+            Calculate the dynamic viscosity of a Newtonian fluid from
+            shear stress and velocity gradient.
+        </p>
+
+        <div class="engineering-quote">
+            “Viscosity measures a fluid’s resistance to flow.”
+        </div>
+
+    </section>
+
+
+    <section class="calculator-main">
+
+        <div class="calculator-layout">
+
+            <div class="input-panel">
+
+                <h2>Enter Values</h2>
+
+                <div class="calculator-form-group">
+
+                    <label for="shearStress">
+                        Shear Stress
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="shearStress"
+                            placeholder="Enter shear stress"
+                            step="any"
+                        >
+
+                        <select id="shearStressUnit">
+                            <option value="pa">Pa</option>
+                            <option value="kpa">kPa</option>
+                            <option value="mpa">MPa</option>
+                            <option value="nmm2">N/mm²</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="calculator-form-group">
+
+                    <label for="velocityGradient">
+                        Velocity Gradient
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="velocityGradient"
+                            placeholder="Enter velocity gradient"
+                            step="any"
+                        >
+
+                        <select id="velocityGradientUnit">
+                            <option value="persecond">s⁻¹</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="calculator-buttons">
+
+                    <button
+                        type="button"
+                        class="calculator-calculate-btn"
+                        onclick="calculateViscosity()"
+                    >
+                        Calculate Viscosity
+                    </button>
+
+                    <button
+                        type="button"
+                        class="calculator-reset-btn"
+                        onclick="resetCalculator()"
+                    >
+                        Reset
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="errorMessage"
+                    class="calculator-error"
+                    style="display:none;"
+                ></div>
+
+            </div>
+
+
+            <div class="formula-panel">
+
+                <h2>Formula</h2>
+
+                <div class="formula-box">
+
+                    <div class="formula-main">
+                        τ = μ (du/dy)
+                    </div>
+
+                    <div class="formula-main">
+                        μ = τ / (du/dy)
+                    </div>
+
+                    <p>
+                        Where:
+                        <br>
+                        τ = Shear stress
+                        <br>
+                        μ = Dynamic viscosity
+                        <br>
+                        du/dy = Velocity gradient
+                    </p>
+
+                </div>
+
+
+                <div class="engineering-info">
+
+                    <h3>SI Unit</h3>
+
+                    <p>
+                        Dynamic viscosity is measured in
+                        <strong>Pa·s</strong>.
+                    </p>
+
+                    <p>
+                        1 Pa·s = 1000 mPa·s
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="resultSection"
+            class="calculator-result"
+            style="display:none;"
+        >
+
+            <h2>Calculation Result</h2>
+
+            <div
+                id="resultValue"
+                class="calculator-result-value"
+            ></div>
+
+            <div
+                id="calculationSteps"
+                class="calculation-steps"
+            ></div>
+
+        </div>
+
+
+        <div class="unit-info">
+
+            <h2>Understanding Dynamic Viscosity</h2>
+
+            <p>
+                Dynamic viscosity describes the internal resistance
+                of a fluid when adjacent layers move relative to each other.
+            </p>
+
+            <p>
+                For a Newtonian fluid, shear stress is directly
+                proportional to the velocity gradient.
+            </p>
+
+            <ul>
+
+                <li>
+                    <strong>Low viscosity:</strong>
+                    Fluid flows more easily.
+                </li>
+
+                <li>
+                    <strong>High viscosity:</strong>
+                    Fluid offers greater resistance to flow.
+                </li>
+
+                <li>
+                    <strong>SI unit:</strong>
+                    Pa·s
+                </li>
+
+                <li>
+                    <strong>Common unit:</strong>
+                    mPa·s or cP
+                </li>
+
+                <li>
+                    <strong>1 mPa·s:</strong>
+                    1 cP
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <section class="related-section">
+
+            <h2>Related Calculators</h2>
+
+            <div class="related-grid">
+
+                <a href="density.html" class="related-card">
+                    <h3>Density</h3>
+                    <p>Calculate density from mass and volume.</p>
+                </a>
+
+                <a href="specific-gravity.html" class="related-card">
+                    <h3>Specific Gravity</h3>
+                    <p>
+                        Compare the density of a substance with a reference fluid.
+                    </p>
+                </a>
+
+                <a href="pressure.html" class="related-card">
+                    <h3>Pressure</h3>
+                    <p>Calculate pressure from force and area.</p>
+                </a>
+
+            </div>
+
+        </section>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <p>
+        MECHCALC • Mechanical Engineering Tools • Created by Vishnu
+    </p>
+
+</footer>
+
+
+<script>
+
+function convertStressToPa(value, unit) {
+
+    if (unit === "pa") {
+        return value;
+    }
+
+    if (unit === "kpa") {
+        return value * 1000;
+    }
+
+    if (unit === "mpa") {
+        return value * 1000000;
+    }
+
+    if (unit === "nmm2") {
+        return value * 1000000;
+    }
+
+    return value;
+}
+
+
+function calculateViscosity() {
+
+    const shearStress =
+        parseFloat(
+            document.getElementById("shearStress").value
+        );
+
+    const shearStressUnit =
+        document.getElementById("shearStressUnit").value;
+
+    const velocityGradient =
+        parseFloat(
+            document.getElementById("velocityGradient").value
+        );
+
+    const errorMessage =
+        document.getElementById("errorMessage");
+
+    const resultSection =
+        document.getElementById("resultSection");
+
+    const resultValue =
+        document.getElementById("resultValue");
+
+    const calculationSteps =
+        document.getElementById("calculationSteps");
+
+
+    errorMessage.style.display = "none";
+    errorMessage.textContent = "";
+
+
+    if (
+        isNaN(shearStress) ||
+        isNaN(velocityGradient)
+    ) {
+
+        showError(
+            "Please enter both shear stress and velocity gradient."
+        );
+
+        return;
+    }
+
+
+    if (shearStress <= 0) {
+
+        showError(
+            "Shear stress must be greater than zero."
+        );
+
+        return;
+    }
+
+
+    if (velocityGradient <= 0) {
+
+        showError(
+            "Velocity gradient must be greater than zero."
+        );
+
+        return;
+    }
+
+
+    const shearStressPa =
+        convertStressToPa(
+            shearStress,
+            shearStressUnit
+        );
+
+
+    const viscosityPaS =
+        shearStressPa / velocityGradient;
+
+    const viscosityMPaS =
+        viscosityPaS * 1000;
+
+    const viscosityCP =
+        viscosityPaS * 1000;
+
+
+    resultSection.style.display = "block";
+
+    resultValue.innerHTML = `
+        Dynamic Viscosity =
+        <strong>${viscosityPaS.toFixed(6)} Pa·s</strong>
+    `;
+
+
+    calculationSteps.innerHTML = `
+
+        <p>
+            <strong>Step 1:</strong>
+            Convert shear stress into Pa.
+        </p>
+
+        <p>
+            Shear stress =
+            ${shearStressPa.toLocaleString()}
+            Pa
+        </p>
+
+        <p>
+            <strong>Step 2:</strong>
+            Apply the Newtonian fluid relation.
+        </p>
+
+        <p>
+            μ = τ / (du/dy)
+        </p>
+
+        <p>
+            μ =
+            ${shearStressPa.toLocaleString()}
+            /
+            ${velocityGradient.toLocaleString()}
+        </p>
+
+        <p>
+            <strong>Step 3:</strong>
+            Calculate dynamic viscosity.
+        </p>
+
+        <p>
+            μ =
+            <strong>${viscosityPaS.toFixed(6)} Pa·s</strong>
+        </p>
+
+        <p>
+            Equivalent =
+            ${viscosityMPaS.toFixed(3)} mPa·s
+            =
+            ${viscosityCP.toFixed(3)} cP
+        </p>
+
+    `;
+
+
+    resultSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+}
+
+
+function showError(message) {
+
+    const errorMessage =
+        document.getElementById("errorMessage");
+
+    errorMessage.textContent = message;
+    errorMessage.style.display = "block";
+
+}
+
+
+function resetCalculator() {
+
+    document.getElementById("shearStress").value = "";
+
+    document.getElementById("shearStressUnit").value = "pa";
+
+    document.getElementById("velocityGradient").value = "";
+
+    document.getElementById("errorMessage").style.display = "none";
+
+    document.getElementById("errorMessage").textContent = "";
+
+    document.getElementById("resultSection").style.display = "none";
+
+    document.getElementById("resultValue").innerHTML = "";
+
+    document.getElementById("calculationSteps").innerHTML = "";
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kinetic Energy Calculator - Calculate KE (½mv²) | MECHCALC</title>
+
+    <meta
+        name="description"
+        content="Use the MECHCALC Kinetic Energy Calculator to calculate kinetic energy from mass and velocity using KE = ½mv². Get results in J, kJ, and MJ with step-by-step calculations."
+    >
+
+    <meta
+        name="keywords"
+        content="kinetic energy calculator, KE calculator, kinetic energy formula calculator, 1/2 mv2 calculator, mass velocity energy calculator, joule calculator, mechanical engineering kinetic energy calculator"
+    >
+
+    <meta name="author" content="Vishnu">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="theme-color" content="#0f172a">
+
+    <!-- Open Graph -->
+    <meta
+        property="og:title"
+        content="Kinetic Energy Calculator - Calculate KE (½mv²) | MECHCALC"
+    >
+
+    <meta
+        property="og:description"
+        content="Calculate kinetic energy from mass and velocity using KE = ½mv². Get accurate results in J, kJ, and MJ with MECHCALC."
+    >
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MECHCALC">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary">
+
+    <meta
+        name="twitter:title"
+        content="Kinetic Energy Calculator - KE = ½mv² | MECHCALC"
+    >
+
+    <meta
+        name="twitter:description"
+        content="Calculate kinetic energy from mass and velocity with accurate unit conversions and step-by-step calculations."
+    >
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Kinetic Energy Calculator",
+        "applicationCategory": "EngineeringApplication",
+        "applicationSubCategory": "Mechanical Engineering Calculator",
+        "operatingSystem": "Web",
+        "description": "Calculate kinetic energy from mass and velocity using the formula KE = ½ × m × v². Results are provided in joules, kilojoules, and megajoules.",
+        "url": "kinetic-energy.html",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "creator": {
+            "@type": "Person",
+            "name": "Vishnu"
+        },
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "MECHCALC",
+            "url": "index.html"
+        }
+    }
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="calculator.css">
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        ⚙ MECHCALC
+    </div>
+
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#calculators">Calculators</a>
+        <a href="index.html#formulas">Formulas</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#account">Login / Sign Up</a>
+    </nav>
+
+</header>
+
+
+<main class="calculator-page">
+
+    <!-- HERO -->
+
+    <section class="calculator-hero">
+
+        <div class="container">
+
+            <h1>Kinetic Energy Calculator</h1>
+
+            <p>
+                Calculate the kinetic energy of a moving object
+                from its mass and velocity.
+            </p>
+
+            <div class="engineering-quote">
+                “Motion stores energy.”
+            </div>
+
+            <a href="index.html#calculators" class="back-link">
+                ← Back to Calculators
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- CALCULATOR -->
+
+    <section class="calculator-main">
+
+        <div class="calculator-layout">
+
+
+            <!-- INPUT PANEL -->
+
+            <div class="input-panel">
+
+                <h2>Enter Values</h2>
+
+
+                <!-- MASS -->
+
+                <div class="calculator-form-group">
+
+                    <label for="mass">
+                        Mass
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="mass"
+                            placeholder="Enter mass"
+                            min="0"
+                            step="any"
+                        >
+
+                        <select id="massUnit">
+
+                            <option value="kg">
+                                kg
+                            </option>
+
+                            <option value="g">
+                                g
+                            </option>
+
+                            <option value="tonne">
+                                tonne
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- VELOCITY -->
+
+                <div class="calculator-form-group">
+
+                    <label for="velocity">
+                        Velocity
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="velocity"
+                            placeholder="Enter velocity"
+                            min="0"
+                            step="any"
+                        >
+
+                        <select id="velocityUnit">
+
+                            <option value="mps">
+                                m/s
+                            </option>
+
+                            <option value="kmh">
+                                km/h
+                            </option>
+
+                            <option value="kmps">
+                                km/s
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+
+                <div class="calculator-buttons">
+
+                    <button
+                        type="button"
+                        class="calculator-calculate-btn"
+                        onclick="calculateKineticEnergy()"
+                    >
+                        Calculate Energy
+                    </button>
+
+                    <button
+                        type="button"
+                        class="calculator-reset-btn"
+                        onclick="resetCalculator()"
+                    >
+                        Reset
+                    </button>
+
+                </div>
+
+
+                <!-- ERROR -->
+
+                <div
+                    id="errorMessage"
+                    class="calculator-error"
+                    style="display:none;"
+                ></div>
+
+
+                <!-- RESULT -->
+
+                <div
+                    id="resultBox"
+                    class="calculator-result"
+                    style="display:none;"
+                >
+
+                    <h3>Kinetic Energy</h3>
+
+                    <div
+                        id="mainResult"
+                        class="calculator-result-value"
+                    >
+                        0 J
+                    </div>
+
+
+                    <div class="calculation-steps">
+
+                        <h4>Calculation Steps</h4>
+
+                        <div id="steps"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FORMULA PANEL -->
+
+            <div class="formula-panel">
+
+                <h2>Engineering Formula</h2>
+
+
+                <div class="formula-box">
+
+                    <div class="formula-main">
+                        KE = ½ × m × v²
+                    </div>
+
+                    <p>
+                        Where:
+                    </p>
+
+                    <ul>
+
+                        <li>
+                            <strong>KE</strong> = Kinetic Energy
+                        </li>
+
+                        <li>
+                            <strong>m</strong> = Mass
+                        </li>
+
+                        <li>
+                            <strong>v</strong> = Velocity
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <!-- ENGINEERING INFO -->
+
+                <div class="engineering-info">
+
+                    <h3>Engineering Information</h3>
+
+                    <p>
+                        Kinetic energy is the energy possessed by
+                        an object because of its motion.
+                    </p>
+
+                    <p>
+                        The SI unit of kinetic energy is the
+                        <strong>joule (J)</strong>.
+                    </p>
+
+                    <p>
+                        Kinetic energy depends on the square of
+                        velocity. Therefore, increasing velocity
+                        has a significant effect on energy.
+                    </p>
+
+                    <div class="formula-box">
+
+                        <div class="formula-main">
+                            KE ∝ v²
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- UNITS -->
+
+                <div class="unit-info">
+
+                    <h3>Common Units</h3>
+
+                    <ul>
+
+                        <li>
+                            1 kJ = 1,000 J
+                        </li>
+
+                        <li>
+                            1 MJ = 1,000,000 J
+                        </li>
+
+                        <li>
+                            1 J = 1 N·m
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RELATED -->
+
+    <section class="related-section">
+
+        <div class="container">
+
+            <h2>Related Calculators</h2>
+
+            <div class="related-grid">
+
+                <a
+                    href="force.html"
+                    class="related-card"
+                >
+                    <h3>Force Calculator</h3>
+
+                    <p>
+                        Calculate force from mass and acceleration.
+                    </p>
+                </a>
+
+
+                <a
+                    href="work.html"
+                    class="related-card"
+                >
+                    <h3>Work Calculator</h3>
+
+                    <p>
+                        Calculate mechanical work from force
+                        and displacement.
+                    </p>
+                </a>
+
+
+                <a
+                    href="power.html"
+                    class="related-card"
+                >
+                    <h3>Power Calculator</h3>
+
+                    <p>
+                        Calculate power from work and time.
+                    </p>
+                </a>
+
+
+                <a
+                    href="torque.html"
+                    class="related-card"
+                >
+                    <h3>Torque Calculator</h3>
+
+                    <p>
+                        Calculate torque from force and distance.
+                    </p>
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <p>
+        MECHCALC • Engineering Tools • Created by Vishnu
+    </p>
+
+</footer>
+
+
+<script>
+
+function convertMassToKg(value, unit) {
+
+    if (unit === "kg") {
+        return value;
+    }
+
+    if (unit === "g") {
+        return value / 1000;
+    }
+
+    if (unit === "tonne") {
+        return value * 1000;
+    }
+
+    return value;
+}
+
+
+function convertVelocityToMps(value, unit) {
+
+    if (unit === "mps") {
+        return value;
+    }
+
+    if (unit === "kmh") {
+        return value / 3.6;
+    }
+
+    if (unit === "kmps") {
+        return value * 1000;
+    }
+
+    return value;
+}
+
+
+function formatNumber(value) {
+
+    if (Math.abs(value) >= 1000000) {
+        return value.toExponential(6);
+    }
+
+    if (Math.abs(value) < 0.000001 && value !== 0) {
+        return value.toExponential(6);
+    }
+
+    return Number(value.toFixed(6)).toLocaleString();
+}
+
+
+function calculateKineticEnergy() {
+
+    const massInput =
+        document.getElementById("mass").value;
+
+    const velocityInput =
+        document.getElementById("velocity").value;
+
+
+    const massUnit =
+        document.getElementById("massUnit").value;
+
+    const velocityUnit =
+        document.getElementById("velocityUnit").value;
+
+
+    const errorMessage =
+        document.getElementById("errorMessage");
+
+    const resultBox =
+        document.getElementById("resultBox");
+
+
+    errorMessage.style.display = "none";
+    resultBox.style.display = "none";
+
+
+    // VALIDATION
+
+    if (
+        massInput === "" ||
+        velocityInput === ""
+    ) {
+
+        errorMessage.textContent =
+            "Please enter mass and velocity.";
+
+        errorMessage.style.display =
+            "block";
+
+        return;
+    }
+
+
+    const mass =
+        Number(massInput);
+
+    const velocity =
+        Number(velocityInput);
+
+
+    if (
+        !Number.isFinite(mass) ||
+        !Number.isFinite(velocity)
+    ) {
+
+        errorMessage.textContent =
+            "Please enter valid numerical values.";
+
+        errorMessage.style.display =
+            "block";
+
+        return;
+    }
+
+
+    if (mass <= 0) {
+
+        errorMessage.textContent =
+            "Mass must be greater than zero.";
+
+        errorMessage.style.display =
+            "block";
+
+        return;
+    }
+
+
+    if (velocity < 0) {
+
+        errorMessage.textContent =
+            "Velocity cannot be negative for this magnitude calculator.";
+
+        errorMessage.style.display =
+            "block";
+
+        return;
+    }
+
+
+    // CONVERSION
+
+    const massKg =
+        convertMassToKg(
+            mass,
+            massUnit
+        );
+
+
+    const velocityMps =
+        convertVelocityToMps(
+            velocity,
+            velocityUnit
+        );
+
+
+    // CALCULATION
+
+    const kineticEnergyJ =
+        0.5 *
+        massKg *
+        velocityMps *
+        velocityMps;
+
+
+    const kineticEnergyKJ =
+        kineticEnergyJ / 1000;
+
+
+    const kineticEnergyMJ =
+        kineticEnergyJ / 1000000;
+
+
+    // RESULT
+
+    document.getElementById("mainResult").textContent =
+        formatNumber(kineticEnergyJ) + " J";
+
+
+    document.getElementById("steps").innerHTML = `
+
+        <p>
+
+            <strong>
+                Step 1 — Convert mass:
+            </strong>
+
+            <br>
+
+            ${formatNumber(mass)} ${massUnit}
+            =
+            ${formatNumber(massKg)} kg
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Step 2 — Convert velocity:
+            </strong>
+
+            <br>
+
+            ${formatNumber(velocity)} ${velocityUnit}
+            =
+            ${formatNumber(velocityMps)} m/s
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Step 3 — Apply the formula:
+            </strong>
+
+            <br>
+
+            KE = ½ × m × v²
+
+        </p>
+
+
+        <p>
+
+            KE =
+            ½ ×
+            ${formatNumber(massKg)} ×
+            ${formatNumber(velocityMps)}²
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Kinetic Energy =
+                ${formatNumber(kineticEnergyJ)} J
+            </strong>
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Equivalent values:
+            </strong>
+
+            <br>
+
+            ${formatNumber(kineticEnergyKJ)} kJ
+
+            <br>
+
+            ${formatNumber(kineticEnergyMJ)} MJ
+
+        </p>
+
+    `;
+
+
+    resultBox.style.display =
+        "block";
+}
+
+
+function resetCalculator() {
+
+    document.getElementById("mass").value =
+        "";
+
+    document.getElementById("velocity").value =
+        "";
+
+    document.getElementById("massUnit").value =
+        "kg";
+
+    document.getElementById("velocityUnit").value =
+        "mps";
+
+    document.getElementById("errorMessage").style.display =
+        "none";
+
+    document.getElementById("resultBox").style.display =
+        "none";
+}
+
+</script>
+
+</body>
+</html>

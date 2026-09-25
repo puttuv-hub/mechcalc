@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mechanical Efficiency Calculator | MECHCALC</title>
+    <meta name="description" content="Calculate mechanical efficiency from useful output power and input power.">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="calculator.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="logo">⚙ MECHCALC</div>
+
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#calculators">Calculators</a>
+        <a href="index.html#formulas">Formulas</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#account">Login / Sign Up</a>
+    </nav>
+</header>
+
+
+<main class="calculator-page">
+
+    <!-- HERO -->
+    <section class="calculator-hero">
+
+        <h1>Mechanical Efficiency Calculator</h1>
+
+        <p>
+            Calculate mechanical efficiency by comparing useful output
+            power with the mechanical input power supplied to a system.
+        </p>
+
+        <div class="engineering-quote">
+            “Efficiency measures how effectively input energy becomes useful output.”
+        </div>
+
+    </section>
+
+
+    <!-- CALCULATOR -->
+    <section class="calculator-main">
+
+        <div class="calculator-layout">
+
+            <!-- INPUT PANEL -->
+            <div class="input-panel">
+
+                <h2>Enter Values</h2>
+
+
+                <!-- OUTPUT POWER -->
+                <div class="calculator-form-group">
+
+                    <label for="outputPower">
+                        Useful Output Power
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="outputPower"
+                            placeholder="Enter output power"
+                            step="any"
+                        >
+
+                        <select id="outputPowerUnit">
+
+                            <option value="w">W</option>
+                            <option value="kw">kW</option>
+                            <option value="mw">MW</option>
+                            <option value="hp">hp</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- INPUT POWER -->
+                <div class="calculator-form-group">
+
+                    <label for="inputPower">
+                        Input Power
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="inputPower"
+                            placeholder="Enter input power"
+                            step="any"
+                        >
+
+                        <select id="inputPowerUnit">
+
+                            <option value="w">W</option>
+                            <option value="kw">kW</option>
+                            <option value="mw">MW</option>
+                            <option value="hp">hp</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+                <div class="calculator-buttons">
+
+                    <button
+                        type="button"
+                        class="calculator-calculate-btn"
+                        onclick="calculateEfficiency()"
+                    >
+                        Calculate Efficiency
+                    </button>
+
+                    <button
+                        type="button"
+                        class="calculator-reset-btn"
+                        onclick="resetCalculator()"
+                    >
+                        Reset
+                    </button>
+
+                </div>
+
+
+                <!-- ERROR -->
+                <div
+                    id="errorMessage"
+                    class="calculator-error"
+                    style="display:none;"
+                ></div>
+
+            </div>
+
+
+            <!-- FORMULA PANEL -->
+            <div class="formula-panel">
+
+                <h2>Formula</h2>
+
+                <div class="formula-box">
+
+                    <div class="formula-main">
+                        η = P<sub>out</sub> / P<sub>in</sub>
+                    </div>
+
+                    <p>
+                        Mechanical efficiency:
+                    </p>
+
+                    <div class="formula-main">
+                        η(%) =
+                        (P<sub>out</sub> / P<sub>in</sub>) × 100
+                    </div>
+
+                </div>
+
+
+                <div class="engineering-info">
+
+                    <h3>Where:</h3>
+
+                    <p>
+                        <strong>η</strong> = Mechanical efficiency
+                    </p>
+
+                    <p>
+                        <strong>P<sub>out</sub></strong>
+                        = Useful output power
+                    </p>
+
+                    <p>
+                        <strong>P<sub>in</sub></strong>
+                        = Input power
+                    </p>
+
+                    <p>
+                        Efficiency is dimensionless.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RESULT -->
+        <div
+            id="resultSection"
+            class="calculator-result"
+            style="display:none;"
+        >
+
+            <h2>Calculation Result</h2>
+
+            <div
+                id="resultValue"
+                class="calculator-result-value"
+            ></div>
+
+            <div
+                id="calculationSteps"
+                class="calculation-steps"
+            ></div>
+
+        </div>
+
+
+        <!-- ENGINEERING INFORMATION -->
+        <div class="unit-info">
+
+            <h2>Understanding Mechanical Efficiency</h2>
+
+            <p>
+                Mechanical efficiency compares the useful mechanical
+                power obtained from a machine with the mechanical power
+                supplied to it.
+            </p>
+
+            <p>
+                The basic relationship is:
+                <strong>
+                    η = P<sub>out</sub> / P<sub>in</sub>
+                </strong>
+            </p>
+
+            <ul>
+
+                <li>
+                    <strong>100% efficiency:</strong>
+                    output power equals input power.
+                </li>
+
+                <li>
+                    <strong>Less than 100%:</strong>
+                    some input power is lost through friction,
+                    heat, vibration and other losses.
+                </li>
+
+                <li>
+                    <strong>Higher efficiency:</strong>
+                    less input power is required for the same useful
+                    output.
+                </li>
+
+            </ul>
+
+            <p>
+                For a real machine operating normally, useful output
+                power cannot exceed the supplied input power.
+            </p>
+
+        </div>
+
+
+        <!-- RELATED CALCULATORS -->
+        <section class="related-section">
+
+            <h2>Related Calculators</h2>
+
+            <div class="related-grid">
+
+                <a href="power.html" class="related-card">
+
+                    <h3>Power</h3>
+
+                    <p>
+                        Calculate power from work and time.
+                    </p>
+
+                </a>
+
+
+                <a href="torque.html" class="related-card">
+
+                    <h3>Torque</h3>
+
+                    <p>
+                        Calculate torque from force, distance and angle.
+                    </p>
+
+                </a>
+
+
+                <a href="pump-power.html" class="related-card">
+
+                    <h3>Pump Power</h3>
+
+                    <p>
+                        Calculate hydraulic power and pump input power.
+                    </p>
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <p>
+        MECHCALC • Mechanical Engineering Tools • Created by Vishnu
+    </p>
+
+</footer>
+
+
+<script>
+
+    /*
+     * Convert power to watts
+     */
+    function convertPowerToWatts(value, unit) {
+
+        if (unit === "w") {
+            return value;
+        }
+
+        if (unit === "kw") {
+            return value * 1000;
+        }
+
+        if (unit === "mw") {
+            return value * 1000000;
+        }
+
+        if (unit === "hp") {
+            return value * 745.7;
+        }
+
+        return value;
+    }
+
+
+    /*
+     * Calculate mechanical efficiency
+     *
+     * η = Pout / Pin
+     */
+    function calculateEfficiency() {
+
+        const outputPower =
+            parseFloat(
+                document.getElementById("outputPower").value
+            );
+
+        const outputPowerUnit =
+            document.getElementById("outputPowerUnit").value;
+
+        const inputPower =
+            parseFloat(
+                document.getElementById("inputPower").value
+            );
+
+        const inputPowerUnit =
+            document.getElementById("inputPowerUnit").value;
+
+
+        const errorMessage =
+            document.getElementById("errorMessage");
+
+        const resultSection =
+            document.getElementById("resultSection");
+
+        const resultValue =
+            document.getElementById("resultValue");
+
+        const calculationSteps =
+            document.getElementById("calculationSteps");
+
+
+        /*
+         * Clear previous error
+         */
+        errorMessage.style.display = "none";
+        errorMessage.textContent = "";
+
+
+        /*
+         * Validate numerical inputs
+         */
+        if (
+            !Number.isFinite(outputPower) ||
+            !Number.isFinite(inputPower)
+        ) {
+
+            showError(
+                "Please enter both output power and input power."
+            );
+
+            return;
+        }
+
+
+        if (outputPower <= 0) {
+
+            showError(
+                "Useful output power must be greater than zero."
+            );
+
+            return;
+        }
+
+
+        if (inputPower <= 0) {
+
+            showError(
+                "Input power must be greater than zero."
+            );
+
+            return;
+        }
+
+
+        /*
+         * Convert both powers to watts
+         */
+        const outputPowerW =
+            convertPowerToWatts(
+                outputPower,
+                outputPowerUnit
+            );
+
+        const inputPowerW =
+            convertPowerToWatts(
+                inputPower,
+                inputPowerUnit
+            );
+
+
+        /*
+         * Output cannot exceed input
+         * for a normal real machine.
+         */
+        if (outputPowerW > inputPowerW) {
+
+            showError(
+                "Output power cannot exceed input power for a normal real machine. Please check your values."
+            );
+
+            return;
+        }
+
+
+        /*
+         * Mechanical efficiency
+         */
+        const efficiency =
+            outputPowerW /
+            inputPowerW;
+
+        const efficiencyPercentage =
+            efficiency * 100;
+
+
+        /*
+         * Power loss
+         */
+        const powerLossW =
+            inputPowerW -
+            outputPowerW;
+
+        const powerLossKW =
+            powerLossW / 1000;
+
+
+        /*
+         * Display result
+         */
+        resultSection.style.display = "block";
+
+        resultValue.innerHTML = `
+
+            <p>
+                Mechanical Efficiency =
+                <strong>
+                    ${efficiencyPercentage.toFixed(4)}%
+                </strong>
+            </p>
+
+            <p>
+                Efficiency =
+                <strong>
+                    ${efficiency.toFixed(6)}
+                </strong>
+            </p>
+
+            <p>
+                Power Loss =
+                <strong>
+                    ${powerLossW.toFixed(4)} W
+                </strong>
+            </p>
+
+            <p>
+                Power Loss =
+                <strong>
+                    ${powerLossKW.toFixed(4)} kW
+                </strong>
+            </p>
+
+        `;
+
+
+        /*
+         * Calculation steps
+         */
+        calculationSteps.innerHTML = `
+
+            <p>
+                <strong>Step 1:</strong>
+                Convert output power to watts.
+            </p>
+
+            <p>
+                P<sub>out</sub> =
+                ${outputPowerW.toFixed(4)}
+                W
+            </p>
+
+            <p>
+                <strong>Step 2:</strong>
+                Convert input power to watts.
+            </p>
+
+            <p>
+                P<sub>in</sub> =
+                ${inputPowerW.toFixed(4)}
+                W
+            </p>
+
+            <p>
+                <strong>Step 3:</strong>
+                Apply the efficiency equation.
+            </p>
+
+            <p>
+                η =
+                P<sub>out</sub> /
+                P<sub>in</sub>
+            </p>
+
+            <p>
+                η =
+                ${outputPowerW.toFixed(4)}
+                /
+                ${inputPowerW.toFixed(4)}
+            </p>
+
+            <p>
+                η =
+                <strong>
+                    ${efficiency.toFixed(6)}
+                </strong>
+            </p>
+
+            <p>
+                <strong>Step 4:</strong>
+                Convert efficiency into percentage.
+            </p>
+
+            <p>
+                η(%) =
+                ${efficiency.toFixed(6)}
+                × 100
+            </p>
+
+            <p>
+                <strong>Final Answer:</strong>
+                Mechanical Efficiency =
+                <strong>
+                    ${efficiencyPercentage.toFixed(4)}%
+                </strong>
+            </p>
+
+        `;
+
+
+        /*
+         * Scroll to result
+         */
+        resultSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }
+
+
+    /*
+     * Display error
+     */
+    function showError(message) {
+
+        const errorMessage =
+            document.getElementById("errorMessage");
+
+        errorMessage.textContent = message;
+        errorMessage.style.display = "block";
+
+    }
+
+
+    /*
+     * Reset calculator
+     */
+    function resetCalculator() {
+
+        document.getElementById("outputPower").value = "";
+
+        document.getElementById("outputPowerUnit").value = "w";
+
+        document.getElementById("inputPower").value = "";
+
+        document.getElementById("inputPowerUnit").value = "w";
+
+        document.getElementById("errorMessage").style.display = "none";
+
+        document.getElementById("errorMessage").textContent = "";
+
+        document.getElementById("resultSection").style.display = "none";
+
+        document.getElementById("resultValue").innerHTML = "";
+
+        document.getElementById("calculationSteps").innerHTML = "";
+
+    }
+
+</script>
+
+</body>
+</html>

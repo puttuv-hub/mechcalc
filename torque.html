@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Torque Calculator - Calculate Torque (T = F × r × sin θ) | MECHCALC</title>
+
+    <meta
+        name="description"
+        content="Use the MECHCALC Torque Calculator to calculate torque from force, moment arm distance, and angle. Get results in N·m, kN·m, N·mm, and kgf·m with step-by-step calculations."
+    >
+
+    <meta
+        name="keywords"
+        content="torque calculator, torque formula calculator, T=F×r calculator, moment of force calculator, torque from force and distance, moment arm calculator, mechanical engineering torque calculator, Newton metre calculator"
+    >
+
+    <meta name="author" content="Vishnu">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="theme-color" content="#0f172a">
+
+    <!-- Open Graph -->
+    <meta
+        property="og:title"
+        content="Torque Calculator - Calculate Torque (T = F × r × sin θ) | MECHCALC"
+    >
+
+    <meta
+        property="og:description"
+        content="Calculate torque from force, moment arm distance, and angle. Get accurate results in N·m, kN·m, N·mm, and kgf·m with MECHCALC."
+    >
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MECHCALC">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary">
+
+    <meta
+        name="twitter:title"
+        content="Torque Calculator - T = F × r × sin θ | MECHCALC"
+    >
+
+    <meta
+        name="twitter:description"
+        content="Calculate mechanical torque from force, distance, and angle with accurate unit conversions and step-by-step calculations."
+    >
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Torque Calculator",
+        "applicationCategory": "EngineeringApplication",
+        "applicationSubCategory": "Mechanical Engineering Calculator",
+        "operatingSystem": "Web",
+        "description": "Calculate torque from force, moment arm distance, and angle using the formula T = F × r × sin(θ). Results are provided in N·m, kN·m, N·mm, and kgf·m.",
+        "url": "torque.html",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "creator": {
+            "@type": "Person",
+            "name": "Vishnu"
+        },
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "MECHCALC",
+            "url": "index.html"
+        }
+    }
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="calculator.css">
+</head>
+
+<body>
+
+<div class="calculator-page">
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="container header-container">
+
+            <div class="logo">
+                ⚙ MECHCALC
+            </div>
+
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="index.html#calculators">Calculators</a>
+                <a href="index.html#formulas">Formulas</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#account">Login / Sign Up</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- HERO -->
+    <section class="calculator-hero">
+
+        <div class="container">
+
+            <span class="calculator-label">
+                MECHANICAL ENGINEERING TOOL
+            </span>
+
+            <h1>Torque Calculator</h1>
+
+            <p>
+                Calculate torque from force, perpendicular distance
+                and the angle between them.
+            </p>
+
+            <div class="engineering-quote">
+                “Torque transforms force into rotation.”
+            </div>
+
+            <a href="index.html#calculators" class="back-link">
+                ← Back to Calculators
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- MAIN CALCULATOR -->
+    <main class="calculator-main">
+
+        <div class="container">
+
+            <div class="calculator-layout">
+
+
+                <!-- INPUT PANEL -->
+                <section class="input-panel">
+
+                    <div class="panel-heading">
+
+                        <span class="panel-number">01</span>
+
+                        <div>
+                            <h2>Enter Values</h2>
+                            <p>Provide force, distance and angle.</p>
+                        </div>
+
+                    </div>
+
+
+                    <form id="torqueForm">
+
+
+                        <!-- FORCE -->
+                        <div class="calculator-form-group">
+
+                            <label for="force">
+                                Force
+                                <span class="required">*</span>
+                            </label>
+
+                            <div class="calculator-input-row">
+
+                                <input
+                                    type="number"
+                                    id="force"
+                                    placeholder="Enter force"
+                                    step="any"
+                                    min="0"
+                                >
+
+                                <select id="forceUnit">
+
+                                    <option value="N">
+                                        N
+                                    </option>
+
+                                    <option value="kN">
+                                        kN
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <small>
+                                Applied force acting on the object.
+                            </small>
+
+                        </div>
+
+
+                        <!-- DISTANCE -->
+                        <div class="calculator-form-group">
+
+                            <label for="distance">
+                                Moment Arm / Distance
+                                <span class="required">*</span>
+                            </label>
+
+                            <div class="calculator-input-row">
+
+                                <input
+                                    type="number"
+                                    id="distance"
+                                    placeholder="Enter distance"
+                                    step="any"
+                                    min="0"
+                                >
+
+                                <select id="distanceUnit">
+
+                                    <option value="m">
+                                        m
+                                    </option>
+
+                                    <option value="mm">
+                                        mm
+                                    </option>
+
+                                    <option value="cm">
+                                        cm
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <small>
+                                Perpendicular distance from the axis of rotation.
+                            </small>
+
+                        </div>
+
+
+                        <!-- ANGLE -->
+                        <div class="calculator-form-group">
+
+                            <label for="angle">
+                                Angle
+                                <span class="required">*</span>
+                            </label>
+
+                            <div class="calculator-input-row">
+
+                                <input
+                                    type="number"
+                                    id="angle"
+                                    placeholder="Enter angle"
+                                    value="90"
+                                    step="any"
+                                    min="0"
+                                    max="360"
+                                >
+
+                                <select disabled>
+                                    <option>
+                                        degrees (°)
+                                    </option>
+                                </select>
+
+                            </div>
+
+                            <small>
+                                Angle between the force and the moment arm.
+                                Default: 90°.
+                            </small>
+
+                        </div>
+
+
+                        <!-- BUTTONS -->
+                        <div class="calculator-buttons">
+
+                            <button
+                                type="submit"
+                                class="calculator-calculate-btn"
+                            >
+                                Calculate Torque
+                            </button>
+
+                            <button
+                                type="button"
+                                id="resetButton"
+                                class="calculator-reset-btn"
+                            >
+                                Reset
+                            </button>
+
+                        </div>
+
+
+                        <!-- ERROR -->
+                        <div
+                            id="errorMessage"
+                            class="calculator-error"
+                            style="display: none;"
+                        ></div>
+
+                    </form>
+
+                </section>
+
+
+                <!-- FORMULA PANEL -->
+                <section class="formula-panel">
+
+                    <div class="panel-heading">
+
+                        <span class="panel-number">02</span>
+
+                        <div>
+                            <h2>Engineering Formula</h2>
+                            <p>Moment of force relationship</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="formula-box">
+
+                        <div class="formula-main">
+                            T = F × r × sin(θ)
+                        </div>
+
+                        <div class="formula-description">
+
+                            <p>
+                                <strong>T</strong> = Torque
+                            </p>
+
+                            <p>
+                                <strong>F</strong> = Force
+                            </p>
+
+                            <p>
+                                <strong>r</strong> = Moment arm / distance
+                            </p>
+
+                            <p>
+                                <strong>θ</strong> = Angle between F and r
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CALCULATION STEPS -->
+                    <div class="calculation-steps">
+
+                        <h3>How it is calculated</h3>
+
+                        <ol>
+
+                            <li>
+                                Convert force into Newtons.
+                            </li>
+
+                            <li>
+                                Convert distance into metres.
+                            </li>
+
+                            <li>
+                                Convert the angle from degrees to radians.
+                            </li>
+
+                            <li>
+                                Calculate sin(θ).
+                            </li>
+
+                            <li>
+                                Multiply F × r × sin(θ).
+                            </li>
+
+                        </ol>
+
+                    </div>
+
+
+                    <!-- RESULT -->
+                    <div
+                        id="resultBox"
+                        class="calculator-result"
+                        style="display: none;"
+                    >
+
+                        <span class="result-label">
+                            CALCULATED TORQUE
+                        </span>
+
+                        <div
+                            id="mainResult"
+                            class="calculator-result-value"
+                        >
+                            0 N·m
+                        </div>
+
+
+                        <div class="result-details">
+
+                            <p>
+                                <strong>Newton-metre:</strong>
+                                <span id="resultNm">
+                                    0 N·m
+                                </span>
+                            </p>
+
+                            <p>
+                                <strong>Kilonewton-metre:</strong>
+                                <span id="resultKNm">
+                                    0 kN·m
+                                </span>
+                            </p>
+
+                            <p>
+                                <strong>Newton-millimetre:</strong>
+                                <span id="resultNmm">
+                                    0 N·mm
+                                </span>
+                            </p>
+
+                            <p>
+                                <strong>Kilogram-force metre:</strong>
+                                <span id="resultKgfM">
+                                    0 kgf·m
+                                </span>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <!-- ENGINEERING INFORMATION -->
+            <section class="engineering-info">
+
+                <div class="panel-heading">
+
+                    <span class="panel-number">03</span>
+
+                    <div>
+                        <h2>Engineering Information</h2>
+                        <p>Understanding torque in mechanical systems.</p>
+                    </div>
+
+                </div>
+
+
+                <div class="info-grid">
+
+
+                    <div class="unit-info">
+
+                        <h3>What is Torque?</h3>
+
+                        <p>
+                            Torque is the turning effect produced by a force
+                            about an axis or pivot point.
+                        </p>
+
+                        <p>
+                            It determines how strongly a force tends to
+                            rotate an object.
+                        </p>
+
+                    </div>
+
+
+                    <div class="unit-info">
+
+                        <h3>SI Unit</h3>
+
+                        <p>
+                            The SI unit of torque is the
+                            <strong>Newton-metre (N·m)</strong>.
+                        </p>
+
+                        <p>
+                            Torque depends on both force and its distance
+                            from the axis of rotation.
+                        </p>
+
+                    </div>
+
+
+                    <div class="unit-info">
+
+                        <h3>Why Angle Matters</h3>
+
+                        <p>
+                            Maximum torque occurs when the force acts at
+                            90° to the moment arm because
+                            <strong>sin(90°) = 1</strong>.
+                        </p>
+
+                        <p>
+                            At 0°, the turning effect is zero.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+            <!-- RELATED CALCULATORS -->
+            <section class="related-section">
+
+                <div class="panel-heading">
+
+                    <span class="panel-number">04</span>
+
+                    <div>
+                        <h2>Related Calculators</h2>
+                        <p>Continue your engineering calculations.</p>
+                    </div>
+
+                </div>
+
+
+                <div class="related-grid">
+
+
+                    <a href="force.html" class="related-card">
+
+                        <span>F</span>
+
+                        <h3>Force Calculator</h3>
+
+                        <p>
+                            Calculate force from mass and acceleration.
+                        </p>
+
+                    </a>
+
+
+                    <a href="power.html" class="related-card">
+
+                        <span>W</span>
+
+                        <h3>Power Calculator</h3>
+
+                        <p>
+                            Calculate power from work and time.
+                        </p>
+
+                    </a>
+
+
+                    <a href="stress.html" class="related-card">
+
+                        <span>σ</span>
+
+                        <h3>Stress Calculator</h3>
+
+                        <p>
+                            Calculate stress from force and area.
+                        </p>
+
+                    </a>
+
+
+                    <a href="pressure.html" class="related-card">
+
+                        <span>P</span>
+
+                        <h3>Pressure Calculator</h3>
+
+                        <p>
+                            Calculate pressure from force and area.
+                        </p>
+
+                    </a>
+
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <p>
+                MECHCALC • Engineering Tools • Created by Vishnu
+            </p>
+
+        </div>
+
+    </footer>
+
+</div>
+
+
+<script>
+
+    const torqueForm =
+        document.getElementById("torqueForm");
+
+    const resetButton =
+        document.getElementById("resetButton");
+
+    const errorMessage =
+        document.getElementById("errorMessage");
+
+    const resultBox =
+        document.getElementById("resultBox");
+
+    const mainResult =
+        document.getElementById("mainResult");
+
+    const resultNm =
+        document.getElementById("resultNm");
+
+    const resultKNm =
+        document.getElementById("resultKNm");
+
+    const resultNmm =
+        document.getElementById("resultNmm");
+
+    const resultKgfM =
+        document.getElementById("resultKgfM");
+
+
+    /*
+        Convert force into Newtons
+    */
+    function convertForceToN(value, unit) {
+
+        if (unit === "N") {
+            return value;
+        }
+
+        if (unit === "kN") {
+            return value * 1000;
+        }
+
+        return value;
+    }
+
+
+    /*
+        Convert distance into metres
+    */
+    function convertDistanceToM(value, unit) {
+
+        if (unit === "m") {
+            return value;
+        }
+
+        if (unit === "mm") {
+            return value / 1000;
+        }
+
+        if (unit === "cm") {
+            return value / 100;
+        }
+
+        return value;
+    }
+
+
+    /*
+        Format numbers neatly
+    */
+    function formatNumber(value, decimals = 6) {
+
+        return Number(
+            value.toFixed(decimals)
+        ).toLocaleString(
+            "en-IN",
+            {
+                maximumFractionDigits: decimals
+            }
+        );
+
+    }
+
+
+    /*
+        Calculate Torque
+    */
+    torqueForm.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+            errorMessage.style.display = "none";
+
+            resultBox.style.display = "none";
+
+
+            const forceInput =
+                document.getElementById("force");
+
+            const distanceInput =
+                document.getElementById("distance");
+
+            const angleInput =
+                document.getElementById("angle");
+
+
+            const forceUnit =
+                document.getElementById("forceUnit").value;
+
+            const distanceUnit =
+                document.getElementById("distanceUnit").value;
+
+
+            const force =
+                parseFloat(forceInput.value);
+
+            const distance =
+                parseFloat(distanceInput.value);
+
+            const angle =
+                parseFloat(angleInput.value);
+
+
+            /*
+                Validation
+            */
+
+            if (
+                isNaN(force) ||
+                isNaN(distance) ||
+                isNaN(angle)
+            ) {
+
+                errorMessage.textContent =
+                    "Please enter force, distance and angle.";
+
+                errorMessage.style.display =
+                    "block";
+
+                return;
+            }
+
+
+            if (force <= 0) {
+
+                errorMessage.textContent =
+                    "Force must be greater than zero.";
+
+                errorMessage.style.display =
+                    "block";
+
+                return;
+            }
+
+
+            if (distance <= 0) {
+
+                errorMessage.textContent =
+                    "Distance must be greater than zero.";
+
+                errorMessage.style.display =
+                    "block";
+
+                return;
+            }
+
+
+            if (angle < 0 || angle > 360) {
+
+                errorMessage.textContent =
+                    "Angle must be between 0° and 360°.";
+
+                errorMessage.style.display =
+                    "block";
+
+                return;
+            }
+
+
+            /*
+                Convert units
+            */
+
+            const forceN =
+                convertForceToN(
+                    force,
+                    forceUnit
+                );
+
+
+            const distanceM =
+                convertDistanceToM(
+                    distance,
+                    distanceUnit
+                );
+
+
+            /*
+                Convert degrees to radians
+            */
+
+            const angleRadians =
+                angle * Math.PI / 180;
+
+
+            /*
+                T = F × r × sin(θ)
+            */
+
+            const sineValue =
+                Math.sin(angleRadians);
+
+
+            const torqueNm =
+                forceN *
+                distanceM *
+                sineValue;
+
+
+            /*
+                Other torque units
+            */
+
+            const torqueKNm =
+                torqueNm / 1000;
+
+
+            const torqueNmm =
+                torqueNm * 1000;
+
+
+            /*
+                1 kgf·m = 9.80665 N·m
+            */
+
+            const torqueKgfM =
+                torqueNm / 9.80665;
+
+
+            /*
+                Display result
+            */
+
+            mainResult.textContent =
+                `${formatNumber(torqueNm)} N·m`;
+
+
+            resultNm.textContent =
+                `${formatNumber(torqueNm)} N·m`;
+
+
+            resultKNm.textContent =
+                `${formatNumber(torqueKNm)} kN·m`;
+
+
+            resultNmm.textContent =
+                `${formatNumber(torqueNmm)} N·mm`;
+
+
+            resultKgfM.textContent =
+                `${formatNumber(torqueKgfM)} kgf·m`;
+
+
+            resultBox.style.display =
+                "block";
+
+
+            /*
+                Dynamic calculation steps
+            */
+
+            const calculationSteps =
+                document.querySelector(
+                    ".calculation-steps"
+                );
+
+
+            if (calculationSteps) {
+
+                calculationSteps.innerHTML = `
+
+                    <h3>Calculation Steps</h3>
+
+                    <ol>
+
+                        <li>
+                            Force =
+                            <strong>
+                                ${formatNumber(force)}
+                                ${forceUnit}
+                            </strong>
+                        </li>
+
+                        <li>
+                            Converted force =
+                            <strong>
+                                ${formatNumber(forceN)} N
+                            </strong>
+                        </li>
+
+                        <li>
+                            Distance =
+                            <strong>
+                                ${formatNumber(distance)}
+                                ${distanceUnit}
+                            </strong>
+                        </li>
+
+                        <li>
+                            Converted distance =
+                            <strong>
+                                ${formatNumber(distanceM)} m
+                            </strong>
+                        </li>
+
+                        <li>
+                            Angle =
+                            <strong>
+                                ${formatNumber(angle)}°
+                            </strong>
+                        </li>
+
+                        <li>
+                            sin(${formatNumber(angle)}°)
+                            =
+                            <strong>
+                                ${formatNumber(sineValue)}
+                            </strong>
+                        </li>
+
+                        <li>
+                            T = F × r × sin(θ)
+                        </li>
+
+                        <li>
+                            T =
+                            ${formatNumber(forceN)}
+                            ×
+                            ${formatNumber(distanceM)}
+                            ×
+                            ${formatNumber(sineValue)}
+                        </li>
+
+                        <li>
+                            Torque =
+                            <strong>
+                                ${formatNumber(torqueNm)} N·m
+                            </strong>
+                        </li>
+
+                    </ol>
+
+                `;
+
+            }
+
+        }
+    );
+
+
+    /*
+        Reset calculator
+    */
+
+    resetButton.addEventListener(
+        "click",
+        function() {
+
+            torqueForm.reset();
+
+            /*
+                Restore default angle
+            */
+            document.getElementById("angle").value = 90;
+
+            errorMessage.textContent = "";
+
+            errorMessage.style.display =
+                "none";
+
+            resultBox.style.display =
+                "none";
+
+
+            const calculationSteps =
+                document.querySelector(
+                    ".calculation-steps"
+                );
+
+
+            if (calculationSteps) {
+
+                calculationSteps.innerHTML = `
+
+                    <h3>How it is calculated</h3>
+
+                    <ol>
+
+                        <li>
+                            Convert force into Newtons.
+                        </li>
+
+                        <li>
+                            Convert distance into metres.
+                        </li>
+
+                        <li>
+                            Convert the angle from degrees to radians.
+                        </li>
+
+                        <li>
+                            Calculate sin(θ).
+                        </li>
+
+                        <li>
+                            Multiply F × r × sin(θ).
+                        </li>
+
+                    </ol>
+
+                `;
+
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+</html>

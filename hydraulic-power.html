@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hydraulic Power Calculator | MECHCALC</title>
+    <meta name="description" content="Calculate hydraulic power from pressure and flow rate using the MECHCALC engineering calculator.">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="calculator.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="logo">⚙ MECHCALC</div>
+
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#calculators">Calculators</a>
+        <a href="index.html#formulas">Formulas</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#account">Login / Sign Up</a>
+    </nav>
+</header>
+
+
+<main class="calculator-page">
+
+    <!-- HERO -->
+    <section class="calculator-hero">
+
+        <h1>Hydraulic Power Calculator</h1>
+
+        <p>
+            Calculate the hydraulic power available in a fluid system
+            from pressure and volumetric flow rate.
+        </p>
+
+        <div class="engineering-quote">
+            “Pressure and flow together determine hydraulic power.”
+        </div>
+
+    </section>
+
+
+    <!-- CALCULATOR -->
+    <section class="calculator-main">
+
+        <div class="calculator-layout">
+
+            <!-- INPUT PANEL -->
+            <div class="input-panel">
+
+                <h2>Enter Values</h2>
+
+
+                <!-- PRESSURE -->
+                <div class="calculator-form-group">
+
+                    <label for="pressure">
+                        Pressure
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="pressure"
+                            placeholder="Enter pressure"
+                            step="any"
+                        >
+
+                        <select id="pressureUnit">
+                            <option value="pa">Pa</option>
+                            <option value="kpa">kPa</option>
+                            <option value="mpa">MPa</option>
+                            <option value="bar">bar</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FLOW RATE -->
+                <div class="calculator-form-group">
+
+                    <label for="flowRate">
+                        Volumetric Flow Rate
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="flowRate"
+                            placeholder="Enter flow rate"
+                            step="any"
+                        >
+
+                        <select id="flowRateUnit">
+                            <option value="m3s">m³/s</option>
+                            <option value="ls">L/s</option>
+                            <option value="lmin">L/min</option>
+                            <option value="m3h">m³/h</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+                <div class="calculator-buttons">
+
+                    <button
+                        type="button"
+                        class="calculator-calculate-btn"
+                        onclick="calculateHydraulicPower()"
+                    >
+                        Calculate Hydraulic Power
+                    </button>
+
+                    <button
+                        type="button"
+                        class="calculator-reset-btn"
+                        onclick="resetCalculator()"
+                    >
+                        Reset
+                    </button>
+
+                </div>
+
+
+                <!-- ERROR -->
+                <div
+                    id="errorMessage"
+                    class="calculator-error"
+                    style="display:none;"
+                ></div>
+
+            </div>
+
+
+            <!-- FORMULA PANEL -->
+            <div class="formula-panel">
+
+                <h2>Formula</h2>
+
+                <div class="formula-box">
+
+                    <div class="formula-main">
+                        P = ΔP × Q
+                    </div>
+
+                    <p>
+                        Where:
+                        <br>
+                        P = Hydraulic power
+                        <br>
+                        ΔP = Pressure difference
+                        <br>
+                        Q = Volumetric flow rate
+                    </p>
+
+                </div>
+
+
+                <div class="engineering-info">
+
+                    <h3>SI Unit</h3>
+
+                    <p>
+                        Hydraulic power is measured in
+                        <strong>watts (W)</strong>.
+                    </p>
+
+                    <p>
+                        1 kW = 1000 W
+                    </p>
+
+                    <p>
+                        For hydraulic systems, pressure should represent
+                        the pressure difference across the hydraulic device.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RESULT -->
+        <div
+            id="resultSection"
+            class="calculator-result"
+            style="display:none;"
+        >
+
+            <h2>Calculation Result</h2>
+
+            <div
+                id="resultValue"
+                class="calculator-result-value"
+            ></div>
+
+            <div
+                id="calculationSteps"
+                class="calculation-steps"
+            ></div>
+
+        </div>
+
+
+        <!-- ENGINEERING INFORMATION -->
+        <div class="unit-info">
+
+            <h2>Understanding Hydraulic Power</h2>
+
+            <p>
+                Hydraulic power represents the rate at which energy is
+                transferred by a pressurized flowing fluid.
+            </p>
+
+            <p>
+                The basic relationship is:
+                <strong>P = ΔP × Q</strong>
+            </p>
+
+            <ul>
+
+                <li>
+                    <strong>Higher pressure:</strong>
+                    More hydraulic power for the same flow rate.
+                </li>
+
+                <li>
+                    <strong>Higher flow rate:</strong>
+                    More hydraulic power for the same pressure.
+                </li>
+
+                <li>
+                    <strong>SI unit:</strong>
+                    W
+                </li>
+
+                <li>
+                    <strong>Common engineering unit:</strong>
+                    kW
+                </li>
+
+            </ul>
+
+            <p>
+                This calculator gives ideal hydraulic power. Actual
+                pump or motor input power will be higher because of
+                efficiency losses.
+            </p>
+
+        </div>
+
+
+        <!-- RELATED CALCULATORS -->
+        <section class="related-section">
+
+            <h2>Related Calculators</h2>
+
+            <div class="related-grid">
+
+                <a href="pressure.html" class="related-card">
+                    <h3>Pressure</h3>
+                    <p>
+                        Calculate pressure from force and area.
+                    </p>
+                </a>
+
+                <a href="power.html" class="related-card">
+                    <h3>Power</h3>
+                    <p>
+                        Calculate mechanical power from work and time.
+                    </p>
+                </a>
+
+                <a href="continuity.html" class="related-card">
+                    <h3>Continuity Equation</h3>
+                    <p>
+                        Calculate velocity, area and flow rate.
+                    </p>
+                </a>
+
+            </div>
+
+        </section>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <p>
+        MECHCALC • Mechanical Engineering Tools • Created by Vishnu
+    </p>
+
+</footer>
+
+
+<script>
+
+    /*
+     * Convert pressure to Pa
+     */
+    function convertPressureToPa(value, unit) {
+
+        if (unit === "pa") {
+            return value;
+        }
+
+        if (unit === "kpa") {
+            return value * 1000;
+        }
+
+        if (unit === "mpa") {
+            return value * 1000000;
+        }
+
+        if (unit === "bar") {
+            return value * 100000;
+        }
+
+        return value;
+    }
+
+
+    /*
+     * Convert flow rate to m³/s
+     */
+    function convertFlowRateToM3S(value, unit) {
+
+        if (unit === "m3s") {
+            return value;
+        }
+
+        if (unit === "ls") {
+            return value / 1000;
+        }
+
+        if (unit === "lmin") {
+            return value / 60000;
+        }
+
+        if (unit === "m3h") {
+            return value / 3600;
+        }
+
+        return value;
+    }
+
+
+    /*
+     * Calculate hydraulic power
+     *
+     * P = ΔP × Q
+     */
+    function calculateHydraulicPower() {
+
+        const pressure =
+            parseFloat(
+                document.getElementById("pressure").value
+            );
+
+        const pressureUnit =
+            document.getElementById("pressureUnit").value;
+
+        const flowRate =
+            parseFloat(
+                document.getElementById("flowRate").value
+            );
+
+        const flowRateUnit =
+            document.getElementById("flowRateUnit").value;
+
+
+        const errorMessage =
+            document.getElementById("errorMessage");
+
+        const resultSection =
+            document.getElementById("resultSection");
+
+        const resultValue =
+            document.getElementById("resultValue");
+
+        const calculationSteps =
+            document.getElementById("calculationSteps");
+
+
+        /*
+         * Clear previous error
+         */
+        errorMessage.style.display = "none";
+        errorMessage.textContent = "";
+
+
+        /*
+         * Validate input
+         */
+        if (
+            !Number.isFinite(pressure) ||
+            !Number.isFinite(flowRate)
+        ) {
+
+            showError(
+                "Please enter both pressure and flow rate."
+            );
+
+            return;
+        }
+
+
+        if (pressure <= 0) {
+
+            showError(
+                "Pressure must be greater than zero."
+            );
+
+            return;
+        }
+
+
+        if (flowRate <= 0) {
+
+            showError(
+                "Flow rate must be greater than zero."
+            );
+
+            return;
+        }
+
+
+        /*
+         * Convert to SI units
+         */
+        const pressurePa =
+            convertPressureToPa(
+                pressure,
+                pressureUnit
+            );
+
+        const flowRateM3S =
+            convertFlowRateToM3S(
+                flowRate,
+                flowRateUnit
+            );
+
+
+        /*
+         * Hydraulic power
+         */
+        const hydraulicPowerW =
+            pressurePa * flowRateM3S;
+
+        const hydraulicPowerKW =
+            hydraulicPowerW / 1000;
+
+        const hydraulicPowerHP =
+            hydraulicPowerW / 745.7;
+
+
+        /*
+         * Display result
+         */
+        resultSection.style.display = "block";
+
+        resultValue.innerHTML = `
+            Hydraulic Power =
+            <strong>
+                ${hydraulicPowerW.toFixed(4)} W
+            </strong>
+
+            <p>
+                = ${hydraulicPowerKW.toFixed(4)} kW
+            </p>
+
+            <p>
+                ≈ ${hydraulicPowerHP.toFixed(4)} hp
+            </p>
+        `;
+
+
+        /*
+         * Calculation steps
+         */
+        calculationSteps.innerHTML = `
+
+            <p>
+                <strong>Step 1:</strong>
+                Convert pressure to Pa.
+            </p>
+
+            <p>
+                ΔP =
+                ${pressurePa.toLocaleString()}
+                Pa
+            </p>
+
+            <p>
+                <strong>Step 2:</strong>
+                Convert flow rate to m³/s.
+            </p>
+
+            <p>
+                Q =
+                ${flowRateM3S.toExponential(6)}
+                m³/s
+            </p>
+
+            <p>
+                <strong>Step 3:</strong>
+                Apply the hydraulic power equation.
+            </p>
+
+            <p>
+                P = ΔP × Q
+            </p>
+
+            <p>
+                P =
+                ${pressurePa.toLocaleString()}
+                ×
+                ${flowRateM3S.toExponential(6)}
+            </p>
+
+            <p>
+                <strong>Final Answer:</strong>
+                P =
+                <strong>
+                    ${hydraulicPowerW.toFixed(4)} W
+                </strong>
+            </p>
+
+        `;
+
+
+        /*
+         * Scroll to result
+         */
+        resultSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }
+
+
+    /*
+     * Display error
+     */
+    function showError(message) {
+
+        const errorMessage =
+            document.getElementById("errorMessage");
+
+        errorMessage.textContent = message;
+        errorMessage.style.display = "block";
+
+    }
+
+
+    /*
+     * Reset calculator
+     */
+    function resetCalculator() {
+
+        document.getElementById("pressure").value = "";
+
+        document.getElementById("pressureUnit").value = "pa";
+
+        document.getElementById("flowRate").value = "";
+
+        document.getElementById("flowRateUnit").value = "m3s";
+
+        document.getElementById("errorMessage").style.display = "none";
+
+        document.getElementById("errorMessage").textContent = "";
+
+        document.getElementById("resultSection").style.display = "none";
+
+        document.getElementById("resultValue").innerHTML = "";
+
+        document.getElementById("calculationSteps").innerHTML = "";
+
+    }
+
+</script>
+
+</body>
+</html>

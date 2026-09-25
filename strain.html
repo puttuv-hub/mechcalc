@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <!-- =====================================================
+         SEO
+         ===================================================== -->
+
+    <title>
+        Strain Calculator - Calculate Strain (ε = ΔL/L₀) | MECHCALC
+    </title>
+
+    <meta
+        name="description"
+        content="Use the MECHCALC Strain Calculator to calculate strain from original length and change in length. Get strain as a decimal and percentage with step-by-step calculations."
+    >
+
+    <meta
+        name="keywords"
+        content="strain calculator, engineering strain calculator, strain formula, strain percentage calculator, mechanical engineering strain calculator, deformation calculator"
+    >
+
+    <meta
+        name="author"
+        content="Vishnu"
+    >
+
+    <meta
+        name="robots"
+        content="index, follow"
+    >
+
+    <meta
+        name="googlebot"
+        content="index, follow"
+    >
+
+    <meta
+        name="theme-color"
+        content="#0f172a"
+    >
+
+
+    <!-- =====================================================
+         OPEN GRAPH SEO
+         ===================================================== -->
+
+    <meta
+        property="og:title"
+        content="Strain Calculator - Calculate Strain | MECHCALC"
+    >
+
+    <meta
+        property="og:description"
+        content="Calculate engineering strain from original length and change in length. Get strain as a decimal and percentage with step-by-step calculations."
+    >
+
+    <meta
+        property="og:type"
+        content="website"
+    >
+
+    <meta
+        property="og:site_name"
+        content="MECHCALC"
+    >
+
+
+    <!-- =====================================================
+         TWITTER / X SEO
+         ===================================================== -->
+
+    <meta
+        name="twitter:card"
+        content="summary"
+    >
+
+    <meta
+        name="twitter:title"
+        content="Strain Calculator | MECHCALC"
+    >
+
+    <meta
+        name="twitter:description"
+        content="Calculate strain from original length and change in length using the MECHCALC Strain Calculator."
+    >
+
+
+    <!-- Common website CSS -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <!-- Calculator-only CSS -->
+
+    <link
+        rel="stylesheet"
+        href="calculator.css"
+    >
+
+
+    <!-- =====================================================
+         STRUCTURED DATA
+         ===================================================== -->
+
+    <script type="application/ld+json">
+
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Strain Calculator",
+        "applicationCategory": "EngineeringApplication",
+        "applicationSubCategory": "Mechanical Engineering Calculator",
+        "operatingSystem": "Web",
+        "description": "Calculate engineering strain from original length and change in length.",
+        "url": "strain.html",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "creator": {
+            "@type": "Person",
+            "name": "Vishnu"
+        },
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "MECHCALC",
+            "url": "index.html"
+        }
+    }
+
+    </script>
+
+</head>
+
+
+<body class="calculator-page">
+
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <header>
+
+        <div class="logo">
+            <a href="index.html">⚙ MECHCALC</a>
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="index.html#calculators">
+                Calculators
+            </a>
+
+            <a href="index.html#formulas">
+                Formulas
+            </a>
+
+            <a href="index.html#about">
+                About
+            </a>
+
+            <a href="index.html#account">
+                Login / Sign Up
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =====================================================
+         CALCULATOR HERO
+         ===================================================== -->
+
+    <section class="calculator-hero">
+
+        <h1>
+            Strain <span>Calculator</span>
+        </h1>
+
+        <p>
+            Calculate strain from the original length
+            and change in length of a component.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         MAIN
+         ===================================================== -->
+
+    <main class="calculator-main">
+
+
+        <!-- Engineering Quote -->
+
+        <div class="engineering-quote">
+
+            “Every deformation tells a story.”
+
+        </div>
+
+
+        <!-- Back Link -->
+
+        <div style="margin-top: 25px;">
+
+            <a
+                href="index.html#calculators"
+                class="back-link"
+            >
+                ← Back to Calculators
+            </a>
+
+        </div>
+
+
+        <!-- =================================================
+             CALCULATOR LAYOUT
+             ================================================= -->
+
+        <div class="calculator-layout">
+
+
+            <!-- =================================================
+                 INPUT PANEL
+                 ================================================= -->
+
+            <section class="input-panel">
+
+                <h2>
+                    Enter Values
+                </h2>
+
+                <p>
+                    Enter the original length and the change
+                    in length of the component.
+                </p>
+
+
+                <!-- Original Length -->
+
+                <div class="calculator-form-group">
+
+                    <label for="originalLength">
+                        Original Length
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="originalLength"
+                            placeholder="Enter original length"
+                            step="any"
+                            min="0"
+                        >
+
+                        <select id="originalUnit">
+
+                            <option value="mm">
+                                mm
+                            </option>
+
+                            <option value="cm">
+                                cm
+                            </option>
+
+                            <option value="m">
+                                m
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Change in Length -->
+
+                <div class="calculator-form-group">
+
+                    <label for="changeLength">
+                        Change in Length (ΔL)
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="changeLength"
+                            placeholder="Enter change in length"
+                            step="any"
+                        >
+
+                        <select id="changeUnit">
+
+                            <option value="mm">
+                                mm
+                            </option>
+
+                            <option value="cm">
+                                cm
+                            </option>
+
+                            <option value="m">
+                                m
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Buttons -->
+
+                <div class="calculator-buttons">
+
+                    <button
+                        type="button"
+                        class="calculator-calculate-btn"
+                        onclick="calculateStrain()"
+                    >
+                        Calculate Strain
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="calculator-reset-btn"
+                        onclick="resetCalculator()"
+                    >
+                        Reset
+                    </button>
+
+                </div>
+
+
+                <!-- Error -->
+
+                <div
+                    id="errorMessage"
+                    class="calculator-error"
+                >
+                </div>
+
+
+                <!-- Result -->
+
+                <div
+                    id="result"
+                    class="calculator-result"
+                >
+
+                    <h2>
+                        Result
+                    </h2>
+
+
+                    <div
+                        id="resultValue"
+                        class="calculator-result-value"
+                    >
+                    </div>
+
+
+                    <p id="resultPercentage">
+                    </p>
+
+
+                    <p id="resultLength">
+                    </p>
+
+
+                    <div class="calculation-steps">
+
+                        <h3>
+                            Calculation
+                        </h3>
+
+
+                        <p id="step1">
+                        </p>
+
+
+                        <p id="step2">
+                        </p>
+
+
+                        <p id="step3">
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 FORMULA PANEL
+                 ================================================= -->
+
+            <aside class="formula-panel">
+
+                <h2>
+                    Engineering Formula
+                </h2>
+
+
+                <div class="formula-box">
+
+                    <div class="formula-main">
+                        ε = ΔL / L₀
+                    </div>
+
+                    <p>
+                        Strain = Change in Length ÷ Original Length
+                    </p>
+
+                </div>
+
+
+                <div class="calculation-steps">
+
+                    <h3>
+                        Where:
+                    </h3>
+
+                    <p>
+                        <strong>ε</strong> = Strain
+                    </p>
+
+                    <p>
+                        <strong>ΔL</strong> = Change in Length
+                    </p>
+
+                    <p>
+                        <strong>L₀</strong> = Original Length
+                    </p>
+
+                </div>
+
+
+                <div class="unit-info">
+
+                    <strong>Important:</strong>
+
+                    <br>
+
+                    Strain is dimensionless because
+                    length units cancel.
+
+                    <br><br>
+
+                    Strain can also be expressed as a percentage:
+
+                    <br>
+
+                    Strain (%) = Strain × 100
+
+                </div>
+
+            </aside>
+
+        </div>
+
+
+        <!-- =====================================================
+             ENGINEERING INFORMATION
+             ===================================================== -->
+
+        <section class="engineering-info">
+
+            <h2>
+                About Strain
+            </h2>
+
+
+            <p>
+                Strain represents the deformation of a material
+                relative to its original length.
+            </p>
+
+
+            <p>
+                Unlike stress, strain has no physical unit because
+                it is the ratio of two lengths.
+            </p>
+
+
+            <ul>
+
+                <li>
+                    Tensile strain occurs when a material elongates.
+                </li>
+
+                <li>
+                    Compressive strain occurs when a material shortens.
+                </li>
+
+                <li>
+                    Strain is a dimensionless quantity.
+                </li>
+
+                <li>
+                    Strain is commonly expressed as a decimal,
+                    percentage or microstrain (με).
+                </li>
+
+            </ul>
+
+
+            <div class="unit-info">
+
+                <strong>Example:</strong>
+
+                If a 1000 mm rod increases in length by 2 mm:
+
+                <br><br>
+
+                ε = 2 / 1000 = 0.002
+
+                <br>
+
+                Strain = 0.002
+
+                <br>
+
+                Strain = 0.2%
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             RELATED CALCULATORS
+             ===================================================== -->
+
+        <section class="related-section">
+
+            <h2>
+                Related Engineering Calculators
+            </h2>
+
+
+            <div class="related-grid">
+
+
+                <a
+                    href="stress.html"
+                    class="related-card"
+                >
+
+                    <h3>
+                        Stress Calculator
+                    </h3>
+
+                    <p>
+                        Calculate stress from applied force
+                        and cross-sectional area.
+                    </p>
+
+                </a>
+
+
+                <a
+                    href="youngs-modulus.html"
+                    class="related-card"
+                >
+
+                    <h3>
+                        Young's Modulus
+                    </h3>
+
+                    <p>
+                        Calculate elastic modulus using
+                        stress and strain.
+                    </p>
+
+                </a>
+
+
+                <a
+                    href="force.html"
+                    class="related-card"
+                >
+
+                    <h3>
+                        Force Calculator
+                    </h3>
+
+                    <p>
+                        Calculate force from mass
+                        and acceleration.
+                    </p>
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer>
+
+        <p>
+
+            <strong>MECHCALC</strong>
+
+            • Engineering Tools
+
+            • Created by Vishnu
+
+        </p>
+
+    </footer>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script>
+
+
+        /* =================================================
+           CONVERT LENGTH TO MILLIMETRES
+           ================================================= */
+
+        function convertToMillimetres(value, unit) {
+
+            if (unit === "mm") {
+
+                return value;
+
+            }
+
+
+            if (unit === "cm") {
+
+                return value * 10;
+
+            }
+
+
+            if (unit === "m") {
+
+                return value * 1000;
+
+            }
+
+
+            return value;
+
+        }
+
+
+        /* =================================================
+           CALCULATE STRAIN
+           ================================================= */
+
+        function calculateStrain() {
+
+
+            const originalLengthInput =
+                parseFloat(
+                    document.getElementById(
+                        "originalLength"
+                    ).value
+                );
+
+
+            const changeLengthInput =
+                parseFloat(
+                    document.getElementById(
+                        "changeLength"
+                    ).value
+                );
+
+
+            const originalUnit =
+                document.getElementById(
+                    "originalUnit"
+                ).value;
+
+
+            const changeUnit =
+                document.getElementById(
+                    "changeUnit"
+                ).value;
+
+
+            const error =
+                document.getElementById(
+                    "errorMessage"
+                );
+
+
+            const result =
+                document.getElementById(
+                    "result"
+                );
+
+
+            /* ---------------------------------------------
+               Clear previous error
+               --------------------------------------------- */
+
+            error.style.display = "none";
+
+            error.textContent = "";
+
+
+            /* ---------------------------------------------
+               Validate input
+               --------------------------------------------- */
+
+            if (
+                isNaN(originalLengthInput) ||
+                isNaN(changeLengthInput)
+            ) {
+
+                error.textContent =
+                    "Please enter values for both original length and change in length.";
+
+                error.style.display = "block";
+
+                result.style.display = "none";
+
+                return;
+
+            }
+
+
+            if (originalLengthInput <= 0) {
+
+                error.textContent =
+                    "Original length must be greater than zero.";
+
+                error.style.display = "block";
+
+                result.style.display = "none";
+
+                return;
+
+            }
+
+
+            /* ---------------------------------------------
+               Convert to mm
+               --------------------------------------------- */
+
+            const originalLength =
+                convertToMillimetres(
+                    originalLengthInput,
+                    originalUnit
+                );
+
+
+            const changeLength =
+                convertToMillimetres(
+                    changeLengthInput,
+                    changeUnit
+                );
+
+
+            /* ---------------------------------------------
+               Calculate strain
+               --------------------------------------------- */
+
+            const strain =
+                changeLength /
+                originalLength;
+
+
+            const percentage =
+                strain * 100;
+
+
+            const microstrain =
+                strain * 1000000;
+
+
+            /* ---------------------------------------------
+               Display result
+               --------------------------------------------- */
+
+            document.getElementById(
+                "resultValue"
+            ).textContent =
+                strain.toFixed(6);
+
+
+            document.getElementById(
+                "resultPercentage"
+            ).textContent =
+                "Strain = " +
+                percentage.toFixed(4) +
+                "%";
+
+
+            document.getElementById(
+                "resultLength"
+            ).textContent =
+                "Change in Length = " +
+                changeLength.toFixed(4) +
+                " mm";
+
+
+            /* ---------------------------------------------
+               Calculation steps
+               --------------------------------------------- */
+
+            document.getElementById(
+                "step1"
+            ).textContent =
+                "1. Original length = " +
+                originalLength.toLocaleString(
+                    undefined,
+                    {
+                        maximumFractionDigits: 6
+                    }
+                ) +
+                " mm";
+
+
+            document.getElementById(
+                "step2"
+            ).textContent =
+                "2. Change in length = " +
+                changeLength.toLocaleString(
+                    undefined,
+                    {
+                        maximumFractionDigits: 6
+                    }
+                ) +
+                " mm";
+
+
+            document.getElementById(
+                "step3"
+            ).textContent =
+                "3. ε = ΔL / L₀ = " +
+                changeLength.toFixed(4) +
+                " / " +
+                originalLength.toFixed(4) +
+                " = " +
+                strain.toFixed(6) +
+                " (" +
+                percentage.toFixed(4) +
+                "%)";
+
+
+            /* ---------------------------------------------
+               Show result
+               --------------------------------------------- */
+
+            result.style.display = "block";
+
+        }
+
+
+        /* =================================================
+           RESET
+           ================================================= */
+
+        function resetCalculator() {
+
+
+            document.getElementById(
+                "originalLength"
+            ).value = "";
+
+
+            document.getElementById(
+                "changeLength"
+            ).value = "";
+
+
+            document.getElementById(
+                "originalUnit"
+            ).value = "mm";
+
+
+            document.getElementById(
+                "changeUnit"
+            ).value = "mm";
+
+
+            document.getElementById(
+                "result"
+            ).style.display = "none";
+
+
+            document.getElementById(
+                "errorMessage"
+            ).style.display = "none";
+
+
+            document.getElementById(
+                "errorMessage"
+            ).textContent = "";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

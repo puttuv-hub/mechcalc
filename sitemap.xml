@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <!-- Homepage -->
+    <url>
+        <loc>/</loc>
+    </url>
+
+    <!-- Engineering Resources -->
+    <url>
+        <loc>/engineering-resources.html</loc>
+    </url>
+
+    <!-- Strength of Materials -->
+
+    <url>
+        <loc>/stress.html</loc>
+    </url>
+
+    <url>
+        <loc>/strain.html</loc>
+    </url>
+
+    <url>
+        <loc>/youngs-modulus.html</loc>
+    </url>
+
+
+    <!-- Mechanics -->
+
+    <url>
+        <loc>/force.html</loc>
+    </url>
+
+    <url>
+        <loc>/power.html</loc>
+    </url>
+
+    <url>
+        <loc>/torque.html</loc>
+    </url>
+
+    <url>
+        <loc>/work.html</loc>
+    </url>
+
+    <url>
+        <loc>/kinetic-energy.html</loc>
+    </url>
+
+    <url>
+        <loc>/weight.html</loc>
+    </url>
+
+    <url>
+        <loc>/mechanical-efficiency.html</loc>
+    </url>
+
+
+    <!-- Fluid Mechanics -->
+
+    <url>
+        <loc>/pressure.html</loc>
+    </url>
+
+    <url>
+        <loc>/density.html</loc>
+    </url>
+
+    <url>
+        <loc>/specific-weight.html</loc>
+    </url>
+
+    <url>
+        <loc>/specific-gravity.html</loc>
+    </url>
+
+    <url>
+        <loc>/viscosity.html</loc>
+    </url>
+
+    <url>
+        <loc>/kinematic-viscosity.html</loc>
+    </url>
+
+    <url>
+        <loc>/reynolds-number.html</loc>
+    </url>
+
+    <url>
+        <loc>/bernoulli.html</loc>
+    </url>
+
+    <url>
+        <loc>/continuity.html</loc>
+    </url>
+
+    <url>
+        <loc>/pipe-flow-rate.html</loc>
+    </url>
+
+    <url>
+        <loc>/head-loss.html</loc>
+    </url>
+
+
+    <!-- Hydraulic & Pump -->
+
+    <url>
+        <loc>/hydraulic-power.html</loc>
+    </url>
+
+    <url>
+        <loc>/pump-power.html</loc>
+    </url>
+
+</urlset>

@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Continuity Equation Calculator | MECHCALC</title>
+    <meta name="description" content="Calculate fluid velocity, area, or volumetric flow rate using the continuity equation.">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="calculator.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="logo">⚙ MECHCALC</div>
+
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#calculators">Calculators</a>
+        <a href="index.html#formulas">Formulas</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#account">Login / Sign Up</a>
+    </nav>
+</header>
+
+
+<main class="calculator-page">
+
+    <!-- HERO -->
+    <section class="calculator-hero">
+
+        <h1>Continuity Equation Calculator</h1>
+
+        <p>
+            Calculate fluid velocity, cross-sectional area, or
+            volumetric flow rate using the continuity equation.
+        </p>
+
+        <div class="engineering-quote">
+            “What enters a steady-flow system must leave it.”
+        </div>
+
+    </section>
+
+
+    <!-- CALCULATOR -->
+    <section class="calculator-main">
+
+        <div class="calculator-layout">
+
+            <!-- INPUT PANEL -->
+            <div class="input-panel">
+
+                <h2>Enter Values</h2>
+
+                <p>
+                    Leave exactly <strong>one</strong> field blank.
+                    The calculator will determine the missing quantity.
+                </p>
+
+
+                <!-- AREA 1 -->
+                <div class="calculator-form-group">
+
+                    <label for="area1">
+                        Cross-sectional Area at Point 1
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="area1"
+                            placeholder="Leave blank if unknown"
+                            step="any"
+                        >
+
+                        <select id="area1Unit">
+                            <option value="m2">m²</option>
+                            <option value="cm2">cm²</option>
+                            <option value="mm2">mm²</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- VELOCITY 1 -->
+                <div class="calculator-form-group">
+
+                    <label for="velocity1">
+                        Velocity at Point 1
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="velocity1"
+                            placeholder="Leave blank if unknown"
+                            step="any"
+                        >
+
+                        <select id="velocity1Unit">
+                            <option value="ms">m/s</option>
+                            <option value="kmh">km/h</option>
+                            <option value="cms">cm/s</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- AREA 2 -->
+                <div class="calculator-form-group">
+
+                    <label for="area2">
+                        Cross-sectional Area at Point 2
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="area2"
+                            placeholder="Leave blank if unknown"
+                            step="any"
+                        >
+
+                        <select id="area2Unit">
+                            <option value="m2">m²</option>
+                            <option value="cm2">cm²</option>
+                            <option value="mm2">mm²</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- VELOCITY 2 -->
+                <div class="calculator-form-group">
+
+                    <label for="velocity2">
+                        Velocity at Point 2
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="velocity2"
+                            placeholder="Leave blank if unknown"
+                            step="any"
+                        >
+
+                        <select id="velocity2Unit">
+                            <option value="ms">m/s</option>
+                            <option value="kmh">km/h</option>
+                            <option value="cms">cm/s</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+                <div class="calculator-buttons">
+
+                    <button
+                        type="button"
+                        class="calculator-calculate-btn"
+                        onclick="calculateContinuity()"
+                    >
+                        Calculate
+                    </button>
+
+                    <button
+                        type="button"
+                        class="calculator-reset-btn"
+                        onclick="resetCalculator()"
+                    >
+                        Reset
+                    </button>
+
+                </div>
+
+
+                <!-- ERROR -->
+                <div
+                    id="errorMessage"
+                    class="calculator-error"
+                    style="display:none;"
+                ></div>
+
+            </div>
+
+
+            <!-- FORMULA PANEL -->
+            <div class="formula-panel">
+
+                <h2>Continuity Equation</h2>
+
+                <div class="formula-box">
+
+                    <div class="formula-main">
+                        A₁V₁ = A₂V₂
+                    </div>
+
+                    <p>
+                        For steady incompressible flow, the volume flow
+                        rate remains constant.
+                    </p>
+
+                    <div class="formula-main">
+                        Q = AV
+                    </div>
+
+                    <p>
+                        Where:
+                        <br>
+                        A = Cross-sectional area
+                        <br>
+                        V = Fluid velocity
+                        <br>
+                        Q = Volumetric flow rate
+                    </p>
+
+                </div>
+
+
+                <div class="engineering-info">
+
+                    <h3>Important Principle</h3>
+
+                    <p>
+                        If the flow area decreases, velocity increases
+                        for steady incompressible flow.
+                    </p>
+
+                    <p>
+                        If the flow area increases, velocity decreases.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RESULT -->
+        <div
+            id="resultSection"
+            class="calculator-result"
+            style="display:none;"
+        >
+
+            <h2>Calculation Result</h2>
+
+            <div
+                id="resultValue"
+                class="calculator-result-value"
+            ></div>
+
+            <div
+                id="flowRateResult"
+                class="engineering-info"
+            ></div>
+
+            <div
+                id="calculationSteps"
+                class="calculation-steps"
+            ></div>
+
+        </div>
+
+
+        <!-- ENGINEERING INFORMATION -->
+        <div class="unit-info">
+
+            <h2>Understanding the Continuity Equation</h2>
+
+            <p>
+                The continuity equation is based on conservation of mass.
+                For steady incompressible flow, it becomes:
+            </p>
+
+            <p>
+                <strong>A₁V₁ = A₂V₂</strong>
+            </p>
+
+            <ul>
+
+                <li>
+                    <strong>Smaller area:</strong>
+                    Higher fluid velocity.
+                </li>
+
+                <li>
+                    <strong>Larger area:</strong>
+                    Lower fluid velocity.
+                </li>
+
+                <li>
+                    <strong>Volumetric flow rate:</strong>
+                    Q = AV
+                </li>
+
+                <li>
+                    <strong>SI unit of Q:</strong>
+                    m³/s
+                </li>
+
+            </ul>
+
+            <p>
+                This calculator assumes steady incompressible flow.
+            </p>
+
+        </div>
+
+
+        <!-- RELATED CALCULATORS -->
+        <section class="related-section">
+
+            <h2>Related Calculators</h2>
+
+            <div class="related-grid">
+
+                <a href="bernoulli.html" class="related-card">
+                    <h3>Bernoulli Equation</h3>
+                    <p>
+                        Relate pressure, velocity and elevation
+                        in fluid flow.
+                    </p>
+                </a>
+
+                <a href="pressure.html" class="related-card">
+                    <h3>Pressure</h3>
+                    <p>
+                        Calculate pressure from force and area.
+                    </p>
+                </a>
+
+                <a href="reynolds-number.html" class="related-card">
+                    <h3>Reynolds Number</h3>
+                    <p>
+                        Determine the flow regime of a fluid.
+                    </p>
+                </a>
+
+            </div>
+
+        </section>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <p>
+        MECHCALC • Mechanical Engineering Tools • Created by Vishnu
+    </p>
+
+</footer>
+
+
+<script>
+
+    /*
+     * Get an optional numerical input.
+     * Blank fields return null.
+     */
+    function getOptionalValue(id) {
+
+        const value =
+            document.getElementById(id).value.trim();
+
+        if (value === "") {
+            return null;
+        }
+
+        const number = parseFloat(value);
+
+        return Number.isFinite(number) ? number : NaN;
+    }
+
+
+    /*
+     * Convert area to m²
+     */
+    function convertAreaToM2(value, unit) {
+
+        if (unit === "m2") {
+            return value;
+        }
+
+        if (unit === "cm2") {
+            return value / 10000;
+        }
+
+        if (unit === "mm2") {
+            return value / 1000000;
+        }
+
+        return value;
+    }
+
+
+    /*
+     * Convert velocity to m/s
+     */
+    function convertVelocityToMS(value, unit) {
+
+        if (unit === "ms") {
+            return value;
+        }
+
+        if (unit === "kmh") {
+            return value / 3.6;
+        }
+
+        if (unit === "cms") {
+            return value / 100;
+        }
+
+        return value;
+    }
+
+
+    /*
+     * Calculate continuity equation.
+     *
+     * A₁V₁ = A₂V₂
+     */
+    function calculateContinuity() {
+
+        const area1 =
+            getOptionalValue("area1");
+
+        const velocity1 =
+            getOptionalValue("velocity1");
+
+        const area2 =
+            getOptionalValue("area2");
+
+        const velocity2 =
+            getOptionalValue("velocity2");
+
+
+        const area1Unit =
+            document.getElementById("area1Unit").value;
+
+        const velocity1Unit =
+            document.getElementById("velocity1Unit").value;
+
+        const area2Unit =
+            document.getElementById("area2Unit").value;
+
+        const velocity2Unit =
+            document.getElementById("velocity2Unit").value;
+
+
+        const errorMessage =
+            document.getElementById("errorMessage");
+
+        const resultSection =
+            document.getElementById("resultSection");
+
+        const resultValue =
+            document.getElementById("resultValue");
+
+        const flowRateResult =
+            document.getElementById("flowRateResult");
+
+        const calculationSteps =
+            document.getElementById("calculationSteps");
+
+
+        /*
+         * Clear previous error
+         */
+        errorMessage.style.display = "none";
+        errorMessage.textContent = "";
+
+
+        /*
+         * Validate numerical values
+         */
+        const values = [
+            area1,
+            velocity1,
+            area2,
+            velocity2
+        ];
+
+        if (values.some(value => Number.isNaN(value))) {
+
+            showError(
+                "Please enter valid numerical values or leave exactly one field blank."
+            );
+
+            return;
+        }
+
+
+        /*
+         * Exactly one unknown is required.
+         */
+        const unknownCount =
+            values.filter(value => value === null).length;
+
+        if (unknownCount !== 1) {
+
+            showError(
+                "Leave exactly one of the four fields blank."
+            );
+
+            return;
+        }
+
+
+        /*
+         * Convert known values to SI units.
+         */
+        const A1 =
+            area1 === null
+                ? null
+                : convertAreaToM2(
+                    area1,
+                    area1Unit
+                );
+
+        const V1 =
+            velocity1 === null
+                ? null
+                : convertVelocityToMS(
+                    velocity1,
+                    velocity1Unit
+                );
+
+        const A2 =
+            area2 === null
+                ? null
+                : convertAreaToM2(
+                    area2,
+                    area2Unit
+                );
+
+        const V2 =
+            velocity2 === null
+                ? null
+                : convertVelocityToMS(
+                    velocity2,
+                    velocity2Unit
+                );
+
+
+        /*
+         * Areas and velocities must be positive.
+         */
+        if (A1 !== null && A1 <= 0) {
+
+            showError(
+                "Area at Point 1 must be greater than zero."
+            );
+
+            return;
+        }
+
+        if (A2 !== null && A2 <= 0) {
+
+            showError(
+                "Area at Point 2 must be greater than zero."
+            );
+
+            return;
+        }
+
+        if (V1 !== null && V1 < 0) {
+
+            showError(
+                "Velocity at Point 1 cannot be negative."
+            );
+
+            return;
+        }
+
+        if (V2 !== null && V2 < 0) {
+
+            showError(
+                "Velocity at Point 2 cannot be negative."
+            );
+
+            return;
+        }
+
+
+        /*
+         * Calculate unknown value.
+         */
+        let answer;
+        let answerUnit;
+        let answerLabel;
+        let calculationFormula;
+
+
+        /*
+         * Unknown A1
+         */
+        if (A1 === null) {
+
+            answer =
+                (A2 * V2) / V1;
+
+            answerUnit = "m²";
+            answerLabel = "Area at Point 1";
+
+            calculationFormula =
+                "A₁ = A₂V₂ / V₁";
+
+        }
+
+
+        /*
+         * Unknown V1
+         */
+        else if (V1 === null) {
+
+            answer =
+                (A2 * V2) / A1;
+
+            answerUnit = "m/s";
+            answerLabel = "Velocity at Point 1";
+
+            calculationFormula =
+                "V₁ = A₂V₂ / A₁";
+
+        }
+
+
+        /*
+         * Unknown A2
+         */
+        else if (A2 === null) {
+
+            answer =
+                (A1 * V1) / V2;
+
+            answerUnit = "m²";
+            answerLabel = "Area at Point 2";
+
+            calculationFormula =
+                "A₂ = A₁V₁ / V₂";
+
+        }
+
+
+        /*
+         * Unknown V2
+         */
+        else {
+
+            answer =
+                (A1 * V1) / A2;
+
+            answerUnit = "m/s";
+            answerLabel = "Velocity at Point 2";
+
+            calculationFormula =
+                "V₂ = A₁V₁ / A₂";
+
+        }
+
+
+        /*
+         * Check division-by-zero cases.
+         */
+        if (!Number.isFinite(answer)) {
+
+            showError(
+                "The calculation is not possible. Check that the known velocity or area is greater than zero."
+            );
+
+            return;
+        }
+
+
+        /*
+         * Calculate flow rate using the known side.
+         */
+        let flowRate;
+
+        if (A1 !== null && V1 !== null) {
+            flowRate = A1 * V1;
+        } else {
+            flowRate = A2 * V2;
+        }
+
+
+        /*
+         * Display result.
+         */
+        resultSection.style.display = "block";
+
+        resultValue.innerHTML = `
+            ${answerLabel} =
+            <strong>
+                ${answer.toFixed(6)} ${answerUnit}
+            </strong>
+        `;
+
+
+        /*
+         * Flow-rate information.
+         */
+        flowRateResult.innerHTML = `
+
+            <h3>Volumetric Flow Rate</h3>
+
+            <p>
+                Q = AV
+            </p>
+
+            <p>
+                Q =
+                <strong>
+                    ${flowRate.toFixed(8)} m³/s
+                </strong>
+            </p>
+
+            <p>
+                Equivalent =
+                <strong>
+                    ${(flowRate * 1000).toFixed(6)} L/s
+                </strong>
+            </p>
+
+        `;
+
+
+        /*
+         * Calculation steps.
+         */
+        calculationSteps.innerHTML = `
+
+            <p>
+                <strong>Step 1:</strong>
+                Convert all known values to SI units.
+            </p>
+
+            <p>
+                <strong>Step 2:</strong>
+                Apply the continuity equation:
+            </p>
+
+            <p>
+                A₁V₁ = A₂V₂
+            </p>
+
+            <p>
+                <strong>Step 3:</strong>
+                Rearrange for the unknown:
+            </p>
+
+            <p>
+                ${calculationFormula}
+            </p>
+
+            <p>
+                <strong>Final Answer:</strong>
+                ${answerLabel} =
+                <strong>
+                    ${answer.toFixed(6)} ${answerUnit}
+                </strong>
+            </p>
+
+        `;
+
+
+        /*
+         * Scroll to result.
+         */
+        resultSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }
+
+
+    /*
+     * Display error.
+     */
+    function showError(message) {
+
+        const errorMessage =
+            document.getElementById("errorMessage");
+
+        errorMessage.textContent = message;
+        errorMessage.style.display = "block";
+
+    }
+
+
+    /*
+     * Reset calculator.
+     */
+    function resetCalculator() {
+
+        document.getElementById("area1").value = "";
+        document.getElementById("velocity1").value = "";
+        document.getElementById("area2").value = "";
+        document.getElementById("velocity2").value = "";
+
+        document.getElementById("area1Unit").value = "m2";
+        document.getElementById("velocity1Unit").value = "ms";
+        document.getElementById("area2Unit").value = "m2";
+        document.getElementById("velocity2Unit").value = "ms";
+
+        document.getElementById("errorMessage").style.display = "none";
+        document.getElementById("errorMessage").textContent = "";
+
+        document.getElementById("resultSection").style.display = "none";
+
+        document.getElementById("resultValue").innerHTML = "";
+        document.getElementById("flowRateResult").innerHTML = "";
+        document.getElementById("calculationSteps").innerHTML = "";
+
+    }
+
+</script>
+
+</body>
+</html>

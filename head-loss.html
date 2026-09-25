@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Head Loss Calculator | MECHCALC</title>
+    <meta name="description" content="Calculate pipe friction head loss using the Darcy-Weisbach equation.">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="calculator.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="logo">⚙ MECHCALC</div>
+
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#calculators">Calculators</a>
+        <a href="index.html#formulas">Formulas</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#account">Login / Sign Up</a>
+    </nav>
+</header>
+
+
+<main class="calculator-page">
+
+    <!-- HERO -->
+    <section class="calculator-hero">
+
+        <h1>Head Loss Calculator</h1>
+
+        <p>
+            Calculate frictional head loss in a pipe using the
+            Darcy-Weisbach equation.
+        </p>
+
+        <div class="engineering-quote">
+            “Every flowing fluid experiences resistance along its path.”
+        </div>
+
+    </section>
+
+
+    <!-- CALCULATOR -->
+    <section class="calculator-main">
+
+        <div class="calculator-layout">
+
+            <!-- INPUT PANEL -->
+            <div class="input-panel">
+
+                <h2>Enter Values</h2>
+
+
+                <!-- FRICTION FACTOR -->
+                <div class="calculator-form-group">
+
+                    <label for="frictionFactor">
+                        Darcy Friction Factor
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="frictionFactor"
+                            value="0.02"
+                            placeholder="Enter friction factor"
+                            step="any"
+                        >
+
+                        <span class="input-unit">
+                            dimensionless
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PIPE LENGTH -->
+                <div class="calculator-form-group">
+
+                    <label for="pipeLength">
+                        Pipe Length
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="pipeLength"
+                            placeholder="Enter pipe length"
+                            step="any"
+                        >
+
+                        <select id="pipeLengthUnit">
+
+                            <option value="m">m</option>
+                            <option value="km">km</option>
+                            <option value="ft">ft</option>
+                            <option value="in">in</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PIPE DIAMETER -->
+                <div class="calculator-form-group">
+
+                    <label for="diameter">
+                        Internal Pipe Diameter
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="diameter"
+                            placeholder="Enter diameter"
+                            step="any"
+                        >
+
+                        <select id="diameterUnit">
+
+                            <option value="mm">mm</option>
+                            <option value="cm">cm</option>
+                            <option value="m">m</option>
+                            <option value="in">in</option>
+                            <option value="ft">ft</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- VELOCITY -->
+                <div class="calculator-form-group">
+
+                    <label for="velocity">
+                        Average Fluid Velocity
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="velocity"
+                            placeholder="Enter velocity"
+                            step="any"
+                        >
+
+                        <select id="velocityUnit">
+
+                            <option value="ms">m/s</option>
+                            <option value="kmh">km/h</option>
+                            <option value="cms">cm/s</option>
+                            <option value="fts">ft/s</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- GRAVITY -->
+                <div class="calculator-form-group">
+
+                    <label for="gravity">
+                        Gravitational Acceleration
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="gravity"
+                            value="9.81"
+                            step="any"
+                        >
+
+                        <span class="input-unit">
+                            m/s²
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+                <div class="calculator-buttons">
+
+                    <button
+                        type="button"
+                        class="calculator-calculate-btn"
+                        onclick="calculateHeadLoss()"
+                    >
+                        Calculate Head Loss
+                    </button>
+
+                    <button
+                        type="button"
+                        class="calculator-reset-btn"
+                        onclick="resetCalculator()"
+                    >
+                        Reset
+                    </button>
+
+                </div>
+
+
+                <!-- ERROR -->
+                <div
+                    id="errorMessage"
+                    class="calculator-error"
+                    style="display:none;"
+                ></div>
+
+            </div>
+
+
+            <!-- FORMULA PANEL -->
+            <div class="formula-panel">
+
+                <h2>Formula</h2>
+
+                <div class="formula-box">
+
+                    <div class="formula-main">
+                        h<sub>f</sub> =
+                        f(L/D)(V²/2g)
+                    </div>
+
+                    <p>
+                        Where:
+                    </p>
+
+                    <p>
+                        <strong>h<sub>f</sub></strong>
+                        = Head loss
+                    </p>
+
+                    <p>
+                        <strong>f</strong>
+                        = Darcy friction factor
+                    </p>
+
+                    <p>
+                        <strong>L</strong>
+                        = Pipe length
+                    </p>
+
+                    <p>
+                        <strong>D</strong>
+                        = Internal pipe diameter
+                    </p>
+
+                    <p>
+                        <strong>V</strong>
+                        = Average velocity
+                    </p>
+
+                    <p>
+                        <strong>g</strong>
+                        = Gravitational acceleration
+                    </p>
+
+                </div>
+
+
+                <div class="engineering-info">
+
+                    <h3>Important</h3>
+
+                    <p>
+                        The Darcy friction factor is dimensionless.
+                    </p>
+
+                    <p>
+                        For this calculator, the friction factor is
+                        entered directly.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RESULT -->
+        <div
+            id="resultSection"
+            class="calculator-result"
+            style="display:none;"
+        >
+
+            <h2>Calculation Result</h2>
+
+            <div
+                id="resultValue"
+                class="calculator-result-value"
+            ></div>
+
+            <div
+                id="calculationSteps"
+                class="calculation-steps"
+            ></div>
+
+        </div>
+
+
+        <!-- ENGINEERING INFORMATION -->
+        <div class="unit-info">
+
+            <h2>Understanding Head Loss</h2>
+
+            <p>
+                Head loss represents the loss of mechanical energy
+                experienced by a flowing fluid because of friction
+                between the fluid and the pipe wall.
+            </p>
+
+            <p>
+                The Darcy-Weisbach equation is:
+                <strong>
+                    h<sub>f</sub> =
+                    f(L/D)(V²/2g)
+                </strong>
+            </p>
+
+            <ul>
+
+                <li>
+                    <strong>Longer pipe:</strong>
+                    increases head loss.
+                </li>
+
+                <li>
+                    <strong>Smaller diameter:</strong>
+                    increases head loss significantly.
+                </li>
+
+                <li>
+                    <strong>Higher velocity:</strong>
+                    increases head loss approximately with V².
+                </li>
+
+                <li>
+                    <strong>Higher friction factor:</strong>
+                    increases head loss.
+                </li>
+
+            </ul>
+
+            <p>
+                This calculator calculates major pipe friction loss.
+                Minor losses from valves, bends, fittings, entrances
+                and exits are not included.
+            </p>
+
+        </div>
+
+
+        <!-- RELATED CALCULATORS -->
+        <section class="related-section">
+
+            <h2>Related Calculators</h2>
+
+            <div class="related-grid">
+
+                <a href="pipe-flow-rate.html" class="related-card">
+
+                    <h3>Pipe Flow Rate</h3>
+
+                    <p>
+                        Calculate volumetric flow rate from pipe diameter
+                        and velocity.
+                    </p>
+
+                </a>
+
+
+                <a href="reynolds-number.html" class="related-card">
+
+                    <h3>Reynolds Number</h3>
+
+                    <p>
+                        Determine the flow regime of a fluid.
+                    </p>
+
+                </a>
+
+
+                <a href="bernoulli.html" class="related-card">
+
+                    <h3>Bernoulli Equation</h3>
+
+                    <p>
+                        Calculate pressure, velocity and elevation
+                        relationships in fluid flow.
+                    </p>
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <p>
+        MECHCALC • Mechanical Engineering Tools • Created by Vishnu
+    </p>
+
+</footer>
+
+
+<script>
+
+    /*
+     * Convert pipe length to metres
+     */
+    function convertLengthToMetres(value, unit) {
+
+        if (unit === "m") {
+            return value;
+        }
+
+        if (unit === "km") {
+            return value * 1000;
+        }
+
+        if (unit === "ft") {
+            return value * 0.3048;
+        }
+
+        if (unit === "in") {
+            return value * 0.0254;
+        }
+
+        return value;
+    }
+
+
+    /*
+     * Convert diameter to metres
+     */
+    function convertDiameterToMetres(value, unit) {
+
+        if (unit === "mm") {
+            return value / 1000;
+        }
+
+        if (unit === "cm") {
+            return value / 100;
+        }
+
+        if (unit === "m") {
+            return value;
+        }
+
+        if (unit === "in") {
+            return value * 0.0254;
+        }
+
+        if (unit === "ft") {
+            return value * 0.3048;
+        }
+
+        return value;
+    }
+
+
+    /*
+     * Convert velocity to m/s
+     */
+    function convertVelocityToMps(value, unit) {
+
+        if (unit === "ms") {
+            return value;
+        }
+
+        if (unit === "kmh") {
+            return value / 3.6;
+        }
+
+        if (unit === "cms") {
+            return value / 100;
+        }
+
+        if (unit === "fts") {
+            return value * 0.3048;
+        }
+
+        return value;
+    }
+
+
+    /*
+     * Calculate Darcy-Weisbach head loss
+     *
+     * hf = f × (L / D) × (V² / 2g)
+     */
+    function calculateHeadLoss() {
+
+        const frictionFactor =
+            parseFloat(
+                document.getElementById("frictionFactor").value
+            );
+
+        const pipeLength =
+            parseFloat(
+                document.getElementById("pipeLength").value
+            );
+
+        const pipeLengthUnit =
+            document.getElementById("pipeLengthUnit").value;
+
+        const diameter =
+            parseFloat(
+                document.getElementById("diameter").value
+            );
+
+        const diameterUnit =
+            document.getElementById("diameterUnit").value;
+
+        const velocity =
+            parseFloat(
+                document.getElementById("velocity").value
+            );
+
+        const velocityUnit =
+            document.getElementById("velocityUnit").value;
+
+        const gravity =
+            parseFloat(
+                document.getElementById("gravity").value
+            );
+
+
+        const errorMessage =
+            document.getElementById("errorMessage");
+
+        const resultSection =
+            document.getElementById("resultSection");
+
+        const resultValue =
+            document.getElementById("resultValue");
+
+        const calculationSteps =
+            document.getElementById("calculationSteps");
+
+
+        /*
+         * Clear previous error
+         */
+        errorMessage.style.display = "none";
+        errorMessage.textContent = "";
+
+
+        /*
+         * Validate inputs
+         */
+        if (
+            !Number.isFinite(frictionFactor) ||
+            !Number.isFinite(pipeLength) ||
+            !Number.isFinite(diameter) ||
+            !Number.isFinite(velocity) ||
+            !Number.isFinite(gravity)
+        ) {
+
+            showError(
+                "Please enter valid values in all fields."
+            );
+
+            return;
+        }
+
+
+        if (frictionFactor <= 0) {
+
+            showError(
+                "Friction factor must be greater than zero."
+            );
+
+            return;
+        }
+
+
+        if (frictionFactor >= 1) {
+
+            showError(
+                "Please enter a realistic Darcy friction factor below 1."
+            );
+
+            return;
+        }
+
+
+        if (pipeLength <= 0) {
+
+            showError(
+                "Pipe length must be greater than zero."
+            );
+
+            return;
+        }
+
+
+        if (diameter <= 0) {
+
+            showError(
+                "Pipe diameter must be greater than zero."
+            );
+
+            return;
+        }
+
+
+        if (velocity <= 0) {
+
+            showError(
+                "Fluid velocity must be greater than zero."
+            );
+
+            return;
+        }
+
+
+        if (gravity <= 0) {
+
+            showError(
+                "Gravitational acceleration must be greater than zero."
+            );
+
+            return;
+        }
+
+
+        /*
+         * Convert to SI units
+         */
+        const lengthM =
+            convertLengthToMetres(
+                pipeLength,
+                pipeLengthUnit
+            );
+
+        const diameterM =
+            convertDiameterToMetres(
+                diameter,
+                diameterUnit
+            );
+
+        const velocityMps =
+            convertVelocityToMps(
+                velocity,
+                velocityUnit
+            );
+
+
+        /*
+         * Darcy-Weisbach equation
+         */
+        const velocityHead =
+            (velocityMps * velocityMps) /
+            (2 * gravity);
+
+        const lengthDiameterRatio =
+            lengthM / diameterM;
+
+        const headLoss =
+            frictionFactor *
+            lengthDiameterRatio *
+            velocityHead;
+
+
+        /*
+         * Convert head loss
+         */
+        const headLossFt =
+            headLoss / 0.3048;
+
+
+        /*
+         * Display result
+         */
+        resultSection.style.display = "block";
+
+        resultValue.innerHTML = `
+
+            <p>
+                Head Loss =
+                <strong>
+                    ${headLoss.toFixed(6)} m
+                </strong>
+            </p>
+
+            <p>
+                ≈ <strong>
+                    ${headLossFt.toFixed(6)} ft
+                </strong>
+            </p>
+
+        `;
+
+
+        /*
+         * Calculation steps
+         */
+        calculationSteps.innerHTML = `
+
+            <p>
+                <strong>Step 1:</strong>
+                Convert pipe length to metres.
+            </p>
+
+            <p>
+                L =
+                ${lengthM.toFixed(6)}
+                m
+            </p>
+
+            <p>
+                <strong>Step 2:</strong>
+                Convert pipe diameter to metres.
+            </p>
+
+            <p>
+                D =
+                ${diameterM.toFixed(6)}
+                m
+            </p>
+
+            <p>
+                <strong>Step 3:</strong>
+                Convert velocity to m/s.
+            </p>
+
+            <p>
+                V =
+                ${velocityMps.toFixed(6)}
+                m/s
+            </p>
+
+            <p>
+                <strong>Step 4:</strong>
+                Calculate velocity head.
+            </p>
+
+            <p>
+                V² / 2g =
+                ${velocityHead.toFixed(6)}
+                m
+            </p>
+
+            <p>
+                <strong>Step 5:</strong>
+                Calculate L/D.
+            </p>
+
+            <p>
+                L/D =
+                ${lengthDiameterRatio.toFixed(6)}
+            </p>
+
+            <p>
+                <strong>Step 6:</strong>
+                Apply Darcy-Weisbach equation.
+            </p>
+
+            <p>
+                h<sub>f</sub> =
+                f(L/D)(V²/2g)
+            </p>
+
+            <p>
+                h<sub>f</sub> =
+                ${frictionFactor.toFixed(6)}
+                ×
+                ${lengthDiameterRatio.toFixed(6)}
+                ×
+                ${velocityHead.toFixed(6)}
+            </p>
+
+            <p>
+                <strong>Final Answer:</strong>
+                h<sub>f</sub> =
+                <strong>
+                    ${headLoss.toFixed(6)} m
+                </strong>
+            </p>
+
+        `;
+
+
+        /*
+         * Scroll to result
+         */
+        resultSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }
+
+
+    /*
+     * Display error
+     */
+    function showError(message) {
+
+        const errorMessage =
+            document.getElementById("errorMessage");
+
+        errorMessage.textContent = message;
+        errorMessage.style.display = "block";
+
+    }
+
+
+    /*
+     * Reset calculator
+     */
+    function resetCalculator() {
+
+        document.getElementById("frictionFactor").value = "0.02";
+
+        document.getElementById("pipeLength").value = "";
+
+        document.getElementById("pipeLengthUnit").value = "m";
+
+        document.getElementById("diameter").value = "";
+
+        document.getElementById("diameterUnit").value = "mm";
+
+        document.getElementById("velocity").value = "";
+
+        document.getElementById("velocityUnit").value = "ms";
+
+        document.getElementById("gravity").value = "9.81";
+
+        document.getElementById("errorMessage").style.display = "none";
+
+        document.getElementById("errorMessage").textContent = "";
+
+        document.getElementById("resultSection").style.display = "none";
+
+        document.getElementById("resultValue").innerHTML = "";
+
+        document.getElementById("calculationSteps").innerHTML = "";
+
+    }
+
+</script>
+
+</body>
+</html>

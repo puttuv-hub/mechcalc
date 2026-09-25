@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Power Calculator - Calculate Power (P = W / t) | MECHCALC</title>
+
+    <meta
+        name="description"
+        content="Use the MECHCALC Power Calculator to calculate power from work or energy and time. Get results in Watts, kilowatts, megawatts, and horsepower with step-by-step calculations."
+    >
+
+    <meta
+        name="keywords"
+        content="power calculator, mechanical power calculator, power formula calculator, P=W/t calculator, work time power calculator, watt calculator, horsepower calculator, mechanical engineering power calculator"
+    >
+
+    <meta name="author" content="Vishnu">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="theme-color" content="#0f172a">
+
+    <!-- Open Graph -->
+    <meta
+        property="og:title"
+        content="Power Calculator - Calculate Power (P = W / t) | MECHCALC"
+    >
+
+    <meta
+        property="og:description"
+        content="Calculate power from work or energy and time. Get results in Watts, kilowatts, megawatts, and horsepower with MECHCALC."
+    >
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MECHCALC">
+
+    <!-- Twitter / X -->
+    <meta
+        name="twitter:card"
+        content="summary"
+    >
+
+    <meta
+        name="twitter:title"
+        content="Power Calculator - P = W / t | MECHCALC"
+    >
+
+    <meta
+        name="twitter:description"
+        content="Calculate mechanical power from work or energy and time with accurate unit conversions and step-by-step calculations."
+    >
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Power Calculator",
+        "applicationCategory": "EngineeringApplication",
+        "applicationSubCategory": "Mechanical Engineering Calculator",
+        "operatingSystem": "Web",
+        "description": "Calculate power from work or energy and time using the formula P = W / t. Results are provided in Watts, kilowatts, megawatts, and horsepower.",
+        "url": "power.html",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "creator": {
+            "@type": "Person",
+            "name": "Vishnu"
+        },
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "MECHCALC",
+            "url": "index.html"
+        }
+    }
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="calculator.css">
+</head>
+
+<body>
+
+<div class="calculator-page">
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="container header-container">
+
+            <div class="logo">
+                ⚙ MECHCALC
+            </div>
+
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="index.html#calculators">Calculators</a>
+                <a href="index.html#formulas">Formulas</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#account">Login / Sign Up</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- HERO -->
+    <section class="calculator-hero">
+
+        <div class="container">
+
+            <span class="calculator-label">
+                MECHANICAL ENGINEERING TOOL
+            </span>
+
+            <h1>Power Calculator</h1>
+
+            <p>
+                Calculate power from work or energy and the time
+                taken to perform it.
+            </p>
+
+            <div class="engineering-quote">
+                “Power measures how fast work gets done.”
+            </div>
+
+            <a href="index.html#calculators" class="back-link">
+                ← Back to Calculators
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- MAIN CALCULATOR -->
+    <main class="calculator-main">
+
+        <div class="container">
+
+            <div class="calculator-layout">
+
+
+                <!-- INPUT PANEL -->
+                <section class="input-panel">
+
+                    <div class="panel-heading">
+
+                        <span class="panel-number">01</span>
+
+                        <div>
+                            <h2>Enter Values</h2>
+                            <p>Provide work/energy and time.</p>
+                        </div>
+
+                    </div>
+
+
+                    <form id="powerForm">
+
+
+                        <!-- WORK / ENERGY -->
+                        <div class="calculator-form-group">
+
+                            <label for="work">
+                                Work / Energy
+                                <span class="required">*</span>
+                            </label>
+
+                            <div class="calculator-input-row">
+
+                                <input
+                                    type="number"
+                                    id="work"
+                                    placeholder="Enter work or energy"
+                                    step="any"
+                                    min="0"
+                                >
+
+                                <select id="workUnit">
+
+                                    <option value="J">
+                                        J
+                                    </option>
+
+                                    <option value="kJ">
+                                        kJ
+                                    </option>
+
+                                    <option value="MJ">
+                                        MJ
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <small>
+                                Work performed or energy transferred.
+                            </small>
+
+                        </div>
+
+
+                        <!-- TIME -->
+                        <div class="calculator-form-group">
+
+                            <label for="time">
+                                Time
+                                <span class="required">*</span>
+                            </label>
+
+                            <div class="calculator-input-row">
+
+                                <input
+                                    type="number"
+                                    id="time"
+                                    placeholder="Enter time"
+                                    step="any"
+                                    min="0"
+                                >
+
+                                <select id="timeUnit">
+
+                                    <option value="s">
+                                        seconds
+                                    </option>
+
+                                    <option value="min">
+                                        minutes
+                                    </option>
+
+                                    <option value="h">
+                                        hours
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <small>
+                                Time required to perform the work.
+                            </small>
+
+                        </div>
+
+
+                        <!-- BUTTONS -->
+                        <div class="calculator-buttons">
+
+                            <button
+                                type="submit"
+                                class="calculator-calculate-btn"
+                            >
+                                Calculate Power
+                            </button>
+
+                            <button
+                                type="button"
+                                id="resetButton"
+                                class="calculator-reset-btn"
+                            >
+                                Reset
+                            </button>
+
+                        </div>
+
+
+                        <!-- ERROR -->
+                        <div
+                            id="errorMessage"
+                            class="calculator-error"
+                            style="display: none;"
+                        ></div>
+
+                    </form>
+
+                </section>
+
+
+                <!-- FORMULA PANEL -->
+                <section class="formula-panel">
+
+                    <div class="panel-heading">
+
+                        <span class="panel-number">02</span>
+
+                        <div>
+                            <h2>Engineering Formula</h2>
+                            <p>Mechanical power relationship</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="formula-box">
+
+                        <div class="formula-main">
+                            P = W / t
+                        </div>
+
+                        <div class="formula-description">
+
+                            <p>
+                                <strong>P</strong> = Power
+                            </p>
+
+                            <p>
+                                <strong>W</strong> = Work / Energy
+                            </p>
+
+                            <p>
+                                <strong>t</strong> = Time
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CALCULATION STEPS -->
+                    <div class="calculation-steps">
+
+                        <h3>How it is calculated</h3>
+
+                        <ol>
+
+                            <li>
+                                Convert work or energy into Joules.
+                            </li>
+
+                            <li>
+                                Convert time into seconds.
+                            </li>
+
+                            <li>
+                                Divide work by time.
+                            </li>
+
+                            <li>
+                                The result is power in Watts.
+                            </li>
+
+                        </ol>
+
+                    </div>
+
+
+                    <!-- RESULT -->
+                    <div
+                        id="resultBox"
+                        class="calculator-result"
+                        style="display: none;"
+                    >
+
+                        <span class="result-label">
+                            CALCULATED POWER
+                        </span>
+
+                        <div
+                            id="mainResult"
+                            class="calculator-result-value"
+                        >
+                            0 W
+                        </div>
+
+
+                        <div class="result-details">
+
+                            <p>
+                                <strong>Watt:</strong>
+                                <span id="resultW">
+                                    0 W
+                                </span>
+                            </p>
+
+                            <p>
+                                <strong>Kilowatt:</strong>
+                                <span id="resultKW">
+                                    0 kW
+                                </span>
+                            </p>
+
+                            <p>
+                                <strong>Megawatt:</strong>
+                                <span id="resultMW">
+                                    0 MW
+                                </span>
+                            </p>
+
+                            <p>
+                                <strong>Horsepower:</strong>
+                                <span id="resultHP">
+                                    0 HP
+                                </span>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <!-- ENGINEERING INFORMATION -->
+            <section class="engineering-info">
+
+                <div class="panel-heading">
+
+                    <span class="panel-number">03</span>
+
+                    <div>
+                        <h2>Engineering Information</h2>
+                        <p>Understanding power in mechanical engineering.</p>
+                    </div>
+
+                </div>
+
+
+                <div class="info-grid">
+
+
+                    <div class="unit-info">
+
+                        <h3>What is Power?</h3>
+
+                        <p>
+                            Power is the rate at which work is done
+                            or energy is transferred.
+                        </p>
+
+                        <p>
+                            For mechanical systems:
+                            <strong>P = W / t</strong>
+                        </p>
+
+                    </div>
+
+
+                    <div class="unit-info">
+
+                        <h3>SI Unit</h3>
+
+                        <p>
+                            The SI unit of power is the
+                            <strong>Watt (W)</strong>.
+                        </p>
+
+                        <p>
+                            1 W = 1 J/s
+                        </p>
+
+                    </div>
+
+
+                    <div class="unit-info">
+
+                        <h3>Common Applications</h3>
+
+                        <p>
+                            Power calculations are used for motors,
+                            engines, pumps, turbines, compressors,
+                            generators and machine drives.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+            <!-- RELATED CALCULATORS -->
+            <section class="related-section">
+
+                <div class="panel-heading">
+
+                    <span class="panel-number">04</span>
+
+                    <div>
+                        <h2>Related Calculators</h2>
+                        <p>Continue your engineering calculations.</p>
+                    </div>
+
+                </div>
+
+
+                <div class="related-grid">
+
+
+                    <a href="force.html" class="related-card">
+
+                        <span>F</span>
+
+                        <h3>Force Calculator</h3>
+
+                        <p>
+                            Calculate force from mass and acceleration.
+                        </p>
+
+                    </a>
+
+
+                    <a href="torque.html" class="related-card">
+
+                        <span>τ</span>
+
+                        <h3>Torque Calculator</h3>
+
+                        <p>
+                            Calculate rotational force.
+                        </p>
+
+                    </a>
+
+
+                    <a href="pressure.html" class="related-card">
+
+                        <span>P</span>
+
+                        <h3>Pressure Calculator</h3>
+
+                        <p>
+                            Calculate pressure from force and area.
+                        </p>
+
+                    </a>
+
+
+                    <a href="stress.html" class="related-card">
+
+                        <span>σ</span>
+
+                        <h3>Stress Calculator</h3>
+
+                        <p>
+                            Calculate stress from force and area.
+                        </p>
+
+                    </a>
+
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <p>
+                MECHCALC • Engineering Tools • Created by Vishnu
+            </p>
+
+        </div>
+
+    </footer>
+
+</div>
+
+
+<script>
+
+    const powerForm =
+        document.getElementById("powerForm");
+
+    const resetButton =
+        document.getElementById("resetButton");
+
+    const errorMessage =
+        document.getElementById("errorMessage");
+
+    const resultBox =
+        document.getElementById("resultBox");
+
+    const mainResult =
+        document.getElementById("mainResult");
+
+    const resultW =
+        document.getElementById("resultW");
+
+    const resultKW =
+        document.getElementById("resultKW");
+
+    const resultMW =
+        document.getElementById("resultMW");
+
+    const resultHP =
+        document.getElementById("resultHP");
+
+
+    /*
+        Convert work / energy into Joules
+    */
+    function convertWorkToJoules(value, unit) {
+
+        if (unit === "J") {
+            return value;
+        }
+
+        if (unit === "kJ") {
+            return value * 1000;
+        }
+
+        if (unit === "MJ") {
+            return value * 1000000;
+        }
+
+        return value;
+    }
+
+
+    /*
+        Convert time into seconds
+    */
+    function convertTimeToSeconds(value, unit) {
+
+        if (unit === "s") {
+            return value;
+        }
+
+        if (unit === "min") {
+            return value * 60;
+        }
+
+        if (unit === "h") {
+            return value * 3600;
+        }
+
+        return value;
+    }
+
+
+    /*
+        Format numbers neatly
+    */
+    function formatNumber(value, decimals = 6) {
+
+        return Number(
+            value.toFixed(decimals)
+        ).toLocaleString(
+            "en-IN",
+            {
+                maximumFractionDigits: decimals
+            }
+        );
+
+    }
+
+
+    /*
+        Get readable time unit
+    */
+    function getTimeUnitText(unit) {
+
+        if (unit === "s") {
+            return "s";
+        }
+
+        if (unit === "min") {
+            return "min";
+        }
+
+        if (unit === "h") {
+            return "h";
+        }
+
+        return unit;
+    }
+
+
+    /*
+        Calculate Power
+    */
+    powerForm.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+            errorMessage.style.display = "none";
+
+            resultBox.style.display = "none";
+
+
+            const workInput =
+                document.getElementById("work");
+
+            const timeInput =
+                document.getElementById("time");
+
+
+            const workUnit =
+                document.getElementById("workUnit").value;
+
+            const timeUnit =
+                document.getElementById("timeUnit").value;
+
+
+            const work =
+                parseFloat(workInput.value);
+
+            const time =
+                parseFloat(timeInput.value);
+
+
+            /*
+                Validation
+            */
+
+            if (
+                isNaN(work) ||
+                isNaN(time)
+            ) {
+
+                errorMessage.textContent =
+                    "Please enter both work/energy and time.";
+
+                errorMessage.style.display =
+                    "block";
+
+                return;
+            }
+
+
+            if (work <= 0) {
+
+                errorMessage.textContent =
+                    "Work / energy must be greater than zero.";
+
+                errorMessage.style.display =
+                    "block";
+
+                return;
+            }
+
+
+            if (time <= 0) {
+
+                errorMessage.textContent =
+                    "Time must be greater than zero.";
+
+                errorMessage.style.display =
+                    "block";
+
+                return;
+            }
+
+
+            /*
+                Convert units
+            */
+
+            const workJ =
+                convertWorkToJoules(
+                    work,
+                    workUnit
+                );
+
+
+            const timeSeconds =
+                convertTimeToSeconds(
+                    time,
+                    timeUnit
+                );
+
+
+            /*
+                P = W / t
+            */
+
+            const powerW =
+                workJ / timeSeconds;
+
+
+            /*
+                Other units
+            */
+
+            const powerKW =
+                powerW / 1000;
+
+            const powerMW =
+                powerW / 1000000;
+
+            /*
+                Mechanical horsepower:
+                1 HP ≈ 745.7 W
+            */
+
+            const powerHP =
+                powerW / 745.7;
+
+
+            /*
+                Display result
+            */
+
+            mainResult.textContent =
+                `${formatNumber(powerW)} W`;
+
+
+            resultW.textContent =
+                `${formatNumber(powerW)} W`;
+
+
+            resultKW.textContent =
+                `${formatNumber(powerKW)} kW`;
+
+
+            resultMW.textContent =
+                `${formatNumber(powerMW)} MW`;
+
+
+            resultHP.textContent =
+                `${formatNumber(powerHP)} HP`;
+
+
+            resultBox.style.display =
+                "block";
+
+
+            /*
+                Dynamic calculation steps
+            */
+
+            const calculationSteps =
+                document.querySelector(
+                    ".calculation-steps"
+                );
+
+
+            if (calculationSteps) {
+
+                calculationSteps.innerHTML = `
+
+                    <h3>Calculation Steps</h3>
+
+                    <ol>
+
+                        <li>
+                            Work / Energy =
+                            <strong>
+                                ${formatNumber(work)}
+                                ${workUnit}
+                            </strong>
+                        </li>
+
+                        <li>
+                            Converted work =
+                            <strong>
+                                ${formatNumber(workJ)} J
+                            </strong>
+                        </li>
+
+                        <li>
+                            Time =
+                            <strong>
+                                ${formatNumber(time)}
+                                ${getTimeUnitText(timeUnit)}
+                            </strong>
+                        </li>
+
+                        <li>
+                            Converted time =
+                            <strong>
+                                ${formatNumber(timeSeconds)} s
+                            </strong>
+                        </li>
+
+                        <li>
+                            P = W / t
+                        </li>
+
+                        <li>
+                            P =
+                            ${formatNumber(workJ)}
+                            /
+                            ${formatNumber(timeSeconds)}
+                        </li>
+
+                        <li>
+                            Power =
+                            <strong>
+                                ${formatNumber(powerW)} W
+                            </strong>
+                        </li>
+
+                    </ol>
+
+                `;
+
+            }
+
+        }
+    );
+
+
+    /*
+        Reset calculator
+    */
+
+    resetButton.addEventListener(
+        "click",
+        function() {
+
+            powerForm.reset();
+
+            errorMessage.textContent = "";
+
+            errorMessage.style.display =
+                "none";
+
+            resultBox.style.display =
+                "none";
+
+
+            const calculationSteps =
+                document.querySelector(
+                    ".calculation-steps"
+                );
+
+
+            if (calculationSteps) {
+
+                calculationSteps.innerHTML = `
+
+                    <h3>How it is calculated</h3>
+
+                    <ol>
+
+                        <li>
+                            Convert work or energy into Joules.
+                        </li>
+
+                        <li>
+                            Convert time into seconds.
+                        </li>
+
+                        <li>
+                            Divide work by time.
+                        </li>
+
+                        <li>
+                            The result is power in Watts.
+                        </li>
+
+                    </ol>
+
+                `;
+
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Density Calculator | Mechanical Engineering Calculators | MECHCALC</title>
+
+    <meta
+        name="description"
+        content="Calculate density from mass and volume using the engineering formula density equals mass divided by volume."
+    >
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="calculator.css">
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        ⚙ MECHCALC
+    </div>
+
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#calculators">Calculators</a>
+        <a href="index.html#formulas">Formulas</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#account">Login / Sign Up</a>
+    </nav>
+
+</header>
+
+
+<main class="calculator-page">
+
+    <!-- HERO -->
+
+    <section class="calculator-hero">
+
+        <div class="container">
+
+            <h1>Density Calculator</h1>
+
+            <p>
+                Calculate the density of a material from its mass
+                and volume.
+            </p>
+
+            <div class="engineering-quote">
+                “Density reveals how much matter is packed into a given space.”
+            </div>
+
+            <a href="index.html#calculators" class="back-link">
+                ← Back to Calculators
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- CALCULATOR -->
+
+    <section class="calculator-main">
+
+        <div class="calculator-layout">
+
+
+            <!-- INPUT PANEL -->
+
+            <div class="input-panel">
+
+                <h2>Enter Values</h2>
+
+
+                <!-- MASS -->
+
+                <div class="calculator-form-group">
+
+                    <label for="mass">
+                        Mass
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="mass"
+                            placeholder="Enter mass"
+                            min="0"
+                            step="any"
+                        >
+
+                        <select id="massUnit">
+
+                            <option value="kg">
+                                kg
+                            </option>
+
+                            <option value="g">
+                                g
+                            </option>
+
+                            <option value="mg">
+                                mg
+                            </option>
+
+                            <option value="tonne">
+                                tonne
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- VOLUME -->
+
+                <div class="calculator-form-group">
+
+                    <label for="volume">
+                        Volume
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="volume"
+                            placeholder="Enter volume"
+                            min="0"
+                            step="any"
+                        >
+
+                        <select id="volumeUnit">
+
+                            <option value="m3">
+                                m³
+                            </option>
+
+                            <option value="cm3">
+                                cm³
+                            </option>
+
+                            <option value="litre">
+                                L
+                            </option>
+
+                            <option value="ml">
+                                mL
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+
+                <div class="calculator-buttons">
+
+                    <button
+                        type="button"
+                        class="calculator-calculate-btn"
+                        onclick="calculateDensity()"
+                    >
+                        Calculate Density
+                    </button>
+
+                    <button
+                        type="button"
+                        class="calculator-reset-btn"
+                        onclick="resetCalculator()"
+                    >
+                        Reset
+                    </button>
+
+                </div>
+
+
+                <!-- ERROR -->
+
+                <div
+                    id="errorMessage"
+                    class="calculator-error"
+                    style="display:none;"
+                ></div>
+
+
+                <!-- RESULT -->
+
+                <div
+                    id="resultBox"
+                    class="calculator-result"
+                    style="display:none;"
+                >
+
+                    <h3>Calculated Density</h3>
+
+                    <div
+                        id="mainResult"
+                        class="calculator-result-value"
+                    >
+                        0 kg/m³
+                    </div>
+
+
+                    <div class="calculation-steps">
+
+                        <h4>Calculation Steps</h4>
+
+                        <div id="steps"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FORMULA PANEL -->
+
+            <div class="formula-panel">
+
+                <h2>Engineering Formula</h2>
+
+
+                <div class="formula-box">
+
+                    <div class="formula-main">
+                        ρ = m / V
+                    </div>
+
+                    <p>
+                        Where:
+                    </p>
+
+                    <ul>
+
+                        <li>
+                            <strong>ρ</strong> = Density
+                        </li>
+
+                        <li>
+                            <strong>m</strong> = Mass
+                        </li>
+
+                        <li>
+                            <strong>V</strong> = Volume
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <!-- ENGINEERING INFORMATION -->
+
+                <div class="engineering-info">
+
+                    <h3>Engineering Information</h3>
+
+                    <p>
+                        Density is the mass contained in a unit volume
+                        of a substance.
+                    </p>
+
+                    <p>
+                        The SI unit of density is:
+                    </p>
+
+                    <div class="formula-box">
+
+                        <div class="formula-main">
+                            kg/m³
+                        </div>
+
+                    </div>
+
+                    <p>
+                        A material with a higher density contains more
+                        mass in the same volume compared with a
+                        lower-density material.
+                    </p>
+
+                </div>
+
+
+                <!-- COMMON VALUES -->
+
+                <div class="unit-info">
+
+                    <h3>Approximate Material Densities</h3>
+
+                    <ul>
+
+                        <li>
+                            Steel ≈ 7850 kg/m³
+                        </li>
+
+                        <li>
+                            Aluminium ≈ 2700 kg/m³
+                        </li>
+
+                        <li>
+                            Copper ≈ 8960 kg/m³
+                        </li>
+
+                        <li>
+                            Water ≈ 1000 kg/m³
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RELATED CALCULATORS -->
+
+    <section class="related-section">
+
+        <div class="container">
+
+            <h2>Related Calculators</h2>
+
+            <div class="related-grid">
+
+                <a
+                    href="weight.html"
+                    class="related-card"
+                >
+
+                    <h3>Weight Calculator</h3>
+
+                    <p>
+                        Calculate gravitational force from mass.
+                    </p>
+
+                </a>
+
+
+                <a
+                    href="force.html"
+                    class="related-card"
+                >
+
+                    <h3>Force Calculator</h3>
+
+                    <p>
+                        Calculate force from mass and acceleration.
+                    </p>
+
+                </a>
+
+
+                <a
+                    href="pressure.html"
+                    class="related-card"
+                >
+
+                    <h3>Pressure Calculator</h3>
+
+                    <p>
+                        Calculate pressure from force and area.
+                    </p>
+
+                </a>
+
+
+                <a
+                    href="kinetic-energy.html"
+                    class="related-card"
+                >
+
+                    <h3>Kinetic Energy</h3>
+
+                    <p>
+                        Calculate kinetic energy from mass and velocity.
+                    </p>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <p>
+        MECHCALC • Engineering Tools • Created by Vishnu
+    </p>
+
+</footer>
+
+
+<script>
+
+function convertMassToKg(value, unit) {
+
+    if (unit === "kg") {
+        return value;
+    }
+
+    if (unit === "g") {
+        return value / 1000;
+    }
+
+    if (unit === "mg") {
+        return value / 1000000;
+    }
+
+    if (unit === "tonne") {
+        return value * 1000;
+    }
+
+    return value;
+}
+
+
+function convertVolumeToCubicMetres(value, unit) {
+
+    if (unit === "m3") {
+        return value;
+    }
+
+    if (unit === "cm3") {
+        return value / 1000000;
+    }
+
+    if (unit === "litre") {
+        return value / 1000;
+    }
+
+    if (unit === "ml") {
+        return value / 1000000000;
+    }
+
+    return value;
+}
+
+
+function formatNumber(value) {
+
+    if (Math.abs(value) >= 1000000) {
+        return value.toExponential(6);
+    }
+
+    if (Math.abs(value) < 0.000001 && value !== 0) {
+        return value.toExponential(6);
+    }
+
+    return Number(value.toFixed(6)).toLocaleString();
+}
+
+
+function calculateDensity() {
+
+    const massInput =
+        document.getElementById("mass").value;
+
+    const volumeInput =
+        document.getElementById("volume").value;
+
+    const massUnit =
+        document.getElementById("massUnit").value;
+
+    const volumeUnit =
+        document.getElementById("volumeUnit").value;
+
+    const errorMessage =
+        document.getElementById("errorMessage");
+
+    const resultBox =
+        document.getElementById("resultBox");
+
+
+    errorMessage.style.display = "none";
+    resultBox.style.display = "none";
+
+
+    // VALIDATION
+
+    if (
+        massInput === "" ||
+        volumeInput === ""
+    ) {
+
+        errorMessage.textContent =
+            "Please enter mass and volume.";
+
+        errorMessage.style.display =
+            "block";
+
+        return;
+    }
+
+
+    const mass =
+        Number(massInput);
+
+    const volume =
+        Number(volumeInput);
+
+
+    if (
+        !Number.isFinite(mass) ||
+        !Number.isFinite(volume)
+    ) {
+
+        errorMessage.textContent =
+            "Please enter valid numerical values.";
+
+        errorMessage.style.display =
+            "block";
+
+        return;
+    }
+
+
+    if (mass <= 0) {
+
+        errorMessage.textContent =
+            "Mass must be greater than zero.";
+
+        errorMessage.style.display =
+            "block";
+
+        return;
+    }
+
+
+    if (volume <= 0) {
+
+        errorMessage.textContent =
+            "Volume must be greater than zero.";
+
+        errorMessage.style.display =
+            "block";
+
+        return;
+    }
+
+
+    // CONVERSIONS
+
+    const massKg =
+        convertMassToKg(
+            mass,
+            massUnit
+        );
+
+
+    const volumeM3 =
+        convertVolumeToCubicMetres(
+            volume,
+            volumeUnit
+        );
+
+
+    // CALCULATION
+
+    const density =
+        massKg / volumeM3;
+
+
+    // ADDITIONAL UNITS
+
+    const densityGcm3 =
+        density / 1000;
+
+
+    const densityKgm3 =
+        density;
+
+
+    // RESULT
+
+    document.getElementById("mainResult").textContent =
+        formatNumber(densityKgm3) + " kg/m³";
+
+
+    document.getElementById("steps").innerHTML = `
+
+        <p>
+
+            <strong>
+                Step 1 — Convert mass:
+            </strong>
+
+            <br>
+
+            ${formatNumber(mass)} ${massUnit}
+            =
+            ${formatNumber(massKg)} kg
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Step 2 — Convert volume:
+            </strong>
+
+            <br>
+
+            ${formatNumber(volume)} ${volumeUnit}
+            =
+            ${formatNumber(volumeM3)} m³
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Step 3 — Apply the formula:
+            </strong>
+
+            <br>
+
+            ρ = m / V
+
+        </p>
+
+
+        <p>
+
+            ρ =
+            ${formatNumber(massKg)}
+            /
+            ${formatNumber(volumeM3)}
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Density =
+                ${formatNumber(density)} kg/m³
+            </strong>
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                Equivalent value:
+            </strong>
+
+            <br>
+
+            ${formatNumber(densityGcm3)} g/cm³
+
+        </p>
+
+    `;
+
+
+    resultBox.style.display =
+        "block";
+}
+
+
+function resetCalculator() {
+
+    document.getElementById("mass").value =
+        "";
+
+    document.getElementById("volume").value =
+        "";
+
+    document.getElementById("massUnit").value =
+        "kg";
+
+    document.getElementById("volumeUnit").value =
+        "m3";
+
+    document.getElementById("errorMessage").style.display =
+        "none";
+
+    document.getElementById("resultBox").style.display =
+        "none";
+}
+
+</script>
+
+</body>
+</html>

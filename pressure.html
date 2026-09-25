@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pressure Calculator | MECHCALC</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="calculator.css">
+</head>
+
+<body>
+
+<div class="calculator-page">
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="container header-container">
+
+            <div class="logo">
+                ⚙ MECHCALC
+            </div>
+
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="index.html#calculators">Calculators</a>
+                <a href="index.html#formulas">Formulas</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#account">Login / Sign Up</a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- HERO -->
+    <section class="calculator-hero">
+
+        <div class="container">
+
+            <span class="calculator-label">
+                MECHANICAL ENGINEERING TOOL
+            </span>
+
+            <h1>Pressure Calculator</h1>
+
+            <p>
+                Calculate pressure from applied force and area
+                with accurate engineering unit conversions.
+            </p>
+
+            <div class="engineering-quote">
+                “Pressure is force distributed over area.”
+            </div>
+
+            <a href="index.html#calculators" class="back-link">
+                ← Back to Calculators
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- MAIN CALCULATOR -->
+    <main class="calculator-main">
+
+        <div class="container">
+
+            <div class="calculator-layout">
+
+
+                <!-- INPUT PANEL -->
+                <section class="input-panel">
+
+                    <div class="panel-heading">
+
+                        <span class="panel-number">01</span>
+
+                        <div>
+                            <h2>Enter Values</h2>
+                            <p>Provide force and area.</p>
+                        </div>
+
+                    </div>
+
+
+                    <form id="pressureForm">
+
+
+                        <!-- FORCE -->
+                        <div class="calculator-form-group">
+
+                            <label for="force">
+                                Applied Force
+                                <span class="required">*</span>
+                            </label>
+
+                            <div class="calculator-input-row">
+
+                                <input
+                                    type="number"
+                                    id="force"
+                                    placeholder="Enter force"
+                                    step="any"
+                                    min="0"
+                                >
+
+                                <select id="forceUnit">
+
+                                    <option value="N">
+                                        N
+                                    </option>
+
+                                    <option value="kN">
+                                        kN
+                                    </option>
+
+                                    <option value="MN">
+                                        MN
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <small>
+                                Force acting perpendicular to the area.
+                            </small>
+
+                        </div>
+
+
+                        <!-- AREA -->
+                        <div class="calculator-form-group">
+
+                            <label for="area">
+                                Area
+                                <span class="required">*</span>
+                            </label>
+
+                            <div class="calculator-input-row">
+
+                                <input
+                                    type="number"
+                                    id="area"
+                                    placeholder="Enter area"
+                                    step="any"
+                                    min="0"
+                                >
+
+                                <select id="areaUnit">
+
+                                    <option value="mm2">
+                                        mm²
+                                    </option>
+
+                                    <option value="cm2">
+                                        cm²
+                                    </option>
+
+                                    <option value="m2">
+                                        m²
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <small>
+                                Surface area over which the force acts.
+                            </small>
+
+                        </div>
+
+
+                        <!-- BUTTONS -->
+                        <div class="calculator-buttons">
+
+                            <button
+                                type="submit"
+                                class="calculator-calculate-btn"
+                            >
+                                Calculate Pressure
+                            </button>
+
+                            <button
+                                type="button"
+                                id="resetButton"
+                                class="calculator-reset-btn"
+                            >
+                                Reset
+                            </button>
+
+                        </div>
+
+
+                        <!-- ERROR -->
+                        <div
+                            id="errorMessage"
+                            class="calculator-error"
+                            style="display: none;"
+                        ></div>
+
+                    </form>
+
+                </section>
+
+
+                <!-- FORMULA PANEL -->
+                <section class="formula-panel">
+
+                    <div class="panel-heading">
+
+                        <span class="panel-number">02</span>
+
+                        <div>
+                            <h2>Engineering Formula</h2>
+                            <p>Pressure relationship</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="formula-box">
+
+                        <div class="formula-main">
+                            P = F / A
+                        </div>
+
+                        <div class="formula-description">
+
+                            <p>
+                                <strong>P</strong> = Pressure
+                            </p>
+
+                            <p>
+                                <strong>F</strong> = Force
+                            </p>
+
+                            <p>
+                                <strong>A</strong> = Area
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CALCULATION STEPS -->
+                    <div class="calculation-steps">
+
+                        <h3>How it is calculated</h3>
+
+                        <ol>
+
+                            <li>
+                                Convert force into Newtons.
+                            </li>
+
+                            <li>
+                                Convert area into m².
+                            </li>
+
+                            <li>
+                                Divide force by area.
+                            </li>
+
+                            <li>
+                                The result is pressure in Pascals.
+                            </li>
+
+                        </ol>
+
+                    </div>
+
+
+                    <!-- RESULT -->
+                    <div
+                        id="resultBox"
+                        class="calculator-result"
+                        style="display: none;"
+                    >
+
+                        <span class="result-label">
+                            CALCULATED PRESSURE
+                        </span>
+
+                        <div
+                            id="mainResult"
+                            class="calculator-result-value"
+                        >
+                            0 Pa
+                        </div>
+
+
+                        <div class="result-details">
+
+                            <p>
+                                <strong>Pascal:</strong>
+                                <span id="resultPa">
+                                    0 Pa
+                                </span>
+                            </p>
+
+                            <p>
+                                <strong>Kilopascal:</strong>
+                                <span id="resultKPa">
+                                    0 kPa
+                                </span>
+                            </p>
+
+                            <p>
+                                <strong>Megapascal:</strong>
+                                <span id="resultMPa">
+                                    0 MPa
+                                </span>
+                            </p>
+
+                            <p>
+                                <strong>Bar:</strong>
+                                <span id="resultBar">
+                                    0 bar
+                                </span>
+                            </p>
+
+                            <p>
+                                <strong>N/mm²:</strong>
+                                <span id="resultNmm2">
+                                    0 N/mm²
+                                </span>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <!-- ENGINEERING INFORMATION -->
+            <section class="engineering-info">
+
+                <div class="panel-heading">
+
+                    <span class="panel-number">03</span>
+
+                    <div>
+                        <h2>Engineering Information</h2>
+                        <p>Understanding pressure in engineering.</p>
+                    </div>
+
+                </div>
+
+
+                <div class="info-grid">
+
+
+                    <div class="unit-info">
+
+                        <h3>What is Pressure?</h3>
+
+                        <p>
+                            Pressure is the amount of force acting
+                            perpendicular to a surface per unit area.
+                        </p>
+
+                        <p>
+                            It increases when the same force acts over
+                            a smaller area.
+                        </p>
+
+                    </div>
+
+
+                    <div class="unit-info">
+
+                        <h3>SI Unit</h3>
+
+                        <p>
+                            The SI unit of pressure is the
+                            <strong>Pascal (Pa)</strong>.
+                        </p>
+
+                        <p>
+                            1 Pa = 1 N/m²
+                        </p>
+
+                    </div>
+
+
+                    <div class="unit-info">
+
+                        <h3>Common Applications</h3>
+
+                        <p>
+                            Pressure calculations are used in hydraulics,
+                            pneumatics, pressure vessels, pumps,
+                            compressors, engines and fluid systems.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+            <!-- RELATED CALCULATORS -->
+            <section class="related-section">
+
+                <div class="panel-heading">
+
+                    <span class="panel-number">04</span>
+
+                    <div>
+                        <h2>Related Calculators</h2>
+                        <p>Continue your engineering calculations.</p>
+                    </div>
+
+                </div>
+
+
+                <div class="related-grid">
+
+
+                    <a href="stress.html" class="related-card">
+
+                        <span>σ</span>
+
+                        <h3>Stress Calculator</h3>
+
+                        <p>
+                            Calculate stress from force and area.
+                        </p>
+
+                    </a>
+
+
+                    <a href="force.html" class="related-card">
+
+                        <span>F</span>
+
+                        <h3>Force Calculator</h3>
+
+                        <p>
+                            Calculate force from mass and acceleration.
+                        </p>
+
+                    </a>
+
+
+                    <a href="power.html" class="related-card">
+
+                        <span>W</span>
+
+                        <h3>Power Calculator</h3>
+
+                        <p>
+                            Calculate power from work and time.
+                        </p>
+
+                    </a>
+
+
+                    <a href="torque.html" class="related-card">
+
+                        <span>τ</span>
+
+                        <h3>Torque Calculator</h3>
+
+                        <p>
+                            Calculate rotational force.
+                        </p>
+
+                    </a>
+
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <p>
+                MECHCALC • Engineering Tools • Created by Vishnu
+            </p>
+
+        </div>
+
+    </footer>
+
+</div>
+
+
+<script>
+
+    const pressureForm =
+        document.getElementById("pressureForm");
+
+    const resetButton =
+        document.getElementById("resetButton");
+
+    const errorMessage =
+        document.getElementById("errorMessage");
+
+    const resultBox =
+        document.getElementById("resultBox");
+
+    const mainResult =
+        document.getElementById("mainResult");
+
+    const resultPa =
+        document.getElementById("resultPa");
+
+    const resultKPa =
+        document.getElementById("resultKPa");
+
+    const resultMPa =
+        document.getElementById("resultMPa");
+
+    const resultBar =
+        document.getElementById("resultBar");
+
+    const resultNmm2 =
+        document.getElementById("resultNmm2");
+
+
+    /*
+        Convert force to Newtons
+    */
+    function convertForceToN(value, unit) {
+
+        if (unit === "N") {
+            return value;
+        }
+
+        if (unit === "kN") {
+            return value * 1000;
+        }
+
+        if (unit === "MN") {
+            return value * 1000000;
+        }
+
+        return value;
+    }
+
+
+    /*
+        Convert area to square metres
+    */
+    function convertAreaToM2(value, unit) {
+
+        if (unit === "mm2") {
+            return value / 1000000;
+        }
+
+        if (unit === "cm2") {
+            return value / 10000;
+        }
+
+        if (unit === "m2") {
+            return value;
+        }
+
+        return value;
+    }
+
+
+    /*
+        Format numbers neatly
+    */
+    function formatNumber(value, decimals = 6) {
+
+        return Number(
+            value.toFixed(decimals)
+        ).toLocaleString(
+            "en-IN",
+            {
+                maximumFractionDigits: decimals
+            }
+        );
+
+    }
+
+
+    /*
+        Get readable area unit
+    */
+    function getAreaUnitText(unit) {
+
+        if (unit === "mm2") {
+            return "mm²";
+        }
+
+        if (unit === "cm2") {
+            return "cm²";
+        }
+
+        if (unit === "m2") {
+            return "m²";
+        }
+
+        return unit;
+    }
+
+
+    /*
+        Calculate Pressure
+    */
+    pressureForm.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+            errorMessage.style.display = "none";
+
+            resultBox.style.display = "none";
+
+
+            const forceInput =
+                document.getElementById("force");
+
+            const areaInput =
+                document.getElementById("area");
+
+
+            const forceUnit =
+                document.getElementById("forceUnit").value;
+
+            const areaUnit =
+                document.getElementById("areaUnit").value;
+
+
+            const force =
+                parseFloat(forceInput.value);
+
+            const area =
+                parseFloat(areaInput.value);
+
+
+            /*
+                Validation
+            */
+
+            if (
+                isNaN(force) ||
+                isNaN(area)
+            ) {
+
+                errorMessage.textContent =
+                    "Please enter both force and area.";
+
+                errorMessage.style.display =
+                    "block";
+
+                return;
+            }
+
+
+            if (force <= 0) {
+
+                errorMessage.textContent =
+                    "Force must be greater than zero.";
+
+                errorMessage.style.display =
+                    "block";
+
+                return;
+            }
+
+
+            if (area <= 0) {
+
+                errorMessage.textContent =
+                    "Area must be greater than zero.";
+
+                errorMessage.style.display =
+                    "block";
+
+                return;
+            }
+
+
+            /*
+                Convert units
+            */
+
+            const forceN =
+                convertForceToN(
+                    force,
+                    forceUnit
+                );
+
+
+            const areaM2 =
+                convertAreaToM2(
+                    area,
+                    areaUnit
+                );
+
+
+            /*
+                P = F / A
+            */
+
+            const pressurePa =
+                forceN / areaM2;
+
+
+            /*
+                Other pressure units
+            */
+
+            const pressureKPa =
+                pressurePa / 1000;
+
+            const pressureMPa =
+                pressurePa / 1000000;
+
+            const pressureBar =
+                pressurePa / 100000;
+
+            /*
+                1 N/mm² = 1 MPa
+            */
+
+            const pressureNmm2 =
+                pressureMPa;
+
+
+            /*
+                Display result
+            */
+
+            mainResult.textContent =
+                `${formatNumber(pressurePa)} Pa`;
+
+
+            resultPa.textContent =
+                `${formatNumber(pressurePa)} Pa`;
+
+
+            resultKPa.textContent =
+                `${formatNumber(pressureKPa)} kPa`;
+
+
+            resultMPa.textContent =
+                `${formatNumber(pressureMPa)} MPa`;
+
+
+            resultBar.textContent =
+                `${formatNumber(pressureBar)} bar`;
+
+
+            resultNmm2.textContent =
+                `${formatNumber(pressureNmm2)} N/mm²`;
+
+
+            resultBox.style.display =
+                "block";
+
+
+            /*
+                Dynamic calculation steps
+            */
+
+            const calculationSteps =
+                document.querySelector(
+                    ".calculation-steps"
+                );
+
+
+            if (calculationSteps) {
+
+                calculationSteps.innerHTML = `
+
+                    <h3>Calculation Steps</h3>
+
+                    <ol>
+
+                        <li>
+                            Force =
+                            <strong>
+                                ${formatNumber(force)}
+                                ${forceUnit}
+                            </strong>
+                        </li>
+
+                        <li>
+                            Converted force =
+                            <strong>
+                                ${formatNumber(forceN)} N
+                            </strong>
+                        </li>
+
+                        <li>
+                            Area =
+                            <strong>
+                                ${formatNumber(area)}
+                                ${getAreaUnitText(areaUnit)}
+                            </strong>
+                        </li>
+
+                        <li>
+                            Converted area =
+                            <strong>
+                                ${formatNumber(areaM2)} m²
+                            </strong>
+                        </li>
+
+                        <li>
+                            P = F / A
+                        </li>
+
+                        <li>
+                            P =
+                            ${formatNumber(forceN)}
+                            /
+                            ${formatNumber(areaM2)}
+                        </li>
+
+                        <li>
+                            Pressure =
+                            <strong>
+                                ${formatNumber(pressurePa)} Pa
+                            </strong>
+                        </li>
+
+                    </ol>
+
+                `;
+
+            }
+
+        }
+    );
+
+
+    /*
+        Reset calculator
+    */
+
+    resetButton.addEventListener(
+        "click",
+        function() {
+
+            pressureForm.reset();
+
+            errorMessage.textContent = "";
+
+            errorMessage.style.display =
+                "none";
+
+            resultBox.style.display =
+                "none";
+
+
+            const calculationSteps =
+                document.querySelector(
+                    ".calculation-steps"
+                );
+
+
+            if (calculationSteps) {
+
+                calculationSteps.innerHTML = `
+
+                    <h3>How it is calculated</h3>
+
+                    <ol>
+
+                        <li>
+                            Convert force into Newtons.
+                        </li>
+
+                        <li>
+                            Convert area into m².
+                        </li>
+
+                        <li>
+                            Divide force by area.
+                        </li>
+
+                        <li>
+                            The result is pressure in Pascals.
+                        </li>
+
+                    </ol>
+
+                `;
+
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+</html>

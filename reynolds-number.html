@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reynolds Number Calculator | MECHCALC</title>
+    <meta name="description" content="Calculate Reynolds number from fluid density, velocity, characteristic length and dynamic viscosity.">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="calculator.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="logo">⚙ MECHCALC</div>
+
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#calculators">Calculators</a>
+        <a href="index.html#formulas">Formulas</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#account">Login / Sign Up</a>
+    </nav>
+</header>
+
+
+<main class="calculator-page">
+
+    <!-- HERO -->
+    <section class="calculator-hero">
+
+        <h1>Reynolds Number Calculator</h1>
+
+        <p>
+            Calculate the Reynolds number of a fluid flow using
+            density, velocity, characteristic length and dynamic viscosity.
+        </p>
+
+        <div class="engineering-quote">
+            “Reynolds number reveals the character of fluid flow.”
+        </div>
+
+    </section>
+
+
+    <!-- CALCULATOR -->
+    <section class="calculator-main">
+
+        <div class="calculator-layout">
+
+            <!-- INPUT PANEL -->
+            <div class="input-panel">
+
+                <h2>Enter Values</h2>
+
+
+                <!-- DENSITY -->
+                <div class="calculator-form-group">
+
+                    <label for="density">
+                        Fluid Density
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="density"
+                            placeholder="Enter density"
+                            step="any"
+                        >
+
+                        <select id="densityUnit">
+                            <option value="kgm3">kg/m³</option>
+                            <option value="gcm3">g/cm³</option>
+                            <option value="kgL">kg/L</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- VELOCITY -->
+                <div class="calculator-form-group">
+
+                    <label for="velocity">
+                        Flow Velocity
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="velocity"
+                            placeholder="Enter velocity"
+                            step="any"
+                        >
+
+                        <select id="velocityUnit">
+                            <option value="ms">m/s</option>
+                            <option value="kmh">km/h</option>
+                            <option value="cms">cm/s</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CHARACTERISTIC LENGTH -->
+                <div class="calculator-form-group">
+
+                    <label for="length">
+                        Characteristic Length
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="length"
+                            placeholder="Enter characteristic length"
+                            step="any"
+                        >
+
+                        <select id="lengthUnit">
+                            <option value="m">m</option>
+                            <option value="mm">mm</option>
+                            <option value="cm">cm</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DYNAMIC VISCOSITY -->
+                <div class="calculator-form-group">
+
+                    <label for="viscosity">
+                        Dynamic Viscosity
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="viscosity"
+                            placeholder="Enter dynamic viscosity"
+                            step="any"
+                        >
+
+                        <select id="viscosityUnit">
+                            <option value="pas">Pa·s</option>
+                            <option value="mpas">mPa·s</option>
+                            <option value="cp">cP</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+                <div class="calculator-buttons">
+
+                    <button
+                        type="button"
+                        class="calculator-calculate-btn"
+                        onclick="calculateReynoldsNumber()"
+                    >
+                        Calculate Reynolds Number
+                    </button>
+
+                    <button
+                        type="button"
+                        class="calculator-reset-btn"
+                        onclick="resetCalculator()"
+                    >
+                        Reset
+                    </button>
+
+                </div>
+
+
+                <!-- ERROR -->
+                <div
+                    id="errorMessage"
+                    class="calculator-error"
+                    style="display:none;"
+                ></div>
+
+            </div>
+
+
+            <!-- FORMULA PANEL -->
+            <div class="formula-panel">
+
+                <h2>Formula</h2>
+
+                <div class="formula-box">
+
+                    <div class="formula-main">
+                        Re = ρVD / μ
+                    </div>
+
+                    <p>
+                        Where:
+                        <br>
+                        Re = Reynolds number
+                        <br>
+                        ρ = Fluid density
+                        <br>
+                        V = Flow velocity
+                        <br>
+                        D = Characteristic length
+                        <br>
+                        μ = Dynamic viscosity
+                    </p>
+
+                </div>
+
+
+                <div class="engineering-info">
+
+                    <h3>Flow Classification</h3>
+
+                    <p>
+                        For internal flow through a circular pipe,
+                        the commonly used approximate ranges are:
+                    </p>
+
+                    <p>
+                        <strong>Re &lt; 2300:</strong> Laminar
+                    </p>
+
+                    <p>
+                        <strong>2300–4000:</strong> Transitional
+                    </p>
+
+                    <p>
+                        <strong>Re &gt; 4000:</strong> Turbulent
+                    </p>
+
+                    <p>
+                        These limits are primarily for fully developed
+                        internal pipe flow and can differ for other geometries.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RESULT -->
+        <div
+            id="resultSection"
+            class="calculator-result"
+            style="display:none;"
+        >
+
+            <h2>Calculation Result</h2>
+
+            <div
+                id="resultValue"
+                class="calculator-result-value"
+            ></div>
+
+            <div
+                id="flowClassification"
+                class="engineering-info"
+            ></div>
+
+            <div
+                id="calculationSteps"
+                class="calculation-steps"
+            ></div>
+
+        </div>
+
+
+        <!-- ENGINEERING INFORMATION -->
+        <div class="unit-info">
+
+            <h2>Understanding Reynolds Number</h2>
+
+            <p>
+                Reynolds number is a dimensionless quantity used to
+                compare inertial effects with viscous effects in fluid flow.
+            </p>
+
+            <p>
+                It is widely used in pipe-flow analysis, pumps,
+                turbines, heat exchangers, aircraft, vehicles and
+                many other engineering applications.
+            </p>
+
+            <ul>
+
+                <li>
+                    <strong>Low Reynolds number:</strong>
+                    Viscous effects are relatively dominant.
+                </li>
+
+                <li>
+                    <strong>High Reynolds number:</strong>
+                    Inertial effects are relatively dominant.
+                </li>
+
+                <li>
+                    <strong>Reynolds number:</strong>
+                    Dimensionless.
+                </li>
+
+                <li>
+                    <strong>Pipe-flow characteristic length:</strong>
+                    Usually the pipe diameter.
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- RELATED CALCULATORS -->
+        <section class="related-section">
+
+            <h2>Related Calculators</h2>
+
+            <div class="related-grid">
+
+                <a href="viscosity.html" class="related-card">
+                    <h3>Dynamic Viscosity</h3>
+                    <p>
+                        Calculate dynamic viscosity from shear stress
+                        and velocity gradient.
+                    </p>
+                </a>
+
+                <a href="kinematic-viscosity.html" class="related-card">
+                    <h3>Kinematic Viscosity</h3>
+                    <p>
+                        Calculate kinematic viscosity from dynamic viscosity
+                        and density.
+                    </p>
+                </a>
+
+                <a href="density.html" class="related-card">
+                    <h3>Density</h3>
+                    <p>
+                        Calculate density from mass and volume.
+                    </p>
+                </a>
+
+            </div>
+
+        </section>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <p>
+        MECHCALC • Mechanical Engineering Tools • Created by Vishnu
+    </p>
+
+</footer>
+
+
+<script>
+
+    /*
+     * Convert density to kg/m³
+     */
+    function convertDensityToKgM3(value, unit) {
+
+        if (unit === "kgm3") {
+            return value;
+        }
+
+        if (unit === "gcm3") {
+            return value * 1000;
+        }
+
+        if (unit === "kgL") {
+            return value * 1000;
+        }
+
+        return value;
+    }
+
+
+    /*
+     * Convert velocity to m/s
+     */
+    function convertVelocityToMS(value, unit) {
+
+        if (unit === "ms") {
+            return value;
+        }
+
+        if (unit === "kmh") {
+            return value / 3.6;
+        }
+
+        if (unit === "cms") {
+            return value / 100;
+        }
+
+        return value;
+    }
+
+
+    /*
+     * Convert characteristic length to metres
+     */
+    function convertLengthToM(value, unit) {
+
+        if (unit === "m") {
+            return value;
+        }
+
+        if (unit === "mm") {
+            return value / 1000;
+        }
+
+        if (unit === "cm") {
+            return value / 100;
+        }
+
+        return value;
+    }
+
+
+    /*
+     * Convert dynamic viscosity to Pa·s
+     */
+    function convertViscosityToPaS(value, unit) {
+
+        if (unit === "pas") {
+            return value;
+        }
+
+        if (unit === "mpas") {
+            return value / 1000;
+        }
+
+        if (unit === "cp") {
+            return value / 1000;
+        }
+
+        return value;
+    }
+
+
+    /*
+     * Calculate Reynolds number
+     *
+     * Re = ρVD / μ
+     */
+    function calculateReynoldsNumber() {
+
+        const density =
+            parseFloat(
+                document.getElementById("density").value
+            );
+
+        const densityUnit =
+            document.getElementById("densityUnit").value;
+
+        const velocity =
+            parseFloat(
+                document.getElementById("velocity").value
+            );
+
+        const velocityUnit =
+            document.getElementById("velocityUnit").value;
+
+        const length =
+            parseFloat(
+                document.getElementById("length").value
+            );
+
+        const lengthUnit =
+            document.getElementById("lengthUnit").value;
+
+        const viscosity =
+            parseFloat(
+                document.getElementById("viscosity").value
+            );
+
+        const viscosityUnit =
+            document.getElementById("viscosityUnit").value;
+
+        const errorMessage =
+            document.getElementById("errorMessage");
+
+        const resultSection =
+            document.getElementById("resultSection");
+
+        const resultValue =
+            document.getElementById("resultValue");
+
+        const flowClassification =
+            document.getElementById("flowClassification");
+
+        const calculationSteps =
+            document.getElementById("calculationSteps");
+
+
+        /*
+         * Clear previous error
+         */
+        errorMessage.style.display = "none";
+        errorMessage.textContent = "";
+
+
+        /*
+         * Validate numerical input
+         */
+        if (
+            isNaN(density) ||
+            isNaN(velocity) ||
+            isNaN(length) ||
+            isNaN(viscosity)
+        ) {
+
+            showError(
+                "Please enter all four values."
+            );
+
+            return;
+        }
+
+
+        if (density <= 0) {
+
+            showError(
+                "Fluid density must be greater than zero."
+            );
+
+            return;
+        }
+
+
+        if (velocity <= 0) {
+
+            showError(
+                "Flow velocity must be greater than zero."
+            );
+
+            return;
+        }
+
+
+        if (length <= 0) {
+
+            showError(
+                "Characteristic length must be greater than zero."
+            );
+
+            return;
+        }
+
+
+        if (viscosity <= 0) {
+
+            showError(
+                "Dynamic viscosity must be greater than zero."
+            );
+
+            return;
+        }
+
+
+        /*
+         * Convert all values to SI units
+         */
+        const densityKgM3 =
+            convertDensityToKgM3(
+                density,
+                densityUnit
+            );
+
+        const velocityMS =
+            convertVelocityToMS(
+                velocity,
+                velocityUnit
+            );
+
+        const lengthM =
+            convertLengthToM(
+                length,
+                lengthUnit
+            );
+
+        const viscosityPaS =
+            convertViscosityToPaS(
+                viscosity,
+                viscosityUnit
+            );
+
+
+        /*
+         * Reynolds number
+         */
+        const reynoldsNumber =
+            (densityKgM3 * velocityMS * lengthM)
+            / viscosityPaS;
+
+
+        /*
+         * Determine approximate pipe-flow classification
+         */
+        let classification;
+        let explanation;
+
+        if (reynoldsNumber < 2300) {
+
+            classification = "Laminar Flow";
+
+            explanation =
+                "For internal circular pipe flow, this value is within the commonly used laminar-flow range.";
+
+        } else if (reynoldsNumber <= 4000) {
+
+            classification = "Transitional Flow";
+
+            explanation =
+                "For internal circular pipe flow, this value lies in the commonly used transition range.";
+
+        } else {
+
+            classification = "Turbulent Flow";
+
+            explanation =
+                "For internal circular pipe flow, this value is within the commonly used turbulent-flow range.";
+
+        }
+
+
+        /*
+         * Display result
+         */
+        resultSection.style.display = "block";
+
+        resultValue.innerHTML = `
+            Reynolds Number =
+            <strong>${reynoldsNumber.toLocaleString(
+                undefined,
+                {
+                    maximumFractionDigits: 2
+                }
+            )}</strong>
+        `;
+
+
+        /*
+         * Display classification
+         */
+        flowClassification.innerHTML = `
+
+            <h3>Flow Classification</h3>
+
+            <p>
+                <strong>${classification}</strong>
+            </p>
+
+            <p>
+                ${explanation}
+            </p>
+
+        `;
+
+
+        /*
+         * Calculation steps
+         */
+        calculationSteps.innerHTML = `
+
+            <p>
+                <strong>Step 1:</strong>
+                Convert density to kg/m³.
+            </p>
+
+            <p>
+                ρ =
+                ${densityKgM3.toLocaleString()}
+                kg/m³
+            </p>
+
+            <p>
+                <strong>Step 2:</strong>
+                Convert velocity to m/s.
+            </p>
+
+            <p>
+                V =
+                ${velocityMS.toLocaleString(
+                    undefined,
+                    {
+                        maximumFractionDigits: 6
+                    }
+                )}
+                m/s
+            </p>
+
+            <p>
+                <strong>Step 3:</strong>
+                Convert characteristic length to metres.
+            </p>
+
+            <p>
+                D =
+                ${lengthM.toLocaleString(
+                    undefined,
+                    {
+                        maximumFractionDigits: 6
+                    }
+                )}
+                m
+            </p>
+
+            <p>
+                <strong>Step 4:</strong>
+                Convert dynamic viscosity to Pa·s.
+            </p>
+
+            <p>
+                μ =
+                ${viscosityPaS.toExponential(6)}
+                Pa·s
+            </p>
+
+            <p>
+                <strong>Step 5:</strong>
+                Apply the Reynolds number formula.
+            </p>
+
+            <p>
+                Re = ρVD / μ
+            </p>
+
+            <p>
+                Re =
+                (${densityKgM3.toLocaleString()})
+                ×
+                (${velocityMS.toLocaleString(
+                    undefined,
+                    {
+                        maximumFractionDigits: 6
+                    }
+                )})
+                ×
+                (${lengthM.toLocaleString(
+                    undefined,
+                    {
+                        maximumFractionDigits: 6
+                    }
+                )})
+                /
+                (${viscosityPaS.toExponential(6)})
+            </p>
+
+            <p>
+                <strong>Final Answer:</strong>
+                Re =
+                <strong>${reynoldsNumber.toLocaleString(
+                    undefined,
+                    {
+                        maximumFractionDigits: 2
+                    }
+                )}</strong>
+            </p>
+
+        `;
+
+
+        /*
+         * Scroll to result
+         */
+        resultSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }
+
+
+    /*
+     * Display error
+     */
+    function showError(message) {
+
+        const errorMessage =
+            document.getElementById("errorMessage");
+
+        errorMessage.textContent = message;
+        errorMessage.style.display = "block";
+
+    }
+
+
+    /*
+     * Reset calculator
+     */
+    function resetCalculator() {
+
+        document.getElementById("density").value = "";
+
+        document.getElementById("densityUnit").value = "kgm3";
+
+        document.getElementById("velocity").value = "";
+
+        document.getElementById("velocityUnit").value = "ms";
+
+        document.getElementById("length").value = "";
+
+        document.getElementById("lengthUnit").value = "m";
+
+        document.getElementById("viscosity").value = "";
+
+        document.getElementById("viscosityUnit").value = "pas";
+
+        document.getElementById("errorMessage").style.display = "none";
+
+        document.getElementById("errorMessage").textContent = "";
+
+        document.getElementById("resultSection").style.display = "none";
+
+        document.getElementById("resultValue").innerHTML = "";
+
+        document.getElementById("flowClassification").innerHTML = "";
+
+        document.getElementById("calculationSteps").innerHTML = "";
+
+    }
+
+</script>
+
+</body>
+</html>

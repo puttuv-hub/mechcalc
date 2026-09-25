@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Weight Calculator - Calculate Weight (W = m × g) | MECHCALC</title>
+
+    <meta
+        name="description"
+        content="Use the MECHCALC Weight Calculator to calculate weight from mass and gravitational acceleration using W = m × g. Get results in N, kN, and MN with step-by-step calculations."
+    >
+
+    <meta
+        name="keywords"
+        content="weight calculator, weight formula calculator, W=mg calculator, mass gravity weight calculator, gravitational force calculator, Newton calculator, mechanical engineering weight calculator"
+    >
+
+    <meta name="author" content="Vishnu">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="theme-color" content="#0f172a">
+
+    <!-- Open Graph -->
+    <meta
+        property="og:title"
+        content="Weight Calculator - Calculate Weight (W = m × g) | MECHCALC"
+    >
+    <meta
+        property="og:description"
+        content="Calculate weight from mass and gravitational acceleration using W = m × g. Get accurate results in N, kN, and MN with MECHCALC."
+    >
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MECHCALC">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary">
+    <meta
+        name="twitter:title"
+        content="Weight Calculator - W = m × g | MECHCALC"
+    >
+    <meta
+        name="twitter:description"
+        content="Calculate gravitational weight from mass and acceleration with accurate unit conversions and step-by-step calculations."
+    >
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Weight Calculator",
+        "applicationCategory": "EngineeringApplication",
+        "applicationSubCategory": "Mechanical Engineering Calculator",
+        "operatingSystem": "Web",
+        "description": "Calculate weight from mass and gravitational acceleration using the formula W = m × g. Results are provided in newtons, kilonewtons, and meganewtons.",
+        "url": "weight.html",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "creator": {
+            "@type": "Person",
+            "name": "Vishnu"
+        },
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "MECHCALC",
+            "url": "index.html"
+        }
+    }
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="calculator.css">
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        ⚙ MECHCALC
+    </div>
+
+    <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#calculators">Calculators</a>
+        <a href="index.html#formulas">Formulas</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#account">Login / Sign Up</a>
+    </nav>
+
+</header>
+
+
+<main class="calculator-page">
+
+    <section class="calculator-hero">
+
+        <div class="container">
+
+            <h1>Weight Calculator</h1>
+
+            <p>
+                Calculate the gravitational force acting on an object
+                from its mass and gravitational acceleration.
+            </p>
+
+            <div class="engineering-quote">
+                “Mass tells how much matter exists; weight tells how strongly gravity acts on it.”
+            </div>
+
+            <a href="index.html#calculators" class="back-link">
+                ← Back to Calculators
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <section class="calculator-main">
+
+        <div class="calculator-layout">
+
+            <div class="input-panel">
+
+                <h2>Enter Values</h2>
+
+                <div class="calculator-form-group">
+
+                    <label for="mass">
+                        Mass
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="mass"
+                            placeholder="Enter mass"
+                            min="0"
+                            step="any"
+                        >
+
+                        <select id="massUnit">
+
+                            <option value="kg">kg</option>
+                            <option value="g">g</option>
+                            <option value="tonne">tonne</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="calculator-form-group">
+
+                    <label for="gravity">
+                        Gravitational Acceleration
+                    </label>
+
+                    <div class="calculator-input-row">
+
+                        <input
+                            type="number"
+                            id="gravity"
+                            value="9.81"
+                            min="0"
+                            step="any"
+                        >
+
+                        <select disabled>
+                            <option>m/s²</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="calculator-buttons">
+
+                    <button
+                        type="button"
+                        class="calculator-calculate-btn"
+                        onclick="calculateWeight()"
+                    >
+                        Calculate Weight
+                    </button>
+
+                    <button
+                        type="button"
+                        class="calculator-reset-btn"
+                        onclick="resetCalculator()"
+                    >
+                        Reset
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="errorMessage"
+                    class="calculator-error"
+                    style="display:none;"
+                ></div>
+
+
+                <div
+                    id="resultBox"
+                    class="calculator-result"
+                    style="display:none;"
+                >
+
+                    <h3>Calculated Weight</h3>
+
+                    <div
+                        id="mainResult"
+                        class="calculator-result-value"
+                    >
+                        0 N
+                    </div>
+
+                    <div class="calculation-steps">
+
+                        <h4>Calculation Steps</h4>
+
+                        <div id="steps"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="formula-panel">
+
+                <h2>Engineering Formula</h2>
+
+                <div class="formula-box">
+
+                    <div class="formula-main">
+                        W = m × g
+                    </div>
+
+                    <p>Where:</p>
+
+                    <ul>
+                        <li><strong>W</strong> = Weight in newtons (N)</li>
+                        <li><strong>m</strong> = Mass in kilograms (kg)</li>
+                        <li><strong>g</strong> = Gravitational acceleration (m/s²)</li>
+                    </ul>
+
+                </div>
+
+
+                <div class="engineering-info">
+
+                    <h3>Engineering Information</h3>
+
+                    <p>
+                        Weight is the gravitational force acting on
+                        an object.
+                    </p>
+
+                    <p>
+                        Near the Earth's surface, standard gravitational
+                        acceleration is approximately:
+                    </p>
+
+                    <div class="formula-box">
+
+                        <div class="formula-main">
+                            g = 9.81 m/s²
+                        </div>
+
+                    </div>
+
+                    <p>
+                        Unlike mass, weight depends on the local
+                        gravitational acceleration.
+                    </p>
+
+                    <p>
+                        For example, an object has the same mass on
+                        Earth and the Moon, but its weight is different.
+                    </p>
+
+                </div>
+
+
+                <div class="unit-info">
+
+                    <h3>Common Units</h3>
+
+                    <ul>
+                        <li>Weight → N</li>
+                        <li>1 kN = 1,000 N</li>
+                        <li>1 MN = 1,000,000 N</li>
+                        <li>Mass is measured in kg</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="related-section">
+
+        <div class="container">
+
+            <h2>Related Calculators</h2>
+
+            <div class="related-grid">
+
+                <a href="force.html" class="related-card">
+                    <h3>Force Calculator</h3>
+                    <p>Calculate force using mass and acceleration.</p>
+                </a>
+
+                <a href="kinetic-energy.html" class="related-card">
+                    <h3>Kinetic Energy</h3>
+                    <p>Calculate kinetic energy from mass and velocity.</p>
+                </a>
+
+                <a href="work.html" class="related-card">
+                    <h3>Work Calculator</h3>
+                    <p>Calculate mechanical work from force and displacement.</p>
+                </a>
+
+                <a href="pressure.html" class="related-card">
+                    <h3>Pressure Calculator</h3>
+                    <p>Calculate pressure from force and area.</p>
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <p>
+        MECHCALC • Engineering Tools • Created by Vishnu
+    </p>
+
+</footer>
+
+
+<script>
+
+function convertMassToKg(value, unit) {
+
+    if (unit === "kg") {
+        return value;
+    }
+
+    if (unit === "g") {
+        return value / 1000;
+    }
+
+    if (unit === "tonne") {
+        return value * 1000;
+    }
+
+    return value;
+}
+
+
+function formatNumber(value) {
+
+    if (Math.abs(value) >= 1000000) {
+        return value.toExponential(6);
+    }
+
+    if (Math.abs(value) < 0.000001 && value !== 0) {
+        return value.toExponential(6);
+    }
+
+    return Number(value.toFixed(6)).toLocaleString();
+}
+
+
+function calculateWeight() {
+
+    const massInput =
+        document.getElementById("mass").value;
+
+    const gravityInput =
+        document.getElementById("gravity").value;
+
+    const massUnit =
+        document.getElementById("massUnit").value;
+
+    const errorMessage =
+        document.getElementById("errorMessage");
+
+    const resultBox =
+        document.getElementById("resultBox");
+
+    errorMessage.style.display = "none";
+    resultBox.style.display = "none";
+
+
+    if (
+        massInput === "" ||
+        gravityInput === ""
+    ) {
+
+        errorMessage.textContent =
+            "Please enter mass and gravitational acceleration.";
+
+        errorMessage.style.display =
+            "block";
+
+        return;
+    }
+
+
+    const mass =
+        Number(massInput);
+
+    const gravity =
+        Number(gravityInput);
+
+
+    if (
+        !Number.isFinite(mass) ||
+        !Number.isFinite(gravity)
+    ) {
+
+        errorMessage.textContent =
+            "Please enter valid numerical values.";
+
+        errorMessage.style.display =
+            "block";
+
+        return;
+    }
+
+
+    if (mass <= 0) {
+
+        errorMessage.textContent =
+            "Mass must be greater than zero.";
+
+        errorMessage.style.display =
+            "block";
+
+        return;
+    }
+
+
+    if (gravity <= 0) {
+
+        errorMessage.textContent =
+            "Gravitational acceleration must be greater than zero.";
+
+        errorMessage.style.display =
+            "block";
+
+        return;
+    }
+
+
+    const massKg =
+        convertMassToKg(
+            mass,
+            massUnit
+        );
+
+
+    const weightN =
+        massKg * gravity;
+
+    const weightKN =
+        weightN / 1000;
+
+    const weightMN =
+        weightN / 1000000;
+
+
+    document.getElementById("mainResult").textContent =
+        formatNumber(weightN) + " N";
+
+
+    document.getElementById("steps").innerHTML = `
+
+        <p>
+            <strong>Step 1 — Convert mass:</strong>
+            <br>
+            ${formatNumber(mass)} ${massUnit}
+            =
+            ${formatNumber(massKg)} kg
+        </p>
+
+        <p>
+            <strong>Step 2 — Use gravitational acceleration:</strong>
+            <br>
+            g = ${formatNumber(gravity)} m/s²
+        </p>
+
+        <p>
+            <strong>Step 3 — Apply the formula:</strong>
+            <br>
+            W = m × g
+        </p>
+
+        <p>
+            W =
+            ${formatNumber(massKg)} ×
+            ${formatNumber(gravity)}
+        </p>
+
+        <p>
+            <strong>
+                Weight = ${formatNumber(weightN)} N
+            </strong>
+        </p>
+
+        <p>
+            <strong>Equivalent values:</strong>
+            <br>
+            ${formatNumber(weightKN)} kN
+            <br>
+            ${formatNumber(weightMN)} MN
+        </p>
+
+    `;
+
+
+    resultBox.style.display =
+        "block";
+}
+
+
+function resetCalculator() {
+
+    document.getElementById("mass").value =
+        "";
+
+    document.getElementById("gravity").value =
+        "9.81";
+
+    document.getElementById("massUnit").value =
+        "kg";
+
+    document.getElementById("errorMessage").style.display =
+        "none";
+
+    document.getElementById("resultBox").style.display =
+        "none";
+}
+
+</script>
+
+</body>
+</html>
