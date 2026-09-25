@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Principal Stress & Mohr's Circle | MECHCALC</title>
+<meta name="description" content="Calculate 2D principal stresses, maximum shear stress and principal angle with a Mohr circle visualization.">
+<meta name="author" content="Vishnu">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/principal-stress.html">
+<meta property="og:title" content="Principal Stress & Mohr's Circle | MECHCALC">
+<meta property="og:description" content="Calculate 2D principal stresses, maximum shear stress and principal angle with a Mohr circle visualization.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MECHCALC">
+<meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/principal-stress.html">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="calculator.css">
+<link rel="stylesheet" href="som.css">
+</head>
+<body>
+<header class="header">
+  <div class="logo"><a href="index.html">⚙ MECHCALC</a></div>
+  <nav class="nav">
+    <a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a>
+  </nav>
+</header>
+
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container">
+<h1>Principal Stress & Mohr's Circle</h1><p>Solve plane-stress transformation while watching the corresponding Mohr’s circle update.</p><div class="engineering-quote">“Visualize the mechanics, then solve the equation.”</div>
+<a href="index.html#calculators" class="back-link">← Back to Calculators</a>
+</div></section>
+<section class="calculator-main"><div class="container">
+<div class="calculator-layout">
+<section class="input-panel"><h2>Enter Values</h2><div class="calculator-form-group"><label for="sx">Normal Stress σx</label><div class="calculator-input-row"><input type="number" id="sx" placeholder="Enter value" step="any" value="80"><select id="stressUnit"><option value="MPa">MPa</option><option value="Pa">Pa</option></select></div></div><div class="calculator-form-group"><label for="sy">Normal Stress σy</label><div class="calculator-input-row"><input type="number" id="sy" placeholder="Enter value" step="any" value="20"><select disabled><option>same unit</option></select></div></div><div class="calculator-form-group"><label for="txy">Shear Stress τxy</label><div class="calculator-input-row"><input type="number" id="txy" placeholder="Enter value" step="any" value="30"><select disabled><option>same unit</option></select></div></div>
+<div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div>
+<div id="errorMessage" class="calculator-error" style="display:none;"></div>
+</section>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">σ₁,₂ = C ± R</div></div><div class="unit-info">Positive τxy follows the sign convention used in the entered stress state.</div></aside>
+</div>
+<section class="som-visual"><h3>Mohr's circle visualization</h3><svg id="mohrSvg" class="som-svg" viewBox="0 0 760 320"><line x1="80" y1="160" x2="690" y2="160" class="mohr-axis"/><line x1="380" y1="30" x2="380" y2="290" class="mohr-axis"/><text x="675" y="150">σ</text><text x="390" y="45">τ</text><circle id="mohrCircle" cx="380" cy="160" r="80" class="mohr-circle"/><circle id="pointA" cx="460" cy="100" r="5" class="mohr-point"/><circle id="pointB" cx="300" cy="220" r="5" class="mohr-point"/><text id="mohrLabel" x="90" y="300">Enter stresses and calculate to update the circle.</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none;"><h2>Calculation Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+
+<footer class="footer"><p>MECHCALC • Strength of Materials Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=(v,d=6)=>{ if(!Number.isFinite(v)) return '—'; const a=Math.abs(v); if((a>=1e7)||(a>0&&a<1e-5)) return v.toExponential(4); return Number(v.toFixed(d)).toLocaleString('en-IN'); };
+function showError(m){ $('errorMessage').textContent=m; $('errorMessage').style.display='block'; $('resultBox').style.display='none'; }
+function clearError(){ $('errorMessage').style.display='none'; $('errorMessage').textContent=''; }
+function showResult(main,html){ clearError(); $('mainResult').innerHTML=main; $('resultDetails').innerHTML=html; $('resultBox').style.display='block'; $('resultBox').scrollIntoView({behavior:'smooth',block:'start'}); }
+
+function draw(c,r,s1,s2,sx,sy,t){const svg=$('mohrSvg'),scale=220/Math.max(Math.abs(s1),Math.abs(s2),Math.abs(t),1);const x0=380,y0=160;const cx=x0+c*scale,rr=Math.abs(r*scale);$('mohrCircle').setAttribute('cx',cx);$('mohrCircle').setAttribute('r',Math.min(rr,250));$('pointA').setAttribute('cx',x0+sx*scale);$('pointA').setAttribute('cy',y0-t*scale);$('pointB').setAttribute('cx',x0+sy*scale);$('pointB').setAttribute('cy',y0+t*scale);$('mohrLabel').textContent=`σ1=${fmt(s1)} MPa, σ2=${fmt(s2)} MPa, τmax=${fmt(r)} MPa`;}
+function calc(){let sx=+$('sx').value,sy=+$('sy').value,t=+$('txy').value;if(![sx,sy,t].every(Number.isFinite))return showError('Enter valid stress components.');if($('stressUnit').value==='Pa'){sx/=1e6;sy/=1e6;t/=1e6;}const c=(sx+sy)/2;const r=Math.sqrt(((sx-sy)/2)**2+t*t);const s1=c+r,s2=c-r;const taumax=r;const theta=.5*Math.atan2(2*t,sx-sy)*180/Math.PI;draw(c,r,s1,s2,sx,sy,t);showResult(`Principal stresses: <strong>σ₁ = ${fmt(s1)} MPa</strong>, σ₂ = ${fmt(s2)} MPa`,`<div class="som-result-grid"><div class="som-result-card"><strong>Circle center C</strong>${fmt(c)} MPa</div><div class="som-result-card"><strong>Radius R = τmax</strong>${fmt(r)} MPa</div><div class="som-result-card"><strong>Principal angle θp</strong>${fmt(theta)}°</div></div><p>σ₁,₂ = (σx+σy)/2 ± √[((σx−σy)/2)² + τxy²]</p><p>θp = ½ tan⁻¹[2τxy/(σx−σy)]</p>`)}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('sx').value='80';$('sy').value='20';$('txy').value='30';$('resultBox').style.display='none';clearError();calc();});calc();
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

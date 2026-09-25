@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beam Shear Stress Calculator | MECHCALC</title>
+<meta name="description" content="Calculate average and maximum shear stress in rectangular or solid circular beam sections.">
+<meta name="author" content="Vishnu">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/beam-shear-stress.html">
+<meta property="og:title" content="Beam Shear Stress Calculator | MECHCALC">
+<meta property="og:description" content="Calculate average and maximum shear stress in rectangular or solid circular beam sections.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MECHCALC">
+<meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/beam-shear-stress.html">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="calculator.css">
+<link rel="stylesheet" href="som.css">
+</head>
+<body>
+<header class="header">
+  <div class="logo"><a href="index.html">⚙ MECHCALC</a></div>
+  <nav class="nav">
+    <a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a>
+  </nav>
+</header>
+
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container">
+<h1>Beam Shear Stress Calculator</h1><p>Visualize the parabolic shear stress distribution and calculate maximum beam shear stress.</p><div class="engineering-quote">“Visualize the mechanics, then solve the equation.”</div>
+<a href="index.html#calculators" class="back-link">← Back to Calculators</a>
+</div></section>
+<section class="calculator-main"><div class="container">
+<div class="calculator-layout">
+<section class="input-panel"><h2>Enter Values</h2><div class="calculator-form-group"><label for="shape">Cross-section</label><select id="shape"><option value="rect">Rectangle</option><option value="circle">Solid circle</option></select></div><div class="calculator-form-group"><label for="V">Shear Force</label><div class="calculator-input-row"><input type="number" id="V" placeholder="Enter value" step="any" value="10"><select id="VUnit"><option value="kN">kN</option><option value="N">N</option></select></div></div><div class="calculator-form-group"><label for="d1">Width b / Diameter D</label><div class="calculator-input-row"><input type="number" id="d1" placeholder="Enter value" step="any" value="100"><select disabled><option>mm</option></select></div></div><div class="calculator-form-group"><label for="d2">Height h (rectangle)</label><div class="calculator-input-row"><input type="number" id="d2" placeholder="Enter value" step="any" value="200"><select disabled><option>mm</option></select></div></div>
+<div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div>
+<div id="errorMessage" class="calculator-error" style="display:none;"></div>
+</section>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">τ = VQ / Ib</div></div><div class="unit-info">Closed-form maxima used: rectangle 3V/2A; circle 4V/3A.</div></aside>
+</div>
+<section class="som-visual"><h3>Shear stress distribution</h3><svg class="som-svg" viewBox="0 0 760 250"><rect x="190" y="45" width="120" height="160" class="som-fill"/><path d="M410 205 Q510 125 410 45" fill="none" stroke="#f59e0b" stroke-width="5"/><line x1="410" y1="45" x2="410" y2="205" class="som-line"/><text x="175" y="230">cross-section</text><text x="455" y="125">parabolic τ distribution</text><text x="455" y="145">maximum at neutral axis</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none;"><h2>Calculation Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+
+<footer class="footer"><p>MECHCALC • Strength of Materials Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=(v,d=6)=>{ if(!Number.isFinite(v)) return '—'; const a=Math.abs(v); if((a>=1e7)||(a>0&&a<1e-5)) return v.toExponential(4); return Number(v.toFixed(d)).toLocaleString('en-IN'); };
+function showError(m){ $('errorMessage').textContent=m; $('errorMessage').style.display='block'; $('resultBox').style.display='none'; }
+function clearError(){ $('errorMessage').style.display='none'; $('errorMessage').textContent=''; }
+function showResult(main,html){ clearError(); $('mainResult').innerHTML=main; $('resultDetails').innerHTML=html; $('resultBox').style.display='block'; $('resultBox').scrollIntoView({behavior:'smooth',block:'start'}); }
+
+function update(){ $('d2').closest('.calculator-form-group').style.display=$('shape').value==='rect'?'':'none';}
+function calc(){const V0=+$('V').value,d1=+$('d1').value,d2=+$('d2').value;if(!(V0>0&&d1>0))return showError('Enter positive shear force and section dimensions.');const V=V0*($('VUnit').value==='kN'?1000:1);let A,tmax,f;if($('shape').value==='rect'){if(!(d2>0))return showError('Enter a positive rectangle height.');A=d1*d2;tmax=1.5*V/A;f='τmax = 3V/(2A)';}else{A=Math.PI*d1*d1/4;tmax=4*V/(3*A);f='τmax = 4V/(3A)';}const avg=V/A;showResult(`Maximum shear stress = <strong>${fmt(tmax)} MPa</strong>`,`<p>Area A = ${fmt(A)} mm²</p><p>Average shear V/A = ${fmt(avg)} MPa</p><p>${f}</p><p><strong>τmax = ${fmt(tmax)} MPa</strong></p>`)}
+$('shape').addEventListener('change',update);$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('shape').value='rect';$('V').value='10';$('d1').value='100';$('d2').value='200';update();$('resultBox').style.display='none';clearError();});update();
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

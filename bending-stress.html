@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bending Stress Calculator | MECHCALC</title>
+<meta name="description" content="Calculate maximum flexural stress using σ = M/Z.">
+<meta name="author" content="Vishnu">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/bending-stress.html">
+<meta property="og:title" content="Bending Stress Calculator | MECHCALC">
+<meta property="og:description" content="Calculate maximum flexural stress using σ = M/Z.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MECHCALC">
+<meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/bending-stress.html">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="calculator.css">
+<link rel="stylesheet" href="som.css">
+</head>
+<body>
+<header class="header">
+  <div class="logo"><a href="index.html">⚙ MECHCALC</a></div>
+  <nav class="nav">
+    <a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a>
+  </nav>
+</header>
+
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container">
+<h1>Bending Stress Calculator</h1><p>Understand tension/compression about the neutral axis and solve bending stress problems.</p><div class="engineering-quote">“Visualize the mechanics, then solve the equation.”</div>
+<a href="index.html#calculators" class="back-link">← Back to Calculators</a>
+</div></section>
+<section class="calculator-main"><div class="container">
+<div class="calculator-layout">
+<section class="input-panel"><h2>Enter Values</h2><div class="calculator-form-group"><label for="M">Bending Moment</label><div class="calculator-input-row"><input type="number" id="M" placeholder="Enter value" step="any" value="10"><select id="MUnit"><option value="kNm">kN·m</option><option value="Nm">N·m</option><option value="Nmm">N·mm</option></select></div></div><div class="calculator-form-group"><label for="Z">Section Modulus</label><div class="calculator-input-row"><input type="number" id="Z" placeholder="Enter value" step="any" value="100000"><select id="ZUnit"><option value="mm3">mm³</option><option value="cm3">cm³</option></select></div></div>
+<div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div>
+<div id="errorMessage" class="calculator-error" style="display:none;"></div>
+</section>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">σ = M / Z</div></div><div class="unit-info">For elastic bending with a known section modulus.</div></aside>
+</div>
+<section class="som-visual"><h3>Bending stress visualization</h3><svg class="som-svg" viewBox="0 0 760 250"><path d="M130 140 Q380 55 630 140" class="som-member"/><line x1="380" y1="65" x2="380" y2="205" class="som-line"/><rect x="330" y="90" width="100" height="110" class="som-fill"/><line x1="320" y1="145" x2="440" y2="145" class="som-line" stroke-dasharray="5 4"/><text x="445" y="150">neutral axis</text><text x="470" y="95">compression</text><text x="470" y="195">tension</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none;"><h2>Calculation Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+
+<footer class="footer"><p>MECHCALC • Strength of Materials Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=(v,d=6)=>{ if(!Number.isFinite(v)) return '—'; const a=Math.abs(v); if((a>=1e7)||(a>0&&a<1e-5)) return v.toExponential(4); return Number(v.toFixed(d)).toLocaleString('en-IN'); };
+function showError(m){ $('errorMessage').textContent=m; $('errorMessage').style.display='block'; $('resultBox').style.display='none'; }
+function clearError(){ $('errorMessage').style.display='none'; $('errorMessage').textContent=''; }
+function showResult(main,html){ clearError(); $('mainResult').innerHTML=main; $('resultDetails').innerHTML=html; $('resultBox').style.display='block'; $('resultBox').scrollIntoView({behavior:'smooth',block:'start'}); }
+
+function calc(){const M0=+$('M').value,Z0=+$('Z').value;if(!(M0>0&&Z0>0))return showError('Enter positive bending moment and section modulus.');let M=M0;if($('MUnit').value==='Nm')M*=1000;if($('MUnit').value==='kNm')M*=1e6;const Z=Z0*($('ZUnit').value==='cm3'?1000:1);const sig=M/Z;showResult(`Maximum bending stress = <strong>${fmt(sig)} MPa</strong>`,`<p>σ = M/Z</p><p>M = ${fmt(M)} N·mm</p><p>Z = ${fmt(Z)} mm³</p><p>σ = ${fmt(M)} / ${fmt(Z)} = <strong>${fmt(sig)} N/mm² = ${fmt(sig)} MPa</strong></p>`)}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('M').value='10';$('Z').value='100000';$('resultBox').style.display='none';clearError();});
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thin Spherical Shell Calculator | MECHCALC</title>
+<meta name="description" content="Calculate membrane stress in a thin spherical pressure vessel.">
+<meta name="author" content="Vishnu">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/thin-spherical-shell.html">
+<meta property="og:title" content="Thin Spherical Shell Calculator | MECHCALC">
+<meta property="og:description" content="Calculate membrane stress in a thin spherical pressure vessel.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MECHCALC">
+<meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/thin-spherical-shell.html">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="calculator.css">
+<link rel="stylesheet" href="som.css">
+</head>
+<body>
+<header class="header">
+  <div class="logo"><a href="index.html">⚙ MECHCALC</a></div>
+  <nav class="nav">
+    <a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a>
+  </nav>
+</header>
+
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container">
+<h1>Thin Spherical Shell Calculator</h1><p>Visualize equal tangential membrane stress in a thin spherical shell.</p><div class="engineering-quote">“Visualize the mechanics, then solve the equation.”</div>
+<a href="index.html#calculators" class="back-link">← Back to Calculators</a>
+</div></section>
+<section class="calculator-main"><div class="container">
+<div class="calculator-layout">
+<section class="input-panel"><h2>Enter Values</h2><div class="calculator-form-group"><label for="p">Internal Pressure</label><div class="calculator-input-row"><input type="number" id="p" placeholder="Enter value" step="any" value="2"><select id="pUnit"><option value="MPa">MPa</option><option value="bar">bar</option></select></div></div><div class="calculator-form-group"><label for="d">Internal Diameter</label><div class="calculator-input-row"><input type="number" id="d" placeholder="Enter value" step="any" value="500"><select disabled><option>mm</option></select></div></div><div class="calculator-form-group"><label for="t">Wall Thickness</label><div class="calculator-input-row"><input type="number" id="t" placeholder="Enter value" step="any" value="10"><select disabled><option>mm</option></select></div></div>
+<div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div>
+<div id="errorMessage" class="calculator-error" style="display:none;"></div>
+</section>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">σ = pd / 4t</div></div><div class="unit-info">Thin-shell membrane theory.</div></aside>
+</div>
+<section class="som-visual"><h3>Thin spherical shell</h3><svg class="som-svg" viewBox="0 0 760 240"><circle cx="380" cy="120" r="90" class="som-fill"/><path d="M300 120 A80 80 0 0 0 460 120" class="som-accent" fill="none" stroke-width="4"/><path d="M380 40 A40 80 0 0 1 380 200" class="som-line"/><text x="470" y="125">equal membrane stress in all tangential directions</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none;"><h2>Calculation Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+
+<footer class="footer"><p>MECHCALC • Strength of Materials Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=(v,d=6)=>{ if(!Number.isFinite(v)) return '—'; const a=Math.abs(v); if((a>=1e7)||(a>0&&a<1e-5)) return v.toExponential(4); return Number(v.toFixed(d)).toLocaleString('en-IN'); };
+function showError(m){ $('errorMessage').textContent=m; $('errorMessage').style.display='block'; $('resultBox').style.display='none'; }
+function clearError(){ $('errorMessage').style.display='none'; $('errorMessage').textContent=''; }
+function showResult(main,html){ clearError(); $('mainResult').innerHTML=main; $('resultDetails').innerHTML=html; $('resultBox').style.display='block'; $('resultBox').scrollIntoView({behavior:'smooth',block:'start'}); }
+
+function calc(){const p0=+$('p').value,d=+$('d').value,t=+$('t').value;if(!(p0>0&&d>0&&t>0))return showError('Enter positive pressure, diameter and thickness.');const p=p0*($('pUnit').value==='bar'?0.1:1);const s=p*d/(4*t);showResult(`Membrane stress = <strong>${fmt(s)} MPa</strong>`,`<p>σ = pd/(4t)</p><p>σ = ${fmt(p)} × ${fmt(d)} / (4 × ${fmt(t)}) = <strong>${fmt(s)} MPa</strong></p><p>d/t = ${fmt(d/t)}</p>`)}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('p').value='2';$('d').value='500';$('t').value='10';$('resultBox').style.display='none';clearError();});
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

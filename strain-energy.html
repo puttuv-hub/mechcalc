@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Axial Strain Energy Calculator | MECHCALC</title>
+<meta name="description" content="Calculate elastic strain energy stored in a uniform axially loaded member.">
+<meta name="author" content="Vishnu">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/strain-energy.html">
+<meta property="og:title" content="Axial Strain Energy Calculator | MECHCALC">
+<meta property="og:description" content="Calculate elastic strain energy stored in a uniform axially loaded member.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MECHCALC">
+<meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/strain-energy.html">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="calculator.css">
+<link rel="stylesheet" href="som.css">
+</head>
+<body>
+<header class="header">
+  <div class="logo"><a href="index.html">⚙ MECHCALC</a></div>
+  <nav class="nav">
+    <a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a>
+  </nav>
+</header>
+
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container">
+<h1>Axial Strain Energy Calculator</h1><p>Connect load–deformation behavior with the energy stored in an elastic bar.</p><div class="engineering-quote">“Visualize the mechanics, then solve the equation.”</div>
+<a href="index.html#calculators" class="back-link">← Back to Calculators</a>
+</div></section>
+<section class="calculator-main"><div class="container">
+<div class="calculator-layout">
+<section class="input-panel"><h2>Enter Values</h2><div class="calculator-form-group"><label for="P">Axial Load</label><div class="calculator-input-row"><input type="number" id="P" placeholder="Enter value" step="any" value="50"><select id="PUnit"><option value="kN">kN</option><option value="N">N</option></select></div></div><div class="calculator-form-group"><label for="L">Length</label><div class="calculator-input-row"><input type="number" id="L" placeholder="Enter value" step="any" value="1000"><select id="LUnit"><option value="mm">mm</option><option value="m">m</option></select></div></div><div class="calculator-form-group"><label for="A">Area</label><div class="calculator-input-row"><input type="number" id="A" placeholder="Enter value" step="any" value="500"><select disabled><option>mm²</option></select></div></div><div class="calculator-form-group"><label for="E">Young's Modulus</label><div class="calculator-input-row"><input type="number" id="E" placeholder="Enter value" step="any" value="200"><select id="EUnit"><option value="GPa">GPa</option><option value="MPa">MPa</option></select></div></div>
+<div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div>
+<div id="errorMessage" class="calculator-error" style="display:none;"></div>
+</section>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">U = P²L / 2AE = ½PΔL</div></div><div class="unit-info">Linear elastic, gradually applied axial load.</div></aside>
+</div>
+<section class="som-visual"><h3>Stored elastic energy</h3><svg class="som-svg" viewBox="0 0 760 220"><line x1="180" y1="105" x2="580" y2="105" class="som-member"/><path d="M310 105 l18 -20 l18 40 l18 -40 l18 40 l18 -40 l18 20" class="som-accent" fill="none" stroke-width="4"/><polygon points="145,105 180,85 180,125" class="som-accent"/><polygon points="615,105 580,85 580,125" class="som-accent"/><text x="300" y="165">elastic strain energy stored by deformation</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none;"><h2>Calculation Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+
+<footer class="footer"><p>MECHCALC • Strength of Materials Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=(v,d=6)=>{ if(!Number.isFinite(v)) return '—'; const a=Math.abs(v); if((a>=1e7)||(a>0&&a<1e-5)) return v.toExponential(4); return Number(v.toFixed(d)).toLocaleString('en-IN'); };
+function showError(m){ $('errorMessage').textContent=m; $('errorMessage').style.display='block'; $('resultBox').style.display='none'; }
+function clearError(){ $('errorMessage').style.display='none'; $('errorMessage').textContent=''; }
+function showResult(main,html){ clearError(); $('mainResult').innerHTML=main; $('resultDetails').innerHTML=html; $('resultBox').style.display='block'; $('resultBox').scrollIntoView({behavior:'smooth',block:'start'}); }
+
+function calc(){const P0=+$('P').value,L0=+$('L').value,A=+$('A').value,E0=+$('E').value;if(!(P0>0&&L0>0&&A>0&&E0>0))return showError('Enter positive load, length, area and modulus.');const P=P0*($('PUnit').value==='kN'?1000:1),L=L0*($('LUnit').value==='m'?1000:1),E=E0*($('EUnit').value==='GPa'?1000:1);const Umm=P*P*L/(2*A*E);const J=Umm/1000;const d=P*L/(A*E);showResult(`Strain energy = <strong>${fmt(J)} J</strong>`,`<p>U = P²L/(2AE)</p><p>U = ${fmt(Umm)} N·mm = <strong>${fmt(J)} J</strong></p><p>Corresponding elongation ΔL = ${fmt(d)} mm</p><p>Check: U = ½PΔL</p>`)}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('P').value='50';$('L').value='1000';$('A').value='500';$('E').value='200';$('resultBox').style.display='none';clearError();});
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

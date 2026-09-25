@@ -14,7 +14,7 @@
 
     <meta
         name="description"
-        content="MECHCALC provides free mechanical engineering calculators for stress, strain, force, torque, power, pressure, fluid mechanics, hydraulics, pumps and more."
+        content="MECHCALC provides free mechanical engineering calculators for stress, strain, beams, torsion, columns, force, torque, power, pressure, fluid mechanics, hydraulics, pumps and more."
     >
 
     <meta
@@ -284,7 +284,7 @@
 
             <p>
 
-                Free, simple and fast mechanical engineering calculators
+                Free, visual and step-by-step mechanical engineering calculators
 
                 for students, engineers and professionals.
 
@@ -468,6 +468,29 @@
 
                 </div>
 
+
+
+
+
+                <!-- ================= STRENGTH OF MATERIALS — ADVANCED / VISUAL ================= -->
+                <div class="calculator-card-home" data-category="strength"><h3>Axial Deformation</h3><p>Calculate elongation/shortening of an axially loaded bar with a load visualization.</p><a href="axial-deformation.html" class="calculator-button">Solve Axial Deformation</a></div>
+                <div class="calculator-card-home" data-category="strength"><h3>Thermal Stress</h3><p>Calculate stress caused by restrained heating or cooling.</p><a href="thermal-stress.html" class="calculator-button">Solve Thermal Stress</a></div>
+                <div class="calculator-card-home" data-category="strength"><h3>Poisson's Ratio</h3><p>Relate longitudinal and lateral strain with a deformation sketch.</p><a href="poissons-ratio.html" class="calculator-button">Calculate ν</a></div>
+                <div class="calculator-card-home" data-category="strength"><h3>Elastic Constants</h3><p>Calculate shear modulus G and bulk modulus K from E and ν.</p><a href="elastic-constants.html" class="calculator-button">Calculate Constants</a></div>
+                <div class="calculator-card-home" data-category="strength"><h3>Section Properties</h3><p>Area, second moment of area and section modulus for common sections.</p><a href="section-properties.html" class="calculator-button">Analyze Section</a></div>
+                <div class="calculator-card-home" data-category="strength"><h3>Bending Stress</h3><p>Calculate maximum flexural stress and visualize tension/compression.</p><a href="bending-stress.html" class="calculator-button">Solve Bending</a></div>
+                <div class="calculator-card-home" data-category="strength"><h3>Beam Shear Stress</h3><p>Calculate maximum shear stress with a distribution diagram.</p><a href="beam-shear-stress.html" class="calculator-button">Solve Beam Shear</a></div>
+                <div class="calculator-card-home" data-category="strength"><h3>Circular Shaft Torsion</h3><p>Find shaft shear stress and angle of twist for solid/hollow shafts.</p><a href="torsion-shaft.html" class="calculator-button">Solve Torsion</a></div>
+                <div class="calculator-card-home" data-category="strength"><h3>Principal Stress & Mohr's Circle</h3><p>Calculate principal stresses and visualize Mohr's circle.</p><a href="principal-stress.html" class="calculator-button">Open Mohr Visualizer</a></div>
+                <div class="calculator-card-home" data-category="strength"><h3>Thin Cylinder Stress</h3><p>Calculate hoop and longitudinal stresses in pressure vessels.</p><a href="thin-cylinder.html" class="calculator-button">Solve Cylinder</a></div>
+                <div class="calculator-card-home" data-category="strength"><h3>Thin Spherical Shell</h3><p>Calculate membrane stress in a thin spherical pressure vessel.</p><a href="thin-spherical-shell.html" class="calculator-button">Solve Sphere</a></div>
+                <div class="calculator-card-home" data-category="strength"><h3>Euler Column Buckling</h3><p>Calculate critical load with effective-length end conditions.</p><a href="euler-buckling.html" class="calculator-button">Solve Euler Load</a></div>
+                <div class="calculator-card-home" data-category="strength"><h3>Rankine Column Load</h3><p>Calculate crippling load for intermediate columns.</p><a href="rankine-column.html" class="calculator-button">Solve Rankine Load</a></div>
+                <div class="calculator-card-home" data-category="strength"><h3>Strain Energy</h3><p>Calculate elastic energy stored in an axially loaded member.</p><a href="strain-energy.html" class="calculator-button">Calculate Energy</a></div>
+                <div class="calculator-card-home" data-category="strength"><h3>Direct Shear Stress</h3><p>Single/double shear stress for pins, bolts and rivets.</p><a href="direct-shear-stress.html" class="calculator-button">Solve Direct Shear</a></div>
+                <div class="calculator-card-home" data-category="strength"><h3>Beam Reactions</h3><p>Visual equilibrium solver for a point load plus UDL.</p><a href="beam-reactions.html" class="calculator-button">Solve Reactions</a></div>
+                <div class="calculator-card-home" data-category="strength"><h3>Beam Deflection</h3><p>Visual deflection solver for common simply supported and cantilever cases.</p><a href="beam-deflection.html" class="calculator-button">Solve Deflection</a></div>
+                <div class="calculator-card-home" data-category="strength"><h3>SFD & BMD Visualizer</h3><p>Generate shear-force and bending-moment diagrams from beam loading.</p><a href="sfd-bmd.html" class="calculator-button">Visualize SFD/BMD</a></div>
 
 
                 <!-- ================= MECHANICS ================= -->
@@ -1067,6 +1090,20 @@
 
 
 
+
+                <div class="calculator-card-home"><h3>Axial Deformation</h3><p>ΔL = PL / AE</p></div>
+                <div class="calculator-card-home"><h3>Thermal Stress</h3><p>σ = EαΔT</p></div>
+                <div class="calculator-card-home"><h3>Poisson's Ratio</h3><p>ν = −εₗ / εₓ</p></div>
+                <div class="calculator-card-home"><h3>Elastic Constants</h3><p>G = E/[2(1+ν)]</p><p>K = E/[3(1−2ν)]</p></div>
+                <div class="calculator-card-home"><h3>Bending Stress</h3><p>σ = M / Z</p></div>
+                <div class="calculator-card-home"><h3>Torsion</h3><p>T/J = τ/R = Gθ/L</p></div>
+                <div class="calculator-card-home"><h3>Principal Stress</h3><p>σ₁,₂ = C ± R</p></div>
+                <div class="calculator-card-home"><h3>Thin Cylinder</h3><p>σh = pd/2t</p><p>σl = pd/4t</p></div>
+                <div class="calculator-card-home"><h3>Euler Buckling</h3><p>Pcr = π²EI/(KL)²</p></div>
+                <div class="calculator-card-home"><h3>Strain Energy</h3><p>U = P²L/(2AE)</p></div>
+                <div class="calculator-card-home"><h3>Beam Deflection</h3><p>δ ∝ Load × L³ or L⁴ / EI</p></div>
+
+
                 <div class="calculator-card-home">
 
                     <h3>Force</h3>
@@ -1338,9 +1375,9 @@
                     </h3>
 
                     <p>
-                        Create a secure MECHCALC account now. Calculation history,
-                        saved calculations and personalized engineering tools
-                        can be connected to your account in the next stage.
+                        Create a secure MECHCALC account to save calculator results,
+                        review your calculation history, and access your engineering
+                        work again from any device.
                     </p>
 
 
@@ -1449,7 +1486,7 @@
                         ></p>
 
                         <p class="auth-help-text">
-                            Your account is active. Saved calculations and calculation history can be connected in the next account stage.
+                            Your account is active. Save results from any MECHCALC calculator and review them in your calculation history below.
                         </p>
 
                         <button
@@ -1472,6 +1509,49 @@
                 </div>
 
             </div>
+
+        </section>
+
+
+
+        <!-- ================= SAVED CALCULATION HISTORY ================= -->
+
+        <section
+            class="section container saved-history-section"
+            id="savedCalculationsSection"
+            hidden
+        >
+
+            <div class="saved-history-header">
+
+                <div>
+                    <h2 class="section-title saved-history-title">
+                        Calculation History
+                    </h2>
+
+                    <p class="section-subtitle saved-history-subtitle">
+                        Your saved MECHCALC results are private to your signed-in account.
+                    </p>
+                </div>
+
+                <div class="saved-history-count">
+                    <span id="savedCalculationsCount">0</span>
+                    <small>Saved</small>
+                </div>
+
+            </div>
+
+            <p
+                id="savedCalculationsStatus"
+                class="saved-history-status"
+                role="status"
+                aria-live="polite"
+            ></p>
+
+            <div
+                id="savedCalculationsList"
+                class="saved-calculations-list"
+            ></div>
 
         </section>
 
@@ -1663,6 +1743,7 @@
     <!-- ================= SECURE AUTHENTICATION ================= -->
 
     <script type="module" src="auth.js"></script>
+    <script type="module" src="account-history.js"></script>
 
 
 </body>

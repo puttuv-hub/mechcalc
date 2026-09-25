@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SFD & BMD Visualizer | MECHCALC</title>
+<meta name="description" content="Draw shear force and bending moment diagrams for a simply supported beam with one point load plus a full-span UDL.">
+<meta name="author" content="Vishnu">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/sfd-bmd.html">
+<meta property="og:title" content="SFD & BMD Visualizer | MECHCALC">
+<meta property="og:description" content="Draw shear force and bending moment diagrams for a simply supported beam with one point load plus a full-span UDL.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MECHCALC">
+<meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/sfd-bmd.html">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="calculator.css">
+<link rel="stylesheet" href="som.css">
+</head>
+<body>
+<header class="header">
+  <div class="logo"><a href="index.html">⚙ MECHCALC</a></div>
+  <nav class="nav">
+    <a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a>
+  </nav>
+</header>
+
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container">
+<h1>SFD & BMD Visualizer</h1><p>Enter a beam problem and generate reactions, SFD and BMD together for visual problem solving.</p><div class="engineering-quote">“Visualize the mechanics, then solve the equation.”</div>
+<a href="index.html#calculators" class="back-link">← Back to Calculators</a>
+</div></section>
+<section class="calculator-main"><div class="container">
+<div class="calculator-layout">
+<section class="input-panel"><h2>Enter Values</h2><div class="calculator-form-group"><label for="L">Beam Span L</label><div class="calculator-input-row"><input type="number" id="L" placeholder="Enter value" step="any" value="6"><select disabled><option>m</option></select></div></div><div class="calculator-form-group"><label for="P">Point Load P</label><div class="calculator-input-row"><input type="number" id="P" placeholder="Enter value" step="any" value="20"><select disabled><option>kN</option></select></div></div><div class="calculator-form-group"><label for="a">Point Load Position a</label><div class="calculator-input-row"><input type="number" id="a" placeholder="Enter value" step="any" value="2"><select disabled><option>m from left</option></select></div></div><div class="calculator-form-group"><label for="w">Full-span UDL w</label><div class="calculator-input-row"><input type="number" id="w" placeholder="Enter value" step="any" value="5"><select disabled><option>kN/m</option></select></div></div>
+<div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div>
+<div id="errorMessage" class="calculator-error" style="display:none;"></div>
+</section>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">V(x) and M(x) from equilibrium</div></div><div class="unit-info">Educational visualizer: one point load plus full-span UDL on a simply supported beam.</div></aside>
+</div>
+<section class="som-visual"><h3>Beam + Shear Force Diagram + Bending Moment Diagram</h3><svg id="sfdSvg" class="som-svg" viewBox="0 0 900 540"><line x1="80" y1="90" x2="820" y2="90" class="som-member"/><polygon points="65,120 95,120 80,95" class="som-support"/><circle cx="820" cy="110" r="14" class="som-support"/><line x1="805" y1="130" x2="835" y2="130" class="som-line"/><g id="loadMarks"></g><text x="80" y="180" class="diagram-label">SFD</text><line x1="80" y1="260" x2="820" y2="260" class="mohr-axis"/><polyline id="sfdLine" points="80,260 820,260" fill="none" stroke="#f59e0b" stroke-width="4"/><text x="80" y="335" class="diagram-label">BMD</text><line x1="80" y1="430" x2="820" y2="430" class="mohr-axis"/><polyline id="bmdLine" points="80,430 820,430" fill="none" stroke="#101820" stroke-width="4"/><text id="diagramCaption" x="80" y="510">Calculate to draw diagrams.</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none;"><h2>Calculation Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+
+<footer class="footer"><p>MECHCALC • Strength of Materials Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=(v,d=6)=>{ if(!Number.isFinite(v)) return '—'; const a=Math.abs(v); if((a>=1e7)||(a>0&&a<1e-5)) return v.toExponential(4); return Number(v.toFixed(d)).toLocaleString('en-IN'); };
+function showError(m){ $('errorMessage').textContent=m; $('errorMessage').style.display='block'; $('resultBox').style.display='none'; }
+function clearError(){ $('errorMessage').style.display='none'; $('errorMessage').textContent=''; }
+function showResult(main,html){ clearError(); $('mainResult').innerHTML=main; $('resultDetails').innerHTML=html; $('resultBox').style.display='block'; $('resultBox').scrollIntoView({behavior:'smooth',block:'start'}); }
+
+function polyline(vals,y0,amp){const max=Math.max(...vals.map(v=>Math.abs(v)),1);return vals.map((v,i)=>`${80+740*i/(vals.length-1)},${y0-v/max*amp}`).join(' ')}
+function calc(){const L=+$('L').value,P=+$('P').value,a=+$('a').value,w=+$('w').value;if(!(L>0&&P>=0&&a>=0&&a<=L&&w>=0))return showError('Enter a valid span, load position and non-negative loads.');const W=w*L,RB=(P*a+W*L/2)/L,RA=P+W-RB;const n=241,xs=[],Vs=[],Ms=[];let maxM=-Infinity,maxX=0;for(let i=0;i<n;i++){const x=L*i/(n-1);const V=RA-w*x-(x>=a?P:0);const M=RA*x-w*x*x/2-(x>=a?P*(x-a):0);xs.push(x);Vs.push(V);Ms.push(M);if(M>maxM){maxM=M;maxX=x;}}$('sfdLine').setAttribute('points',polyline(Vs,260,65));$('bmdLine').setAttribute('points',polyline(Ms,430,75));const px=80+740*a/L;const g=$('loadMarks');g.innerHTML=`<line x1="${px}" y1="30" x2="${px}" y2="82" class="som-accent" stroke-width="4"/><polygon points="${px},88 ${px-8},74 ${px+8},74" class="som-accent"/><text x="${px-14}" y="20">P</text><text x="630" y="45">UDL w over full span</text>`;$('diagramCaption').textContent=`RA=${fmt(RA)} kN, RB=${fmt(RB)} kN, Mmax≈${fmt(maxM)} kN·m at x≈${fmt(maxX)} m`;showResult(`Maximum bending moment ≈ <strong>${fmt(maxM)} kN·m</strong>`,`<div class="som-result-grid"><div class="som-result-card"><strong>RA</strong>${fmt(RA)} kN</div><div class="som-result-card"><strong>RB</strong>${fmt(RB)} kN</div><div class="som-result-card"><strong>Mmax (numerical scan)</strong>${fmt(maxM)} kN·m at x ≈ ${fmt(maxX)} m</div></div><p>Shear: V(x) = RA − wx − P (after the point load)</p><p>Moment: M(x) = RAx − wx²/2 − P(x−a) (after the point load)</p>`)}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('L').value='6';$('P').value='20';$('a').value='2';$('w').value='5';$('resultBox').style.display='none';clearError();calc();});calc();
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

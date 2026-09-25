@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Axial Deformation Calculator | MECHCALC</title>
+<meta name="description" content="Calculate elongation or shortening of a uniform axially loaded bar using ΔL = PL/AE.">
+<meta name="author" content="Vishnu">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/axial-deformation.html">
+<meta property="og:title" content="Axial Deformation Calculator | MECHCALC">
+<meta property="og:description" content="Calculate elongation or shortening of a uniform axially loaded bar using ΔL = PL/AE.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MECHCALC">
+<meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/axial-deformation.html">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="calculator.css">
+<link rel="stylesheet" href="som.css">
+</head>
+<body>
+<header class="header">
+  <div class="logo"><a href="index.html">⚙ MECHCALC</a></div>
+  <nav class="nav">
+    <a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a>
+  </nav>
+</header>
+
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container">
+<h1>Axial Deformation Calculator</h1><p>Solve axial deformation with unit conversion, stress/strain checks and a load diagram.</p><div class="engineering-quote">“Visualize the mechanics, then solve the equation.”</div>
+<a href="index.html#calculators" class="back-link">← Back to Calculators</a>
+</div></section>
+<section class="calculator-main"><div class="container">
+<div class="calculator-layout">
+<section class="input-panel"><h2>Enter Values</h2><div class="calculator-form-group"><label for="load">Axial Load</label><div class="calculator-input-row"><input type="number" id="load" placeholder="Enter value" step="any"><select id="loadUnit"><option value="kN">kN</option><option value="N">N</option></select></div></div><div class="calculator-form-group"><label for="length">Member Length</label><div class="calculator-input-row"><input type="number" id="length" placeholder="Enter value" step="any"><select id="lengthUnit"><option value="mm">mm</option><option value="m">m</option></select></div></div><div class="calculator-form-group"><label for="area">Cross-sectional Area</label><div class="calculator-input-row"><input type="number" id="area" placeholder="Enter value" step="any"><select id="areaUnit"><option value="mm2">mm²</option><option value="cm2">cm²</option></select></div></div><div class="calculator-form-group"><label for="E">Young's Modulus</label><div class="calculator-input-row"><input type="number" id="E" placeholder="Enter value" step="any" value="200"><select id="EUnit"><option value="GPa">GPa</option><option value="MPa">MPa</option></select></div></div>
+<div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div>
+<div id="errorMessage" class="calculator-error" style="display:none;"></div>
+</section>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">ΔL = PL / AE</div></div><div class="unit-info"><strong>Assumption:</strong> Uniform prismatic bar, axial load, linear elastic behavior.</div></aside>
+</div>
+<section class="som-visual"><h3>Axial member visualization</h3><svg class="som-svg" viewBox="0 0 760 210" aria-label="Axially loaded bar"><line x1="150" y1="105" x2="610" y2="105" class="som-member"/><polygon points="120,105 155,85 155,125" class="som-accent"/><polygon points="640,105 605,85 605,125" class="som-accent"/><text x="72" y="82" class="diagram-label">P</text><text x="650" y="82" class="diagram-label">P</text><line x1="150" y1="155" x2="610" y2="155" class="som-line"/><text x="365" y="180">Length L</text><text x="330" y="75">Uniform bar: A, E</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none;"><h2>Calculation Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+
+<footer class="footer"><p>MECHCALC • Strength of Materials Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=(v,d=6)=>{ if(!Number.isFinite(v)) return '—'; const a=Math.abs(v); if((a>=1e7)||(a>0&&a<1e-5)) return v.toExponential(4); return Number(v.toFixed(d)).toLocaleString('en-IN'); };
+function showError(m){ $('errorMessage').textContent=m; $('errorMessage').style.display='block'; $('resultBox').style.display='none'; }
+function clearError(){ $('errorMessage').style.display='none'; $('errorMessage').textContent=''; }
+function showResult(main,html){ clearError(); $('mainResult').innerHTML=main; $('resultDetails').innerHTML=html; $('resultBox').style.display='block'; $('resultBox').scrollIntoView({behavior:'smooth',block:'start'}); }
+
+function calc(){const P0=+$('load').value,L0=+$('length').value,A0=+$('area').value,E0=+$('E').value;if(!(P0>0&&L0>0&&A0>0&&E0>0))return showError('Enter positive values for load, length, area and Young\'s modulus.');const P=P0*($('loadUnit').value==='kN'?1000:1);const L=L0*($('lengthUnit').value==='m'?1000:1);const A=A0*($('areaUnit').value==='cm2'?100:1);const E=E0*($('EUnit').value==='GPa'?1000:1);const d=P*L/(A*E),sig=P/A,eps=sig/E;showResult(`Elongation = <strong>${fmt(d)} mm</strong>`,`<p><strong>Step 1:</strong> Convert to N, mm, mm² and MPa.</p><p>P = ${fmt(P)} N, L = ${fmt(L)} mm, A = ${fmt(A)} mm², E = ${fmt(E)} MPa</p><p><strong>Step 2:</strong> ΔL = PL/(AE)</p><p>ΔL = (${fmt(P)} × ${fmt(L)}) / (${fmt(A)} × ${fmt(E)}) = <strong>${fmt(d)} mm</strong></p><p>Stress σ = ${fmt(sig)} MPa</p><p>Strain ε = ${fmt(eps,8)}</p>`)}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{['load','length','area'].forEach(x=>$(x).value='');$('E').value='200';$('resultBox').style.display='none';clearError();});
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

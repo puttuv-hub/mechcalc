@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Poisson's Ratio Calculator | MECHCALC</title>
+<meta name="description" content="Calculate Poisson ratio from longitudinal and lateral strain.">
+<meta name="author" content="Vishnu">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/poissons-ratio.html">
+<meta property="og:title" content="Poisson's Ratio Calculator | MECHCALC">
+<meta property="og:description" content="Calculate Poisson ratio from longitudinal and lateral strain.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MECHCALC">
+<meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/poissons-ratio.html">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="calculator.css">
+<link rel="stylesheet" href="som.css">
+</head>
+<body>
+<header class="header">
+  <div class="logo"><a href="index.html">⚙ MECHCALC</a></div>
+  <nav class="nav">
+    <a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a>
+  </nav>
+</header>
+
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container">
+<h1>Poisson's Ratio Calculator</h1><p>See axial extension and lateral contraction together while calculating Poisson’s ratio.</p><div class="engineering-quote">“Visualize the mechanics, then solve the equation.”</div>
+<a href="index.html#calculators" class="back-link">← Back to Calculators</a>
+</div></section>
+<section class="calculator-main"><div class="container">
+<div class="calculator-layout">
+<section class="input-panel"><h2>Enter Values</h2><div class="calculator-form-group"><label for="longStrain">Longitudinal Strain</label><div class="calculator-input-row"><input type="number" id="longStrain" placeholder="Enter value" step="any" value="0.001"></div></div><div class="calculator-form-group"><label for="latStrain">Lateral Strain</label><div class="calculator-input-row"><input type="number" id="latStrain" placeholder="Usually negative in tension" step="any" value="-0.0003"></div></div>
+<div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div>
+<div id="errorMessage" class="calculator-error" style="display:none;"></div>
+</section>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">ν = − εₗ / εₓ</div></div><div class="unit-info">Use signed strains: tensile axial strain positive, lateral contraction negative.</div></aside>
+</div>
+<section class="som-visual"><h3>Poisson effect</h3><svg class="som-svg" viewBox="0 0 760 210"><rect x="250" y="65" width="260" height="80" rx="4" class="som-fill"/><polygon points="200,105 245,85 245,125" class="som-accent"/><polygon points="560,105 515,85 515,125" class="som-accent"/><text x="325" y="55">Axial extension</text><line x1="545" y1="72" x2="545" y2="138" class="som-line"/><text x="560" y="108">lateral contraction</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none;"><h2>Calculation Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+
+<footer class="footer"><p>MECHCALC • Strength of Materials Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=(v,d=6)=>{ if(!Number.isFinite(v)) return '—'; const a=Math.abs(v); if((a>=1e7)||(a>0&&a<1e-5)) return v.toExponential(4); return Number(v.toFixed(d)).toLocaleString('en-IN'); };
+function showError(m){ $('errorMessage').textContent=m; $('errorMessage').style.display='block'; $('resultBox').style.display='none'; }
+function clearError(){ $('errorMessage').style.display='none'; $('errorMessage').textContent=''; }
+function showResult(main,html){ clearError(); $('mainResult').innerHTML=main; $('resultDetails').innerHTML=html; $('resultBox').style.display='block'; $('resultBox').scrollIntoView({behavior:'smooth',block:'start'}); }
+
+function calc(){const el=+$('longStrain').value,et=+$('latStrain').value;if(!Number.isFinite(el)||!Number.isFinite(et)||el===0)return showError('Enter valid strains and a non-zero longitudinal strain.');const nu=-et/el;showResult(`Poisson's ratio ν = <strong>${fmt(nu,6)}</strong>`,`<p>ν = − ε<sub>lateral</sub> / ε<sub>longitudinal</sub></p><p>ν = − (${fmt(et,8)}) / (${fmt(el,8)}) = <strong>${fmt(nu,6)}</strong></p><p class="som-note">For many ordinary isotropic engineering materials, ν is commonly between 0 and 0.5.</p>`)}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('longStrain').value='0.001';$('latStrain').value='-0.0003';$('resultBox').style.display='none';clearError();});
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

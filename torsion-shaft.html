@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Circular Shaft Torsion Calculator | MECHCALC</title>
+<meta name="description" content="Calculate torsional shear stress and angle of twist for solid or hollow circular shafts.">
+<meta name="author" content="Vishnu">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/torsion-shaft.html">
+<meta property="og:title" content="Circular Shaft Torsion Calculator | MECHCALC">
+<meta property="og:description" content="Calculate torsional shear stress and angle of twist for solid or hollow circular shafts.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MECHCALC">
+<meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/torsion-shaft.html">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="calculator.css">
+<link rel="stylesheet" href="som.css">
+</head>
+<body>
+<header class="header">
+  <div class="logo"><a href="index.html">⚙ MECHCALC</a></div>
+  <nav class="nav">
+    <a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a>
+  </nav>
+</header>
+
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container">
+<h1>Circular Shaft Torsion Calculator</h1><p>Visualize a twisting shaft and solve shear stress plus angle-of-twist problems together.</p><div class="engineering-quote">“Visualize the mechanics, then solve the equation.”</div>
+<a href="index.html#calculators" class="back-link">← Back to Calculators</a>
+</div></section>
+<section class="calculator-main"><div class="container">
+<div class="calculator-layout">
+<section class="input-panel"><h2>Enter Values</h2><div class="calculator-form-group"><label for="shaftType">Shaft type</label><select id="shaftType"><option value="solid">Solid circular</option><option value="hollow">Hollow circular</option></select></div><div class="calculator-form-group"><label for="T">Torque</label><div class="calculator-input-row"><input type="number" id="T" placeholder="Enter value" step="any" value="1"><select id="TUnit"><option value="kNm">kN·m</option><option value="Nm">N·m</option></select></div></div><div class="calculator-form-group"><label for="L">Length</label><div class="calculator-input-row"><input type="number" id="L" placeholder="Enter value" step="any" value="1000"><select id="LUnit"><option value="mm">mm</option><option value="m">m</option></select></div></div><div class="calculator-form-group"><label for="D">Outer Diameter D</label><div class="calculator-input-row"><input type="number" id="D" placeholder="Enter value" step="any" value="50"><select disabled><option>mm</option></select></div></div><div class="calculator-form-group"><label for="d">Inner Diameter d</label><div class="calculator-input-row"><input type="number" id="d" placeholder="Enter value" step="any" value="25"><select disabled><option>mm</option></select></div></div><div class="calculator-form-group"><label for="G">Shear Modulus G</label><div class="calculator-input-row"><input type="number" id="G" placeholder="Enter value" step="any" value="80"><select id="GUnit"><option value="GPa">GPa</option><option value="MPa">MPa</option></select></div></div>
+<div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div>
+<div id="errorMessage" class="calculator-error" style="display:none;"></div>
+</section>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">T/J = τ/R = Gθ/L</div></div><div class="unit-info">Circular shafts, linear elastic torsion.</div></aside>
+</div>
+<section class="som-visual"><h3>Shaft torsion visualization</h3><svg class="som-svg" viewBox="0 0 760 240"><ellipse cx="180" cy="120" rx="35" ry="75" class="som-fill"/><line x1="180" y1="45" x2="570" y2="45" class="som-line"/><line x1="180" y1="195" x2="570" y2="195" class="som-line"/><ellipse cx="570" cy="120" rx="35" ry="75" class="som-fill"/><path d="M120 80 Q85 120 120 160" class="som-accent" fill="none" stroke-width="5"/><polygon points="118,160 105,145 127,146" class="som-accent"/><path d="M630 160 Q665 120 630 80" class="som-accent" fill="none" stroke-width="5"/><polygon points="632,80 655,93 633,98" class="som-accent"/><text x="78" y="70">T</text><text x="655" y="70">T</text><text x="330" y="220">Angle of twist θ over length L</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none;"><h2>Calculation Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+
+<footer class="footer"><p>MECHCALC • Strength of Materials Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=(v,d=6)=>{ if(!Number.isFinite(v)) return '—'; const a=Math.abs(v); if((a>=1e7)||(a>0&&a<1e-5)) return v.toExponential(4); return Number(v.toFixed(d)).toLocaleString('en-IN'); };
+function showError(m){ $('errorMessage').textContent=m; $('errorMessage').style.display='block'; $('resultBox').style.display='none'; }
+function clearError(){ $('errorMessage').style.display='none'; $('errorMessage').textContent=''; }
+function showResult(main,html){ clearError(); $('mainResult').innerHTML=main; $('resultDetails').innerHTML=html; $('resultBox').style.display='block'; $('resultBox').scrollIntoView({behavior:'smooth',block:'start'}); }
+
+function update(){ $('d').closest('.calculator-form-group').style.display=$('shaftType').value==='hollow'?'':'none'; }
+function calc(){const T0=+$('T').value,L0=+$('L').value,D=+$('D').value,d0=+$('d').value,G0=+$('G').value;if(!(T0>0&&L0>0&&D>0&&G0>0))return showError('Enter positive torque, length, diameter and shear modulus.');if($('shaftType').value==='hollow'&&!(d0>=0&&d0<D))return showError('Inner diameter must be smaller than outer diameter.');const T=T0*($('TUnit').value==='kNm'?1e6:1000);const L=L0*($('LUnit').value==='m'?1000:1);const G=G0*($('GUnit').value==='GPa'?1000:1);const d=$('shaftType').value==='hollow'?d0:0;const J=Math.PI*(D**4-d**4)/32;const tau=T*(D/2)/J;const theta=T*L/(J*G);const deg=theta*180/Math.PI;showResult(`τmax = <strong>${fmt(tau)} MPa</strong>`,`<div class="som-result-grid"><div class="som-result-card"><strong>Polar moment J</strong>${fmt(J)} mm⁴</div><div class="som-result-card"><strong>Max shear stress</strong>${fmt(tau)} MPa</div><div class="som-result-card"><strong>Angle of twist</strong>${fmt(theta,8)} rad = ${fmt(deg)}°</div></div><p>J = π(D⁴−d⁴)/32</p><p>τmax = T(D/2)/J</p><p>θ = TL/(JG)</p>`)}
+$('shaftType').addEventListener('change',update);$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('shaftType').value='solid';$('T').value='1';$('L').value='1000';$('D').value='50';$('d').value='25';$('G').value='80';update();$('resultBox').style.display='none';clearError();});update();
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

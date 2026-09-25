@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thin Cylinder Stress Calculator | MECHCALC</title>
+<meta name="description" content="Calculate hoop and longitudinal stresses in a thin cylindrical pressure vessel.">
+<meta name="author" content="Vishnu">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/thin-cylinder.html">
+<meta property="og:title" content="Thin Cylinder Stress Calculator | MECHCALC">
+<meta property="og:description" content="Calculate hoop and longitudinal stresses in a thin cylindrical pressure vessel.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MECHCALC">
+<meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/thin-cylinder.html">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="calculator.css">
+<link rel="stylesheet" href="som.css">
+</head>
+<body>
+<header class="header">
+  <div class="logo"><a href="index.html">⚙ MECHCALC</a></div>
+  <nav class="nav">
+    <a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a>
+  </nav>
+</header>
+
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container">
+<h1>Thin Cylinder Stress Calculator</h1><p>Visualize hoop and longitudinal membrane stresses in a thin pressure vessel.</p><div class="engineering-quote">“Visualize the mechanics, then solve the equation.”</div>
+<a href="index.html#calculators" class="back-link">← Back to Calculators</a>
+</div></section>
+<section class="calculator-main"><div class="container">
+<div class="calculator-layout">
+<section class="input-panel"><h2>Enter Values</h2><div class="calculator-form-group"><label for="p">Internal Pressure</label><div class="calculator-input-row"><input type="number" id="p" placeholder="Enter value" step="any" value="2"><select id="pUnit"><option value="MPa">MPa</option><option value="bar">bar</option></select></div></div><div class="calculator-form-group"><label for="d">Internal Diameter</label><div class="calculator-input-row"><input type="number" id="d" placeholder="Enter value" step="any" value="500"><select disabled><option>mm</option></select></div></div><div class="calculator-form-group"><label for="t">Wall Thickness</label><div class="calculator-input-row"><input type="number" id="t" placeholder="Enter value" step="any" value="10"><select disabled><option>mm</option></select></div></div>
+<div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div>
+<div id="errorMessage" class="calculator-error" style="display:none;"></div>
+</section>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">σh = pd/2t &nbsp;&nbsp; σl = pd/4t</div></div><div class="unit-info">Neglects end effects and radial stress.</div></aside>
+</div>
+<section class="som-visual"><h3>Thin cylindrical shell</h3><svg class="som-svg" viewBox="0 0 760 240"><ellipse cx="220" cy="120" rx="60" ry="85" class="som-fill"/><line x1="220" y1="35" x2="540" y2="35" class="som-line"/><line x1="220" y1="205" x2="540" y2="205" class="som-line"/><ellipse cx="540" cy="120" rx="60" ry="85" class="som-fill"/><path d="M190 70 Q220 45 250 70" class="som-accent" fill="none" stroke-width="5"/><text x="185" y="55">hoop σh</text><line x1="350" y1="105" x2="410" y2="105" class="som-accent" stroke-width="4"/><polygon points="410,105 394,96 394,114" class="som-accent"/><text x="320" y="90">longitudinal σl</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none;"><h2>Calculation Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+
+<footer class="footer"><p>MECHCALC • Strength of Materials Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=(v,d=6)=>{ if(!Number.isFinite(v)) return '—'; const a=Math.abs(v); if((a>=1e7)||(a>0&&a<1e-5)) return v.toExponential(4); return Number(v.toFixed(d)).toLocaleString('en-IN'); };
+function showError(m){ $('errorMessage').textContent=m; $('errorMessage').style.display='block'; $('resultBox').style.display='none'; }
+function clearError(){ $('errorMessage').style.display='none'; $('errorMessage').textContent=''; }
+function showResult(main,html){ clearError(); $('mainResult').innerHTML=main; $('resultDetails').innerHTML=html; $('resultBox').style.display='block'; $('resultBox').scrollIntoView({behavior:'smooth',block:'start'}); }
+
+function calc(){const p0=+$('p').value,d=+$('d').value,t=+$('t').value;if(!(p0>0&&d>0&&t>0))return showError('Enter positive pressure, diameter and thickness.');const p=p0*($('pUnit').value==='bar'?0.1:1);const sh=p*d/(2*t),sl=p*d/(4*t),ratio=d/t;showResult(`Hoop stress = <strong>${fmt(sh)} MPa</strong>`,`<div class="som-result-grid"><div class="som-result-card"><strong>Hoop stress σh</strong>${fmt(sh)} MPa</div><div class="som-result-card"><strong>Longitudinal stress σl</strong>${fmt(sl)} MPa</div><div class="som-result-card"><strong>d/t ratio</strong>${fmt(ratio)}</div></div><p>σh = pd/(2t)</p><p>σl = pd/(4t)</p><p class="som-note">Thin-shell equations are most appropriate when d/t is large (commonly about 20 or more).</p>`)}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('p').value='2';$('d').value='500';$('t').value='10';$('resultBox').style.display='none';clearError();});
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

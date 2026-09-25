@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beam Deflection Calculator | MECHCALC</title>
+<meta name="description" content="Calculate maximum deflection and slope for common simply supported and cantilever beam cases.">
+<meta name="author" content="Vishnu">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/beam-deflection.html">
+<meta property="og:title" content="Beam Deflection Calculator | MECHCALC">
+<meta property="og:description" content="Calculate maximum deflection and slope for common simply supported and cantilever beam cases.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MECHCALC">
+<meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/beam-deflection.html">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="calculator.css">
+<link rel="stylesheet" href="som.css">
+</head>
+<body>
+<header class="header">
+  <div class="logo"><a href="index.html">⚙ MECHCALC</a></div>
+  <nav class="nav">
+    <a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a>
+  </nav>
+</header>
+
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container">
+<h1>Beam Deflection Calculator</h1><p>Choose a common beam/loading case and see the deflected shape while solving δ and slope.</p><div class="engineering-quote">“Visualize the mechanics, then solve the equation.”</div>
+<a href="index.html#calculators" class="back-link">← Back to Calculators</a>
+</div></section>
+<section class="calculator-main"><div class="container">
+<div class="calculator-layout">
+<section class="input-panel"><h2>Enter Values</h2><div class="calculator-form-group"><label for="caseType">Beam/loading case</label><select id="caseType"><option value="ssP">Simply supported — central point load</option><option value="ssW">Simply supported — full UDL</option><option value="cantP">Cantilever — end point load</option><option value="cantW">Cantilever — full UDL</option></select></div><div class="calculator-form-group"><label for="load">Load P or UDL w</label><div class="calculator-input-row"><input type="number" id="load" placeholder="Enter value" step="any" value="10"><select id="loadUnit" disabled><option value="kN">kN (point)</option><option value="kNm">kN/m (UDL)</option></select></div></div><div class="calculator-form-group"><label for="L">Span / Length</label><div class="calculator-input-row"><input type="number" id="L" placeholder="Enter value" step="any" value="4"><select id="LUnit"><option value="m">m</option><option value="mm">mm</option></select></div></div><div class="calculator-form-group"><label for="E">Young's Modulus</label><div class="calculator-input-row"><input type="number" id="E" placeholder="Enter value" step="any" value="200"><select id="EUnit"><option value="GPa">GPa</option><option value="MPa">MPa</option></select></div></div><div class="calculator-form-group"><label for="I">Second Moment I</label><div class="calculator-input-row"><input type="number" id="I" placeholder="Enter value" step="any" value="80000000"><select disabled><option>mm⁴</option></select></div></div>
+<div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div>
+<div id="errorMessage" class="calculator-error" style="display:none;"></div>
+</section>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">δ = function(P or w, L, E, I)</div></div><div class="unit-info">Euler–Bernoulli small-deflection beam formulas for standard cases.</div></aside>
+</div>
+<section class="som-visual"><h3>Deflected shape (schematic)</h3><svg id="defSvg" class="som-svg" viewBox="0 0 760 260"><line x1="110" y1="100" x2="650" y2="100" class="som-line" stroke-dasharray="6 5"/><path id="defCurve" d="M110 100 Q380 190 650 100" class="som-accent" fill="none" stroke-width="6"/><polygon id="leftSupport" points="95,135 125,135 110,105" class="som-support"/><circle id="rightRoller" cx="650" cy="120" r="15" class="som-support"/><text x="285" y="220">exaggerated elastic deflection</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none;"><h2>Calculation Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+
+<footer class="footer"><p>MECHCALC • Strength of Materials Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=(v,d=6)=>{ if(!Number.isFinite(v)) return '—'; const a=Math.abs(v); if((a>=1e7)||(a>0&&a<1e-5)) return v.toExponential(4); return Number(v.toFixed(d)).toLocaleString('en-IN'); };
+function showError(m){ $('errorMessage').textContent=m; $('errorMessage').style.display='block'; $('resultBox').style.display='none'; }
+function clearError(){ $('errorMessage').style.display='none'; $('errorMessage').textContent=''; }
+function showResult(main,html){ clearError(); $('mainResult').innerHTML=main; $('resultDetails').innerHTML=html; $('resultBox').style.display='block'; $('resultBox').scrollIntoView({behavior:'smooth',block:'start'}); }
+
+function draw(c){$('loadUnit').value=c.endsWith('W')?'kNm':'kN';const cant=c.startsWith('cant');$('leftSupport').style.display=cant?'none':'';$('rightRoller').style.display=cant?'none':'';$('defCurve').setAttribute('d',cant?'M110 100 C280 100 470 120 650 190':'M110 100 Q380 190 650 100');}
+function calc(){const c=$('caseType').value,q=+$('load').value,L0=+$('L').value,E0=+$('E').value,I=+$('I').value;if(!(q>0&&L0>0&&E0>0&&I>0))return showError('Enter positive load, length, E and I.');const L=L0*($('LUnit').value==='m'?1000:1),E=E0*($('EUnit').value==='GPa'?1000:1);let delta,slope,formula;if(c==='ssP'){const P=q*1000;delta=P*L**3/(48*E*I);slope=P*L**2/(16*E*I);formula='δmax = PL³/(48EI)';}else if(c==='ssW'){const w=q;delta=5*w*L**4/(384*E*I);slope=w*L**3/(24*E*I);formula='δmax = 5wL⁴/(384EI)';}else if(c==='cantP'){const P=q*1000;delta=P*L**3/(3*E*I);slope=P*L**2/(2*E*I);formula='δfree = PL³/(3EI)';}else{const w=q;delta=w*L**4/(8*E*I);slope=w*L**3/(6*E*I);formula='δfree = wL⁴/(8EI)';}draw(c);showResult(`Maximum deflection = <strong>${fmt(delta)} mm</strong>`,`<p>${formula}</p><p>Maximum slope ≈ <strong>${fmt(slope,8)} rad = ${fmt(slope*180/Math.PI)}°</strong></p><p>E = ${fmt(E)} MPa, I = ${fmt(I)} mm⁴, L = ${fmt(L)} mm</p><p class="som-note">For UDL cases, entering kN/m is numerically equal to N/mm.</p>`)}
+$('caseType').addEventListener('change',()=>draw($('caseType').value));$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('caseType').value='ssP';$('load').value='10';$('L').value='4';$('E').value='200';$('I').value='80000000';draw('ssP');$('resultBox').style.display='none';clearError();});draw('ssP');
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

@@ -72,3 +72,13 @@ GitHub Pages hosts static HTML/CSS/JavaScript. A future real account/login syste
 ## Live Website
 
 https://puttuv-hub.github.io/mechcalc/
+
+## Authentication
+
+MECHCALC includes a Firebase Authentication front end for Email/Password Sign Up, Login, Logout, and Password Reset.
+
+Before authentication becomes active, complete the one-time Firebase configuration described in `FIREBASE_SETUP.md` and replace the placeholder values in `firebase-config.js`.
+
+
+## Strength of Materials visual expansion
+Added 18 B.Tech-focused Strength of Materials problem solvers with step-by-step calculations and engineering diagrams, including beam reactions, deflection, SFD/BMD, torsion, principal stress/Mohr's circle, columns and pressure vessels.

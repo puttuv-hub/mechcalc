@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simply Supported Beam Reactions | MECHCALC</title>
+<meta name="description" content="Calculate support reactions for a simply supported beam carrying one point load plus a full-span UDL.">
+<meta name="author" content="Vishnu">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/beam-reactions.html">
+<meta property="og:title" content="Simply Supported Beam Reactions | MECHCALC">
+<meta property="og:description" content="Calculate support reactions for a simply supported beam carrying one point load plus a full-span UDL.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MECHCALC">
+<meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/beam-reactions.html">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="calculator.css">
+<link rel="stylesheet" href="som.css">
+</head>
+<body>
+<header class="header">
+  <div class="logo"><a href="index.html">⚙ MECHCALC</a></div>
+  <nav class="nav">
+    <a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a>
+  </nav>
+</header>
+
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container">
+<h1>Simply Supported Beam Reactions</h1><p>See the beam, supports and loads while solving equilibrium equations for RA and RB.</p><div class="engineering-quote">“Visualize the mechanics, then solve the equation.”</div>
+<a href="index.html#calculators" class="back-link">← Back to Calculators</a>
+</div></section>
+<section class="calculator-main"><div class="container">
+<div class="calculator-layout">
+<section class="input-panel"><h2>Enter Values</h2><div class="calculator-form-group"><label for="L">Beam Span L</label><div class="calculator-input-row"><input type="number" id="L" placeholder="Enter value" step="any" value="6"><select id="LUnit"><option value="m">m</option><option value="mm">mm</option></select></div></div><div class="calculator-form-group"><label for="P">Point Load P</label><div class="calculator-input-row"><input type="number" id="P" placeholder="Enter value" step="any" value="20"><select id="PUnit"><option value="kN">kN</option><option value="N">N</option></select></div></div><div class="calculator-form-group"><label for="a">Point Load Position a from Left Support</label><div class="calculator-input-row"><input type="number" id="a" placeholder="Enter value" step="any" value="2"><select id="aUnit"><option value="m">m</option><option value="mm">mm</option></select></div></div><div class="calculator-form-group"><label for="w">Full-span UDL w</label><div class="calculator-input-row"><input type="number" id="w" placeholder="Enter value" step="any" value="5"><select id="wUnit"><option value="kNm">kN/m</option><option value="Nm">N/m</option></select></div></div>
+<div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div>
+<div id="errorMessage" class="calculator-error" style="display:none;"></div>
+</section>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">ΣV = 0 &nbsp;&nbsp; ΣM = 0</div></div><div class="unit-info">Current solver handles one point load plus a UDL over the full span.</div></aside>
+</div>
+<section class="som-visual"><h3>Simply supported beam loading</h3><svg id="beamSvg" class="som-svg" viewBox="0 0 760 280"><line x1="100" y1="145" x2="660" y2="145" class="som-member"/><polygon points="115,175 85,175 100,145" class="som-support"/><circle cx="660" cy="165" r="18" class="som-support"/><line x1="635" y1="190" x2="685" y2="190" class="som-line"/><line id="pointArrow" x1="285" y1="65" x2="285" y2="135" class="som-accent" stroke-width="4"/><polygon id="pointHead" points="285,140 277,126 293,126" class="som-accent"/><text id="pointLabel" x="270" y="50">P</text><g id="udlGroup"></g><text x="90" y="215">A</text><text x="650" y="215">B</text><text x="330" y="245">Span L</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none;"><h2>Calculation Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+
+<footer class="footer"><p>MECHCALC • Strength of Materials Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=(v,d=6)=>{ if(!Number.isFinite(v)) return '—'; const a=Math.abs(v); if((a>=1e7)||(a>0&&a<1e-5)) return v.toExponential(4); return Number(v.toFixed(d)).toLocaleString('en-IN'); };
+function showError(m){ $('errorMessage').textContent=m; $('errorMessage').style.display='block'; $('resultBox').style.display='none'; }
+function clearError(){ $('errorMessage').style.display='none'; $('errorMessage').textContent=''; }
+function showResult(main,html){ clearError(); $('mainResult').innerHTML=main; $('resultDetails').innerHTML=html; $('resultBox').style.display='block'; $('resultBox').scrollIntoView({behavior:'smooth',block:'start'}); }
+
+function draw(L,a,w){const x=100+560*Math.max(0,Math.min(1,a/L));$('pointArrow').setAttribute('x1',x);$('pointArrow').setAttribute('x2',x);$('pointHead').setAttribute('points',`${x},140 ${x-8},126 ${x+8},126`);$('pointLabel').setAttribute('x',x-10);const g=$('udlGroup');g.innerHTML='';if(w>0){for(let xx=120;xx<=640;xx+=45){g.insertAdjacentHTML('beforeend',`<line x1="${xx}" y1="80" x2="${xx}" y2="128" class="som-line"/><polygon points="${xx},138 ${xx-6},125 ${xx+6},125" class="som-accent"/>`)}g.insertAdjacentHTML('beforeend','<text x="510" y="65">UDL w</text>')}}
+function calc(){let L=+$('L').value,P=+$('P').value,a=+$('a').value,w=+$('w').value;if(!(L>0&&P>=0&&a>=0&&w>=0))return showError('Enter valid non-negative loads and positive span.');if($('LUnit').value==='mm')L/=1000;if($('aUnit').value==='mm')a/=1000;if($('PUnit').value==='N')P/=1000;if($('wUnit').value==='Nm')w/=1000;if(a>L)return showError('Point-load position a must lie within the beam span.');const W=w*L;const RB=(P*a+W*(L/2))/L;const RA=P+W-RB;draw(L,a,w);showResult(`Reactions: <strong>RA = ${fmt(RA)} kN</strong>, RB = ${fmt(RB)} kN`,`<p>ΣV = 0: RA + RB = P + wL = ${fmt(P+W)} kN</p><p>Taking moments about A:</p><p>RB L = P a + (wL)(L/2)</p><p>RB = ${fmt(RB)} kN</p><p>RA = ${fmt(RA)} kN</p>`)}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('L').value='6';$('P').value='20';$('a').value='2';$('w').value='5';$('resultBox').style.display='none';clearError();draw(6,2,5);});draw(6,2,5);
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thermal Stress Calculator | MECHCALC</title>
+<meta name="description" content="Calculate thermal stress in a fully restrained bar using σ = EαΔT.">
+<meta name="author" content="Vishnu">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/thermal-stress.html">
+<meta property="og:title" content="Thermal Stress Calculator | MECHCALC">
+<meta property="og:description" content="Calculate thermal stress in a fully restrained bar using σ = EαΔT.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MECHCALC">
+<meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/thermal-stress.html">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="calculator.css">
+<link rel="stylesheet" href="som.css">
+</head>
+<body>
+<header class="header">
+  <div class="logo"><a href="index.html">⚙ MECHCALC</a></div>
+  <nav class="nav">
+    <a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a>
+  </nav>
+</header>
+
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container">
+<h1>Thermal Stress Calculator</h1><p>Visualize why restrained expansion creates stress and solve it step by step.</p><div class="engineering-quote">“Visualize the mechanics, then solve the equation.”</div>
+<a href="index.html#calculators" class="back-link">← Back to Calculators</a>
+</div></section>
+<section class="calculator-main"><div class="container">
+<div class="calculator-layout">
+<section class="input-panel"><h2>Enter Values</h2><div class="calculator-form-group"><label for="E">Young's Modulus</label><div class="calculator-input-row"><input type="number" id="E" placeholder="Enter value" step="any" value="200"><select id="EUnit"><option value="GPa">GPa</option><option value="MPa">MPa</option></select></div></div><div class="calculator-form-group"><label for="alpha">Coefficient of Thermal Expansion</label><div class="calculator-input-row"><input type="number" id="alpha" placeholder="Enter value" step="any" value="12"><select id="alphaUnit"><option value="micro">µm/m·°C</option><option value="perC">1/°C</option></select></div></div><div class="calculator-form-group"><label for="dT">Temperature Change</label><div class="calculator-input-row"><input type="number" id="dT" placeholder="Heating + / cooling -" step="any" value="50"><select id="tempUnit"><option value="C">°C</option><option value="K">K</option></select></div></div>
+<div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div>
+<div id="errorMessage" class="calculator-error" style="display:none;"></div>
+</section>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">σ = E α ΔT</div></div><div class="unit-info"><strong>Full restraint:</strong> total axial strain is zero.</div></aside>
+</div>
+<section class="som-visual"><h3>Fully restrained bar</h3><svg class="som-svg" viewBox="0 0 760 210"><rect x="120" y="70" width="35" height="80" class="som-support"/><rect x="605" y="70" width="35" height="80" class="som-support"/><line x1="155" y1="110" x2="605" y2="110" class="som-member"/><text x="300" y="75">Heating/cooling tries to change length</text><text x="235" y="165">Rigid supports prevent free expansion/contraction</text><path d="M330 105 l20 -15 l20 15 l20 -15 l20 15" class="som-accent" fill="none" stroke-width="4"/></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none;"><h2>Calculation Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+
+<footer class="footer"><p>MECHCALC • Strength of Materials Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=(v,d=6)=>{ if(!Number.isFinite(v)) return '—'; const a=Math.abs(v); if((a>=1e7)||(a>0&&a<1e-5)) return v.toExponential(4); return Number(v.toFixed(d)).toLocaleString('en-IN'); };
+function showError(m){ $('errorMessage').textContent=m; $('errorMessage').style.display='block'; $('resultBox').style.display='none'; }
+function clearError(){ $('errorMessage').style.display='none'; $('errorMessage').textContent=''; }
+function showResult(main,html){ clearError(); $('mainResult').innerHTML=main; $('resultDetails').innerHTML=html; $('resultBox').style.display='block'; $('resultBox').scrollIntoView({behavior:'smooth',block:'start'}); }
+
+function calc(){const E0=+$('E').value,a0=+$('alpha').value,dT=+$('dT').value;if(!(E0>0&&Number.isFinite(a0)&&Number.isFinite(dT)))return showError('Enter valid E, thermal expansion coefficient and temperature change.');const E=E0*($('EUnit').value==='GPa'?1000:1);const a=a0*($('alphaUnit').value==='micro'?1e-6:1);const eth=a*dT;const sig=-E*eth;const nature=sig<0?'compressive':'tensile';showResult(`Thermal stress = <strong>${fmt(Math.abs(sig))} MPa ${nature}</strong>`,`<p>Free thermal strain: εₜ = αΔT = ${fmt(eth,9)}</p><p>Because the bar is fully restrained, mechanical strain cancels thermal strain.</p><p>σ = −EαΔT = −${fmt(E)} × ${fmt(a,9)} × ${fmt(dT)} = <strong>${fmt(sig)} MPa</strong></p><p class="som-note">Heating gives compressive stress; cooling gives tensile stress for full restraint.</p>`)}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('E').value='200';$('alpha').value='12';$('dT').value='50';$('resultBox').style.display='none';clearError();});
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

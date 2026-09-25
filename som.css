@@ -1,0 +1,31 @@
+
+/* MECHCALC Strength of Materials visualization helpers */
+.som-visual {
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 18px;
+    margin-top: 22px;
+}
+.som-visual h3 { margin-bottom: 12px; color: #101820; }
+.som-svg { width: 100%; height: auto; display: block; min-height: 180px; }
+.som-svg text { font-family: Arial, Helvetica, sans-serif; fill: #344054; font-size: 13px; }
+.som-member { stroke: #101820; stroke-width: 8; stroke-linecap: round; fill: none; }
+.som-line { stroke: #667085; stroke-width: 2; fill: none; }
+.som-accent { stroke: #f59e0b; fill: #f59e0b; }
+.som-fill { fill: #fff7e6; stroke: #f59e0b; stroke-width: 2; }
+.som-support { fill: #d1d5db; stroke: #101820; stroke-width: 2; }
+.som-result-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-top:16px; }
+.som-result-card { background:#fff; border:1px solid #e5e7eb; border-radius:9px; padding:14px; }
+.som-result-card strong { display:block; color:#101820; margin-bottom:4px; }
+.som-note { margin-top:14px; padding:12px 14px; background:#fff7e6; border-left:4px solid #f59e0b; border-radius:6px; }
+.som-controls-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.som-table { width:100%; border-collapse:collapse; margin-top:12px; }
+.som-table th,.som-table td { border:1px solid #d0d5dd; padding:8px; text-align:center; }
+.som-table th { background:#f8fafc; }
+.mohr-grid { stroke:#e5e7eb; stroke-width:1; }
+.mohr-axis { stroke:#667085; stroke-width:1.4; }
+.mohr-circle { stroke:#f59e0b; stroke-width:3; fill:none; }
+.mohr-point { fill:#101820; }
+.diagram-label { font-weight:700; }
+@media (max-width:650px){ .som-result-grid,.som-controls-row{grid-template-columns:1fr;} .som-svg{min-height:150px;} }

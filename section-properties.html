@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Section Properties Calculator | MECHCALC</title>
+<meta name="description" content="Calculate area, second moment of area and section modulus for common beam cross-sections.">
+<meta name="author" content="Vishnu">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/section-properties.html">
+<meta property="og:title" content="Section Properties Calculator | MECHCALC">
+<meta property="og:description" content="Calculate area, second moment of area and section modulus for common beam cross-sections.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MECHCALC">
+<meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/section-properties.html">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="calculator.css">
+<link rel="stylesheet" href="som.css">
+</head>
+<body>
+<header class="header">
+  <div class="logo"><a href="index.html">⚙ MECHCALC</a></div>
+  <nav class="nav">
+    <a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a>
+  </nav>
+</header>
+
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container">
+<h1>Section Properties Calculator</h1><p>Visualize common cross-sections and calculate A, I and Z for bending problems.</p><div class="engineering-quote">“Visualize the mechanics, then solve the equation.”</div>
+<a href="index.html#calculators" class="back-link">← Back to Calculators</a>
+</div></section>
+<section class="calculator-main"><div class="container">
+<div class="calculator-layout">
+<section class="input-panel"><h2>Enter Values</h2><div class="calculator-form-group"><label for="shape">Cross-section</label><select id="shape"><option value="rect">Rectangle</option><option value="circle">Solid circle</option><option value="hcircle">Hollow circle</option><option value="hrect">Hollow rectangle</option></select></div><div class="calculator-form-group"><label for="b">Outer width / diameter b or D</label><div class="calculator-input-row"><input type="number" id="b" placeholder="Enter value" step="any" value="100"><select disabled><option>mm</option></select></div></div><div class="calculator-form-group"><label for="h">Outer height H (rectangle only)</label><div class="calculator-input-row"><input type="number" id="h" placeholder="Enter value" step="any" value="200"><select disabled><option>mm</option></select></div></div><div class="calculator-form-group"><label for="bi">Inner width / diameter bᵢ or d</label><div class="calculator-input-row"><input type="number" id="bi" placeholder="Enter value" step="any" value="50"><select disabled><option>mm</option></select></div></div><div class="calculator-form-group"><label for="hi">Inner height hᵢ (hollow rectangle)</label><div class="calculator-input-row"><input type="number" id="hi" placeholder="Enter value" step="any" value="100"><select disabled><option>mm</option></select></div></div>
+<div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div>
+<div id="errorMessage" class="calculator-error" style="display:none;"></div>
+</section>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">Iₓ and Zₓ = I / yₘₐₓ</div></div><div class="unit-info">Dimensions are in mm; outputs are mm², mm⁴ and mm³.</div></aside>
+</div>
+<section class="som-visual"><h3>Cross-section visualization</h3><svg id="sectionSvg" class="som-svg" viewBox="0 0 760 240"><rect id="outerRect" x="280" y="45" width="200" height="150" class="som-fill"/><rect id="innerRect" x="330" y="80" width="100" height="80" fill="#f8fafc" stroke="#101820" stroke-width="2"/><circle id="outerCircle" cx="380" cy="120" r="90" class="som-fill" style="display:none"/><circle id="innerCircle" cx="380" cy="120" r="40" fill="#f8fafc" stroke="#101820" stroke-width="2" style="display:none"/><line x1="230" y1="120" x2="530" y2="120" class="som-line" stroke-dasharray="6 5"/><text x="540" y="125">centroidal x-axis</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none;"><h2>Calculation Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+
+<footer class="footer"><p>MECHCALC • Strength of Materials Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=(v,d=6)=>{ if(!Number.isFinite(v)) return '—'; const a=Math.abs(v); if((a>=1e7)||(a>0&&a<1e-5)) return v.toExponential(4); return Number(v.toFixed(d)).toLocaleString('en-IN'); };
+function showError(m){ $('errorMessage').textContent=m; $('errorMessage').style.display='block'; $('resultBox').style.display='none'; }
+function clearError(){ $('errorMessage').style.display='none'; $('errorMessage').textContent=''; }
+function showResult(main,html){ clearError(); $('mainResult').innerHTML=main; $('resultDetails').innerHTML=html; $('resultBox').style.display='block'; $('resultBox').scrollIntoView({behavior:'smooth',block:'start'}); }
+
+function updateShape(){const s=$('shape').value;const rc=['rect','hrect'].includes(s),hc=s==='hcircle';$('outerRect').style.display=rc?'':'none';$('innerRect').style.display=s==='hrect'?'':'none';$('outerCircle').style.display=!rc?'':'none';$('innerCircle').style.display=hc?'':'none';$('h').closest('.calculator-form-group').style.display=rc?'':'none';$('hi').closest('.calculator-form-group').style.display=s==='hrect'?'':'none';$('bi').closest('.calculator-form-group').style.display=(hc||s==='hrect')?'':'none';}
+function calc(){const s=$('shape').value,b=+$('b').value,h=+$('h').value,bi=+$('bi').value,hi=+$('hi').value;let A,I,Z,desc;if(s==='rect'){if(!(b>0&&h>0))return showError('Enter positive rectangle dimensions.');A=b*h;I=b*h**3/12;Z=I/(h/2);desc=`Rectangle ${fmt(b)} × ${fmt(h)} mm`;}else if(s==='circle'){if(!(b>0))return showError('Enter a positive diameter.');A=Math.PI*b*b/4;I=Math.PI*b**4/64;Z=I/(b/2);desc=`Solid circle D = ${fmt(b)} mm`;}else if(s==='hcircle'){if(!(b>0&&bi>=0&&bi<b))return showError('Outer diameter must be greater than inner diameter.');A=Math.PI*(b*b-bi*bi)/4;I=Math.PI*(b**4-bi**4)/64;Z=I/(b/2);desc=`Hollow circle D = ${fmt(b)} mm, d = ${fmt(bi)} mm`;}else{if(!(b>0&&h>0&&bi>=0&&hi>=0&&bi<b&&hi<h))return showError('Enter valid outer and inner rectangular dimensions.');A=b*h-bi*hi;I=(b*h**3-bi*hi**3)/12;Z=I/(h/2);desc=`Hollow rectangle ${fmt(b)}×${fmt(h)} − ${fmt(bi)}×${fmt(hi)} mm`;}showResult(`Iₓ = <strong>${fmt(I)} mm⁴</strong>`,`<p>${desc}</p><div class="som-result-grid"><div class="som-result-card"><strong>Area A</strong>${fmt(A)} mm²</div><div class="som-result-card"><strong>Second moment Iₓ</strong>${fmt(I)} mm⁴</div><div class="som-result-card"><strong>Section modulus Zₓ</strong>${fmt(Z)} mm³</div></div>`)}
+$('shape').addEventListener('change',updateShape);$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('shape').value='rect';$('b').value='100';$('h').value='200';$('bi').value='50';$('hi').value='100';updateShape();$('resultBox').style.display='none';clearError();});updateShape();
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>
