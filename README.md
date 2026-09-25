@@ -68,3 +68,7 @@ Then configure GitHub Pages to publish the `main` branch from `/(root)`.
 ## Login limitation
 
 GitHub Pages hosts static HTML/CSS/JavaScript. A future real account/login system will need an external authentication/backend service. The current static/demo account section can still be hosted normally.
+
+## Live Website
+
+https://puttuv-hub.github.io/mechcalc/

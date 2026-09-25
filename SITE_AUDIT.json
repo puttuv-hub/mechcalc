@@ -1,18 +1,17 @@
 {
-  "status": "GitHub Pages package ready",
-  "html_files": 26,
-  "calculator_pages_expected": 23,
-  "calculator_pages_present": 23,
-  "css_files": [
-    "calculator.css",
-    "style.css"
-  ],
-  "markdown_fences_remaining": [],
-  "missing_local_files": {},
+  "site_url": "https://puttuv-hub.github.io/mechcalc/",
+  "audit_date": "2026-09-25",
+  "html_pages": 26,
+  "canonical_tags": 26,
+  "open_graph_url_tags": 26,
+  "sitemap_urls": 26,
+  "broken_local_links": 0,
   "javascript_syntax_errors": 0,
-  "jsonld_parse_errors": 0,
+  "json_ld_parse_errors": 0,
+  "markdown_code_fences": 0,
   "notes": [
-    "Original MECHCALC design files preserved.",
-    "robots.txt and sitemap.xml should be updated to final absolute public URLs after the GitHub Pages URL/custom domain is known."
+    "Design and calculator logic were not redesigned.",
+    "Sitemap and robots.txt use the live GitHub Pages project URL.",
+    "unit-converter.html added to sitemap."
   ]
 }

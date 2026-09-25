@@ -4,115 +4,121 @@
 
     <!-- Homepage -->
     <url>
-        <loc>/</loc>
+        <loc>https://puttuv-hub.github.io/mechcalc/</loc>
     </url>
 
     <!-- Engineering Resources -->
     <url>
-        <loc>/engineering-resources.html</loc>
+        <loc>https://puttuv-hub.github.io/mechcalc/engineering-resources.html</loc>
     </url>
 
     <!-- Strength of Materials -->
 
     <url>
-        <loc>/stress.html</loc>
+        <loc>https://puttuv-hub.github.io/mechcalc/stress.html</loc>
     </url>
 
     <url>
-        <loc>/strain.html</loc>
+        <loc>https://puttuv-hub.github.io/mechcalc/strain.html</loc>
     </url>
 
     <url>
-        <loc>/youngs-modulus.html</loc>
+        <loc>https://puttuv-hub.github.io/mechcalc/youngs-modulus.html</loc>
     </url>
 
 
     <!-- Mechanics -->
 
     <url>
-        <loc>/force.html</loc>
+        <loc>https://puttuv-hub.github.io/mechcalc/force.html</loc>
     </url>
 
     <url>
-        <loc>/power.html</loc>
+        <loc>https://puttuv-hub.github.io/mechcalc/power.html</loc>
     </url>
 
     <url>
-        <loc>/torque.html</loc>
+        <loc>https://puttuv-hub.github.io/mechcalc/torque.html</loc>
     </url>
 
     <url>
-        <loc>/work.html</loc>
+        <loc>https://puttuv-hub.github.io/mechcalc/work.html</loc>
     </url>
 
     <url>
-        <loc>/kinetic-energy.html</loc>
+        <loc>https://puttuv-hub.github.io/mechcalc/kinetic-energy.html</loc>
     </url>
 
     <url>
-        <loc>/weight.html</loc>
+        <loc>https://puttuv-hub.github.io/mechcalc/weight.html</loc>
     </url>
 
     <url>
-        <loc>/mechanical-efficiency.html</loc>
+        <loc>https://puttuv-hub.github.io/mechcalc/mechanical-efficiency.html</loc>
     </url>
 
 
     <!-- Fluid Mechanics -->
 
     <url>
-        <loc>/pressure.html</loc>
+        <loc>https://puttuv-hub.github.io/mechcalc/pressure.html</loc>
     </url>
 
     <url>
-        <loc>/density.html</loc>
+        <loc>https://puttuv-hub.github.io/mechcalc/density.html</loc>
     </url>
 
     <url>
-        <loc>/specific-weight.html</loc>
+        <loc>https://puttuv-hub.github.io/mechcalc/specific-weight.html</loc>
     </url>
 
     <url>
-        <loc>/specific-gravity.html</loc>
+        <loc>https://puttuv-hub.github.io/mechcalc/specific-gravity.html</loc>
     </url>
 
     <url>
-        <loc>/viscosity.html</loc>
+        <loc>https://puttuv-hub.github.io/mechcalc/viscosity.html</loc>
     </url>
 
     <url>
-        <loc>/kinematic-viscosity.html</loc>
+        <loc>https://puttuv-hub.github.io/mechcalc/kinematic-viscosity.html</loc>
     </url>
 
     <url>
-        <loc>/reynolds-number.html</loc>
+        <loc>https://puttuv-hub.github.io/mechcalc/reynolds-number.html</loc>
     </url>
 
     <url>
-        <loc>/bernoulli.html</loc>
+        <loc>https://puttuv-hub.github.io/mechcalc/bernoulli.html</loc>
     </url>
 
     <url>
-        <loc>/continuity.html</loc>
+        <loc>https://puttuv-hub.github.io/mechcalc/continuity.html</loc>
     </url>
 
     <url>
-        <loc>/pipe-flow-rate.html</loc>
+        <loc>https://puttuv-hub.github.io/mechcalc/pipe-flow-rate.html</loc>
     </url>
 
     <url>
-        <loc>/head-loss.html</loc>
+        <loc>https://puttuv-hub.github.io/mechcalc/head-loss.html</loc>
     </url>
 
 
     <!-- Hydraulic & Pump -->
 
     <url>
-        <loc>/hydraulic-power.html</loc>
+        <loc>https://puttuv-hub.github.io/mechcalc/hydraulic-power.html</loc>
     </url>
 
     <url>
-        <loc>/pump-power.html</loc>
+        <loc>https://puttuv-hub.github.io/mechcalc/pump-power.html</loc>
+    </url>
+
+
+    <!-- Unit Converter -->
+    <url>
+        <loc>https://puttuv-hub.github.io/mechcalc/unit-converter.html</loc>
     </url>
 
 </urlset>

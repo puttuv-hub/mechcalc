@@ -16,3 +16,7 @@
 - Inline JavaScript syntax errors: **0**
 - JSON-LD parse errors: **0**
 - Expected calculator pages present: **23 / 23**
+
+## Live GitHub Pages URL
+
+https://puttuv-hub.github.io/mechcalc/
