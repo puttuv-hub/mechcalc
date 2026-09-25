@@ -1,292 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-    <!-- Homepage -->
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/</loc>
-    </url>
-
-    <!-- Engineering Resources -->
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/engineering-resources.html</loc>
-    </url>
-
-    <!-- Strength of Materials -->
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/stress.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/strain.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/youngs-modulus.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/axial-deformation.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/thermal-stress.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/poissons-ratio.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/elastic-constants.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/section-properties.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/bending-stress.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/beam-shear-stress.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/torsion-shaft.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/principal-stress.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/thin-cylinder.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/thin-spherical-shell.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/euler-buckling.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/rankine-column.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/strain-energy.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/direct-shear-stress.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/beam-reactions.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/beam-deflection.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/sfd-bmd.html</loc>
-    </url>
-
-
-
-    <!-- Mechanics -->
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/force.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/power.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/torque.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/work.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/kinetic-energy.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/weight.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/mechanical-efficiency.html</loc>
-    </url>
-
-
-    <!-- Fluid Mechanics -->
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/pressure.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/density.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/specific-weight.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/specific-gravity.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/viscosity.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/kinematic-viscosity.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/reynolds-number.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/bernoulli.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/continuity.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/pipe-flow-rate.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/head-loss.html</loc>
-    </url>
-
-
-    <!-- Hydraulic & Pump -->
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/hydraulic-power.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/pump-power.html</loc>
-    </url>
-
-
-
-    <!-- Thermodynamics -->
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/ideal-gas-law.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/first-law-closed-system.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/steady-flow-energy.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/specific-heats.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/delta-u-h.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/constant-volume-process.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/constant-pressure-process.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/isothermal-process.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/polytropic-process.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/isentropic-process.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/entropy-change.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/carnot-cycle.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/otto-cycle.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/diesel-cycle.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/dual-cycle.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/brayton-cycle.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/rankine-cycle.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/nozzle-diffuser.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/turbine-efficiency.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/compressor-efficiency.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/throttling-process.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/mixing-chamber.html</loc>
-    </url>
-
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/steam-quality.html</loc>
-    </url>
-
-    <!-- Unit Converter -->
-    <url>
-        <loc>https://puttuv-hub.github.io/mechcalc/unit-converter.html</loc>
-    </url>
-
+  <url><loc>https://puttuv-hub.github.io/mechcalc/axial-deformation.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/beam-deflection.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/beam-reactions.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/beam-shear-stress.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/bending-stress.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/bernoulli.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/biot-fourier.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/brayton-cycle.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/carnot-cycle.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/combined-wall-heat-transfer.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/composite-wall.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/compressor-efficiency.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/constant-pressure-process.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/constant-volume-process.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/continuity.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/convection-heat-transfer.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/critical-radius-insulation.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/cylindrical-conduction.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/delta-u-h.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/density.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/diesel-cycle.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/direct-shear-stress.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/dual-cycle.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/elastic-constants.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/engineering-resources.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/entropy-change.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/euler-buckling.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/fin-analysis.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/fin-efficiency.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/first-law-closed-system.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/force.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/head-loss.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/heat-exchanger-lmtd.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/heat-exchanger-ntu.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/hydraulic-power.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/ideal-gas-law.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/internal-heat-generation.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/isentropic-process.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/isothermal-process.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/kinematic-viscosity.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/kinetic-energy.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/lumped-capacitance.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/mechanical-efficiency.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/mixing-chamber.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/nozzle-diffuser.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/otto-cycle.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/overall-heat-transfer.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/pipe-flow-rate.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/plane-wall-conduction.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/poissons-ratio.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/polytropic-process.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/power.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/pressure.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/principal-stress.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/pump-power.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/radiation-heat-transfer.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/radiation-two-surfaces.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/rankine-column.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/rankine-cycle.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/reynolds-number.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/section-properties.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/sfd-bmd.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/specific-gravity.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/specific-heats.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/specific-weight.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/spherical-conduction.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/steady-flow-energy.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/steam-quality.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/strain-energy.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/strain.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/stress.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/thermal-contact-resistance.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/thermal-stress.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/thin-cylinder.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/thin-spherical-shell.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/throttling-process.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/torque.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/torsion-shaft.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/turbine-efficiency.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/unit-converter.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/viscosity.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/weight.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/work.html</loc></url>
+  <url><loc>https://puttuv-hub.github.io/mechcalc/youngs-modulus.html</loc></url>
 </urlset>

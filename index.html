@@ -381,6 +381,14 @@
                     <button
                         type="button"
                         class="calculator-filter"
+                        data-filter="heat"
+                    >
+                        Heat Transfer
+                    </button>
+
+                    <button
+                        type="button"
+                        class="calculator-filter"
                         data-filter="fluid"
                     >
                         Fluid Mechanics
@@ -686,7 +694,28 @@
 
                 <!-- ================= FLUID MECHANICS ================= -->
 
-                <div
+                
+                <!-- HEAT TRANSFER EXPANSION -->
+                <div class="calculator-card-home" data-category="heat"><h3>Plane Wall Conduction</h3><p>Fourier-law solver for steady 1-D conduction through a flat wall.</p><a href="plane-wall-conduction.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="heat"><h3>Composite Wall</h3><p>Thermal-resistance network for multilayer walls.</p><a href="composite-wall.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="heat"><h3>Cylindrical Conduction</h3><p>Radial conduction through pipe and cylindrical walls.</p><a href="cylindrical-conduction.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="heat"><h3>Spherical Conduction</h3><p>Radial conduction through spherical shells.</p><a href="spherical-conduction.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="heat"><h3>Convection Heat Transfer</h3><p>Newton’s law of cooling with heat flux and rate.</p><a href="convection-heat-transfer.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="heat"><h3>Conduction + Convection Wall</h3><p>Overall resistance through convection–wall–convection systems.</p><a href="combined-wall-heat-transfer.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="heat"><h3>Critical Radius of Insulation</h3><p>Critical insulation radius for cylinders and spheres.</p><a href="critical-radius-insulation.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="heat"><h3>Surface Radiation</h3><p>Gray-surface radiation to large surroundings.</p><a href="radiation-heat-transfer.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="heat"><h3>Radiation Between Plates</h3><p>Net exchange between two large gray surfaces.</p><a href="radiation-two-surfaces.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="heat"><h3>Straight Fin Heat Transfer</h3><p>Heat dissipated by an extended surface with an adiabatic tip.</p><a href="fin-analysis.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="heat"><h3>Fin Efficiency</h3><p>Fin efficiency and effectiveness for straight fins.</p><a href="fin-efficiency.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="heat"><h3>Lumped Capacitance</h3><p>Transient heating/cooling using the lumped model.</p><a href="lumped-capacitance.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="heat"><h3>Biot & Fourier Numbers</h3><p>Dimensionless transient-conduction checks and interpretation.</p><a href="biot-fourier.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="heat"><h3>Heat Exchanger LMTD</h3><p>Parallel/counter-flow LMTD and heat-transfer rate.</p><a href="heat-exchanger-lmtd.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="heat"><h3>Heat Exchanger ε–NTU</h3><p>Effectiveness–NTU solver for counter-flow exchangers.</p><a href="heat-exchanger-ntu.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="heat"><h3>Overall U-Value</h3><p>Overall heat-transfer coefficient from series resistances.</p><a href="overall-heat-transfer.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="heat"><h3>Thermal Contact Resistance</h3><p>Heat transfer across contacting solid surfaces.</p><a href="thermal-contact-resistance.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="heat"><h3>Internal Heat Generation</h3><p>Maximum slab temperature with uniform volumetric heat generation.</p><a href="internal-heat-generation.html" class="calculator-button">Open Calculator</a></div>
+
+<div
                     class="calculator-card-home"
                     data-category="fluid"
                 >

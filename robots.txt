@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
 Sitemap: https://puttuv-hub.github.io/mechcalc/sitemap.xml
