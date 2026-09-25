@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Bernoulli Equation Calculator | MECHCALC</title>
-
-    <link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/bernoulli.html">
-    <meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/bernoulli.html">
     <meta name="description" content="Calculate pressure, velocity, elevation and head using the Bernoulli equation.">
 
     <link rel="stylesheet" href="style.css">
@@ -1000,3 +997,211 @@
                 P₁/ρg + V₁²/2g + z₁
                 − P₂/ρg − z₂
             `;
+
+        }
+
+
+        /*
+         * Unknown Z2
+         */
+        else {
+
+            const totalHead1 =
+                pressureHead1 +
+                velocityHead1 +
+                Z1;
+
+            answer =
+                totalHead1 -
+                pressureHead2 -
+                velocityHead2;
+
+            answerUnit = "m";
+            answerLabel = "Elevation at Point 2";
+
+            formulaSteps = `
+                z₂ =
+                P₁/ρg + V₁²/2g + z₁
+                − P₂/ρg − V₂²/2g
+            `;
+
+        }
+
+
+        /*
+         * Display result
+         */
+        if (!Number.isFinite(answer)) {
+
+            showError(
+                "The calculation produced an invalid result. Check your inputs."
+            );
+
+            return;
+        }
+
+
+        resultSection.style.display = "block";
+
+
+        /*
+         * Pressure result gets useful conversions.
+         */
+        let extraResult = "";
+
+        if (answerUnit === "Pa") {
+
+            const kPa = answer / 1000;
+            const bar = answer / 100000;
+
+            extraResult = `
+                <p>
+                    Equivalent:
+                    ${kPa.toFixed(4)} kPa
+                    =
+                    ${bar.toFixed(6)} bar
+                </p>
+            `;
+        }
+
+
+        if (answerUnit === "m/s") {
+
+            const kmh = answer * 3.6;
+
+            extraResult = `
+                <p>
+                    Equivalent:
+                    ${kmh.toFixed(4)} km/h
+                </p>
+            `;
+        }
+
+
+        resultValue.innerHTML = `
+            ${answerLabel} =
+            <strong>
+                ${answer.toFixed(6)} ${answerUnit}
+            </strong>
+            ${extraResult}
+        `;
+
+
+        /*
+         * Calculation steps
+         */
+        calculationSteps.innerHTML = `
+
+            <p>
+                <strong>Step 1:</strong>
+                Convert all supplied values to SI units.
+            </p>
+
+            <p>
+                Fluid density:
+                ${rho.toLocaleString()}
+                kg/m³
+            </p>
+
+            <p>
+                Gravitational acceleration:
+                ${gravity.toFixed(4)}
+                m/s²
+            </p>
+
+            <p>
+                <strong>Step 2:</strong>
+                Apply Bernoulli's equation.
+            </p>
+
+            <p>
+                ${formulaSteps}
+            </p>
+
+            <p>
+                <strong>Step 3:</strong>
+                Calculate the unknown quantity.
+            </p>
+
+            <p>
+                <strong>Final Answer:</strong>
+                ${answerLabel} =
+                <strong>
+                    ${answer.toFixed(6)} ${answerUnit}
+                </strong>
+            </p>
+
+        `;
+
+
+        /*
+         * Scroll to result
+         */
+        resultSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }
+
+
+    /*
+     * Display error
+     */
+    function showError(message) {
+
+        const errorMessage =
+            document.getElementById("errorMessage");
+
+        errorMessage.textContent = message;
+        errorMessage.style.display = "block";
+
+    }
+
+
+    /*
+     * Reset calculator
+     */
+    function resetCalculator() {
+
+        document.getElementById("pressure1").value = "";
+        document.getElementById("velocity1").value = "";
+        document.getElementById("elevation1").value = "";
+
+        document.getElementById("pressure2").value = "";
+        document.getElementById("velocity2").value = "";
+        document.getElementById("elevation2").value = "";
+
+        document.getElementById("density").value = "1000";
+        document.getElementById("gravity").value = "9.81";
+
+        document.getElementById("pressure1Unit").value = "pa";
+        document.getElementById("velocity1Unit").value = "ms";
+        document.getElementById("elevation1Unit").value = "m";
+
+        document.getElementById("pressure2Unit").value = "pa";
+        document.getElementById("velocity2Unit").value = "ms";
+        document.getElementById("elevation2Unit").value = "m";
+
+        document.getElementById("densityUnit").value = "kgm3";
+        document.getElementById("gravityUnit").value = "ms2";
+
+        document.getElementById("errorMessage").style.display = "none";
+        document.getElementById("errorMessage").textContent = "";
+
+        document.getElementById("resultSection").style.display = "none";
+
+        document.getElementById("resultValue").innerHTML = "";
+        document.getElementById("calculationSteps").innerHTML = "";
+
+    }
+
+</script>
+
+
+
+    <!-- Save signed-in user calculations to Firestore -->
+    <script type="module" src="saved-calculations.js"></script>
+
+</body>
+</html>

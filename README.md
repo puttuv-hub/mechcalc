@@ -82,3 +82,7 @@ Before authentication becomes active, complete the one-time Firebase configurati
 
 ## Strength of Materials visual expansion
 Added 18 B.Tech-focused Strength of Materials problem solvers with step-by-step calculations and engineering diagrams, including beam reactions, deflection, SFD/BMD, torsion, principal stress/Mohr's circle, columns and pressure vessels.
+
+
+## Thermodynamics expansion
+Added 23 B.Tech Thermodynamics calculators with step-by-step solutions and visual process/device diagrams.

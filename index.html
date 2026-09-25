@@ -62,7 +62,7 @@
 
     <meta
         property="og:description"
-        content="Free mechanical engineering calculators for mechanics, strength of materials, fluid mechanics, hydraulics and pump calculations."
+        content="Free mechanical engineering calculators for mechanics, strength of materials, thermodynamics, fluid mechanics, hydraulics and pump calculations."
     >
 
     <meta
@@ -125,7 +125,7 @@
         "@type": "WebApplication",
         "name": "MECHCALC",
         "url": "https://puttuv-hub.github.io/mechcalc/",
-        "description": "Free mechanical engineering calculators for mechanics, strength of materials, fluid mechanics, hydraulics and pump calculations.",
+        "description": "Free mechanical engineering calculators for mechanics, strength of materials, thermodynamics, fluid mechanics, hydraulics and pump calculations.",
         "applicationCategory": "EducationalApplication",
         "operatingSystem": "Web Browser",
         "browserRequirements": "Requires JavaScript",
@@ -368,6 +368,14 @@
                         data-filter="strength"
                     >
                         Strength of Materials
+                    </button>
+
+                    <button
+                        type="button"
+                        class="calculator-filter"
+                        data-filter="thermo"
+                    >
+                        Thermodynamics
                     </button>
 
                     <button
@@ -648,6 +656,33 @@
                 </div>
 
 
+
+
+                <!-- ================= THERMODYNAMICS ================= -->
+
+                <div class="calculator-card-home" data-category="thermo"><h3>Ideal Gas Law</h3><p>Solve P, V, m or T using PV = mRT.</p><a href="ideal-gas-law.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="thermo"><h3>First Law — Closed System</h3><p>Heat, work and internal-energy balance for a closed system.</p><a href="first-law-closed-system.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="thermo"><h3>Steady Flow Energy Equation</h3><p>Visual SFEE solver including enthalpy, velocity and elevation terms.</p><a href="steady-flow-energy.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="thermo"><h3>Specific Heats & γ</h3><p>Calculate cp and cv from R and γ.</p><a href="specific-heats.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="thermo"><h3>ΔU & ΔH — Ideal Gas</h3><p>Internal-energy and enthalpy changes from temperature change.</p><a href="delta-u-h.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="thermo"><h3>Constant Volume Process</h3><p>Rigid-tank pressure and heat-transfer solver.</p><a href="constant-volume-process.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="thermo"><h3>Constant Pressure Process</h3><p>Volume, work and heat for constant-pressure heating/cooling.</p><a href="constant-pressure-process.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="thermo"><h3>Isothermal Process</h3><p>P–V relation and logarithmic boundary work.</p><a href="isothermal-process.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="thermo"><h3>Polytropic Process</h3><p>PVⁿ relation, final pressure and boundary work.</p><a href="polytropic-process.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="thermo"><h3>Isentropic Process</h3><p>Ideal-gas pressure–temperature relation and work insight.</p><a href="isentropic-process.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="thermo"><h3>Entropy Change</h3><p>Ideal-gas entropy change between two states.</p><a href="entropy-change.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="thermo"><h3>Carnot Cycle</h3><p>Maximum theoretical heat-engine efficiency.</p><a href="carnot-cycle.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="thermo"><h3>Otto Cycle</h3><p>Spark-ignition air-standard cycle efficiency and states.</p><a href="otto-cycle.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="thermo"><h3>Diesel Cycle</h3><p>Compression-ignition air-standard cycle efficiency.</p><a href="diesel-cycle.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="thermo"><h3>Dual Cycle</h3><p>Mixed constant-volume/constant-pressure heat-addition cycle.</p><a href="dual-cycle.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="thermo"><h3>Brayton Cycle</h3><p>Gas-turbine cycle states, work and efficiency.</p><a href="brayton-cycle.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="thermo"><h3>Rankine Cycle</h3><p>Steam-power cycle work, heat and efficiency from enthalpies.</p><a href="rankine-cycle.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="thermo"><h3>Nozzle / Diffuser</h3><p>Visual enthalpy-to-velocity energy conversion.</p><a href="nozzle-diffuser.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="thermo"><h3>Turbine Efficiency</h3><p>Actual turbine work from isentropic efficiency.</p><a href="turbine-efficiency.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="thermo"><h3>Compressor Efficiency</h3><p>Actual compressor work from isentropic efficiency.</p><a href="compressor-efficiency.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="thermo"><h3>Throttling / Flash Quality</h3><p>Constant-enthalpy valve and downstream quality.</p><a href="throttling-process.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="thermo"><h3>Mixing Chamber</h3><p>Adiabatic two-stream mixing mass and energy balance.</p><a href="mixing-chamber.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="thermo"><h3>Steam Quality</h3><p>Dryness fraction from steam-table enthalpy values.</p><a href="steam-quality.html" class="calculator-button">Open Calculator</a></div>
 
                 <!-- ================= FLUID MECHANICS ================= -->
 
@@ -1188,7 +1223,16 @@
 
 
 
-                <div class="calculator-card-home">
+                
+                <div class="calculator-card-home"><h3>Ideal Gas</h3><p>PV = mRT</p></div>
+                <div class="calculator-card-home"><h3>First Law</h3><p>Q − W = ΔU</p></div>
+                <div class="calculator-card-home"><h3>SFEE</h3><p>q − w = Δh + Δke + Δpe</p></div>
+                <div class="calculator-card-home"><h3>Isentropic Gas</h3><p>T₂/T₁ = (P₂/P₁)^((γ−1)/γ)</p></div>
+                <div class="calculator-card-home"><h3>Entropy Change</h3><p>Δs = cp ln(T₂/T₁) − R ln(P₂/P₁)</p></div>
+                <div class="calculator-card-home"><h3>Otto Efficiency</h3><p>η = 1 − 1/r^(γ−1)</p></div>
+                <div class="calculator-card-home"><h3>Carnot Efficiency</h3><p>η = 1 − T_L/T_H</p></div>
+                <div class="calculator-card-home"><h3>Rankine Efficiency</h3><p>η = W_net/Q_in</p></div>
+<div class="calculator-card-home">
 
                     <h3>Density</h3>
 

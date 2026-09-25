@@ -189,6 +189,101 @@
     </url>
 
 
+
+    <!-- Thermodynamics -->
+
+    <url>
+        <loc>https://puttuv-hub.github.io/mechcalc/ideal-gas-law.html</loc>
+    </url>
+
+    <url>
+        <loc>https://puttuv-hub.github.io/mechcalc/first-law-closed-system.html</loc>
+    </url>
+
+    <url>
+        <loc>https://puttuv-hub.github.io/mechcalc/steady-flow-energy.html</loc>
+    </url>
+
+    <url>
+        <loc>https://puttuv-hub.github.io/mechcalc/specific-heats.html</loc>
+    </url>
+
+    <url>
+        <loc>https://puttuv-hub.github.io/mechcalc/delta-u-h.html</loc>
+    </url>
+
+    <url>
+        <loc>https://puttuv-hub.github.io/mechcalc/constant-volume-process.html</loc>
+    </url>
+
+    <url>
+        <loc>https://puttuv-hub.github.io/mechcalc/constant-pressure-process.html</loc>
+    </url>
+
+    <url>
+        <loc>https://puttuv-hub.github.io/mechcalc/isothermal-process.html</loc>
+    </url>
+
+    <url>
+        <loc>https://puttuv-hub.github.io/mechcalc/polytropic-process.html</loc>
+    </url>
+
+    <url>
+        <loc>https://puttuv-hub.github.io/mechcalc/isentropic-process.html</loc>
+    </url>
+
+    <url>
+        <loc>https://puttuv-hub.github.io/mechcalc/entropy-change.html</loc>
+    </url>
+
+    <url>
+        <loc>https://puttuv-hub.github.io/mechcalc/carnot-cycle.html</loc>
+    </url>
+
+    <url>
+        <loc>https://puttuv-hub.github.io/mechcalc/otto-cycle.html</loc>
+    </url>
+
+    <url>
+        <loc>https://puttuv-hub.github.io/mechcalc/diesel-cycle.html</loc>
+    </url>
+
+    <url>
+        <loc>https://puttuv-hub.github.io/mechcalc/dual-cycle.html</loc>
+    </url>
+
+    <url>
+        <loc>https://puttuv-hub.github.io/mechcalc/brayton-cycle.html</loc>
+    </url>
+
+    <url>
+        <loc>https://puttuv-hub.github.io/mechcalc/rankine-cycle.html</loc>
+    </url>
+
+    <url>
+        <loc>https://puttuv-hub.github.io/mechcalc/nozzle-diffuser.html</loc>
+    </url>
+
+    <url>
+        <loc>https://puttuv-hub.github.io/mechcalc/turbine-efficiency.html</loc>
+    </url>
+
+    <url>
+        <loc>https://puttuv-hub.github.io/mechcalc/compressor-efficiency.html</loc>
+    </url>
+
+    <url>
+        <loc>https://puttuv-hub.github.io/mechcalc/throttling-process.html</loc>
+    </url>
+
+    <url>
+        <loc>https://puttuv-hub.github.io/mechcalc/mixing-chamber.html</loc>
+    </url>
+
+    <url>
+        <loc>https://puttuv-hub.github.io/mechcalc/steam-quality.html</loc>
+    </url>
+
     <!-- Unit Converter -->
     <url>
         <loc>https://puttuv-hub.github.io/mechcalc/unit-converter.html</loc>

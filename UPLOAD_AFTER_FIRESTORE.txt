@@ -1,0 +1,13 @@
+MECHCALC FIRESTORE UPDATE
+
+1. Keep your existing Firebase Email/Password Authentication enabled.
+2. Keep the Firestore security rules already published.
+3. Upload the files from MECHCALC-Firestore-Update to the ROOT of the GitHub mechcalc repository.
+4. Allow GitHub Pages a short time to deploy the new commit.
+5. Sign in at:
+   https://puttuv-hub.github.io/mechcalc/#account
+6. Open a calculator, calculate a result, and press Save Calculation.
+7. Return to the account section. The result should appear under Calculation History.
+8. Test Delete and Open Calculator.
+
+Do not upload the ZIP itself. Extract it first and upload the files inside.
