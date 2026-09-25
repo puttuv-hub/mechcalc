@@ -1338,9 +1338,9 @@
                     </h3>
 
                     <p>
-                        Create an account to access future features
-                        such as calculation history, saved calculations
-                        and personalized engineering tools.
+                        Create a secure MECHCALC account now. Calculation history,
+                        saved calculations and personalized engineering tools
+                        can be connected to your account in the next stage.
                     </p>
 
 
@@ -1360,62 +1360,114 @@
 
 
 
-                <!-- Demo Login -->
+                <!-- Secure Firebase Authentication -->
 
                 <div class="login-card">
 
-                    <h3>Login</h3>
+                    <div id="authLoggedOutPanel">
 
+                        <h3>Login / Sign Up</h3>
 
-                    <form onsubmit="loginDemo(event)">
+                        <p class="auth-help-text">
+                            Sign in securely to your MECHCALC account using your email and password.
+                        </p>
 
-                        <label for="email">
-                            Email
-                        </label>
+                        <form id="authForm">
 
+                            <label for="email">
+                                Email
+                            </label>
 
-                        <input
-                            type="email"
-                            id="email"
-                            placeholder="Enter your email"
-                            required
-                        >
-
-
-                        <label for="password">
-                            Password
-                        </label>
-
-
-                        <input
-                            type="password"
-                            id="password"
-                            placeholder="Enter your password"
-                            required
-                        >
-
-
-                        <div class="buttons">
-
-                            <button
-                                type="submit"
-                                class="calculate-btn"
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="Enter your email"
+                                autocomplete="email"
+                                required
                             >
-                                Login
-                            </button>
 
+                            <label for="password">
+                                Password
+                            </label>
+
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder="Minimum 6 characters"
+                                autocomplete="current-password"
+                                minlength="6"
+                                required
+                            >
+
+                            <div class="buttons">
+
+                                <button
+                                    type="submit"
+                                    class="calculate-btn"
+                                    id="loginButton"
+                                >
+                                    Login
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="reset-btn"
+                                    id="signupButton"
+                                >
+                                    Sign Up
+                                </button>
+
+                            </div>
 
                             <button
                                 type="button"
-                                class="reset-btn"
-                                onclick="signupDemo()"
+                                class="auth-link-button"
+                                id="forgotPasswordButton"
                             >
-                                Sign Up
+                                Forgot password?
                             </button>
 
-                        </div>
+                        </form>
 
-                    </form>
+                    </div>
+
+                    <div
+                        id="authLoggedInPanel"
+                        class="auth-user-panel"
+                        hidden
+                    >
+
+                        <div class="auth-user-icon">✓</div>
+
+                        <h3>Welcome to MECHCALC</h3>
+
+                        <p>You are signed in as:</p>
+
+                        <p
+                            id="authUserEmail"
+                            class="auth-user-email"
+                        ></p>
+
+                        <p class="auth-help-text">
+                            Your account is active. Saved calculations and calculation history can be connected in the next account stage.
+                        </p>
+
+                        <button
+                            type="button"
+                            class="reset-btn auth-logout-button"
+                            id="logoutButton"
+                        >
+                            Logout
+                        </button>
+
+                    </div>
+
+                    <div
+                        id="authMessage"
+                        class="auth-message"
+                        role="status"
+                        aria-live="polite"
+                    ></div>
 
                 </div>
 
@@ -1608,30 +1660,9 @@
 
 
 
-    <!-- ================= DEMO LOGIN ================= -->
+    <!-- ================= SECURE AUTHENTICATION ================= -->
 
-    <script>
-
-        function loginDemo(event) {
-
-            event.preventDefault();
-
-            alert(
-                "Login system will be connected to secure authentication in a future stage."
-            );
-
-        }
-
-
-        function signupDemo() {
-
-            alert(
-                "Account registration will be added in the authentication stage."
-            );
-
-        }
-
-    </script>
+    <script type="module" src="auth.js"></script>
 
 
 </body>

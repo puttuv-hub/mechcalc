@@ -968,3 +968,75 @@ footer strong {
     }
 
 }
+/* =========================
+   FIREBASE AUTHENTICATION
+   ========================= */
+.auth-help-text {
+    color: #667085;
+    font-size: 14px;
+    margin-bottom: 18px;
+}
+
+.auth-link-button {
+    width: 100%;
+    margin-top: 12px;
+    padding: 8px 0;
+    background: transparent;
+    color: #667085;
+    border: none;
+    font-size: 14px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.auth-link-button:hover {
+    color: #d97706;
+}
+
+.auth-user-panel {
+    text-align: center;
+}
+
+.auth-user-icon {
+    width: 54px;
+    height: 54px;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    background: #f59e0b;
+    color: #101820;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.auth-user-email {
+    margin: 10px 0 18px;
+    font-weight: bold;
+    word-break: break-word;
+}
+
+.auth-logout-button {
+    width: 100%;
+}
+
+.auth-message {
+    min-height: 22px;
+    margin-top: 16px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.auth-message.success {
+    color: #166534;
+}
+
+.auth-message.error {
+    color: #b42318;
+}
+
+.login-card button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
