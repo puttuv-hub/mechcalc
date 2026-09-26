@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stoichiometric Air–Fuel Ratio for CₓHᵧO𝓏 Fuel | MECHCALC</title>
+<meta name="description" content="Calculate theoretical AFR for a generic hydrocarbon/oxygenated fuel CxHyOz using oxygen mass fraction in dry air."><meta name="author" content="Vishnu"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/stoichiometric-afr.html"><meta property="og:title" content="Stoichiometric Air–Fuel Ratio for CₓHᵧO𝓏 Fuel | MECHCALC"><meta property="og:description" content="Calculate theoretical AFR for a generic hydrocarbon/oxygenated fuel CxHyOz using oxygen mass fraction in dry air."><meta property="og:type" content="website"><meta property="og:site_name" content="MECHCALC"><meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/stoichiometric-afr.html">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="calculator.css"><link rel="stylesheet" href="ic-engines.css">
+</head>
+<body>
+<header class="header"><div class="logo"><a href="index.html">⚙ MECHCALC</a></div><nav class="nav"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a></nav></header>
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container"><h1>Stoichiometric Air–Fuel Ratio for CₓHᵧO𝓏 Fuel</h1><p>Calculate theoretical AFR for a generic hydrocarbon/oxygenated fuel CxHyOz using oxygen mass fraction in dry air.</p><div class="engineering-quote">“Understand the cycle, track the units, and let the energy balance tell the story.”</div><a href="index.html#calculators" class="back-link">← Back to Calculators</a></div></section>
+<section class="calculator-main"><div class="container"><div class="calculator-layout">
+<form class="input-panel" id="calcForm"><h2>Enter Engine Data</h2><div class="calculator-form-group"><label for="x">Carbon atoms x</label><div class="calculator-input-row"><input type="number" id="x" step="1" value="8" placeholder="Enter value"><span class="ice-unit-label">—</span></div></div><div class="calculator-form-group"><label for="y">Hydrogen atoms y</label><div class="calculator-input-row"><input type="number" id="y" step="1" value="18" placeholder="Enter value"><span class="ice-unit-label">—</span></div></div><div class="calculator-form-group"><label for="z">Oxygen atoms z</label><div class="calculator-input-row"><input type="number" id="z" step="1" value="0" placeholder="Enter value"><span class="ice-unit-label">—</span></div></div><div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div><div id="errorMessage" class="calculator-error" style="display:none"></div></form>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">O₂ requirement = x + y/4 − z/2; &nbsp; AFR<sub>st</sub> = m<sub>O₂</sub> /(0.232 m<sub>fuel</sub>)</div></div><div class="unit-info"><strong>Model / assumption:</strong> Use consistent SI-derived engineering units as indicated. Results are intended for educational problem solving; verify manufacturer/standard data for design work.</div></aside>
+</div>
+<section class="ice-visual"><h3>Engineering visualization</h3><svg class="ice-svg" viewBox="0 0 760 250" role="img" aria-label="Air fuel flow into engine"><line x1="55" y1="80" x2="250" y2="115" class="ice-accent"/><path d="M235 102 L258 116 L232 124" class="ice-accent"/><text x="70" y="60" class="ice-label">Air</text><line x1="55" y1="180" x2="250" y2="135" class="ice-accent"/><path d="M233 128 L258 134 L238 147" class="ice-accent"/><text x="70" y="205" class="ice-label">Fuel</text><rect x="260" y="65" width="240" height="125" rx="18" class="ice-fill"/><text x="325" y="120" class="ice-label">IC Engine</text><text x="315" y="148" class="ice-muted">combustion + work</text><line x1="500" y1="125" x2="690" y2="125" class="ice-accent"/><path d="M675 113 L697 125 L675 137" class="ice-accent"/><text x="560" y="100" class="ice-label">Exhaust / power</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none"><h2>Step-by-Step Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+<footer class="footer"><p>MECHCALC • IC Engine Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const num=id=>Number($(id).value);
+const fmt=(v,d=4)=>{if(!Number.isFinite(v))return "—";const a=Math.abs(v);if(a>=1e8||(a>0&&a<1e-5))return v.toExponential(4);return Number(v.toFixed(d)).toLocaleString("en-IN");};
+function showError(m){$("errorMessage").textContent=m;$("errorMessage").style.display="block";$("resultBox").style.display="none";}
+function showResult(main,html){$("errorMessage").style.display="none";$("mainResult").innerHTML=main;$("resultDetails").innerHTML=html;$("resultBox").style.display="block";$("resultBox").scrollIntoView({behavior:"smooth",block:"start"});}
+
+function calc(){const x=num('x'),y=num('y'),z=num('z');if(!(x>=0&&y>=0&&z>=0&&(x+y)>0))return showError('Enter a valid fuel formula CxHyOz.');const o2=x+y/4-z/2;if(!(o2>0))return showError('This composition does not require positive external oxygen in this simplified combustion model.');const MW=12.011*x+1.008*y+15.999*z;const mO2=o2*31.998;const afr=mO2/(0.232*MW);showResult(`Stoichiometric AFR = <strong>${fmt(afr,2)} kg air/kg fuel</strong>`,`<div class="ice-result-grid"><div class="ice-result-card"><strong>Fuel molar mass</strong>${fmt(MW,3)} kg/kmol</div><div class="ice-result-card"><strong>O₂ requirement</strong>${fmt(o2,3)} kmol/kmol fuel</div></div><p>O₂ = x + y/4 − z/2 = ${fmt(o2,3)} kmol per kmol fuel</p><p>Mass O₂ = ${fmt(mO2,3)} kg per kmol fuel</p><p>Air mass = O₂/0.232 = ${fmt(mO2/0.232,3)} kg</p><p>AFRst = ${fmt(afr,3)}</p><p class="ice-note">Uses 23.2% oxygen by mass in dry air and complete combustion to CO₂ and H₂O.</p>`);}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('calcForm').reset();$('resultBox').style.display='none';$('errorMessage').style.display='none';});
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>
