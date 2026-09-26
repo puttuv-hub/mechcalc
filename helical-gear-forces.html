@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Helical Gear Force Components | MECHCALC</title>
+<meta name="description" content="Resolve helical-gear tooth load into tangential, radial and axial components."><meta name="author" content="Vishnu"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/helical-gear-forces.html"><meta property="og:title" content="Helical Gear Force Components | MECHCALC"><meta property="og:description" content="Resolve helical-gear tooth load into tangential, radial and axial components."><meta property="og:type" content="website"><meta property="og:site_name" content="MECHCALC"><meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/helical-gear-forces.html">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="calculator.css"><link rel="stylesheet" href="machine-design.css">
+</head>
+<body>
+<header class="header"><div class="logo"><a href="index.html">⚙ MECHCALC</a></div><nav class="nav"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a></nav></header>
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container"><h1>Helical Gear Force Components</h1><p>Resolve helical-gear tooth load into tangential, radial and axial components.</p><div class="engineering-quote">“Design is calculation plus judgement — always check the governing failure mode.”</div><a href="index.html#calculators" class="back-link">← Back to Calculators</a></div></section>
+<section class="calculator-main"><div class="container"><div class="calculator-layout">
+<form class="input-panel" id="calcForm"><h2>Enter Design Values</h2><div class="calculator-form-group"><label for="T">Torque T</label><div class="calculator-input-row"><input type="number" id="T" step="any" value="250" placeholder="Enter value"><span class="md-unit-label">N·m</span></div></div><div class="calculator-form-group"><label for="d">Pitch diameter d</label><div class="calculator-input-row"><input type="number" id="d" step="any" value="180" placeholder="Enter value"><span class="md-unit-label">mm</span></div></div><div class="calculator-form-group"><label for="beta">Helix angle β</label><div class="calculator-input-row"><input type="number" id="beta" step="any" value="20" placeholder="Enter value"><span class="md-unit-label">deg</span></div></div><div class="calculator-form-group"><label for="phi">Normal pressure angle φn</label><div class="calculator-input-row"><input type="number" id="phi" step="any" value="20" placeholder="Enter value"><span class="md-unit-label">deg</span></div></div><div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div><div id="errorMessage" class="calculator-error" style="display:none"></div></form>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">Ft = 2T/d;  Fa = Ft tanβ;  Fr = Ft tanφt; tanφt = tanφn/cosβ</div></div><div class="unit-info"><strong>Model / assumption:</strong> Use consistent SI-derived engineering units as indicated. Results are intended for educational preliminary design; verify detailed standards for production design.</div></aside>
+</div>
+<section class="md-visual"><h3>Design visualization</h3><svg class="md-svg" viewBox="0 0 760 240" role="img" aria-label="Gear tooth loading"><circle cx="270" cy="120" r="80" class="md-body"/><circle cx="490" cy="120" r="110" class="md-body"/><line x1="350" y1="120" x2="380" y2="120" class="md-accent"/><line x1="380" y1="120" x2="420" y2="80" class="md-accent"/><text x="405" y="68" class="md-label">Ft / Fr / Fa</text><text x="200" y="225" class="md-muted">Tooth strength and force components</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none"><h2>Step-by-Step Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+<footer class="footer"><p>MECHCALC • Machine Design Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const num=id=>Number($(id).value);
+const fmt=(v,d=4)=>{if(!Number.isFinite(v))return "—";const a=Math.abs(v);if(a>=1e8||(a>0&&a<1e-5))return v.toExponential(4);return Number(v.toFixed(d)).toLocaleString("en-IN");};
+function showError(m){$("errorMessage").textContent=m;$("errorMessage").style.display="block";$("resultBox").style.display="none";}
+function showResult(main,html){$("errorMessage").style.display="none";$("mainResult").innerHTML=main;$("resultDetails").innerHTML=html;$("resultBox").style.display="block";$("resultBox").scrollIntoView({behavior:"smooth",block:"start"});}
+
+function calc(){const T=num('T')*1000,d=num('d'),b=num('beta')*Math.PI/180,pn=num('phi')*Math.PI/180;if(!(T>0&&d>0&&Math.abs(b)<Math.PI/3&&pn>0&&pn<Math.PI/3))return showError('Check torque, diameter and angle values.');const Ft=2*T/d,Fa=Ft*Math.tan(b),pt=Math.atan(Math.tan(pn)/Math.cos(b)),Fr=Ft*Math.tan(pt);showResult(`Tangential force = <strong>${fmt(Ft,1)} N</strong>`,`<div class="md-result-grid"><div class="md-result-card"><strong>Radial force</strong>${fmt(Fr,1)} N</div><div class="md-result-card"><strong>Axial force</strong>${fmt(Fa,1)} N</div><div class="md-result-card"><strong>Transverse pressure angle</strong>${fmt(pt*180/Math.PI,2)}°</div></div><p>Ft = 2T/d = ${fmt(Ft,1)} N</p><p>Fa = Ft tanβ = ${fmt(Fa,1)} N</p><p>Fr = Ft tanφt = ${fmt(Fr,1)} N</p>`)}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('calcForm').reset();$('resultBox').style.display='none';$('errorMessage').style.display='none';});
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

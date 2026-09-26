@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moist-Air Enthalpy | MECHCALC</title>
+<meta name="description" content="Calculate moist-air enthalpy per kg of dry air."><meta name="author" content="Vishnu"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/moist-air-enthalpy.html"><meta property="og:title" content="Moist-Air Enthalpy | MECHCALC"><meta property="og:description" content="Calculate moist-air enthalpy per kg of dry air."><meta property="og:type" content="website"><meta property="og:site_name" content="MECHCALC"><meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/moist-air-enthalpy.html">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="calculator.css"><link rel="stylesheet" href="rac.css">
+</head>
+<body>
+<header class="header"><div class="logo"><a href="index.html">⚙ MECHCALC</a></div><nav class="nav"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a></nav></header>
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container"><h1>Moist-Air Enthalpy</h1><p>Calculate moist-air enthalpy per kg of dry air.</p><div class="engineering-quote">“Follow the energy flow and the air-state changes — RAC problems become much easier.”</div><a href="index.html#calculators" class="back-link">← Back to Calculators</a></div></section>
+<section class="calculator-main"><div class="container"><div class="calculator-layout">
+<form class="input-panel" id="calcForm"><h2>Enter RAC Data</h2><div class="calculator-form-group"><label for="T">Dry-bulb temperature</label><div class="calculator-input-row"><input type="number" id="T" step="any" value="30" placeholder="Enter value"><span class="rac-unit-label">°C</span></div></div><div class="calculator-form-group"><label for="w">Humidity ratio w</label><div class="calculator-input-row"><input type="number" id="w" step="any" value="0.016" placeholder="Enter value"><span class="rac-unit-label">kg/kg dry air</span></div></div><div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div><div id="errorMessage" class="calculator-error" style="display:none"></div></form>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">h = 1.006Tdb + w(2501 + 1.86Tdb)</div></div><div class="unit-info"><strong>Model / assumption:</strong> Educational engineering model using the stated properties and units. For real equipment selection, verify refrigerant property data and manufacturer performance maps.</div></aside>
+</div>
+<section class="rac-visual"><h3>Engineering visualization</h3><svg class="rac-svg" viewBox="0 0 820 300" role="img" aria-label="Simplified psychrometric process map"><line x1="90" y1="245" x2="740" y2="245" class="rac-body"/><line x1="90" y1="245" x2="90" y2="45" class="rac-body"/><text x="360" y="280" class="rac-label">Dry-bulb temperature →</text><text x="25" y="155" class="rac-label" transform="rotate(-90 25 155)">Humidity ratio →</text><path d="M110 225 C230 185 350 140 490 105 C590 80 660 65 720 60" class="rac-cold"/><text x="525" y="92" class="rac-muted">Saturation boundary (schematic)</text><circle cx="320" cy="165" r="9" fill="#22c55e"/><text x="335" y="160" class="rac-label">Air state</text><line x1="320" y1="165" x2="320" y2="245" class="rac-thin"/><line x1="90" y1="165" x2="320" y2="165" class="rac-thin"/></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none"><h2>Step-by-Step Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+<footer class="footer"><p>MECHCALC • Refrigeration & Air Conditioning Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const num=id=>Number($(id).value);
+const fmt=(v,d=4)=>{if(!Number.isFinite(v))return "—";const a=Math.abs(v);if(a>=1e8||(a>0&&a<1e-5))return v.toExponential(4);return Number(v.toFixed(d)).toLocaleString("en-IN");};
+function showError(m){$("errorMessage").textContent=m;$("errorMessage").style.display="block";$("resultBox").style.display="none";}
+function showResult(main,html){$("errorMessage").style.display="none";$("mainResult").innerHTML=main;$("resultDetails").innerHTML=html;$("resultBox").style.display="block";$("resultBox").scrollIntoView({behavior:"smooth",block:"start"});}
+function pws(T){return 0.61078*Math.exp(17.2694*T/(T+237.3));}
+function dewPointFromPv(pv){const a=Math.log(pv/0.61078);return 237.3*a/(17.2694-a);}
+
+function calc(){const T=num('T'),w=num('w');if(!(T>-100&&w>=0&&w<1))return showError('Check temperature and non-negative humidity ratio.');const hs=1.006*T,hl=w*(2501+1.86*T),h=hs+hl;showResult(`Moist-air enthalpy = <strong>${fmt(h,2)} kJ/kg dry air</strong>`,`<div class="rac-result-grid"><div class="rac-result-card"><strong>Dry-air sensible part</strong>${fmt(hs,2)} kJ/kg</div><div class="rac-result-card"><strong>Water-vapour part</strong>${fmt(hl,2)} kJ/kg</div></div><p>h = ${fmt(hs,2)} + ${fmt(hl,2)} = ${fmt(h,2)} kJ/kg dry air</p>`)}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('calcForm').reset();$('resultBox').style.display='none';$('errorMessage').style.display='none';});
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

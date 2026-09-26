@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mechanism Mobility / DOF | MECHCALC</title>
+<meta name="description" content="Calculate planar mechanism mobility using the Kutzbach criterion and interpret the available degrees of freedom."><meta name="author" content="Vishnu"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/mechanism-mobility.html"><meta property="og:title" content="Mechanism Mobility / DOF | MECHCALC"><meta property="og:description" content="Calculate planar mechanism mobility using the Kutzbach criterion and interpret the available degrees of freedom."><meta property="og:type" content="website"><meta property="og:site_name" content="MECHCALC"><meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/mechanism-mobility.html">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="calculator.css"><link rel="stylesheet" href="tom.css">
+</head>
+<body>
+<header class="header"><div class="logo"><a href="index.html">⚙ MECHCALC</a></div><nav class="nav"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a></nav></header>
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container"><h1>Mechanism Mobility / DOF</h1><p>Calculate planar mechanism mobility using the Kutzbach criterion and interpret the available degrees of freedom.</p><div class="engineering-quote">“Understand the motion first; then let the equations confirm it.”</div><a href="index.html#calculators" class="back-link">← Back to Calculators</a></div></section>
+<section class="calculator-main"><div class="container"><div class="calculator-layout">
+<form class="input-panel" id="calcForm"><h2>Enter Values</h2><div class="calculator-form-group"><label for="n">Number of links, n</label><div class="calculator-input-row"><input type="number" id="n" step="1" value="4" placeholder="Enter value" min="1"><span class="tom-unit-label">links</span></div></div><div class="calculator-form-group"><label for="j1">Lower pairs (1-DOF joints), J₁</label><div class="calculator-input-row"><input type="number" id="j1" step="1" value="4" placeholder="Enter value" min="0"><span class="tom-unit-label">joints</span></div></div><div class="calculator-form-group"><label for="j2">Higher pairs (2-DOF joints), J₂</label><div class="calculator-input-row"><input type="number" id="j2" step="1" value="0" placeholder="Enter value" min="0"><span class="tom-unit-label">joints</span></div></div><div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div><div id="errorMessage" class="calculator-error" style="display:none"></div></form>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">F = 3(n−1) − 2J₁ − J₂</div></div><div class="unit-info"><strong>Model / assumption:</strong> Planar Kutzbach criterion; count the fixed frame as one link.</div></aside>
+</div>
+<section class="tom-visual"><h3>Kinematic chain and joints</h3><svg class="tom-svg" viewBox="0 0 760 300" role="img" aria-label="Kinematic chain and joints"><defs><marker id="tomArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#f59e0b"/></marker></defs><circle cx="150" cy="150" r="13" class="tom-joint"/><circle cx="340" cy="80" r="13" class="tom-joint"/><circle cx="540" cy="150" r="13" class="tom-joint"/><circle cx="340" cy="230" r="13" class="tom-joint"/><line x1="150" y1="150" x2="340" y2="80" class="tom-link"/><line x1="340" y1="80" x2="540" y2="150" class="tom-link"/><line x1="540" y1="150" x2="340" y2="230" class="tom-link"/><line x1="340" y1="230" x2="150" y2="150" class="tom-link"/><text x="260" y="35" class="tom-label">Planar kinematic chain</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none"><h2>Calculation Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+<footer class="footer"><p>MECHCALC • Theory of Machines Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=(v,d=5)=>{if(!Number.isFinite(v))return '—';const a=Math.abs(v);if(a>=1e8||(a>0&&a<1e-6))return v.toExponential(4);return Number(v.toFixed(d)).toLocaleString('en-IN');};
+const rad=d=>d*Math.PI/180; const deg=r=>r*180/Math.PI; const num=id=>Number($(id).value);
+function showError(m){$('errorMessage').textContent=m;$('errorMessage').style.display='block';$('resultBox').style.display='none';}
+function showResult(main,html){$('errorMessage').style.display='none';$('mainResult').innerHTML=main;$('resultDetails').innerHTML=html;$('resultBox').style.display='block';$('resultBox').scrollIntoView({behavior:'smooth',block:'start'});}
+function normDeg(x){x%=360;if(x<0)x+=360;return x;}
+
+
+function calc(){const n=num('n'),j1=num('j1'),j2=num('j2');if(!(Number.isInteger(n)&&n>=1&&Number.isInteger(j1)&&j1>=0&&Number.isInteger(j2)&&j2>=0))return showError('Enter non-negative whole numbers, with at least one link.');const F=3*(n-1)-2*j1-j2;const meaning=F===1?'single-input constrained mechanism':F===0?'structure / locked chain under this count':F>1?'multi-DOF mechanism':'over-constrained count (check joints and links)';showResult(`Mobility = <strong>${fmt(F,0)} DOF</strong>`,`<p>F = 3(${n}−1) − 2(${j1}) − ${j2}</p><p>F = <strong>${F}</strong></p><p>Interpretation: ${meaning}.</p>`);}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('calcForm').reset();$('resultBox').style.display='none';$('errorMessage').style.display='none';});</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

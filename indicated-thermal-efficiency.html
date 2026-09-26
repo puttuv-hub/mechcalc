@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indicated Thermal Efficiency | MECHCALC</title>
+<meta name="description" content="Calculate indicated thermal efficiency from indicated power, fuel-flow rate and calorific value."><meta name="author" content="Vishnu"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/indicated-thermal-efficiency.html"><meta property="og:title" content="Indicated Thermal Efficiency | MECHCALC"><meta property="og:description" content="Calculate indicated thermal efficiency from indicated power, fuel-flow rate and calorific value."><meta property="og:type" content="website"><meta property="og:site_name" content="MECHCALC"><meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/indicated-thermal-efficiency.html">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="calculator.css"><link rel="stylesheet" href="ic-engines.css">
+</head>
+<body>
+<header class="header"><div class="logo"><a href="index.html">⚙ MECHCALC</a></div><nav class="nav"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a></nav></header>
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container"><h1>Indicated Thermal Efficiency</h1><p>Calculate indicated thermal efficiency from indicated power, fuel-flow rate and calorific value.</p><div class="engineering-quote">“Understand the cycle, track the units, and let the energy balance tell the story.”</div><a href="index.html#calculators" class="back-link">← Back to Calculators</a></div></section>
+<section class="calculator-main"><div class="container"><div class="calculator-layout">
+<form class="input-panel" id="calcForm"><h2>Enter Engine Data</h2><div class="calculator-form-group"><label for="IP">Indicated power</label><div class="calculator-input-row"><input type="number" id="IP" step="any" value="72" placeholder="Enter value"><span class="ice-unit-label">kW</span></div></div><div class="calculator-form-group"><label for="mf">Fuel consumption</label><div class="calculator-input-row"><input type="number" id="mf" step="any" value="18" placeholder="Enter value"><span class="ice-unit-label">kg/h</span></div></div><div class="calculator-form-group"><label for="CV">Lower calorific value</label><div class="calculator-input-row"><input type="number" id="CV" step="any" value="43000" placeholder="Enter value"><span class="ice-unit-label">kJ/kg</span></div></div><div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div><div id="errorMessage" class="calculator-error" style="display:none"></div></form>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">η<sub>ith</sub> = IP / (ṁ<sub>f</sub> × CV)</div></div><div class="unit-info"><strong>Model / assumption:</strong> Use consistent SI-derived engineering units as indicated. Results are intended for educational problem solving; verify manufacturer/standard data for design work.</div></aside>
+</div>
+<section class="ice-visual"><h3>Engineering visualization</h3><svg class="ice-svg" viewBox="0 0 760 270" role="img" aria-label="Engine heat balance"><rect x="270" y="80" width="220" height="115" rx="18" class="ice-fill"/><text x="330" y="135" class="ice-label">ENGINE</text><line x1="50" y1="135" x2="270" y2="135" class="ice-accent"/><path d="M250 122 L275 135 L250 148" class="ice-accent"/><text x="80" y="110" class="ice-label">Fuel energy</text><line x1="490" y1="105" x2="700" y2="65" class="ice-accent"/><text x="555" y="50" class="ice-label">Brake work</text><line x1="490" y1="135" x2="700" y2="135" class="ice-accent"/><text x="555" y="120" class="ice-label">Cooling</text><line x1="490" y1="165" x2="700" y2="215" class="ice-accent"/><text x="555" y="235" class="ice-label">Exhaust + losses</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none"><h2>Step-by-Step Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+<footer class="footer"><p>MECHCALC • IC Engine Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const num=id=>Number($(id).value);
+const fmt=(v,d=4)=>{if(!Number.isFinite(v))return "—";const a=Math.abs(v);if(a>=1e8||(a>0&&a<1e-5))return v.toExponential(4);return Number(v.toFixed(d)).toLocaleString("en-IN");};
+function showError(m){$("errorMessage").textContent=m;$("errorMessage").style.display="block";$("resultBox").style.display="none";}
+function showResult(main,html){$("errorMessage").style.display="none";$("mainResult").innerHTML=main;$("resultDetails").innerHTML=html;$("resultBox").style.display="block";$("resultBox").scrollIntoView({behavior:"smooth",block:"start"});}
+
+function calc(){const IP=num('IP'),mf=num('mf')/3600,CV=num('CV');if(!(IP>=0&&mf>0&&CV>0))return showError('Enter positive fuel flow and calorific value.');const Qin=mf*CV,eta=IP/Qin*100;showResult(`Indicated thermal efficiency = <strong>${fmt(eta,2)}%</strong>`,`<div class="ice-result-grid"><div class="ice-result-card"><strong>Fuel energy rate</strong>${fmt(Qin,2)} kW</div><div class="ice-result-card"><strong>Indicated power</strong>${fmt(IP,2)} kW</div></div><p>ṁf = ${fmt(mf,6)} kg/s</p><p>Q̇in = ṁf × CV = ${fmt(Qin,3)} kW</p><p>ηith = IP/Q̇in × 100 = ${fmt(eta,2)}%</p>`);}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('calcForm').reset();$('resultBox').style.display='none';$('errorMessage').style.display='none';});
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

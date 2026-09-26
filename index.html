@@ -14,12 +14,12 @@
 
     <meta
         name="description"
-        content="MECHCALC provides free mechanical engineering calculators for stress, strain, beams, torsion, columns, force, torque, power, pressure, fluid mechanics, hydraulics, pumps and more."
+        content="MECHCALC provides 300+ free mechanical engineering calculators covering engineering mechanics, strength of materials, thermodynamics, heat transfer, theory of machines, machine design, IC engines, RAC, fluid mechanics, turbomachinery, manufacturing, materials and industrial engineering."
     >
 
     <meta
         name="keywords"
-        content="mechanical engineering calculators, engineering calculators, stress calculator, strain calculator, force calculator, torque calculator, power calculator, pressure calculator, fluid mechanics calculator, hydraulic calculator, pump calculator"
+        content="mechanical engineering calculators, engineering mechanics, strength of materials, thermodynamics, heat transfer, theory of machines, machine design, IC engines, refrigeration air conditioning, fluid mechanics, turbomachinery, manufacturing engineering, materials engineering, industrial engineering"
     >
 
     <meta
@@ -62,7 +62,7 @@
 
     <meta
         property="og:description"
-        content="Free mechanical engineering calculators for mechanics, strength of materials, thermodynamics, fluid mechanics, hydraulics and pump calculations."
+        content="Free mechanical engineering calculators across core B.Tech subjects, with formulas, unit handling, step-by-step solutions and engineering visuals."
     >
 
     <meta
@@ -111,7 +111,7 @@
         "@type": "WebSite",
         "name": "MECHCALC",
         "url": "https://puttuv-hub.github.io/mechcalc/",
-        "description": "Free mechanical engineering calculators for students, engineers and professionals.",
+        "description": "Free mechanical engineering calculators across core B.Tech subjects for students, engineers and professionals.",
         "inLanguage": "en"
     }
 
@@ -125,7 +125,7 @@
         "@type": "WebApplication",
         "name": "MECHCALC",
         "url": "https://puttuv-hub.github.io/mechcalc/",
-        "description": "Free mechanical engineering calculators for mechanics, strength of materials, thermodynamics, fluid mechanics, hydraulics and pump calculations.",
+        "description": "Free mechanical engineering calculators across engineering mechanics, strength of materials, thermodynamics, heat transfer, theory of machines, machine design, IC engines, RAC, fluids, turbomachinery, manufacturing, materials and industrial engineering.",
         "applicationCategory": "EducationalApplication",
         "operatingSystem": "Web Browser",
         "browserRequirements": "Requires JavaScript",
@@ -365,6 +365,14 @@
                     <button
                         type="button"
                         class="calculator-filter"
+                        data-filter="engmech"
+                    >
+                        Engineering Mechanics
+                    </button>
+
+                    <button
+                        type="button"
+                        class="calculator-filter"
                         data-filter="strength"
                     >
                         Strength of Materials
@@ -401,6 +409,32 @@
                         data-filter="design"
                     >
                         Machine Design
+                    </button>
+
+
+
+                    <button
+                        type="button"
+                        class="calculator-filter"
+                        data-filter="manufacturing"
+                    >
+                        Manufacturing / Production
+                    </button>
+
+                    <button
+                        type="button"
+                        class="calculator-filter"
+                        data-filter="materials"
+                    >
+                        Materials / Metallurgy
+                    </button>
+
+                    <button
+                        type="button"
+                        class="calculator-filter"
+                        data-filter="industrial"
+                    >
+                        Industrial Engineering / OR
                     </button>
 
                     <button
@@ -708,6 +742,31 @@
 
 
 
+
+
+                <!-- ================= ENGINEERING MECHANICS EXPANSION ================= -->
+                <div class="calculator-card-home" data-category="engmech"><h3>2D Force Resultant</h3><p>Resolve two coplanar forces into x-y components and calculate the resultant magnitude and direction.</p><a href="force-resultant-2d.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="engmech"><h3>Force Resolution into Components</h3><p>Resolve a single force into horizontal and vertical components.</p><a href="force-resolution.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="engmech"><h3>Moment of a Force about a Point</h3><p>Calculate moment using force magnitude and perpendicular distance from the reference point.</p><a href="moment-of-force-2d.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="engmech"><h3>Couple Moment</h3><p>Calculate the pure moment produced by two equal and opposite parallel forces.</p><a href="couple-moment.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="engmech"><h3>Particle Equilibrium — Balancing Force</h3><p>Find the third force required to balance two known coplanar forces.</p><a href="particle-equilibrium.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="engmech"><h3>Block on Rough Inclined Plane</h3><p>Check whether a block remains at rest or slides on a rough inclined plane and calculate friction demand.</p><a href="block-incline-friction.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="engmech"><h3>Ladder against Smooth Wall with Rough Floor</h3><p>Calculate floor friction coefficient required to prevent a uniform ladder from slipping against a smooth wall.</p><a href="ladder-friction.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="engmech"><h3>Wedge Force with Friction</h3><p>Estimate horizontal force required to raise a load using a wedge with friction.</p><a href="wedge-friction.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="engmech"><h3>Symmetric Triangular Truss</h3><p>Calculate support reactions and bar forces for a symmetric two-member triangular truss with a central apex load.</p><a href="symmetric-truss.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="engmech"><h3>Composite Area Centroid — T Section</h3><p>Calculate the centroid location of a simple T-section built from flange and web rectangles.</p><a href="composite-centroid.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="engmech"><h3>Parallel Axis Theorem</h3><p>Transfer a centroidal area moment of inertia to a parallel axis at a known offset.</p><a href="parallel-axis-theorem.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="engmech"><h3>Mass Moment of Inertia — Solid Disk</h3><p>Calculate the mass moment of inertia of a solid disk or cylinder about its central axis.</p><a href="mass-moment-inertia-disk.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="engmech"><h3>Rectilinear Motion — Constant Acceleration</h3><p>Calculate final velocity and displacement for straight-line motion with constant acceleration.</p><a href="rectilinear-kinematics.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="engmech"><h3>Projectile Motion</h3><p>Calculate time of flight, maximum height and horizontal range for level-ground projectile motion.</p><a href="projectile-motion.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="engmech"><h3>Angular Motion — Constant Acceleration</h3><p>Calculate final angular speed and angular displacement under constant angular acceleration.</p><a href="angular-kinematics.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="engmech"><h3>Uniform Circular Motion</h3><p>Calculate angular speed, centripetal acceleration and centripetal force from speed and radius.</p><a href="circular-motion.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="engmech"><h3>Work–Energy Principle</h3><p>Calculate final speed from initial speed, mass and net work done on a particle.</p><a href="work-energy-particle.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="engmech"><h3>Impulse–Momentum</h3><p>Calculate final velocity from force impulse acting on a particle.</p><a href="impulse-momentum.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="engmech"><h3>1D Collision with Coefficient of Restitution</h3><p>Solve final velocities of two colliding bodies using momentum conservation and coefficient of restitution.</p><a href="collision-1d.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="engmech"><h3>Atwood Machine</h3><p>Calculate acceleration and rope tension for two masses connected by a light rope over a frictionless pulley.</p><a href="atwood-machine.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="engmech"><h3>Relative Velocity in 2D</h3><p>Calculate the relative velocity vector of body A with respect to body B.</p><a href="relative-velocity-2d.html" class="calculator-button">Open Calculator</a></div>
+
                 <!-- ================= THERMODYNAMICS ================= -->
 
                 <div class="calculator-card-home" data-category="thermo"><h3>Ideal Gas Law</h3><p>Solve P, V, m or T using PV = mRT.</p><a href="ideal-gas-law.html" class="calculator-button">Open Calculator</a></div>
@@ -839,6 +898,105 @@
                 <div class="calculator-card-home" data-category="design"><h3>Knuckle Joint Basic Check</h3><p>Check rod tension and double-shear stress in the knuckle pin.</p><a href="knuckle-joint-check.html" class="calculator-button">Open Calculator</a></div>
                 <div class="calculator-card-home" data-category="design"><h3>Chain Drive Speed &amp; Chain Velocity</h3><p>Calculate driven sprocket speed and chain linear velocity.</p><a href="chain-drive.html" class="calculator-button">Open Calculator</a></div>
 
+
+
+                <!-- ================= ENGINEERING MATERIALS / METALLURGY EXPANSION ================= -->
+                <div class="calculator-card-home" data-category="materials"><h3>Crystal Lattice Parameter</h3><p>Find cubic lattice parameter from atomic radius for SC, BCC and FCC.</p><a href="lattice-parameter.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="materials"><h3>Theoretical Crystal Density</h3><p>Calculate crystal density from atomic mass, unit-cell atoms and lattice parameter.</p><a href="crystal-density.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="materials"><h3>Atomic Packing Factor</h3><p>Compare occupied and void fractions for SC, BCC and FCC crystals.</p><a href="atomic-packing-factor.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="materials"><h3>Interplanar Spacing</h3><p>Calculate cubic d-spacing for a Miller-index plane.</p><a href="interplanar-spacing.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="materials"><h3>Bragg Diffraction Angle</h3><p>Solve the Bragg diffraction condition for crystal planes.</p><a href="bragg-law.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="materials"><h3>Schmid Factor &amp; Slip</h3><p>Find resolved shear stress and compare with CRSS.</p><a href="schmid-factor.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="materials"><h3>Tensile Test Properties</h3><p>Calculate engineering stress, strain and elastic modulus.</p><a href="tensile-test-properties.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="materials"><h3>True Stress &amp; Strain</h3><p>Convert engineering stress-strain values before necking.</p><a href="true-stress-strain.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="materials"><h3>Ductility</h3><p>Calculate percent elongation and reduction of area.</p><a href="ductility.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="materials"><h3>Brinell Hardness</h3><p>Calculate HBW from load, ball diameter and indentation diameter.</p><a href="brinell-hardness.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="materials"><h3>Vickers Hardness</h3><p>Calculate HV from load and indentation diagonal.</p><a href="vickers-hardness.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="materials"><h3>Modulus of Resilience</h3><p>Calculate elastic energy density at yielding.</p><a href="modulus-resilience.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="materials"><h3>Specific Strength &amp; Stiffness</h3><p>Compare strength-to-weight and stiffness-to-weight indices.</p><a href="specific-strength-stiffness.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="materials"><h3>Hall–Petch Strengthening</h3><p>Estimate grain-size strengthening of yield stress.</p><a href="hall-petch.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="materials"><h3>Stress Intensity &amp; KIC Check</h3><p>Calculate KI for a crack and compare with fracture toughness.</p><a href="stress-intensity-factor.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="materials"><h3>Griffith Fracture Stress</h3><p>Estimate ideal brittle fracture stress from crack size.</p><a href="griffith-fracture.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="materials"><h3>Paris Crack-Growth Life</h3><p>Estimate cycles for fatigue crack propagation.</p><a href="paris-fatigue-crack.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="materials"><h3>Basquin Fatigue Life</h3><p>Estimate high-cycle fatigue life from a stress-life relation.</p><a href="basquin-fatigue-life.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="materials"><h3>Norton Creep Rate</h3><p>Calculate steady-state creep rate versus stress and temperature.</p><a href="norton-creep-rate.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="materials"><h3>Larson–Miller Life</h3><p>Estimate creep-rupture time from Larson–Miller parameter.</p><a href="larson-miller.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="materials"><h3>Arrhenius Diffusion Coefficient</h3><p>Calculate diffusion coefficient at temperature.</p><a href="diffusion-arrhenius.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="materials"><h3>Fick Diffusion Flux</h3><p>Calculate steady diffusion flux from concentration gradient.</p><a href="fick-first-law.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="materials"><h3>Carburizing Concentration</h3><p>Calculate diffusion concentration versus depth and time.</p><a href="carburizing-concentration.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="materials"><h3>Phase Diagram Lever Rule</h3><p>Calculate phase fractions in a binary two-phase region.</p><a href="lever-rule.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="materials"><h3>Steel Carbon Equivalent</h3><p>Calculate IIW carbon equivalent for weldability screening.</p><a href="carbon-equivalent.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="materials"><h3>Composite Rule of Mixtures</h3><p>Estimate longitudinal/transverse modulus and density.</p><a href="composite-rule-mixtures.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="materials"><h3>Material Thermal Expansion</h3><p>Calculate free thermal strain and dimensional change.</p><a href="thermal-expansion-material.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="materials"><h3>Corrosion Rate</h3><p>Convert coupon weight loss into penetration rate.</p><a href="corrosion-rate.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="materials"><h3>Charpy Impact Energy</h3><p>Calculate absorbed pendulum energy and impact strength.</p><a href="charpy-impact-energy.html" class="calculator-button">Open Calculator</a></div>
+
+
+                <!-- ================= MANUFACTURING / PRODUCTION ENGINEERING EXPANSION ================= -->
+                <div class="calculator-card-home" data-category="manufacturing"><h3>Cutting Speed ↔ Spindle Speed</h3><p>Convert cutting speed, work/tool diameter and spindle speed for turning, drilling or milling.</p><a href="cutting-speed-rpm.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="manufacturing"><h3>Turning Machining Time</h3><p>Calculate longitudinal turning time from cutting length, feed and spindle speed.</p><a href="turning-machining-time.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="manufacturing"><h3>Turning Material Removal Rate</h3><p>Estimate turning MRR from diameter, depth of cut, feed and speed.</p><a href="turning-mrr.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="manufacturing"><h3>Facing Machining Time</h3><p>Calculate facing time from radial travel, feed and spindle speed.</p><a href="facing-machining-time.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="manufacturing"><h3>Drilling Machining Time</h3><p>Calculate drilling time from total drill travel, feed and spindle speed.</p><a href="drilling-machining-time.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="manufacturing"><h3>Drilling Material Removal Rate</h3><p>Calculate drilling material-removal rate.</p><a href="drilling-mrr.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="manufacturing"><h3>Milling Table Feed</h3><p>Calculate table feed from tooth feed, tooth count and spindle speed.</p><a href="milling-table-feed.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="manufacturing"><h3>Milling Machining Time</h3><p>Calculate milling time from effective table travel and feed.</p><a href="milling-machining-time.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="manufacturing"><h3>Milling Material Removal Rate</h3><p>Calculate milling MRR from width, depth and table feed.</p><a href="milling-mrr.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="manufacturing"><h3>Surface Grinding Time</h3><p>Estimate traverse grinding time from stroke length, strokes per pass and number of passes.</p><a href="surface-grinding-time.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="manufacturing"><h3>Taylor Tool Life</h3><p>Solve tool life using Taylor’s tool-life equation.</p><a href="taylor-tool-life.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="manufacturing"><h3>Economic Tool Life &amp; Cutting Speed</h3><p>Estimate minimum-cost tool life and corresponding Taylor cutting speed.</p><a href="machining-economics.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="manufacturing"><h3>Machining Cutting Power</h3><p>Calculate cutting power from cutting force and cutting speed.</p><a href="cutting-power.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="manufacturing"><h3>Orthogonal Cutting — Merchant Analysis</h3><p>Estimate shear angle, shear-plane area and shear stress from rake angle, friction and cutting data.</p><a href="merchant-circle.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="manufacturing"><h3>Ideal Turning Surface Roughness</h3><p>Estimate geometric surface roughness from feed and tool nose radius.</p><a href="surface-roughness-turning.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="manufacturing"><h3>Casting Solidification — Chvorinov Rule</h3><p>Calculate approximate casting solidification time from mold constant and modulus.</p><a href="chvorinov-solidification.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="manufacturing"><h3>Spherical Riser Design</h3><p>Size a spherical riser using a target riser-to-casting modulus ratio.</p><a href="spherical-riser-design.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="manufacturing"><h3>Pattern Shrinkage Allowance</h3><p>Calculate pattern dimension from casting dimension and linear shrinkage allowance.</p><a href="shrinkage-allowance.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="manufacturing"><h3>Arc Welding Heat Input</h3><p>Calculate effective welding heat input per unit length.</p><a href="welding-heat-input.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="manufacturing"><h3>Resistance Welding Heat</h3><p>Calculate electrical heat generated in spot/resistance welding.</p><a href="resistance-welding-heat.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="manufacturing"><h3>Blanking / Punching Force</h3><p>Calculate shearing force and approximate press tonnage for sheet blanking/punching.</p><a href="blanking-force.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="manufacturing"><h3>Flat Rolling Load</h3><p>Estimate rolling load from strip width, mean flow stress, roll radius and draft.</p><a href="rolling-load.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="manufacturing"><h3>Ideal Direct Extrusion Force</h3><p>Estimate ideal extrusion force from area reduction and mean flow stress.</p><a href="extrusion-force.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="manufacturing"><h3>Wire Drawing Force</h3><p>Estimate ideal drawing stress and force for a circular wire.</p><a href="wire-drawing-force.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="manufacturing"><h3>Deep Drawing Blank Diameter</h3><p>Estimate circular blank diameter and drawing ratio for a cylindrical cup, neglecting thickness/corner corrections.</p><a href="deep-drawing-blank.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="manufacturing"><h3>Limits, Tolerance &amp; Basic Size</h3><p>Calculate maximum/minimum limits and total tolerance from upper/lower deviations.</p><a href="limits-and-fits.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="manufacturing"><h3>Hole–Shaft Fit Analysis</h3><p>Classify a fit from hole and shaft limits and calculate minimum/maximum clearance or interference.</p><a href="fit-clearance-interference.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="manufacturing"><h3>Metric Tap Drill Size</h3><p>Estimate tap-drill diameter for ISO metric coarse/fine threads using the common D − pitch rule.</p><a href="tap-drill-size.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="manufacturing"><h3>CNC Toolpath Machining Time</h3><p>Estimate cutting time from programmed path length and feed rate, with optional rapid/non-cutting time.</p><a href="cnc-machining-time.html" class="calculator-button">Open Calculator</a></div>
+
+
+                <!-- ================= INDUSTRIAL ENGINEERING / OPERATIONS RESEARCH ================= -->
+                <div class="calculator-card-home" data-category="industrial"><h3>Single-Factor Productivity</h3><p>Calculate output per unit of a selected input such as labour hours, machine hours or material mass.</p><a href="productivity.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="industrial"><h3>Multi-Factor Productivity</h3><p>Measure output value relative to combined labour, material, energy and overhead input cost.</p><a href="multifactor-productivity.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="industrial"><h3>Capacity Utilization</h3><p>Calculate how much of the design capacity is actually being used.</p><a href="capacity-utilization.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="industrial"><h3>Takt Time</h3><p>Calculate the production pace required to satisfy customer demand.</p><a href="takt-time.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="industrial"><h3>Normal Time — Work Measurement</h3><p>Calculate normal time from observed cycle time and performance rating.</p><a href="normal-time.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="industrial"><h3>Standard Time with Allowances</h3><p>Calculate standard time by adding personal, fatigue and delay allowance to normal time.</p><a href="standard-time.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="industrial"><h3>Work Sampling Utilization</h3><p>Estimate activity proportion from random observations.</p><a href="work-sampling.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="industrial"><h3>Work Sampling Sample Size</h3><p>Estimate required observations for a desired absolute precision and confidence level.</p><a href="work-sampling-sample-size.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="industrial"><h3>Learning Curve</h3><p>Estimate average or unit time/cost after cumulative production increases according to a learning rate.</p><a href="learning-curve.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="industrial"><h3>Assembly Line Balancing</h3><p>Calculate cycle time, theoretical minimum stations, line efficiency and balance delay.</p><a href="line-balancing.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="industrial"><h3>Overall Equipment Effectiveness (OEE)</h3><p>Calculate OEE from availability, performance and quality factors.</p><a href="oee.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="industrial"><h3>Break-Even Analysis</h3><p>Calculate break-even quantity, sales revenue and profit at a chosen production volume.</p><a href="break-even-analysis.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="industrial"><h3>Economic Order Quantity (EOQ)</h3><p>Calculate the classical EOQ, order frequency and annual relevant inventory cost.</p><a href="eoq.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="industrial"><h3>Economic Production Quantity (EPQ)</h3><p>Calculate optimal production lot size when replenishment occurs gradually at a finite production rate.</p><a href="epq.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="industrial"><h3>Reorder Point &amp; Safety Stock</h3><p>Calculate safety stock and reorder point using demand variability during lead time.</p><a href="reorder-point.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="industrial"><h3>Inventory Turnover</h3><p>Calculate inventory turnover and approximate days of inventory on hand.</p><a href="inventory-turnover.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="industrial"><h3>PERT Activity Time &amp; Variance</h3><p>Calculate PERT expected activity duration, standard deviation and variance.</p><a href="pert-activity.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="industrial"><h3>CPM Two-Path Network</h3><p>Compare two parallel project paths and identify the critical path and project duration.</p><a href="cpm-two-path.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="industrial"><h3>Project Crashing Cost Slope</h3><p>Calculate activity crash cost slope and incremental cost for a selected time reduction.</p><a href="project-crashing.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="industrial"><h3>M/M/1 Queue</h3><p>Calculate utilization, expected queue length and waiting times for a single-server exponential queue.</p><a href="mm1-queue.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="industrial"><h3>Little’s Law</h3><p>Relate average number in a stable system, throughput rate and average flow time.</p><a href="littles-law.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="industrial"><h3>Simple Moving-Average Forecast</h3><p>Forecast the next period using the average of the most recent three observations.</p><a href="moving-average-forecast.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="industrial"><h3>Weighted Moving-Average Forecast</h3><p>Forecast the next period using user-defined weights on the last three observations.</p><a href="weighted-moving-average.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="industrial"><h3>Exponential Smoothing Forecast</h3><p>Update a one-step forecast using the latest actual demand and smoothing constant.</p><a href="exponential-smoothing.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="industrial"><h3>Linear Regression Forecast</h3><p>Fit a least-squares straight line to paired time-demand data and forecast at a selected x value.</p><a href="linear-regression-forecast.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="industrial"><h3>X̄ Control Chart Limits</h3><p>Calculate X-bar control limits from grand mean, average range and A₂ chart constant.</p><a href="xbar-chart.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="industrial"><h3>R Control Chart Limits</h3><p>Calculate range-chart control limits from average range and D₃/D₄ constants.</p><a href="r-chart.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="industrial"><h3>p-Chart Control Limits</h3><p>Calculate 3-sigma control limits for fraction nonconforming with constant sample size.</p><a href="p-chart.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="industrial"><h3>Process Capability Cp &amp; Cpk</h3><p>Calculate process capability indices from specification limits, process mean and standard deviation.</p><a href="process-capability.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="industrial"><h3>System Reliability — Series &amp; Parallel</h3><p>Compare reliability of identical-independent component sets connected in series or in active parallel.</p><a href="reliability-series-parallel.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="industrial"><h3>Availability from MTBF &amp; MTTR</h3><p>Calculate inherent availability from mean time between failures and mean time to repair.</p><a href="availability-mtbf-mttr.html" class="calculator-button">Open Calculator</a></div>
+                <div class="calculator-card-home" data-category="industrial"><h3>Two-Variable Linear Programming</h3><p>Maximize a linear objective with two ≤ constraints and non-negativity by evaluating feasible corner points.</p><a href="linear-programming-2var.html" class="calculator-button">Open Calculator</a></div>
 
                 <!-- ================= IC ENGINES EXPANSION ================= -->
                 <div class="calculator-card-home" data-category="ic"><h3>Engine Displacement / Swept Volume</h3><p>Calculate swept volume per cylinder and total engine displacement from bore, stroke and cylinder count.</p><a href="engine-displacement.html" class="calculator-button">Open Calculator</a></div>
@@ -1345,6 +1503,17 @@
                 <div class="calculator-card-home"><h3>Beam Deflection</h3><p>δ ∝ Load × L³ or L⁴ / EI</p></div>
 
 
+                <div class="calculator-card-home"><h3>Crystal Density</h3><p>ρ = nA/(Nₐa³)</p></div>
+                <div class="calculator-card-home"><h3>Interplanar Spacing</h3><p>dₕₖₗ = a/√(h²+k²+l²)</p></div>
+                <div class="calculator-card-home"><h3>Bragg Law</h3><p>nλ = 2d sinθ</p></div>
+                <div class="calculator-card-home"><h3>Schmid Law</h3><p>τᵣ = σ cosφ cosλ</p></div>
+                <div class="calculator-card-home"><h3>Hall–Petch</h3><p>σᵧ = σ₀ + k/√d</p></div>
+                <div class="calculator-card-home"><h3>Stress Intensity</h3><p>Kᵢ = Yσ√(πa)</p></div>
+                <div class="calculator-card-home"><h3>Paris Law</h3><p>da/dN = C(ΔK)^m</p></div>
+                <div class="calculator-card-home"><h3>Diffusion</h3><p>D = D₀exp(−Q/RT)</p></div>
+                <div class="calculator-card-home"><h3>Lever Rule</h3><p>fα=(Cβ−C₀)/(Cβ−Cα)</p></div>
+                <div class="calculator-card-home"><h3>Thermal Expansion</h3><p>ΔL = αLΔT</p></div>
+
                 <div class="calculator-card-home">
 
                     <h3>Force</h3>
@@ -1431,6 +1600,16 @@
 
                 
                 
+
+                <div class="calculator-card-home"><h3>2D Resultant</h3><p>R = √[(ΣFₓ)² + (ΣFᵧ)²]</p></div>
+                <div class="calculator-card-home"><h3>Moment of Force</h3><p>M = Fd</p></div>
+                <div class="calculator-card-home"><h3>Inclined-Plane Friction</h3><p>F = μN</p></div>
+                <div class="calculator-card-home"><h3>Particle Equilibrium</h3><p>ΣFₓ = 0, ΣFᵧ = 0</p></div>
+                <div class="calculator-card-home"><h3>Composite Centroid</h3><p>ȳ = ΣAy / ΣA</p></div>
+                <div class="calculator-card-home"><h3>Parallel Axis Theorem</h3><p>I = I_c + Ad²</p></div>
+                <div class="calculator-card-home"><h3>Projectile Range</h3><p>R = u²sin2θ/g</p></div>
+                <div class="calculator-card-home"><h3>Impulse–Momentum</h3><p>J = m(v−u)</p></div>
+                <div class="calculator-card-home"><h3>Restitution</h3><p>e = relative separation / relative approach</p></div>
                 <div class="calculator-card-home"><h3>Mechanism Mobility</h3><p>F = 3(n−1) − 2J₁ − J₂</p></div>
                 <div class="calculator-card-home"><h3>Slider-Crank Velocity</h3><p>v = rω[sinθ + sin2θ/(2n)]</p></div>
                 <div class="calculator-card-home"><h3>Gear Ratio</h3><p>N₂/N₁ = Z₁/Z₂</p></div>
@@ -1631,6 +1810,14 @@
                 <div class="calculator-card-home"><h3>BSFC</h3><p>BSFC = ṁf / BP</p></div>
                 <div class="calculator-card-home"><h3>Volumetric Efficiency</h3><p>ηv = ṁa / (ρ Vd × intake cycles/s)</p></div>
                 <div class="calculator-card-home"><h3>Mean Piston Speed</h3><p>Cm = 2LN / 60</p></div>
+
+                <div class="calculator-card-home"><h3>Takt Time</h3><p><strong>Takt = Available Production Time / Customer Demand</strong></p></div>
+                <div class="calculator-card-home"><h3>Standard Time</h3><p><strong>ST = Normal Time / (1 − Allowance)</strong></p></div>
+                <div class="calculator-card-home"><h3>OEE</h3><p><strong>OEE = Availability × Performance × Quality</strong></p></div>
+                <div class="calculator-card-home"><h3>EOQ</h3><p><strong>EOQ = √(2DS/H)</strong></p></div>
+                <div class="calculator-card-home"><h3>PERT Expected Time</h3><p><strong>tₑ = (a + 4m + b)/6</strong></p></div>
+                <div class="calculator-card-home"><h3>Little’s Law</h3><p><strong>L = λW</strong></p></div>
+                <div class="calculator-card-home"><h3>Process Capability</h3><p><strong>Cp = (USL − LSL)/(6σ)</strong></p></div>
 
             </div>
 
@@ -1833,7 +2020,16 @@
             <div
                 id="savedCalculationsList"
                 class="saved-calculations-list"
-            ></div>
+            >
+                <div class="calculator-card-home"><h3>Cutting Speed</h3><p>V = πDN/1000</p></div>
+                <div class="calculator-card-home"><h3>Turning Time</h3><p>t = L/(fN)</p></div>
+                <div class="calculator-card-home"><h3>Turning MRR</h3><p>MRR ≈ πDNfd</p></div>
+                <div class="calculator-card-home"><h3>Milling Feed</h3><p>F = fz z N</p></div>
+                <div class="calculator-card-home"><h3>Taylor Tool Life</h3><p>VTⁿ = C</p></div>
+                <div class="calculator-card-home"><h3>Welding Heat Input</h3><p>H = ηVI·60/v</p></div>
+                <div class="calculator-card-home"><h3>Blanking Force</h3><p>F = Ltτs</p></div>
+                <div class="calculator-card-home"><h3>Chvorinov Rule</h3><p>ts = B(V/A)ⁿ</p></div>
+</div>
 
         </section>
 

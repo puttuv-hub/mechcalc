@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Knuckle Joint Basic Check | MECHCALC</title>
+<meta name="description" content="Check rod tension and double-shear stress in the knuckle pin."><meta name="author" content="Vishnu"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/knuckle-joint-check.html"><meta property="og:title" content="Knuckle Joint Basic Check | MECHCALC"><meta property="og:description" content="Check rod tension and double-shear stress in the knuckle pin."><meta property="og:type" content="website"><meta property="og:site_name" content="MECHCALC"><meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/knuckle-joint-check.html">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="calculator.css"><link rel="stylesheet" href="machine-design.css">
+</head>
+<body>
+<header class="header"><div class="logo"><a href="index.html">⚙ MECHCALC</a></div><nav class="nav"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a></nav></header>
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container"><h1>Knuckle Joint Basic Check</h1><p>Check rod tension and double-shear stress in the knuckle pin.</p><div class="engineering-quote">“Design is calculation plus judgement — always check the governing failure mode.”</div><a href="index.html#calculators" class="back-link">← Back to Calculators</a></div></section>
+<section class="calculator-main"><div class="container"><div class="calculator-layout">
+<form class="input-panel" id="calcForm"><h2>Enter Design Values</h2><div class="calculator-form-group"><label for="P">Axial load P</label><div class="calculator-input-row"><input type="number" id="P" step="any" value="60" placeholder="Enter value"><span class="md-unit-label">kN</span></div></div><div class="calculator-form-group"><label for="d">Rod diameter d</label><div class="calculator-input-row"><input type="number" id="d" step="any" value="35" placeholder="Enter value"><span class="md-unit-label">mm</span></div></div><div class="calculator-form-group"><label for="dp">Pin diameter dp</label><div class="calculator-input-row"><input type="number" id="dp" step="any" value="30" placeholder="Enter value"><span class="md-unit-label">mm</span></div></div><div class="calculator-form-group"><label for="sig">Allowable rod tensile stress</label><div class="calculator-input-row"><input type="number" id="sig" step="any" value="100" placeholder="Enter value"><span class="md-unit-label">MPa</span></div></div><div class="calculator-form-group"><label for="tau">Allowable pin shear stress</label><div class="calculator-input-row"><input type="number" id="tau" step="any" value="60" placeholder="Enter value"><span class="md-unit-label">MPa</span></div></div><div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div><div id="errorMessage" class="calculator-error" style="display:none"></div></form>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">σrod = P/(πd²/4);  τpin = P/[2(πdp²/4)]</div></div><div class="unit-info"><strong>Model / assumption:</strong> Use consistent SI-derived engineering units as indicated. Results are intended for educational preliminary design; verify detailed standards for production design.</div></aside>
+</div>
+<section class="md-visual"><h3>Design visualization</h3><svg class="md-svg" viewBox="0 0 760 230" role="img" aria-label="Mechanical joint"><rect x="120" y="82" width="520" height="32" class="md-fill"/><rect x="120" y="116" width="520" height="32" class="md-fill"/><circle cx="290" cy="115" r="13" class="md-body"/><circle cx="470" cy="115" r="13" class="md-body"/><path d="M80 115 L25 115" class="md-accent"/><path d="M680 115 L735 115" class="md-accent"/><text x="245" y="205" class="md-label">Joint strength / efficiency check</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none"><h2>Step-by-Step Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+<footer class="footer"><p>MECHCALC • Machine Design Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const num=id=>Number($(id).value);
+const fmt=(v,d=4)=>{if(!Number.isFinite(v))return "—";const a=Math.abs(v);if(a>=1e8||(a>0&&a<1e-5))return v.toExponential(4);return Number(v.toFixed(d)).toLocaleString("en-IN");};
+function showError(m){$("errorMessage").textContent=m;$("errorMessage").style.display="block";$("resultBox").style.display="none";}
+function showResult(main,html){$("errorMessage").style.display="none";$("mainResult").innerHTML=main;$("resultDetails").innerHTML=html;$("resultBox").style.display="block";$("resultBox").scrollIntoView({behavior:"smooth",block:"start"});}
+
+function calc(){const P=num('P')*1000,d=num('d'),dp=num('dp'),sa=num('sig'),ta=num('tau');if(!(P>0&&d>0&&dp>0&&sa>0&&ta>0))return showError('All inputs must be positive.');const sr=P/(Math.PI*d*d/4),tp=P/(2*Math.PI*dp*dp/4),nr=sa/sr,np=ta/tp;showResult(`Minimum basic FoS = <strong>${fmt(Math.min(nr,np),2)}</strong>`,`<div class="md-result-grid"><div class="md-result-card"><strong>Rod tensile stress</strong>${fmt(sr,2)} MPa</div><div class="md-result-card"><strong>Pin double-shear stress</strong>${fmt(tp,2)} MPa</div><div class="md-result-card"><strong>Rod FoS</strong>${fmt(nr,2)}</div><div class="md-result-card"><strong>Pin FoS</strong>${fmt(np,2)}</div></div><p class="md-note">A complete knuckle-joint design must also check eye/fork tearing, crushing and pin bending.</p>`)}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('calcForm').reset();$('resultBox').style.display='none';$('errorMessage').style.display='none';});
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gear Pair Speed & Torque | MECHCALC</title>
+<meta name="description" content="Calculate speed ratio, driven-gear speed and ideal torque multiplication for a pair of external gears."><meta name="author" content="Vishnu"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/gear-pair.html"><meta property="og:title" content="Gear Pair Speed & Torque | MECHCALC"><meta property="og:description" content="Calculate speed ratio, driven-gear speed and ideal torque multiplication for a pair of external gears."><meta property="og:type" content="website"><meta property="og:site_name" content="MECHCALC"><meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/gear-pair.html">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="calculator.css"><link rel="stylesheet" href="tom.css">
+</head>
+<body>
+<header class="header"><div class="logo"><a href="index.html">⚙ MECHCALC</a></div><nav class="nav"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a></nav></header>
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container"><h1>Gear Pair Speed & Torque</h1><p>Calculate speed ratio, driven-gear speed and ideal torque multiplication for a pair of external gears.</p><div class="engineering-quote">“Understand the motion first; then let the equations confirm it.”</div><a href="index.html#calculators" class="back-link">← Back to Calculators</a></div></section>
+<section class="calculator-main"><div class="container"><div class="calculator-layout">
+<form class="input-panel" id="calcForm"><h2>Enter Values</h2><div class="calculator-form-group"><label for="z1">Driver teeth Z₁</label><div class="calculator-input-row"><input type="number" id="z1" step="1" value="20" placeholder="Enter value" min="1"><span class="tom-unit-label">teeth</span></div></div><div class="calculator-form-group"><label for="z2">Driven teeth Z₂</label><div class="calculator-input-row"><input type="number" id="z2" step="1" value="60" placeholder="Enter value" min="1"><span class="tom-unit-label">teeth</span></div></div><div class="calculator-form-group"><label for="n1">Driver speed N₁</label><div class="calculator-input-row"><input type="number" id="n1" step="any" value="1200" placeholder="Enter value"><span class="tom-unit-label">rpm</span></div></div><div class="calculator-form-group"><label for="torque1">Driver torque T₁</label><div class="calculator-input-row"><input type="number" id="torque1" step="any" value="10" placeholder="Enter value"><span class="tom-unit-label">N·m</span></div></div><div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div><div id="errorMessage" class="calculator-error" style="display:none"></div></form>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">N₁T₁ = N₂T₂; N₂/N₁ = Z₁/Z₂</div></div><div class="unit-info"><strong>Model / assumption:</strong> Ideal external gears; sign indicates opposite rotation direction.</div></aside>
+</div>
+<section class="tom-visual"><h3>External gear pair</h3><svg class="tom-svg" viewBox="0 0 760 300" role="img" aria-label="External gear pair"><defs><marker id="tomArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#f59e0b"/></marker></defs><circle cx="275" cy="150" r="65" class="tom-gear"/><circle cx="450" cy="150" r="110" class="tom-gear"/><circle cx="275" cy="150" r="8" class="tom-joint"/><circle cx="450" cy="150" r="8" class="tom-joint"/><path d="M245 70 A80 80 0 0 1 315 75" class="tom-vector"/><path d="M505 52 A125 125 0 0 1 555 95" class="tom-vector"/><text x="235" y="155" class="tom-label">Driver</text><text x="420" y="155" class="tom-label">Driven</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none"><h2>Calculation Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+<footer class="footer"><p>MECHCALC • Theory of Machines Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=(v,d=5)=>{if(!Number.isFinite(v))return '—';const a=Math.abs(v);if(a>=1e8||(a>0&&a<1e-6))return v.toExponential(4);return Number(v.toFixed(d)).toLocaleString('en-IN');};
+const rad=d=>d*Math.PI/180; const deg=r=>r*180/Math.PI; const num=id=>Number($(id).value);
+function showError(m){$('errorMessage').textContent=m;$('errorMessage').style.display='block';$('resultBox').style.display='none';}
+function showResult(main,html){$('errorMessage').style.display='none';$('mainResult').innerHTML=main;$('resultDetails').innerHTML=html;$('resultBox').style.display='block';$('resultBox').scrollIntoView({behavior:'smooth',block:'start'});}
+function normDeg(x){x%=360;if(x<0)x+=360;return x;}
+
+
+function calc(){const z1=num('z1'),z2=num('z2'),n1=num('n1'),T1=num('torque1');if(!(z1>0&&z2>0&&Number.isInteger(z1)&&Number.isInteger(z2)))return showError('Gear tooth counts must be positive whole numbers.');const ratio=z2/z1,n2=-n1*z1/z2,T2=-T1*z2/z1;showResult(`Driven speed = <strong>${fmt(Math.abs(n2),3)} rpm</strong> (opposite direction)`,`<div class="tom-result-grid"><div class="tom-result-card"><strong>Gear ratio Z₂/Z₁</strong>${fmt(ratio,4)}</div><div class="tom-result-card"><strong>Ideal driven torque</strong>${fmt(Math.abs(T2),4)} N·m</div><div class="tom-result-card"><strong>Direction</strong>Opposite</div></div><p>N₂ = −N₁(Z₁/Z₂) = ${fmt(n2,3)} rpm.</p><p>T₂ = −T₁(Z₂/Z₁) = ${fmt(T2,4)} N·m (ideal, neglecting losses).</p>`);}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('calcForm').reset();$('resultBox').style.display='none';$('errorMessage').style.display='none';});</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

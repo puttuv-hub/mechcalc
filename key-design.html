@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rectangular Key Design | MECHCALC</title>
+<meta name="description" content="Determine the minimum key length from both shear and crushing criteria."><meta name="author" content="Vishnu"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/key-design.html"><meta property="og:title" content="Rectangular Key Design | MECHCALC"><meta property="og:description" content="Determine the minimum key length from both shear and crushing criteria."><meta property="og:type" content="website"><meta property="og:site_name" content="MECHCALC"><meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/key-design.html">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="calculator.css"><link rel="stylesheet" href="machine-design.css">
+</head>
+<body>
+<header class="header"><div class="logo"><a href="index.html">⚙ MECHCALC</a></div><nav class="nav"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a></nav></header>
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container"><h1>Rectangular Key Design</h1><p>Determine the minimum key length from both shear and crushing criteria.</p><div class="engineering-quote">“Design is calculation plus judgement — always check the governing failure mode.”</div><a href="index.html#calculators" class="back-link">← Back to Calculators</a></div></section>
+<section class="calculator-main"><div class="container"><div class="calculator-layout">
+<form class="input-panel" id="calcForm"><h2>Enter Design Values</h2><div class="calculator-form-group"><label for="T">Torque T</label><div class="calculator-input-row"><input type="number" id="T" step="any" value="500" placeholder="Enter value"><span class="md-unit-label">N·m</span></div></div><div class="calculator-form-group"><label for="d">Shaft diameter d</label><div class="calculator-input-row"><input type="number" id="d" step="any" value="50" placeholder="Enter value"><span class="md-unit-label">mm</span></div></div><div class="calculator-form-group"><label for="b">Key width b</label><div class="calculator-input-row"><input type="number" id="b" step="any" value="16" placeholder="Enter value"><span class="md-unit-label">mm</span></div></div><div class="calculator-form-group"><label for="t">Key thickness t</label><div class="calculator-input-row"><input type="number" id="t" step="any" value="10" placeholder="Enter value"><span class="md-unit-label">mm</span></div></div><div class="calculator-form-group"><label for="tau">Allowable key shear stress</label><div class="calculator-input-row"><input type="number" id="tau" step="any" value="50" placeholder="Enter value"><span class="md-unit-label">MPa</span></div></div><div class="calculator-form-group"><label for="sig">Allowable crushing stress</label><div class="calculator-input-row"><input type="number" id="sig" step="any" value="100" placeholder="Enter value"><span class="md-unit-label">MPa</span></div></div><div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div><div id="errorMessage" class="calculator-error" style="display:none"></div></form>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">Lshear = 2T/(d b τ);  Lcrush = 4T/(d t σc)</div></div><div class="unit-info"><strong>Model / assumption:</strong> Use consistent SI-derived engineering units as indicated. Results are intended for educational preliminary design; verify detailed standards for production design.</div></aside>
+</div>
+<section class="md-visual"><h3>Design visualization</h3><svg class="md-svg" viewBox="0 0 760 230" role="img" aria-label="Key and shaft"><circle cx="270" cy="115" r="80" class="md-fill"/><circle cx="270" cy="115" r="36" class="md-body"/><rect x="270" y="49" width="155" height="34" class="md-fill"/><line x1="425" y1="66" x2="610" y2="66" class="md-link"/><text x="455" y="50" class="md-label">Key transmits torque</text><text x="210" y="215" class="md-muted">Check shear and crushing</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none"><h2>Step-by-Step Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+<footer class="footer"><p>MECHCALC • Machine Design Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const num=id=>Number($(id).value);
+const fmt=(v,d=4)=>{if(!Number.isFinite(v))return "—";const a=Math.abs(v);if(a>=1e8||(a>0&&a<1e-5))return v.toExponential(4);return Number(v.toFixed(d)).toLocaleString("en-IN");};
+function showError(m){$("errorMessage").textContent=m;$("errorMessage").style.display="block";$("resultBox").style.display="none";}
+function showResult(main,html){$("errorMessage").style.display="none";$("mainResult").innerHTML=main;$("resultDetails").innerHTML=html;$("resultBox").style.display="block";$("resultBox").scrollIntoView({behavior:"smooth",block:"start"});}
+
+function calc(){const T=num('T')*1000,d=num('d'),b=num('b'),t=num('t'),ta=num('tau'),s=num('sig');if(!(T>0&&d>0&&b>0&&t>0&&ta>0&&s>0))return showError('All inputs must be positive.');const Ls=2*T/(d*b*ta),Lc=4*T/(d*t*s),L=Math.max(Ls,Lc);showResult(`Minimum key length = <strong>${fmt(L,2)} mm</strong>`,`<div class="md-result-grid"><div class="md-result-card"><strong>From shear</strong>${fmt(Ls,2)} mm</div><div class="md-result-card"><strong>From crushing</strong>${fmt(Lc,2)} mm</div></div><p>Use the larger requirement: L = max(${fmt(Ls,2)}, ${fmt(Lc,2)}) mm.</p><p class="md-note">Adopt a convenient standard length not less than this value.</p>`)}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('calcForm').reset();$('resultBox').style.display='none';$('errorMessage').style.display='none';});
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hollow Shaft Torsion Design | MECHCALC</title>
+<meta name="description" content="Find the required outside diameter for a hollow circular shaft carrying torque."><meta name="author" content="Vishnu"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/hollow-shaft-design.html"><meta property="og:title" content="Hollow Shaft Torsion Design | MECHCALC"><meta property="og:description" content="Find the required outside diameter for a hollow circular shaft carrying torque."><meta property="og:type" content="website"><meta property="og:site_name" content="MECHCALC"><meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/hollow-shaft-design.html">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="calculator.css"><link rel="stylesheet" href="machine-design.css">
+</head>
+<body>
+<header class="header"><div class="logo"><a href="index.html">⚙ MECHCALC</a></div><nav class="nav"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a></nav></header>
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container"><h1>Hollow Shaft Torsion Design</h1><p>Find the required outside diameter for a hollow circular shaft carrying torque.</p><div class="engineering-quote">“Design is calculation plus judgement — always check the governing failure mode.”</div><a href="index.html#calculators" class="back-link">← Back to Calculators</a></div></section>
+<section class="calculator-main"><div class="container"><div class="calculator-layout">
+<form class="input-panel" id="calcForm"><h2>Enter Design Values</h2><div class="calculator-form-group"><label for="T">Torque T</label><div class="calculator-input-row"><input type="number" id="T" step="any" value="1000" placeholder="Enter value"><span class="md-unit-label">N·m</span></div></div><div class="calculator-form-group"><label for="tau">Allowable shear stress</label><div class="calculator-input-row"><input type="number" id="tau" step="any" value="60" placeholder="Enter value"><span class="md-unit-label">MPa</span></div></div><div class="calculator-form-group"><label for="k">Diameter ratio k = di/do</label><div class="calculator-input-row"><input type="number" id="k" step="any" value="0.6" placeholder="Enter value"><span class="md-unit-label">—</span></div></div><div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div><div id="errorMessage" class="calculator-error" style="display:none"></div></form>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">dₒ = [16T / (π τallow (1−k⁴))]^(1/3),  k = dᵢ/dₒ</div></div><div class="unit-info"><strong>Model / assumption:</strong> Use consistent SI-derived engineering units as indicated. Results are intended for educational preliminary design; verify detailed standards for production design.</div></aside>
+</div>
+<section class="md-visual"><h3>Design visualization</h3><svg class="md-svg" viewBox="0 0 760 230" role="img" aria-label="Shaft under bending and torsion"><line x1="100" y1="115" x2="660" y2="115" class="md-link"/><circle cx="190" cy="115" r="48" class="md-fill"/><circle cx="570" cy="115" r="48" class="md-fill"/><path d="M320 70 C360 35 405 35 445 70" class="md-accent"/><path d="M380 35 L445 70 L405 82" class="md-accent"/><line x1="380" y1="15" x2="380" y2="80" class="md-accent"/><text x="300" y="205" class="md-label">Combined bending M + torque T</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none"><h2>Step-by-Step Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+<footer class="footer"><p>MECHCALC • Machine Design Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const num=id=>Number($(id).value);
+const fmt=(v,d=4)=>{if(!Number.isFinite(v))return "—";const a=Math.abs(v);if(a>=1e8||(a>0&&a<1e-5))return v.toExponential(4);return Number(v.toFixed(d)).toLocaleString("en-IN");};
+function showError(m){$("errorMessage").textContent=m;$("errorMessage").style.display="block";$("resultBox").style.display="none";}
+function showResult(main,html){$("errorMessage").style.display="none";$("mainResult").innerHTML=main;$("resultDetails").innerHTML=html;$("resultBox").style.display="block";$("resultBox").scrollIntoView({behavior:"smooth",block:"start"});}
+
+function calc(){const T=num('T')*1000,t=num('tau'),k=num('k');if(!(T>0&&t>0&&k>=0&&k<1))return showError('Require T > 0, τ > 0 and 0 ≤ k < 1.');const d=Math.cbrt(16*T/(Math.PI*t*(1-k**4)));const di=k*d;showResult(`Outside diameter = <strong>${fmt(d,2)} mm</strong>`,`<div class="md-result-grid"><div class="md-result-card"><strong>Inside diameter</strong>${fmt(di,2)} mm</div><div class="md-result-card"><strong>Diameter ratio</strong>${fmt(k,3)}</div></div><p>1−k⁴ = ${fmt(1-k**4,5)}</p><p>dₒ = [16T/(π τ(1−k⁴))]^(1/3) = ${fmt(d,2)} mm</p>`)}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('calcForm').reset();$('resultBox').style.display='none';$('errorMessage').style.display='none';});
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

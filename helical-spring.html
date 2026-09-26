@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Helical Compression Spring | MECHCALC</title>
+<meta name="description" content="Calculate Wahl-corrected shear stress, deflection and spring stiffness."><meta name="author" content="Vishnu"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/helical-spring.html"><meta property="og:title" content="Helical Compression Spring | MECHCALC"><meta property="og:description" content="Calculate Wahl-corrected shear stress, deflection and spring stiffness."><meta property="og:type" content="website"><meta property="og:site_name" content="MECHCALC"><meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/helical-spring.html">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="calculator.css"><link rel="stylesheet" href="machine-design.css">
+</head>
+<body>
+<header class="header"><div class="logo"><a href="index.html">⚙ MECHCALC</a></div><nav class="nav"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a></nav></header>
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container"><h1>Helical Compression Spring</h1><p>Calculate Wahl-corrected shear stress, deflection and spring stiffness.</p><div class="engineering-quote">“Design is calculation plus judgement — always check the governing failure mode.”</div><a href="index.html#calculators" class="back-link">← Back to Calculators</a></div></section>
+<section class="calculator-main"><div class="container"><div class="calculator-layout">
+<form class="input-panel" id="calcForm"><h2>Enter Design Values</h2><div class="calculator-form-group"><label for="W">Axial load W</label><div class="calculator-input-row"><input type="number" id="W" step="any" value="1000" placeholder="Enter value"><span class="md-unit-label">N</span></div></div><div class="calculator-form-group"><label for="d">Wire diameter d</label><div class="calculator-input-row"><input type="number" id="d" step="any" value="10" placeholder="Enter value"><span class="md-unit-label">mm</span></div></div><div class="calculator-form-group"><label for="D">Mean coil diameter D</label><div class="calculator-input-row"><input type="number" id="D" step="any" value="60" placeholder="Enter value"><span class="md-unit-label">mm</span></div></div><div class="calculator-form-group"><label for="n">Active coils n</label><div class="calculator-input-row"><input type="number" id="n" step="any" value="8" placeholder="Enter value"><span class="md-unit-label">—</span></div></div><div class="calculator-form-group"><label for="G">Shear modulus G</label><div class="calculator-input-row"><input type="number" id="G" step="any" value="80" placeholder="Enter value"><span class="md-unit-label">GPa</span></div></div><div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div><div id="errorMessage" class="calculator-error" style="display:none"></div></form>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">τ = Kᵥ·8WD/(πd³);  δ = 8WD³n/(Gd⁴)</div></div><div class="unit-info"><strong>Model / assumption:</strong> Use consistent SI-derived engineering units as indicated. Results are intended for educational preliminary design; verify detailed standards for production design.</div></aside>
+</div>
+<section class="md-visual"><h3>Design visualization</h3><svg class="md-svg" viewBox="0 0 760 260" role="img" aria-label="Helical spring"><path d="M330 25 C250 45 250 65 330 85 C410 105 410 125 330 145 C250 165 250 185 330 205 C410 225 410 245 330 250" class="md-link"/><line x1="330" y1="5" x2="330" y2="35" class="md-accent"/><line x1="330" y1="225" x2="330" y2="255" class="md-accent"/><text x="430" y="130" class="md-label">W</text><text x="210" y="130" class="md-muted">wire d, mean coil D</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none"><h2>Step-by-Step Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+<footer class="footer"><p>MECHCALC • Machine Design Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const num=id=>Number($(id).value);
+const fmt=(v,d=4)=>{if(!Number.isFinite(v))return "—";const a=Math.abs(v);if(a>=1e8||(a>0&&a<1e-5))return v.toExponential(4);return Number(v.toFixed(d)).toLocaleString("en-IN");};
+function showError(m){$("errorMessage").textContent=m;$("errorMessage").style.display="block";$("resultBox").style.display="none";}
+function showResult(main,html){$("errorMessage").style.display="none";$("mainResult").innerHTML=main;$("resultDetails").innerHTML=html;$("resultBox").style.display="block";$("resultBox").scrollIntoView({behavior:"smooth",block:"start"});}
+
+function calc(){const W=num('W'),d=num('d'),D=num('D'),n=num('n'),G=num('G')*1000;if(!(W>=0&&d>0&&D>d&&n>0&&G>0))return showError('Require D > d and positive geometry/material values.');const C=D/d,K=(4*C-1)/(4*C-4)+.615/C;const tau=K*8*W*D/(Math.PI*d**3),del=8*W*D**3*n/(G*d**4),k=W/(del||1);showResult(`Maximum spring shear stress = <strong>${fmt(tau,2)} MPa</strong>`,`<div class="md-result-grid"><div class="md-result-card"><strong>Deflection</strong>${fmt(del,2)} mm</div><div class="md-result-card"><strong>Stiffness</strong>${fmt(k,2)} N/mm</div><div class="md-result-card"><strong>Spring index C</strong>${fmt(C,2)}</div><div class="md-result-card"><strong>Wahl factor</strong>${fmt(K,3)}</div></div><p>τ = K·8WD/(πd³) = ${fmt(tau,2)} MPa</p><p>δ = 8WD³n/(Gd⁴) = ${fmt(del,2)} mm</p>`)}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('calcForm').reset();$('resultBox').style.display='none';$('errorMessage').style.display='none';});
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>
