@@ -10,7 +10,7 @@ This package is arranged so `index.html` is at the repository root and can be pu
 
 - Finalized `style.css` homepage/site design
 - Shared `calculator.css`
-- 252 categorized mechanical engineering calculators across thirteen subject groups
+- 107 categorized mechanical engineering calculators across seven subject groups
 - Engineering Unit Converter
 - Engineering Resources page
 - `robots.txt`
@@ -32,20 +32,14 @@ This package is arranged so `index.html` is at the repository root and can be pu
 ## Calculator coverage
 
 - Mechanics: 7
-- Engineering Mechanics: 21
 - Strength of Materials: 21
 - Thermodynamics: 23
 - Heat Transfer: 18
 - Theory of Machines: 25
-- Machine Design: 21
-- IC Engines: 22
-- Refrigeration & Air Conditioning: 27
-- Fluid Machinery / Turbomachinery: 25
-- Manufacturing / Production Engineering: 29
 - Fluid Mechanics: 11
 - Hydraulic & Pump: 2
 
-Total categorized calculators: **252**.
+Total categorized calculators: **107**.
 
 The project also includes the Engineering Unit Converter and Engineering Resources pages.
 
@@ -102,7 +96,3 @@ Added 25 visual, step-by-step calculators in the offline build.
 
 ## Manufacturing / Production Engineering expansion
 Added 29 new interactive calculators. See `MANUFACTURING_EXPANSION_GUIDE.md`.
-
-
-## Engineering Mechanics expansion
-Added 21 visual, step-by-step Engineering Mechanics calculators covering statics, force systems, friction, trusses, centroids, kinematics, work-energy, impulse-momentum, collisions and pulley dynamics.
