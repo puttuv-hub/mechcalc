@@ -1,22 +1,46 @@
-# MECHCALC GitHub Pages Checklist
+# MECHCALC — Final GitHub Pages Deployment Checklist
 
-1. Create a GitHub repository, for example `mechcalc`.
-2. Upload the **contents** of this folder to the repository root. Do not put them inside another nested folder.
-3. Confirm `index.html`, `style.css`, and `calculator.css` are visible at the top level of the repository.
-4. Confirm all 23 calculator HTML files, `unit-converter.html`, and `engineering-resources.html` are at the same level.
-5. In GitHub open **Settings → Pages** and configure the site to deploy from the `main` branch and `/(root)` folder.
-6. Open the published site and test the homepage, search/filter buttons, Resources, Unit Converter, and every calculator.
-7. Test the site on both desktop and mobile widths.
-8. After the final public URL is known, update `robots.txt` and every `<loc>` entry in `sitemap.xml` to final absolute public URLs.
-9. Only after those URLs are correct, submit the sitemap to your search engine webmaster/search console account.
+## Before upload
 
-## Package validation result
+- Use the final **MECHCALC GitHub Ready** package, not an older subject checkpoint.
+- Keep `index.html`, `style.css`, `calculator.css`, JavaScript files and every calculator HTML file at repository root level.
+- Do not place the website inside an extra nested folder in the GitHub repository.
+- Keep `.nojekyll`, `robots.txt` and `sitemap.xml` at repository root.
 
-- Missing local linked files: **0**
-- Inline JavaScript syntax errors: **0**
-- JSON-LD parse errors: **0**
-- Expected calculator pages present: **23 / 23**
+## GitHub upload
 
-## Live GitHub Pages URL
+1. Open the `puttuv-hub/mechcalc` repository.
+2. Replace the old site files with the contents of the final GitHub-ready package.
+3. Confirm `index.html` is visible at the repository root.
+4. In **Settings → Pages**, publish from `main` and `/(root)`.
+5. Wait for the GitHub Pages deployment to finish.
 
-https://puttuv-hub.github.io/mechcalc/
+## Live-site verification
+
+After deployment, open `https://puttuv-hub.github.io/mechcalc/` and verify:
+
+- Homepage loads correctly.
+- Search finds calculators by name/description.
+- Every subject filter shows its calculators.
+- Unit Converter and Engineering Resources open correctly.
+- Login, Sign Up, Password Reset and Logout work.
+- Saving a calculation works while signed in.
+- Calculation History loads for the signed-in user.
+- Mobile navigation/layout remains usable.
+- `https://puttuv-hub.github.io/mechcalc/sitemap.xml` opens successfully.
+- `https://puttuv-hub.github.io/mechcalc/robots.txt` opens successfully.
+
+## Search Console
+
+Ownership was previously verified. After the final deployment, submit or resubmit:
+
+`https://puttuv-hub.github.io/mechcalc/sitemap.xml`
+
+## Final package counts
+
+- Categorized calculators: **313**
+- HTML pages: **316**
+- Sitemap URLs: **316**
+- Homepage subject filters: **15 subject categories + All**
+
+See `FINAL_AUDIT.md` for the static validation report.

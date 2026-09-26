@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Failure Theories — Tresca &amp; von Mises | MECHCALC</title>
+<meta name="description" content="Evaluate plane-stress principal stresses, von Mises stress and maximum-shear equivalent stress."><meta name="author" content="Vishnu"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/failure-theories.html"><meta property="og:title" content="Failure Theories — Tresca &amp; von Mises | MECHCALC"><meta property="og:description" content="Evaluate plane-stress principal stresses, von Mises stress and maximum-shear equivalent stress."><meta property="og:type" content="website"><meta property="og:site_name" content="MECHCALC"><meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/failure-theories.html">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="calculator.css"><link rel="stylesheet" href="machine-design.css">
+</head>
+<body>
+<header class="header"><div class="logo"><a href="index.html">⚙ MECHCALC</a></div><nav class="nav"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a></nav></header>
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container"><h1>Failure Theories — Tresca &amp; von Mises</h1><p>Evaluate plane-stress principal stresses, von Mises stress and maximum-shear equivalent stress.</p><div class="engineering-quote">“Design is calculation plus judgement — always check the governing failure mode.”</div><a href="index.html#calculators" class="back-link">← Back to Calculators</a></div></section>
+<section class="calculator-main"><div class="container"><div class="calculator-layout">
+<form class="input-panel" id="calcForm"><h2>Enter Design Values</h2><div class="calculator-form-group"><label for="sx">Normal stress σx</label><div class="calculator-input-row"><input type="number" id="sx" step="any" value="120" placeholder="Enter value"><span class="md-unit-label">MPa</span></div></div><div class="calculator-form-group"><label for="sy">Normal stress σy</label><div class="calculator-input-row"><input type="number" id="sy" step="any" value="40" placeholder="Enter value"><span class="md-unit-label">MPa</span></div></div><div class="calculator-form-group"><label for="txy">Shear stress τxy</label><div class="calculator-input-row"><input type="number" id="txy" step="any" value="35" placeholder="Enter value"><span class="md-unit-label">MPa</span></div></div><div class="calculator-form-group"><label for="Sy">Yield strength Sy</label><div class="calculator-input-row"><input type="number" id="Sy" step="any" value="250" placeholder="Enter value"><span class="md-unit-label">MPa</span></div></div><div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div><div id="errorMessage" class="calculator-error" style="display:none"></div></form>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">σVM = √(σx²−σxσy+σy²+3τxy²);  σTresca = max|σi−σj|</div></div><div class="unit-info"><strong>Model / assumption:</strong> Use consistent SI-derived engineering units as indicated. Results are intended for educational preliminary design; verify detailed standards for production design.</div></aside>
+</div>
+<section class="md-visual"><h3>Design visualization</h3><svg class="md-svg" viewBox="0 0 760 250" role="img" aria-label="Stress element and failure envelope"><rect x="130" y="70" width="120" height="120" class="md-fill"/><line x1="80" y1="130" x2="130" y2="130" class="md-accent"/><line x1="250" y1="130" x2="300" y2="130" class="md-accent"/><line x1="190" y1="20" x2="190" y2="70" class="md-accent"/><line x1="190" y1="190" x2="190" y2="240" class="md-accent"/><circle cx="520" cy="130" r="80" class="md-body"/><line x1="440" y1="130" x2="600" y2="130" class="md-thin"/><line x1="520" y1="50" x2="520" y2="210" class="md-thin"/><text x="410" y="235" class="md-muted">Compare equivalent stress with yield strength</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none"><h2>Step-by-Step Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+<footer class="footer"><p>MECHCALC • Machine Design Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const num=id=>Number($(id).value);
+const fmt=(v,d=4)=>{if(!Number.isFinite(v))return "—";const a=Math.abs(v);if(a>=1e8||(a>0&&a<1e-5))return v.toExponential(4);return Number(v.toFixed(d)).toLocaleString("en-IN");};
+function showError(m){$("errorMessage").textContent=m;$("errorMessage").style.display="block";$("resultBox").style.display="none";}
+function showResult(main,html){$("errorMessage").style.display="none";$("mainResult").innerHTML=main;$("resultDetails").innerHTML=html;$("resultBox").style.display="block";$("resultBox").scrollIntoView({behavior:"smooth",block:"start"});}
+
+function calc(){const sx=num('sx'),sy=num('sy'),t=num('txy'),Sy=num('Sy');if(!(Number.isFinite(sx)&&Number.isFinite(sy)&&Number.isFinite(t)&&Sy>0))return showError('Enter finite stresses and positive yield strength.');const avg=(sx+sy)/2,R=Math.sqrt(((sx-sy)/2)**2+t*t),s1=avg+R,s2=avg-R,s3=0,vm=Math.sqrt(sx*sx-sx*sy+sy*sy+3*t*t),tr=Math.max(Math.abs(s1-s2),Math.abs(s2-s3),Math.abs(s3-s1)),nvm=Sy/vm,nt=Sy/tr;showResult(`von Mises FoS = <strong>${fmt(nvm,2)}</strong>`,`<div class="md-result-grid"><div class="md-result-card"><strong>Principal σ1</strong>${fmt(s1,2)} MPa</div><div class="md-result-card"><strong>Principal σ2</strong>${fmt(s2,2)} MPa</div><div class="md-result-card"><strong>von Mises stress</strong>${fmt(vm,2)} MPa</div><div class="md-result-card"><strong>Tresca equivalent</strong>${fmt(tr,2)} MPa</div><div class="md-result-card"><strong>Tresca FoS</strong>${fmt(nt,2)}</div></div><p class="md-note">For ductile materials, compare the equivalent stress with yield strength under the selected criterion.</p>`)}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('calcForm').reset();$('resultBox').style.display='none';$('errorMessage').style.display='none';});
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

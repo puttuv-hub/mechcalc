@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engine Displacement / Swept Volume | MECHCALC</title>
+<meta name="description" content="Calculate swept volume per cylinder and total engine displacement from bore, stroke and cylinder count."><meta name="author" content="Vishnu"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/engine-displacement.html"><meta property="og:title" content="Engine Displacement / Swept Volume | MECHCALC"><meta property="og:description" content="Calculate swept volume per cylinder and total engine displacement from bore, stroke and cylinder count."><meta property="og:type" content="website"><meta property="og:site_name" content="MECHCALC"><meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/engine-displacement.html">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="calculator.css"><link rel="stylesheet" href="ic-engines.css">
+</head>
+<body>
+<header class="header"><div class="logo"><a href="index.html">⚙ MECHCALC</a></div><nav class="nav"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a></nav></header>
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container"><h1>Engine Displacement / Swept Volume</h1><p>Calculate swept volume per cylinder and total engine displacement from bore, stroke and cylinder count.</p><div class="engineering-quote">“Understand the cycle, track the units, and let the energy balance tell the story.”</div><a href="index.html#calculators" class="back-link">← Back to Calculators</a></div></section>
+<section class="calculator-main"><div class="container"><div class="calculator-layout">
+<form class="input-panel" id="calcForm"><h2>Enter Engine Data</h2><div class="calculator-form-group"><label for="D">Cylinder bore D</label><div class="calculator-input-row"><input type="number" id="D" step="any" value="86" placeholder="Enter value"><span class="ice-unit-label">mm</span></div></div><div class="calculator-form-group"><label for="L">Stroke L</label><div class="calculator-input-row"><input type="number" id="L" step="any" value="86" placeholder="Enter value"><span class="ice-unit-label">mm</span></div></div><div class="calculator-form-group"><label for="nc">Number of cylinders</label><div class="calculator-input-row"><input type="number" id="nc" step="1" value="4" placeholder="Enter value"><span class="ice-unit-label">—</span></div></div><div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div><div id="errorMessage" class="calculator-error" style="display:none"></div></form>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">V<sub>s</sub> = (π/4) D²L</div></div><div class="unit-info"><strong>Model / assumption:</strong> Use consistent SI-derived engineering units as indicated. Results are intended for educational problem solving; verify manufacturer/standard data for design work.</div></aside>
+</div>
+<section class="ice-visual"><h3>Engineering visualization</h3><svg class="ice-svg" viewBox="0 0 760 270" role="img" aria-label="Piston cylinder engine schematic"><rect x="245" y="35" width="270" height="175" rx="10" class="ice-fill"/><rect x="275" y="78" width="210" height="42" rx="7" class="ice-body"/><line x1="380" y1="120" x2="380" y2="195" class="ice-link"/><circle cx="380" cy="215" r="28" class="ice-body"/><line x1="380" y1="215" x2="445" y2="240" class="ice-accent"/><circle cx="445" cy="240" r="7" fill="#f59e0b"/><line x1="225" y1="55" x2="225" y2="195" class="ice-thin"/><path d="M218 63 L225 50 L232 63 M218 187 L225 200 L232 187" class="ice-thin"/><text x="130" y="130" class="ice-label">Stroke L</text><line x1="275" y1="65" x2="485" y2="65" class="ice-thin"/><path d="M285 58 L272 65 L285 72 M475 58 L488 65 L475 72" class="ice-thin"/><text x="350" y="50" class="ice-label">Bore D</text><text x="530" y="105" class="ice-muted">Piston</text><text x="475" y="245" class="ice-muted">Crank</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none"><h2>Step-by-Step Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+<footer class="footer"><p>MECHCALC • IC Engine Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const num=id=>Number($(id).value);
+const fmt=(v,d=4)=>{if(!Number.isFinite(v))return "—";const a=Math.abs(v);if(a>=1e8||(a>0&&a<1e-5))return v.toExponential(4);return Number(v.toFixed(d)).toLocaleString("en-IN");};
+function showError(m){$("errorMessage").textContent=m;$("errorMessage").style.display="block";$("resultBox").style.display="none";}
+function showResult(main,html){$("errorMessage").style.display="none";$("mainResult").innerHTML=main;$("resultDetails").innerHTML=html;$("resultBox").style.display="block";$("resultBox").scrollIntoView({behavior:"smooth",block:"start"});}
+
+function calc(){const D=num('D')/1000,L=num('L')/1000,n=num('nc');if(!(D>0&&L>0&&Number.isInteger(n)&&n>0))return showError('Enter positive bore/stroke and a whole-number cylinder count.');const vcyl=Math.PI/4*D*D*L;const total=vcyl*n;showResult(`Total displacement = <strong>${fmt(total*1e6,1)} cm³ (${fmt(total*1000,3)} L)</strong>`,`<div class="ice-result-grid"><div class="ice-result-card"><strong>Per cylinder</strong>${fmt(vcyl*1e6,2)} cm³</div><div class="ice-result-card"><strong>Total displacement</strong>${fmt(total*1000,3)} L</div></div><p>D = ${fmt(D,4)} m, L = ${fmt(L,4)} m</p><p>Vₛ,cyl = (π/4)D²L = ${fmt(vcyl,7)} m³</p><p>Vₛ,total = nVₛ,cyl = ${fmt(total,7)} m³</p>`);}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('calcForm').reset();$('resultBox').style.display='none';$('errorMessage').style.display='none';});
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dehumidification / Moisture Removal Rate | MECHCALC</title>
+<meta name="description" content="Calculate moisture removal rate from dry-air mass flow and humidity-ratio reduction."><meta name="author" content="Vishnu"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/dehumidification-rate.html"><meta property="og:title" content="Dehumidification / Moisture Removal Rate | MECHCALC"><meta property="og:description" content="Calculate moisture removal rate from dry-air mass flow and humidity-ratio reduction."><meta property="og:type" content="website"><meta property="og:site_name" content="MECHCALC"><meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/dehumidification-rate.html">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="calculator.css"><link rel="stylesheet" href="rac.css">
+</head>
+<body>
+<header class="header"><div class="logo"><a href="index.html">⚙ MECHCALC</a></div><nav class="nav"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a></nav></header>
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container"><h1>Dehumidification / Moisture Removal Rate</h1><p>Calculate moisture removal rate from dry-air mass flow and humidity-ratio reduction.</p><div class="engineering-quote">“Follow the energy flow and the air-state changes — RAC problems become much easier.”</div><a href="index.html#calculators" class="back-link">← Back to Calculators</a></div></section>
+<section class="calculator-main"><div class="container"><div class="calculator-layout">
+<form class="input-panel" id="calcForm"><h2>Enter RAC Data</h2><div class="calculator-form-group"><label for="m">Dry-air mass flow</label><div class="calculator-input-row"><input type="number" id="m" step="any" value="1.5" placeholder="Enter value"><span class="rac-unit-label">kg/s</span></div></div><div class="calculator-form-group"><label for="w1">Entering humidity ratio</label><div class="calculator-input-row"><input type="number" id="w1" step="any" value="0.017" placeholder="Enter value"><span class="rac-unit-label">kg/kg</span></div></div><div class="calculator-form-group"><label for="w2">Leaving humidity ratio</label><div class="calculator-input-row"><input type="number" id="w2" step="any" value="0.010" placeholder="Enter value"><span class="rac-unit-label">kg/kg</span></div></div><div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div><div id="errorMessage" class="calculator-error" style="display:none"></div></form>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">ṁwater = ṁda (w1 − w2)</div></div><div class="unit-info"><strong>Model / assumption:</strong> Educational engineering model using the stated properties and units. For real equipment selection, verify refrigerant property data and manufacturer performance maps.</div></aside>
+</div>
+<section class="rac-visual"><h3>Engineering visualization</h3><svg class="rac-svg" viewBox="0 0 820 280" role="img" aria-label="Cooling coil air conditioning schematic"><line x1="55" y1="135" x2="245" y2="135" class="rac-hot"/><path d="M225 123 L250 135 L225 147" class="rac-hot"/><text x="85" y="105" class="rac-label">Warm moist air</text><rect x="250" y="70" width="200" height="135" rx="16" class="rac-fill"/><path d="M280 90 L325 185 M325 90 L370 185 M370 90 L415 185" class="rac-cold"/><text x="305" y="58" class="rac-label">Cooling coil</text><line x1="450" y1="135" x2="725" y2="135" class="rac-cold"/><path d="M705 123 L730 135 L705 147" class="rac-cold"/><text x="530" y="105" class="rac-label">Cooler / drier air</text><path d="M335 205 C335 225 320 235 320 252 C320 260 330 266 340 252 C340 235 325 225 335 205" fill="#38bdf8"/><text x="360" y="245" class="rac-muted">condensate</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none"><h2>Step-by-Step Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+<footer class="footer"><p>MECHCALC • Refrigeration & Air Conditioning Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const num=id=>Number($(id).value);
+const fmt=(v,d=4)=>{if(!Number.isFinite(v))return "—";const a=Math.abs(v);if(a>=1e8||(a>0&&a<1e-5))return v.toExponential(4);return Number(v.toFixed(d)).toLocaleString("en-IN");};
+function showError(m){$("errorMessage").textContent=m;$("errorMessage").style.display="block";$("resultBox").style.display="none";}
+function showResult(main,html){$("errorMessage").style.display="none";$("mainResult").innerHTML=main;$("resultDetails").innerHTML=html;$("resultBox").style.display="block";$("resultBox").scrollIntoView({behavior:"smooth",block:"start"});}
+function pws(T){return 0.61078*Math.exp(17.2694*T/(T+237.3));}
+function dewPointFromPv(pv){const a=Math.log(pv/0.61078);return 237.3*a/(17.2694-a);}
+
+function calc(){const m=num('m'),w1=num('w1'),w2=num('w2');if(!(m>=0&&w1>=w2&&w2>=0))return showError('Use non-negative flow with w1 ≥ w2 ≥ 0.');const water=m*(w1-w2);showResult(`Moisture removed = <strong>${fmt(water*3600,2)} kg/h</strong>`,`<div class="rac-result-grid"><div class="rac-result-card"><strong>kg/s</strong>${fmt(water,6)}</div><div class="rac-result-card"><strong>kg/day</strong>${fmt(water*86400,1)}</div></div><p>ṁwater = ${fmt(m,3)}×(${fmt(w1,5)}−${fmt(w2,5)}) = ${fmt(water,6)} kg/s</p>`)}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('calcForm').reset();$('resultBox').style.display='none';$('errorMessage').style.display='none';});
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

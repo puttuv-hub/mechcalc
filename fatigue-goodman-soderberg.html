@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fatigue Design — Goodman &amp; Soderberg | MECHCALC</title>
+<meta name="description" content="Estimate fatigue factor of safety for fluctuating normal stress."><meta name="author" content="Vishnu"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/fatigue-goodman-soderberg.html"><meta property="og:title" content="Fatigue Design — Goodman &amp; Soderberg | MECHCALC"><meta property="og:description" content="Estimate fatigue factor of safety for fluctuating normal stress."><meta property="og:type" content="website"><meta property="og:site_name" content="MECHCALC"><meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/fatigue-goodman-soderberg.html">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="calculator.css"><link rel="stylesheet" href="machine-design.css">
+</head>
+<body>
+<header class="header"><div class="logo"><a href="index.html">⚙ MECHCALC</a></div><nav class="nav"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a></nav></header>
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container"><h1>Fatigue Design — Goodman &amp; Soderberg</h1><p>Estimate fatigue factor of safety for fluctuating normal stress.</p><div class="engineering-quote">“Design is calculation plus judgement — always check the governing failure mode.”</div><a href="index.html#calculators" class="back-link">← Back to Calculators</a></div></section>
+<section class="calculator-main"><div class="container"><div class="calculator-layout">
+<form class="input-panel" id="calcForm"><h2>Enter Design Values</h2><div class="calculator-form-group"><label for="sa">Alternating stress σa</label><div class="calculator-input-row"><input type="number" id="sa" step="any" value="80" placeholder="Enter value"><span class="md-unit-label">MPa</span></div></div><div class="calculator-form-group"><label for="sm">Mean stress σm</label><div class="calculator-input-row"><input type="number" id="sm" step="any" value="60" placeholder="Enter value"><span class="md-unit-label">MPa</span></div></div><div class="calculator-form-group"><label for="Se">Endurance limit Se</label><div class="calculator-input-row"><input type="number" id="Se" step="any" value="180" placeholder="Enter value"><span class="md-unit-label">MPa</span></div></div><div class="calculator-form-group"><label for="Sut">Ultimate strength Sut</label><div class="calculator-input-row"><input type="number" id="Sut" step="any" value="500" placeholder="Enter value"><span class="md-unit-label">MPa</span></div></div><div class="calculator-form-group"><label for="Sy">Yield strength Sy</label><div class="calculator-input-row"><input type="number" id="Sy" step="any" value="350" placeholder="Enter value"><span class="md-unit-label">MPa</span></div></div><div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div><div id="errorMessage" class="calculator-error" style="display:none"></div></form>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">1/nG = σa/Se + σm/Sut;  1/nS = σa/Se + σm/Sy</div></div><div class="unit-info"><strong>Model / assumption:</strong> Use consistent SI-derived engineering units as indicated. Results are intended for educational preliminary design; verify detailed standards for production design.</div></aside>
+</div>
+<section class="md-visual"><h3>Design visualization</h3><svg class="md-svg" viewBox="0 0 760 250" role="img" aria-label="Stress element and failure envelope"><rect x="130" y="70" width="120" height="120" class="md-fill"/><line x1="80" y1="130" x2="130" y2="130" class="md-accent"/><line x1="250" y1="130" x2="300" y2="130" class="md-accent"/><line x1="190" y1="20" x2="190" y2="70" class="md-accent"/><line x1="190" y1="190" x2="190" y2="240" class="md-accent"/><circle cx="520" cy="130" r="80" class="md-body"/><line x1="440" y1="130" x2="600" y2="130" class="md-thin"/><line x1="520" y1="50" x2="520" y2="210" class="md-thin"/><text x="410" y="235" class="md-muted">Compare equivalent stress with yield strength</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none"><h2>Step-by-Step Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+<footer class="footer"><p>MECHCALC • Machine Design Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const num=id=>Number($(id).value);
+const fmt=(v,d=4)=>{if(!Number.isFinite(v))return "—";const a=Math.abs(v);if(a>=1e8||(a>0&&a<1e-5))return v.toExponential(4);return Number(v.toFixed(d)).toLocaleString("en-IN");};
+function showError(m){$("errorMessage").textContent=m;$("errorMessage").style.display="block";$("resultBox").style.display="none";}
+function showResult(main,html){$("errorMessage").style.display="none";$("mainResult").innerHTML=main;$("resultDetails").innerHTML=html;$("resultBox").style.display="block";$("resultBox").scrollIntoView({behavior:"smooth",block:"start"});}
+
+function calc(){const sa=num('sa'),sm=num('sm'),Se=num('Se'),Sut=num('Sut'),Sy=num('Sy');if(!(sa>=0&&Se>0&&Sut>0&&Sy>0))return showError('Enter non-negative alternating stress and positive strengths.');const dg=sa/Se+sm/Sut,ds=sa/Se+sm/Sy;const ng=dg>0?1/dg:Infinity,ns=ds>0?1/ds:Infinity;showResult(`Modified Goodman FoS = <strong>${fmt(ng,2)}</strong>`,`<div class="md-result-grid"><div class="md-result-card"><strong>Soderberg FoS</strong>${fmt(ns,2)}</div><div class="md-result-card"><strong>Alternating ratio σa/Se</strong>${fmt(sa/Se,3)}</div><div class="md-result-card"><strong>Mean ratio σm/Sut</strong>${fmt(sm/Sut,3)}</div></div><p>1/nG = σa/Se + σm/Sut = ${fmt(dg,4)}</p><p>1/nS = σa/Se + σm/Sy = ${fmt(ds,4)}</p><p class="md-note">Use corrected endurance limit and appropriate stress concentration/fatigue factors in detailed design.</p>`)}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('calcForm').reset();$('resultBox').style.display='none';$('errorMessage').style.display='none';});
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

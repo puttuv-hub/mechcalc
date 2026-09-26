@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Damped Free Vibration | MECHCALC</title>
+<meta name="description" content="Calculate damping ratio, critical damping, damped natural frequency and logarithmic decrement for an SDOF system."><meta name="author" content="Vishnu"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/damped-vibration.html"><meta property="og:title" content="Damped Free Vibration | MECHCALC"><meta property="og:description" content="Calculate damping ratio, critical damping, damped natural frequency and logarithmic decrement for an SDOF system."><meta property="og:type" content="website"><meta property="og:site_name" content="MECHCALC"><meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/damped-vibration.html">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="calculator.css"><link rel="stylesheet" href="tom.css">
+</head>
+<body>
+<header class="header"><div class="logo"><a href="index.html">⚙ MECHCALC</a></div><nav class="nav"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a></nav></header>
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container"><h1>Damped Free Vibration</h1><p>Calculate damping ratio, critical damping, damped natural frequency and logarithmic decrement for an SDOF system.</p><div class="engineering-quote">“Understand the motion first; then let the equations confirm it.”</div><a href="index.html#calculators" class="back-link">← Back to Calculators</a></div></section>
+<section class="calculator-main"><div class="container"><div class="calculator-layout">
+<form class="input-panel" id="calcForm"><h2>Enter Values</h2><div class="calculator-form-group"><label for="m">Mass m</label><div class="calculator-input-row"><input type="number" id="m" step="any" value="10" placeholder="Enter value" min="0"><span class="tom-unit-label">kg</span></div></div><div class="calculator-form-group"><label for="k">Spring stiffness k</label><div class="calculator-input-row"><input type="number" id="k" step="any" value="20000" placeholder="Enter value" min="0"><span class="tom-unit-label">N/m</span></div></div><div class="calculator-form-group"><label for="c">Viscous damping coefficient c</label><div class="calculator-input-row"><input type="number" id="c" step="any" value="120" placeholder="Enter value" min="0"><span class="tom-unit-label">N·s/m</span></div></div><div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div><div id="errorMessage" class="calculator-error" style="display:none"></div></form>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">ζ = c/(2√km); ωd = ωn√(1−ζ²)</div></div><div class="unit-info"><strong>Model / assumption:</strong> Linear viscous damping model.</div></aside>
+</div>
+<section class="tom-visual"><h3>Single-degree-of-freedom vibration model</h3><svg class="tom-svg" viewBox="0 0 760 300" role="img" aria-label="Single-degree-of-freedom vibration model"><defs><marker id="tomArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#f59e0b"/></marker></defs><line x1="170" y1="50" x2="590" y2="50" class="tom-link"/><path d="M320 50 l-18 18 36 18 -36 18 36 18 -36 18 36 18 -18 18" class="tom-spring"/><rect x="260" y="190" width="120" height="65" class="tom-mass"/><line x1="320" y1="172" x2="320" y2="190" class="tom-link-thin"/><line x1="450" y1="60" x2="450" y2="190" class="tom-link-thin"/><rect x="435" y="95" width="30" height="65" class="tom-body"/><text x="285" y="230" class="tom-label">m</text><text x="270" y="115" class="tom-label">k</text><text x="475" y="130" class="tom-label">c</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none"><h2>Calculation Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+<footer class="footer"><p>MECHCALC • Theory of Machines Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=(v,d=5)=>{if(!Number.isFinite(v))return '—';const a=Math.abs(v);if(a>=1e8||(a>0&&a<1e-6))return v.toExponential(4);return Number(v.toFixed(d)).toLocaleString('en-IN');};
+const rad=d=>d*Math.PI/180; const deg=r=>r*180/Math.PI; const num=id=>Number($(id).value);
+function showError(m){$('errorMessage').textContent=m;$('errorMessage').style.display='block';$('resultBox').style.display='none';}
+function showResult(main,html){$('errorMessage').style.display='none';$('mainResult').innerHTML=main;$('resultDetails').innerHTML=html;$('resultBox').style.display='block';$('resultBox').scrollIntoView({behavior:'smooth',block:'start'});}
+function normDeg(x){x%=360;if(x<0)x+=360;return x;}
+
+
+function calc(){const m=num('m'),k=num('k'),c=num('c');if(!(m>0&&k>0&&c>=0))return showError('Mass and stiffness must be positive; damping cannot be negative.');const wn=Math.sqrt(k/m),cc=2*Math.sqrt(k*m),z=c/cc;let state,wd=NaN,fd=NaN,delta=NaN;if(z<1){state='Underdamped';wd=wn*Math.sqrt(1-z*z);fd=wd/(2*Math.PI);delta=2*Math.PI*z/Math.sqrt(1-z*z);}else if(Math.abs(z-1)<1e-8){state='Critically damped';}else{state='Overdamped';}showResult(`Damping ratio ζ = <strong>${fmt(z,5)}</strong> (${state})`,`<div class="tom-result-grid"><div class="tom-result-card"><strong>Critical damping cc</strong>${fmt(cc,4)} N·s/m</div><div class="tom-result-card"><strong>Damped frequency</strong>${Number.isFinite(fd)?fmt(fd,5)+' Hz':'No oscillatory ωd'}</div><div class="tom-result-card"><strong>Log decrement</strong>${Number.isFinite(delta)?fmt(delta,5):'—'}</div></div><p>ωn = ${fmt(wn,5)} rad/s; ζ = c/cc = ${fmt(z,5)}.</p>`);}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('calcForm').reset();$('resultBox').style.display='none';$('errorMessage').style.display='none';});</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

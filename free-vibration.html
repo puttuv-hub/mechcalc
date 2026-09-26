@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Vibration Natural Frequency | MECHCALC</title>
+<meta name="description" content="Calculate undamped natural frequency, angular frequency and period of a single-degree-of-freedom mass–spring system."><meta name="author" content="Vishnu"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/free-vibration.html"><meta property="og:title" content="Free Vibration Natural Frequency | MECHCALC"><meta property="og:description" content="Calculate undamped natural frequency, angular frequency and period of a single-degree-of-freedom mass–spring system."><meta property="og:type" content="website"><meta property="og:site_name" content="MECHCALC"><meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/free-vibration.html">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="calculator.css"><link rel="stylesheet" href="tom.css">
+</head>
+<body>
+<header class="header"><div class="logo"><a href="index.html">⚙ MECHCALC</a></div><nav class="nav"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a></nav></header>
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container"><h1>Free Vibration Natural Frequency</h1><p>Calculate undamped natural frequency, angular frequency and period of a single-degree-of-freedom mass–spring system.</p><div class="engineering-quote">“Understand the motion first; then let the equations confirm it.”</div><a href="index.html#calculators" class="back-link">← Back to Calculators</a></div></section>
+<section class="calculator-main"><div class="container"><div class="calculator-layout">
+<form class="input-panel" id="calcForm"><h2>Enter Values</h2><div class="calculator-form-group"><label for="m">Mass m</label><div class="calculator-input-row"><input type="number" id="m" step="any" value="10" placeholder="Enter value" min="0"><span class="tom-unit-label">kg</span></div></div><div class="calculator-form-group"><label for="k">Spring stiffness k</label><div class="calculator-input-row"><input type="number" id="k" step="any" value="20000" placeholder="Enter value" min="0"><span class="tom-unit-label">N/m</span></div></div><div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div><div id="errorMessage" class="calculator-error" style="display:none"></div></form>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">ωn = √(k/m); fn = ωn/(2π)</div></div><div class="unit-info"><strong>Model / assumption:</strong> Linear undamped SDOF mass–spring system.</div></aside>
+</div>
+<section class="tom-visual"><h3>Single-degree-of-freedom vibration model</h3><svg class="tom-svg" viewBox="0 0 760 300" role="img" aria-label="Single-degree-of-freedom vibration model"><defs><marker id="tomArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#f59e0b"/></marker></defs><line x1="170" y1="50" x2="590" y2="50" class="tom-link"/><path d="M320 50 l-18 18 36 18 -36 18 36 18 -36 18 36 18 -18 18" class="tom-spring"/><rect x="260" y="190" width="120" height="65" class="tom-mass"/><line x1="320" y1="172" x2="320" y2="190" class="tom-link-thin"/><line x1="450" y1="60" x2="450" y2="190" class="tom-link-thin"/><rect x="435" y="95" width="30" height="65" class="tom-body"/><text x="285" y="230" class="tom-label">m</text><text x="270" y="115" class="tom-label">k</text><text x="475" y="130" class="tom-label">c</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none"><h2>Calculation Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+<footer class="footer"><p>MECHCALC • Theory of Machines Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=(v,d=5)=>{if(!Number.isFinite(v))return '—';const a=Math.abs(v);if(a>=1e8||(a>0&&a<1e-6))return v.toExponential(4);return Number(v.toFixed(d)).toLocaleString('en-IN');};
+const rad=d=>d*Math.PI/180; const deg=r=>r*180/Math.PI; const num=id=>Number($(id).value);
+function showError(m){$('errorMessage').textContent=m;$('errorMessage').style.display='block';$('resultBox').style.display='none';}
+function showResult(main,html){$('errorMessage').style.display='none';$('mainResult').innerHTML=main;$('resultDetails').innerHTML=html;$('resultBox').style.display='block';$('resultBox').scrollIntoView({behavior:'smooth',block:'start'});}
+function normDeg(x){x%=360;if(x<0)x+=360;return x;}
+
+
+function calc(){const m=num('m'),k=num('k');if(!(m>0&&k>0))return showError('Mass and stiffness must both be positive.');const wn=Math.sqrt(k/m),fn=wn/(2*Math.PI),T=1/fn;showResult(`Natural frequency = <strong>${fmt(fn,5)} Hz</strong>`,`<div class="tom-result-grid"><div class="tom-result-card"><strong>ωn</strong>${fmt(wn,5)} rad/s</div><div class="tom-result-card"><strong>Period</strong>${fmt(T,5)} s</div><div class="tom-result-card"><strong>Cycles per minute</strong>${fmt(fn*60,3)}</div></div><p>ωn=√(k/m)=${fmt(wn,5)} rad/s.</p>`);}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('calcForm').reset();$('resultBox').style.display='none';$('errorMessage').style.display='none';});</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>
