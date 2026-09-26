@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plate Clutch Torque Capacity | MECHCALC</title>
+<meta name="description" content="Calculate friction torque capacity under uniform wear or uniform pressure."><meta name="author" content="Vishnu"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/plate-clutch.html"><meta property="og:title" content="Plate Clutch Torque Capacity | MECHCALC"><meta property="og:description" content="Calculate friction torque capacity under uniform wear or uniform pressure."><meta property="og:type" content="website"><meta property="og:site_name" content="MECHCALC"><meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/plate-clutch.html">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="calculator.css"><link rel="stylesheet" href="machine-design.css">
+</head>
+<body>
+<header class="header"><div class="logo"><a href="index.html">⚙ MECHCALC</a></div><nav class="nav"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a></nav></header>
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container"><h1>Plate Clutch Torque Capacity</h1><p>Calculate friction torque capacity under uniform wear or uniform pressure.</p><div class="engineering-quote">“Design is calculation plus judgement — always check the governing failure mode.”</div><a href="index.html#calculators" class="back-link">← Back to Calculators</a></div></section>
+<section class="calculator-main"><div class="container"><div class="calculator-layout">
+<form class="input-panel" id="calcForm"><h2>Enter Design Values</h2><div class="calculator-form-group"><label for="n">Number of friction surfaces n</label><div class="calculator-input-row"><input type="number" id="n" step="any" value="2" placeholder="Enter value"><span class="md-unit-label">—</span></div></div><div class="calculator-form-group"><label for="mu">Friction coefficient μ</label><div class="calculator-input-row"><input type="number" id="mu" step="any" value="0.3" placeholder="Enter value"><span class="md-unit-label">—</span></div></div><div class="calculator-form-group"><label for="W">Axial force W</label><div class="calculator-input-row"><input type="number" id="W" step="any" value="4" placeholder="Enter value"><span class="md-unit-label">kN</span></div></div><div class="calculator-form-group"><label for="ro">Outer radius ro</label><div class="calculator-input-row"><input type="number" id="ro" step="any" value="120" placeholder="Enter value"><span class="md-unit-label">mm</span></div></div><div class="calculator-form-group"><label for="ri">Inner radius ri</label><div class="calculator-input-row"><input type="number" id="ri" step="any" value="70" placeholder="Enter value"><span class="md-unit-label">mm</span></div></div><div class="calculator-form-group"><label for="mode">Model: 1=uniform wear, 2=uniform pressure</label><div class="calculator-input-row"><input type="number" id="mode" step="any" value="1" placeholder="Enter value"><span class="md-unit-label">—</span></div></div><div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div><div id="errorMessage" class="calculator-error" style="display:none"></div></form>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">T = n μ W Rm</div></div><div class="unit-info"><strong>Model / assumption:</strong> Use consistent SI-derived engineering units as indicated. Results are intended for educational preliminary design; verify detailed standards for production design.</div></aside>
+</div>
+<section class="md-visual"><h3>Design visualization</h3><svg class="md-svg" viewBox="0 0 760 240" role="img" aria-label="Plate clutch"><circle cx="380" cy="120" r="100" class="md-fill"/><circle cx="380" cy="120" r="48" class="md-body"/><circle cx="380" cy="120" r="72" class="md-thin"/><path d="M380 120 L470 70" class="md-accent"/><text x="485" y="68" class="md-label">friction radius</text><text x="280" y="225" class="md-muted">Axial load creates friction torque</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none"><h2>Step-by-Step Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+<footer class="footer"><p>MECHCALC • Machine Design Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const num=id=>Number($(id).value);
+const fmt=(v,d=4)=>{if(!Number.isFinite(v))return "—";const a=Math.abs(v);if(a>=1e8||(a>0&&a<1e-5))return v.toExponential(4);return Number(v.toFixed(d)).toLocaleString("en-IN");};
+function showError(m){$("errorMessage").textContent=m;$("errorMessage").style.display="block";$("resultBox").style.display="none";}
+function showResult(main,html){$("errorMessage").style.display="none";$("mainResult").innerHTML=main;$("resultDetails").innerHTML=html;$("resultBox").style.display="block";$("resultBox").scrollIntoView({behavior:"smooth",block:"start"});}
+
+function calc(){const n=num('n'),mu=num('mu'),W=num('W')*1000,ro=num('ro'),ri=num('ri'),mode=num('mode');if(!(n>=1&&mu>0&&W>0&&ro>ri&&ri>=0&&(mode===1||mode===2)))return showError('Check friction surfaces, radii and model selection (1 or 2).');let R;if(mode===1)R=(ro+ri)/2;else R=(2/3)*(ro**3-ri**3)/(ro**2-ri**2);const T=n*mu*W*(R/1000);showResult(`Torque capacity = <strong>${fmt(T,2)} N·m</strong>`,`<div class="md-result-grid"><div class="md-result-card"><strong>Mean friction radius</strong>${fmt(R,2)} mm</div><div class="md-result-card"><strong>Model</strong>${mode===1?'Uniform wear':'Uniform pressure'}</div></div><p>T = n μ W Rm = ${fmt(T,2)} N·m</p>`)}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('calcForm').reset();$('resultBox').style.display='none';$('errorMessage').style.display='none';});
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

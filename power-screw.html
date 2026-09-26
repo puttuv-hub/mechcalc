@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Square-Thread Power Screw | MECHCALC</title>
+<meta name="description" content="Calculate raising torque and efficiency for a square-thread power screw."><meta name="author" content="Vishnu"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/power-screw.html"><meta property="og:title" content="Square-Thread Power Screw | MECHCALC"><meta property="og:description" content="Calculate raising torque and efficiency for a square-thread power screw."><meta property="og:type" content="website"><meta property="og:site_name" content="MECHCALC"><meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/power-screw.html">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="calculator.css"><link rel="stylesheet" href="machine-design.css">
+</head>
+<body>
+<header class="header"><div class="logo"><a href="index.html">⚙ MECHCALC</a></div><nav class="nav"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a></nav></header>
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container"><h1>Square-Thread Power Screw</h1><p>Calculate raising torque and efficiency for a square-thread power screw.</p><div class="engineering-quote">“Design is calculation plus judgement — always check the governing failure mode.”</div><a href="index.html#calculators" class="back-link">← Back to Calculators</a></div></section>
+<section class="calculator-main"><div class="container"><div class="calculator-layout">
+<form class="input-panel" id="calcForm"><h2>Enter Design Values</h2><div class="calculator-form-group"><label for="W">Axial load W</label><div class="calculator-input-row"><input type="number" id="W" step="any" value="20" placeholder="Enter value"><span class="md-unit-label">kN</span></div></div><div class="calculator-form-group"><label for="dm">Mean thread diameter dm</label><div class="calculator-input-row"><input type="number" id="dm" step="any" value="30" placeholder="Enter value"><span class="md-unit-label">mm</span></div></div><div class="calculator-form-group"><label for="lead">Lead</label><div class="calculator-input-row"><input type="number" id="lead" step="any" value="6" placeholder="Enter value"><span class="md-unit-label">mm/rev</span></div></div><div class="calculator-form-group"><label for="mu">Thread friction coefficient μ</label><div class="calculator-input-row"><input type="number" id="mu" step="any" value="0.12" placeholder="Enter value"><span class="md-unit-label">—</span></div></div><div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div><div id="errorMessage" class="calculator-error" style="display:none"></div></form>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">T = W dm/2 · tan(φ+λ);  η = tanλ/tan(φ+λ)</div></div><div class="unit-info"><strong>Model / assumption:</strong> Use consistent SI-derived engineering units as indicated. Results are intended for educational preliminary design; verify detailed standards for production design.</div></aside>
+</div>
+<section class="md-visual"><h3>Design visualization</h3><svg class="md-svg" viewBox="0 0 760 240" role="img" aria-label="Power screw"><rect x="330" y="30" width="70" height="175" class="md-fill"/><path d="M330 55 L400 75 M330 80 L400 100 M330 105 L400 125 M330 130 L400 150 M330 155 L400 175" class="md-thin"/><rect x="245" y="20" width="240" height="28" class="md-fill"/><line x1="365" y1="5" x2="365" y2="35" class="md-accent"/><text x="395" y="18" class="md-label">W</text><text x="430" y="130" class="md-muted">helix angle λ</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none"><h2>Step-by-Step Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+<footer class="footer"><p>MECHCALC • Machine Design Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const num=id=>Number($(id).value);
+const fmt=(v,d=4)=>{if(!Number.isFinite(v))return "—";const a=Math.abs(v);if(a>=1e8||(a>0&&a<1e-5))return v.toExponential(4);return Number(v.toFixed(d)).toLocaleString("en-IN");};
+function showError(m){$("errorMessage").textContent=m;$("errorMessage").style.display="block";$("resultBox").style.display="none";}
+function showResult(main,html){$("errorMessage").style.display="none";$("mainResult").innerHTML=main;$("resultDetails").innerHTML=html;$("resultBox").style.display="block";$("resultBox").scrollIntoView({behavior:"smooth",block:"start"});}
+
+function calc(){const W=num('W')*1000,dm=num('dm'),lead=num('lead'),mu=num('mu');if(!(W>0&&dm>0&&lead>0&&mu>=0))return showError('Enter positive load/geometry and non-negative friction.');const lam=Math.atan(lead/(Math.PI*dm)),phi=Math.atan(mu),T=W*(dm/1000)/2*Math.tan(phi+lam),eta=Math.tan(lam)/Math.tan(phi+lam),self=phi>lam;showResult(`Torque to raise load = <strong>${fmt(T,2)} N·m</strong>`,`<div class="md-result-grid"><div class="md-result-card"><strong>Efficiency</strong>${fmt(eta*100,2)}%</div><div class="md-result-card"><strong>Helix angle λ</strong>${fmt(lam*180/Math.PI,2)}°</div><div class="md-result-card"><strong>Friction angle φ</strong>${fmt(phi*180/Math.PI,2)}°</div><div class="md-result-card"><strong>Self-locking</strong>${self?'Yes':'No'}</div></div><p>T = W dm/2 tan(φ+λ) = ${fmt(T,2)} N·m</p>`)}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('calcForm').reset();$('resultBox').style.display='none';$('errorMessage').style.display='none';});
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quick-Return Mechanism | MECHCALC</title>
+<meta name="description" content="Calculate cutting-to-return time ratio for a Whitworth-type quick-return mechanism from crank radius and center distance."><meta name="author" content="Vishnu"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/quick-return.html"><meta property="og:title" content="Quick-Return Mechanism | MECHCALC"><meta property="og:description" content="Calculate cutting-to-return time ratio for a Whitworth-type quick-return mechanism from crank radius and center distance."><meta property="og:type" content="website"><meta property="og:site_name" content="MECHCALC"><meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/quick-return.html">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="calculator.css"><link rel="stylesheet" href="tom.css">
+</head>
+<body>
+<header class="header"><div class="logo"><a href="index.html">⚙ MECHCALC</a></div><nav class="nav"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a></nav></header>
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container"><h1>Quick-Return Mechanism</h1><p>Calculate cutting-to-return time ratio for a Whitworth-type quick-return mechanism from crank radius and center distance.</p><div class="engineering-quote">“Understand the motion first; then let the equations confirm it.”</div><a href="index.html#calculators" class="back-link">← Back to Calculators</a></div></section>
+<section class="calculator-main"><div class="container"><div class="calculator-layout">
+<form class="input-panel" id="calcForm"><h2>Enter Values</h2><div class="calculator-form-group"><label for="r">Crank radius r</label><div class="calculator-input-row"><input type="number" id="r" step="any" value="50" placeholder="Enter value" min="0"><span class="tom-unit-label">mm</span></div></div><div class="calculator-form-group"><label for="L">Center distance L</label><div class="calculator-input-row"><input type="number" id="L" step="any" value="150" placeholder="Enter value" min="0"><span class="tom-unit-label">mm</span></div></div><div class="calculator-form-group"><label for="rpm">Crank speed</label><div class="calculator-input-row"><input type="number" id="rpm" step="any" value="120" placeholder="Enter value" min="0"><span class="tom-unit-label">rpm</span></div></div><div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div><div id="errorMessage" class="calculator-error" style="display:none"></div></form>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">QRR = (180° + 2α)/(180° − 2α), α = sin⁻¹(r/L)</div></div><div class="unit-info"><strong>Model / assumption:</strong> Ideal Whitworth-type geometry with uniform crank speed.</div></aside>
+</div>
+<section class="tom-visual"><h3>Quick-return geometry</h3><svg class="tom-svg" viewBox="0 0 760 300" role="img" aria-label="Quick-return geometry"><defs><marker id="tomArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#f59e0b"/></marker></defs><circle cx="210" cy="150" r="75" class="tom-body"/><circle cx="210" cy="150" r="8" class="tom-joint"/><line x1="210" y1="150" x2="265" y2="105" class="tom-accent"/><line x1="265" y1="105" x2="470" y2="72" class="tom-link"/><rect x="450" y="45" width="120" height="55" class="tom-body"/><line x1="450" y1="72" x2="650" y2="72" class="tom-axis"/><text x="170" y="255" class="tom-label">Uniform crank rotation</text><text x="485" y="130" class="tom-label">Ram stroke</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none"><h2>Calculation Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+<footer class="footer"><p>MECHCALC • Theory of Machines Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=(v,d=5)=>{if(!Number.isFinite(v))return '—';const a=Math.abs(v);if(a>=1e8||(a>0&&a<1e-6))return v.toExponential(4);return Number(v.toFixed(d)).toLocaleString('en-IN');};
+const rad=d=>d*Math.PI/180; const deg=r=>r*180/Math.PI; const num=id=>Number($(id).value);
+function showError(m){$('errorMessage').textContent=m;$('errorMessage').style.display='block';$('resultBox').style.display='none';}
+function showResult(main,html){$('errorMessage').style.display='none';$('mainResult').innerHTML=main;$('resultDetails').innerHTML=html;$('resultBox').style.display='block';$('resultBox').scrollIntoView({behavior:'smooth',block:'start'});}
+function normDeg(x){x%=360;if(x<0)x+=360;return x;}
+
+
+function calc(){const r=num('r'),L=num('L'),N=num('rpm');if(!(r>0&&L>r&&N>0))return showError('Require L > r > 0 and positive crank speed.');const alpha=deg(Math.asin(r/L)),cut=180+2*alpha,ret=180-2*alpha,R=cut/ret,period=60/N,tcut=period*cut/360,tret=period*ret/360;showResult(`Quick-return ratio = <strong>${fmt(R,4)}</strong>`,`<div class="tom-result-grid"><div class="tom-result-card"><strong>α</strong>${fmt(alpha,3)}°</div><div class="tom-result-card"><strong>Cutting time</strong>${fmt(tcut,4)} s</div><div class="tom-result-card"><strong>Return time</strong>${fmt(tret,4)} s</div></div><p>Cutting crank angle = ${fmt(cut,3)}°; return angle = ${fmt(ret,3)}°.</p><p>QRR = ${fmt(cut,3)} / ${fmt(ret,3)} = ${fmt(R,4)}.</p>`);}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('calcForm').reset();$('resultBox').style.display='none';$('errorMessage').style.display='none';});</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

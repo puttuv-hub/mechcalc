@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reciprocating Inertia Force | MECHCALC</title>
+<meta name="description" content="Calculate primary, secondary and total inertia force of a slider-crank reciprocating mass."><meta name="author" content="Vishnu"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/reciprocating-inertia-force.html"><meta property="og:title" content="Reciprocating Inertia Force | MECHCALC"><meta property="og:description" content="Calculate primary, secondary and total inertia force of a slider-crank reciprocating mass."><meta property="og:type" content="website"><meta property="og:site_name" content="MECHCALC"><meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/reciprocating-inertia-force.html">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="calculator.css"><link rel="stylesheet" href="tom.css">
+</head>
+<body>
+<header class="header"><div class="logo"><a href="index.html">⚙ MECHCALC</a></div><nav class="nav"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a></nav></header>
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container"><h1>Reciprocating Inertia Force</h1><p>Calculate primary, secondary and total inertia force of a slider-crank reciprocating mass.</p><div class="engineering-quote">“Understand the motion first; then let the equations confirm it.”</div><a href="index.html#calculators" class="back-link">← Back to Calculators</a></div></section>
+<section class="calculator-main"><div class="container"><div class="calculator-layout">
+<form class="input-panel" id="calcForm"><h2>Enter Values</h2><div class="calculator-form-group"><label for="m">Reciprocating mass m</label><div class="calculator-input-row"><input type="number" id="m" step="any" value="2" placeholder="Enter value" min="0"><span class="tom-unit-label">kg</span></div></div><div class="calculator-form-group"><label for="r">Crank radius r</label><div class="calculator-input-row"><input type="number" id="r" step="any" value="50" placeholder="Enter value" min="0"><span class="tom-unit-label">mm</span></div></div><div class="calculator-form-group"><label for="l">Connecting rod length l</label><div class="calculator-input-row"><input type="number" id="l" step="any" value="200" placeholder="Enter value" min="0"><span class="tom-unit-label">mm</span></div></div><div class="calculator-form-group"><label for="rpm">Crank speed N</label><div class="calculator-input-row"><input type="number" id="rpm" step="any" value="1200" placeholder="Enter value" min="0"><span class="tom-unit-label">rpm</span></div></div><div class="calculator-form-group"><label for="theta">Crank angle θ</label><div class="calculator-input-row"><input type="number" id="theta" step="any" value="45" placeholder="Enter value"><span class="tom-unit-label">deg</span></div></div><div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div><div id="errorMessage" class="calculator-error" style="display:none"></div></form>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">F = mrω²[cosθ + (r/l)cos2θ]</div></div><div class="unit-info"><strong>Model / assumption:</strong> Standard primary + secondary approximation for a slider-crank mechanism.</div></aside>
+</div>
+<section class="tom-visual"><h3>Slider-crank mechanism</h3><svg class="tom-svg" viewBox="0 0 760 300" role="img" aria-label="Slider-crank mechanism"><defs><marker id="tomArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#f59e0b"/></marker></defs><line x1="80" y1="155" x2="700" y2="155" class="tom-axis"/><circle cx="140" cy="155" r="10" class="tom-joint"/><line  x1="140" y1="155" x2="220" y2="95" class="tom-accent"/><circle  cx="220" cy="95" r="9" class="tom-joint"/><line  x1="220" y1="95" x2="560" y2="155" class="tom-link"/><rect  x="545" y="120" width="90" height="70" rx="5" class="tom-body"/><text x="105" y="185" class="tom-label">Crank center</text><text x="510" y="220" class="tom-label">Piston / slider</text><path d="M165 155 A45 45 0 0 0 195 120" class="tom-accent"/><text x="180" y="118" class="tom-muted">θ</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none"><h2>Calculation Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+<footer class="footer"><p>MECHCALC • Theory of Machines Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=(v,d=5)=>{if(!Number.isFinite(v))return '—';const a=Math.abs(v);if(a>=1e8||(a>0&&a<1e-6))return v.toExponential(4);return Number(v.toFixed(d)).toLocaleString('en-IN');};
+const rad=d=>d*Math.PI/180; const deg=r=>r*180/Math.PI; const num=id=>Number($(id).value);
+function showError(m){$('errorMessage').textContent=m;$('errorMessage').style.display='block';$('resultBox').style.display='none';}
+function showResult(main,html){$('errorMessage').style.display='none';$('mainResult').innerHTML=main;$('resultDetails').innerHTML=html;$('resultBox').style.display='block';$('resultBox').scrollIntoView({behavior:'smooth',block:'start'});}
+function normDeg(x){x%=360;if(x<0)x+=360;return x;}
+
+
+function calc(){const m=num('m'),r=num('r')/1000,l=num('l')/1000,N=num('rpm'),t=rad(num('theta'));if(!(m>=0&&r>0&&l>r&&N>=0))return showError('Require non-negative mass/speed and l > r > 0.');const om=2*Math.PI*N/60,Fp=m*r*om*om*Math.cos(t),Fs=m*r*om*om*(r/l)*Math.cos(2*t),F=Fp+Fs;showResult(`Total inertia force = <strong>${fmt(F,3)} N</strong>`,`<div class="tom-result-grid"><div class="tom-result-card"><strong>Primary component</strong>${fmt(Fp,3)} N</div><div class="tom-result-card"><strong>Secondary component</strong>${fmt(Fs,3)} N</div><div class="tom-result-card"><strong>r/l</strong>${fmt(r/l,4)}</div></div><p>ω = ${fmt(om)} rad/s.</p><p>Positive/negative sign indicates force direction along the line of stroke under the selected convention.</p>`);}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('calcForm').reset();$('resultBox').style.display='none';$('errorMessage').style.display='none';});</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

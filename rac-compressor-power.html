@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Refrigeration Compressor Power | MECHCALC</title>
+<meta name="description" content="Calculate compressor power from refrigerant mass flow and enthalpy rise."><meta name="author" content="Vishnu"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/rac-compressor-power.html"><meta property="og:title" content="Refrigeration Compressor Power | MECHCALC"><meta property="og:description" content="Calculate compressor power from refrigerant mass flow and enthalpy rise."><meta property="og:type" content="website"><meta property="og:site_name" content="MECHCALC"><meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/rac-compressor-power.html">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="calculator.css"><link rel="stylesheet" href="rac.css">
+</head>
+<body>
+<header class="header"><div class="logo"><a href="index.html">⚙ MECHCALC</a></div><nav class="nav"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a></nav></header>
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container"><h1>Refrigeration Compressor Power</h1><p>Calculate compressor power from refrigerant mass flow and enthalpy rise.</p><div class="engineering-quote">“Follow the energy flow and the air-state changes — RAC problems become much easier.”</div><a href="index.html#calculators" class="back-link">← Back to Calculators</a></div></section>
+<section class="calculator-main"><div class="container"><div class="calculator-layout">
+<form class="input-panel" id="calcForm"><h2>Enter RAC Data</h2><div class="calculator-form-group"><label for="m">Refrigerant mass flow</label><div class="calculator-input-row"><input type="number" id="m" step="any" value="0.08" placeholder="Enter value"><span class="rac-unit-label">kg/s</span></div></div><div class="calculator-form-group"><label for="h1">Compressor inlet h1</label><div class="calculator-input-row"><input type="number" id="h1" step="any" value="240" placeholder="Enter value"><span class="rac-unit-label">kJ/kg</span></div></div><div class="calculator-form-group"><label for="h2">Compressor outlet h2</label><div class="calculator-input-row"><input type="number" id="h2" step="any" value="280" placeholder="Enter value"><span class="rac-unit-label">kJ/kg</span></div></div><div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div><div id="errorMessage" class="calculator-error" style="display:none"></div></form>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">P = ṁ (h2 − h1)</div></div><div class="unit-info"><strong>Model / assumption:</strong> Educational engineering model using the stated properties and units. For real equipment selection, verify refrigerant property data and manufacturer performance maps.</div></aside>
+</div>
+<section class="rac-visual"><h3>Engineering visualization</h3><svg class="rac-svg" viewBox="0 0 820 270" role="img" aria-label="Refrigeration compressor"><path d="M210 80 L450 105 L450 165 L210 190 Z" class="rac-fill"/><circle cx="335" cy="135" r="45" class="rac-body"/><path d="M335 90 L360 135 L335 180 L310 135 Z" class="rac-accent"/><line x1="55" y1="135" x2="210" y2="135" class="rac-cold"/><path d="M190 123 L215 135 L190 147" class="rac-cold"/><line x1="450" y1="135" x2="720" y2="135" class="rac-hot"/><path d="M700 123 L725 135 L700 147" class="rac-hot"/><text x="65" y="105" class="rac-label">Low P vapor</text><text x="545" y="105" class="rac-label">High P vapor</text><text x="280" y="225" class="rac-muted">Compressor work input</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none"><h2>Step-by-Step Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+<footer class="footer"><p>MECHCALC • Refrigeration & Air Conditioning Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const num=id=>Number($(id).value);
+const fmt=(v,d=4)=>{if(!Number.isFinite(v))return "—";const a=Math.abs(v);if(a>=1e8||(a>0&&a<1e-5))return v.toExponential(4);return Number(v.toFixed(d)).toLocaleString("en-IN");};
+function showError(m){$("errorMessage").textContent=m;$("errorMessage").style.display="block";$("resultBox").style.display="none";}
+function showResult(main,html){$("errorMessage").style.display="none";$("mainResult").innerHTML=main;$("resultDetails").innerHTML=html;$("resultBox").style.display="block";$("resultBox").scrollIntoView({behavior:"smooth",block:"start"});}
+function pws(T){return 0.61078*Math.exp(17.2694*T/(T+237.3));}
+function dewPointFromPv(pv){const a=Math.log(pv/0.61078);return 237.3*a/(17.2694-a);}
+
+function calc(){const m=num('m'),h1=num('h1'),h2=num('h2');if(!(m>=0&&h2>=h1))return showError('Enter non-negative mass flow with h2 ≥ h1.');const dh=h2-h1,p=m*dh;showResult(`Compressor power = <strong>${fmt(p,3)} kW</strong>`,`<div class="rac-result-grid"><div class="rac-result-card"><strong>Enthalpy rise</strong>${fmt(dh,2)} kJ/kg</div><div class="rac-result-card"><strong>Mass flow</strong>${fmt(m,4)} kg/s</div></div><p>P = ${fmt(m,4)} × ${fmt(dh,2)} = ${fmt(p,3)} kW</p>`)}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('calcForm').reset();$('resultBox').style.display='none';$('errorMessage').style.display='none';});
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

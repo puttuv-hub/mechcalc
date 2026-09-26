@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Gear Train | MECHCALC</title>
+<meta name="description" content="Calculate overall speed ratio and direction of a simple external gear train, including any number of idler gears."><meta name="author" content="Vishnu"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/simple-gear-train.html"><meta property="og:title" content="Simple Gear Train | MECHCALC"><meta property="og:description" content="Calculate overall speed ratio and direction of a simple external gear train, including any number of idler gears."><meta property="og:type" content="website"><meta property="og:site_name" content="MECHCALC"><meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/simple-gear-train.html">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="calculator.css"><link rel="stylesheet" href="tom.css">
+</head>
+<body>
+<header class="header"><div class="logo"><a href="index.html">⚙ MECHCALC</a></div><nav class="nav"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a></nav></header>
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container"><h1>Simple Gear Train</h1><p>Calculate overall speed ratio and direction of a simple external gear train, including any number of idler gears.</p><div class="engineering-quote">“Understand the motion first; then let the equations confirm it.”</div><a href="index.html#calculators" class="back-link">← Back to Calculators</a></div></section>
+<section class="calculator-main"><div class="container"><div class="calculator-layout">
+<form class="input-panel" id="calcForm"><h2>Enter Values</h2><div class="calculator-form-group"><label for="zin">Driver teeth</label><div class="calculator-input-row"><input type="number" id="zin" step="1" value="24" placeholder="Enter value" min="1"><span class="tom-unit-label">teeth</span></div></div><div class="calculator-form-group"><label for="zout">Driven teeth</label><div class="calculator-input-row"><input type="number" id="zout" step="1" value="72" placeholder="Enter value" min="1"><span class="tom-unit-label">teeth</span></div></div><div class="calculator-form-group"><label for="idlers">Number of idler gears</label><div class="calculator-input-row"><input type="number" id="idlers" step="1" value="1" placeholder="Enter value" min="0"><span class="tom-unit-label">idlers</span></div></div><div class="calculator-form-group"><label for="nin">Driver speed</label><div class="calculator-input-row"><input type="number" id="nin" step="any" value="900" placeholder="Enter value"><span class="tom-unit-label">rpm</span></div></div><div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div><div id="errorMessage" class="calculator-error" style="display:none"></div></form>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">Nout = Nin × Zin/Zout; idlers change direction/spacing, not magnitude ratio</div></div><div class="unit-info"><strong>Model / assumption:</strong> All meshes are external and ideal; idlers affect direction but not the magnitude ratio.</div></aside>
+</div>
+<section class="tom-visual"><h3>Simple gear train</h3><svg class="tom-svg" viewBox="0 0 760 300" role="img" aria-label="Simple gear train"><defs><marker id="tomArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#f59e0b"/></marker></defs><circle cx="190" cy="150" r="55" class="tom-gear"/><circle cx="345" cy="150" r="75" class="tom-gear"/><circle cx="550" cy="150" r="105" class="tom-gear"/><text x="150" y="155" class="tom-label">Input</text><text x="320" y="155" class="tom-label">Idler</text><text x="520" y="155" class="tom-label">Output</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none"><h2>Calculation Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+<footer class="footer"><p>MECHCALC • Theory of Machines Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=(v,d=5)=>{if(!Number.isFinite(v))return '—';const a=Math.abs(v);if(a>=1e8||(a>0&&a<1e-6))return v.toExponential(4);return Number(v.toFixed(d)).toLocaleString('en-IN');};
+const rad=d=>d*Math.PI/180; const deg=r=>r*180/Math.PI; const num=id=>Number($(id).value);
+function showError(m){$('errorMessage').textContent=m;$('errorMessage').style.display='block';$('resultBox').style.display='none';}
+function showResult(main,html){$('errorMessage').style.display='none';$('mainResult').innerHTML=main;$('resultDetails').innerHTML=html;$('resultBox').style.display='block';$('resultBox').scrollIntoView({behavior:'smooth',block:'start'});}
+function normDeg(x){x%=360;if(x<0)x+=360;return x;}
+
+
+function calc(){const zi=num('zin'),zo=num('zout'),k=num('idlers'),Ni=num('nin');if(!(zi>0&&zo>0&&Number.isInteger(zi)&&Number.isInteger(zo)&&Number.isInteger(k)&&k>=0))return showError('Enter positive whole-number tooth counts and a non-negative whole-number idler count.');const No=Ni*zi/zo,meshes=k+1,dir=meshes%2===0?'same as driver':'opposite to driver';showResult(`Output speed = <strong>${fmt(Math.abs(No),3)} rpm</strong>`,`<p>Magnitude ratio = Zout/Zin = ${fmt(zo/zi,4)}.</p><p>Nout = Nin × Zin/Zout = ${fmt(No,3)} rpm.</p><p>External meshes = ${meshes}; output direction is <strong>${dir}</strong>.</p><p>Idler tooth counts do not alter the ideal overall speed ratio.</p>`);}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('calcForm').reset();$('resultBox').style.display='none';$('errorMessage').style.display='none';});</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

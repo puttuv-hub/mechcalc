@@ -1,94 +1,81 @@
 # MECHCALC
 
-Mechanical engineering calculator website built as a static HTML/CSS/JavaScript project.
+MECHCALC is a static HTML/CSS/JavaScript mechanical-engineering calculator website designed for B.Tech students, exam preparation and practical engineering calculations.
 
-## GitHub Pages readiness
+## Final integrated build
 
-This package is arranged so `index.html` is at the repository root and can be published directly with GitHub Pages.
-
-### Included
-
-- Finalized `style.css` homepage/site design
-- Shared `calculator.css`
-- 107 categorized mechanical engineering calculators across seven subject groups
+- **313 categorized calculators**
+- **316 HTML pages** in total
 - Engineering Unit Converter
 - Engineering Resources page
-- `robots.txt`
-- `sitemap.xml`
-- `.nojekyll`
-- `.gitignore`
-- Deployment checklist
-- Site audit report
-
-## Validation completed
-
-- All expected MECHCALC pages are present.
-- No missing local HTML/CSS links were found.
-- All inline JavaScript passed syntax checking.
-- All JSON-LD blocks parsed successfully.
-- Accidental Markdown code fences were removed from previously affected HTML files.
-- The original design files were preserved; no redesign was applied.
+- Search and subject filters on the homepage
+- Firebase Email/Password Authentication
+- Firestore Save Calculation / Calculation History support
+- SEO metadata, canonical URLs, `robots.txt` and `sitemap.xml`
+- GitHub Pages ready for `https://puttuv-hub.github.io/mechcalc/`
 
 ## Calculator coverage
 
-- Mechanics: 7
-- Strength of Materials: 21
-- Thermodynamics: 23
-- Heat Transfer: 18
-- Theory of Machines: 25
-- Fluid Mechanics: 11
-- Hydraulic & Pump: 2
+| Category | Calculators |
+|---|---:|
+| Mechanics | 7 |
+| Engineering Mechanics | 21 |
+| Strength of Materials | 21 |
+| Thermodynamics | 23 |
+| Heat Transfer | 18 |
+| Theory of Machines | 25 |
+| Machine Design | 21 |
+| Manufacturing / Production Engineering | 29 |
+| Engineering Materials / Metallurgy | 29 |
+| Industrial Engineering / Operations Research | 32 |
+| IC Engines | 22 |
+| Refrigeration & Air Conditioning | 27 |
+| Fluid Machinery / Turbomachinery | 25 |
+| Fluid Mechanics | 11 |
+| Hydraulic & Pump | 2 |
+| **Total** | **313** |
 
-Total categorized calculators: **107**.
+The project also contains `unit-converter.html` and `engineering-resources.html`, giving **316 HTML pages** including `index.html`.
 
-The project also includes the Engineering Unit Converter and Engineering Resources pages.
+## Design preservation
+
+The established MECHCALC design is retained. The shared `style.css` and `calculator.css` remain the base design files. Subject-specific CSS files extend calculator diagrams and layouts without replacing the base design.
+
+## Firebase / Firestore
+
+The project uses Firebase Authentication and Firestore through:
+
+- `firebase-config.js`
+- `firebase-client.js`
+- `auth.js`
+- `saved-calculations.js`
+- `account-history.js`
+
+The existing Firebase project configuration is preserved. Email/Password Authentication and Firestore must stay enabled in the Firebase console, and `puttuv-hub.github.io` must remain an authorized domain.
 
 ## GitHub Pages deployment
 
-Upload the **contents of this folder** to the root of your GitHub repository. Keep `index.html`, `style.css`, `calculator.css`, and all calculator pages at the top level.
+Upload the **contents of this folder** to the root of the `puttuv-hub/mechcalc` repository. `index.html`, CSS, JavaScript and calculator HTML files should be at repository root level.
 
-Then configure GitHub Pages to publish the `main` branch from `/(root)`.
+Publish GitHub Pages from:
 
-## SEO note
+- Branch: `main`
+- Folder: `/(root)`
 
-`robots.txt` and `sitemap.xml` are included. Once the final public GitHub Pages URL or custom domain is known, update the sitemap/robots URLs to the final absolute public URLs before submitting the sitemap to a search engine.
+Live site target: `https://puttuv-hub.github.io/mechcalc/`
 
-## Live Website
+## Final validation
 
-https://puttuv-hub.github.io/mechcalc/
+The final integration audit checks:
 
-## Authentication
+- calculator-card and subject-filter consistency
+- duplicate homepage links/titles
+- local HTML/CSS/JS references
+- JavaScript syntax
+- JSON-LD parsing
+- canonical/meta coverage
+- sitemap coverage
+- Firebase/Firestore client dependencies
+- HTTP loading of every HTML page
 
-MECHCALC includes a Firebase Authentication front end for Email/Password Sign Up, Login, Logout, and Password Reset.
-
-The Firebase web configuration is already connected through `firebase-config.js` and `firebase-client.js`. Email/Password Authentication and Firestore must remain enabled in the Firebase project.
-
-
-## Strength of Materials visual expansion
-Added 18 B.Tech-focused Strength of Materials problem solvers with step-by-step calculations and engineering diagrams, including beam reactions, deflection, SFD/BMD, torsion, principal stress/Mohr's circle, columns and pressure vessels.
-
-
-## Thermodynamics expansion
-Added 23 B.Tech Thermodynamics calculators with step-by-step solutions and visual process/device diagrams.
-
-
-## Heat Transfer expansion
-Added 18 B.Tech Heat Transfer calculators covering conduction, convection, radiation, fins, heat exchangers, transient conduction and thermal resistance networks.
-
-## Theory of Machines expansion
-Added 25 B.Tech Theory of Machines problem solvers covering mechanisms, slider-crank/four-bar kinematics, gears, belts, cams, flywheels, governors, balancing, gyroscopic effects and mechanical vibration. Every new page includes a visual engineering diagram and step-by-step result output.
-
-
-## Machine Design expansion
-Added 21 interactive Machine Design calculators in the current offline checkpoint.
-
-## IC Engines Expansion
-Added 22 dedicated IC-engine problem-solving calculators. See `IC_ENGINES_EXPANSION_GUIDE.md`.
-
-
-## Refrigeration & Air Conditioning expansion
-Added 27 interactive RAC calculators in the current offline checkpoint.
-
-
-## Fluid Machinery / Turbomachinery expansion
-Added 25 visual, step-by-step calculators in the offline build.
+See `FINAL_AUDIT.md` for the final audit result and scope.

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Porter Governor Speed | MECHCALC</title>
+<meta name="description" content="Estimate equilibrium speed of a frictionless Porter governor with equal arm inclinations and a central sleeve load."><meta name="author" content="Vishnu"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/porter-governor.html"><meta property="og:title" content="Porter Governor Speed | MECHCALC"><meta property="og:description" content="Estimate equilibrium speed of a frictionless Porter governor with equal arm inclinations and a central sleeve load."><meta property="og:type" content="website"><meta property="og:site_name" content="MECHCALC"><meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/porter-governor.html">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="calculator.css"><link rel="stylesheet" href="tom.css">
+</head>
+<body>
+<header class="header"><div class="logo"><a href="index.html">⚙ MECHCALC</a></div><nav class="nav"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a></nav></header>
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container"><h1>Porter Governor Speed</h1><p>Estimate equilibrium speed of a frictionless Porter governor with equal arm inclinations and a central sleeve load.</p><div class="engineering-quote">“Understand the motion first; then let the equations confirm it.”</div><a href="index.html#calculators" class="back-link">← Back to Calculators</a></div></section>
+<section class="calculator-main"><div class="container"><div class="calculator-layout">
+<form class="input-panel" id="calcForm"><h2>Enter Values</h2><div class="calculator-form-group"><label for="h">Governor height h</label><div class="calculator-input-row"><input type="number" id="h" step="any" value="0.2" placeholder="Enter value" min="0"><span class="tom-unit-label">m</span></div></div><div class="calculator-form-group"><label for="m">Mass of each ball m</label><div class="calculator-input-row"><input type="number" id="m" step="any" value="5" placeholder="Enter value" min="0"><span class="tom-unit-label">kg</span></div></div><div class="calculator-form-group"><label for="M">Equivalent sleeve/load mass M</label><div class="calculator-input-row"><input type="number" id="M" step="any" value="20" placeholder="Enter value" min="0"><span class="tom-unit-label">kg</span></div></div><div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div><div id="errorMessage" class="calculator-error" style="display:none"></div></form>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">ω² = (g/h)(1 + M/m)</div></div><div class="unit-info"><strong>Model / assumption:</strong> Simplified frictionless Porter governor with equal arm inclinations; use detailed geometry for unequal arms.</div></aside>
+</div>
+<section class="tom-visual"><h3>Porter governor</h3><svg class="tom-svg" viewBox="0 0 760 300" role="img" aria-label="Porter governor"><defs><marker id="tomArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#f59e0b"/></marker></defs><line x1="380" y1="30" x2="380" y2="255" class="tom-axis"/><circle cx="380" cy="55" r="9" class="tom-joint"/><line x1="380" y1="55" x2="235" y2="185" class="tom-link"/><line x1="380" y1="55" x2="525" y2="185" class="tom-link"/><circle cx="235" cy="185" r="24" class="tom-accent-fill"/><circle cx="525" cy="185" r="24" class="tom-accent-fill"/><line x1="235" y1="185" x2="355" y2="225" class="tom-link-thin"/><line x1="525" y1="185" x2="405" y2="225" class="tom-link-thin"/><rect x="345" y="205" width="70" height="50" class="tom-body"/><text x="425" y="240" class="tom-label">Sleeve load</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none"><h2>Calculation Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+<footer class="footer"><p>MECHCALC • Theory of Machines Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=(v,d=5)=>{if(!Number.isFinite(v))return '—';const a=Math.abs(v);if(a>=1e8||(a>0&&a<1e-6))return v.toExponential(4);return Number(v.toFixed(d)).toLocaleString('en-IN');};
+const rad=d=>d*Math.PI/180; const deg=r=>r*180/Math.PI; const num=id=>Number($(id).value);
+function showError(m){$('errorMessage').textContent=m;$('errorMessage').style.display='block';$('resultBox').style.display='none';}
+function showResult(main,html){$('errorMessage').style.display='none';$('mainResult').innerHTML=main;$('resultDetails').innerHTML=html;$('resultBox').style.display='block';$('resultBox').scrollIntoView({behavior:'smooth',block:'start'});}
+function normDeg(x){x%=360;if(x<0)x+=360;return x;}
+
+
+function calc(){const h=num('h'),m=num('m'),M=num('M');if(!(h>0&&m>0&&M>=0))return showError('Height and ball mass must be positive; sleeve load mass cannot be negative.');const om=Math.sqrt(9.81/h*(1+M/m)),N=60*om/(2*Math.PI),Nw=60/(2*Math.PI)*Math.sqrt(9.81/h);showResult(`Equilibrium speed = <strong>${fmt(N,3)} rpm</strong>`,`<div class="tom-result-grid"><div class="tom-result-card"><strong>Angular speed</strong>${fmt(om,4)} rad/s</div><div class="tom-result-card"><strong>Watt speed at same h</strong>${fmt(Nw,3)} rpm</div><div class="tom-result-card"><strong>Load factor</strong>${fmt(1+M/m,4)}</div></div><p>ω²=(g/h)(1+M/m).</p><p>This is the common equal-arm, frictionless Porter-governor simplification.</p>`);}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('calcForm').reset();$('resultBox').style.display='none';$('errorMessage').style.display='none';});</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>
