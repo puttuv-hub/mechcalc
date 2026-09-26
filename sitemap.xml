@@ -17,7 +17,6 @@
   <url><loc>https://puttuv-hub.github.io/mechcalc/bending-stress.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/bernoulli.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/biot-fourier.html</loc></url>
-  <url><loc>https://puttuv-hub.github.io/mechcalc/blanking-force.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/bmep.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/bolted-joint-preload.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/brake-power.html</loc></url>
@@ -32,8 +31,6 @@
   <url><loc>https://puttuv-hub.github.io/mechcalc/centrifugal-pump-minimum-speed.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/centrifugal-pump-power-efficiency.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/chain-drive.html</loc></url>
-  <url><loc>https://puttuv-hub.github.io/mechcalc/chvorinov-solidification.html</loc></url>
-  <url><loc>https://puttuv-hub.github.io/mechcalc/cnc-machining-time.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/combined-wall-heat-transfer.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/composite-wall.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/compound-gear-train.html</loc></url>
@@ -48,11 +45,8 @@
   <url><loc>https://puttuv-hub.github.io/mechcalc/cooling-coil-bypass-factor.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/cooling-coil-load.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/critical-radius-insulation.html</loc></url>
-  <url><loc>https://puttuv-hub.github.io/mechcalc/cutting-power.html</loc></url>
-  <url><loc>https://puttuv-hub.github.io/mechcalc/cutting-speed-rpm.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/cylindrical-conduction.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/damped-vibration.html</loc></url>
-  <url><loc>https://puttuv-hub.github.io/mechcalc/deep-drawing-blank.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/dehumidification-rate.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/delta-u-h.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/density.html</loc></url>
@@ -60,8 +54,6 @@
   <url><loc>https://puttuv-hub.github.io/mechcalc/diesel-cycle.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/direct-shear-stress.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/draft-tube-recovery.html</loc></url>
-  <url><loc>https://puttuv-hub.github.io/mechcalc/drilling-machining-time.html</loc></url>
-  <url><loc>https://puttuv-hub.github.io/mechcalc/drilling-mrr.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/dual-cycle.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/eer-cop-conversion.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/elastic-constants.html</loc></url>
@@ -71,15 +63,12 @@
   <url><loc>https://puttuv-hub.github.io/mechcalc/engineering-resources.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/entropy-change.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/euler-buckling.html</loc></url>
-  <url><loc>https://puttuv-hub.github.io/mechcalc/extrusion-force.html</loc></url>
-  <url><loc>https://puttuv-hub.github.io/mechcalc/facing-machining-time.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/failure-theories.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/fatigue-goodman-soderberg.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/fillet-weld-design.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/fin-analysis.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/fin-efficiency.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/first-law-closed-system.html</loc></url>
-  <url><loc>https://puttuv-hub.github.io/mechcalc/fit-clearance-interference.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/flange-coupling-bolts.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/flywheel-inertia.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/flywheel-rim-mass.html</loc></url>
@@ -123,16 +112,10 @@
   <url><loc>https://puttuv-hub.github.io/mechcalc/knuckle-joint-check.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/lambda-equivalence-ratio.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/leaf-spring.html</loc></url>
-  <url><loc>https://puttuv-hub.github.io/mechcalc/limits-and-fits.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/lumped-capacitance.html</loc></url>
-  <url><loc>https://puttuv-hub.github.io/mechcalc/machining-economics.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/mean-piston-speed.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/mechanical-efficiency.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/mechanism-mobility.html</loc></url>
-  <url><loc>https://puttuv-hub.github.io/mechcalc/merchant-circle.html</loc></url>
-  <url><loc>https://puttuv-hub.github.io/mechcalc/milling-machining-time.html</loc></url>
-  <url><loc>https://puttuv-hub.github.io/mechcalc/milling-mrr.html</loc></url>
-  <url><loc>https://puttuv-hub.github.io/mechcalc/milling-table-feed.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/mixing-chamber.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/moist-air-enthalpy.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/morse-test.html</loc></url>
@@ -175,17 +158,14 @@
   <url><loc>https://puttuv-hub.github.io/mechcalc/refrigerating-effect.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/refrigeration-cop.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/refrigeration-tonnage.html</loc></url>
-  <url><loc>https://puttuv-hub.github.io/mechcalc/resistance-welding-heat.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/reynolds-number.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/riveted-joint-efficiency.html</loc></url>
-  <url><loc>https://puttuv-hub.github.io/mechcalc/rolling-load.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/room-ac-load.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/rotating-mass-balancing.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/section-properties.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/sensible-heat-factor.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/sfd-bmd.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/shaft-combined-loading.html</loc></url>
-  <url><loc>https://puttuv-hub.github.io/mechcalc/shrinkage-allowance.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/simple-gear-train.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/slider-crank-kinematics.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/specific-gravity.html</loc></url>
@@ -193,7 +173,6 @@
   <url><loc>https://puttuv-hub.github.io/mechcalc/specific-power.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/specific-weight.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/spherical-conduction.html</loc></url>
-  <url><loc>https://puttuv-hub.github.io/mechcalc/spherical-riser-design.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/spur-gear-lewis.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/steady-flow-energy.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/steam-quality.html</loc></url>
@@ -202,10 +181,6 @@
   <url><loc>https://puttuv-hub.github.io/mechcalc/strain.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/stress.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/supercharger-power.html</loc></url>
-  <url><loc>https://puttuv-hub.github.io/mechcalc/surface-grinding-time.html</loc></url>
-  <url><loc>https://puttuv-hub.github.io/mechcalc/surface-roughness-turning.html</loc></url>
-  <url><loc>https://puttuv-hub.github.io/mechcalc/tap-drill-size.html</loc></url>
-  <url><loc>https://puttuv-hub.github.io/mechcalc/taylor-tool-life.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/thermal-contact-resistance.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/thermal-stress.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/thin-cylinder.html</loc></url>
@@ -221,8 +196,6 @@
   <url><loc>https://puttuv-hub.github.io/mechcalc/turbine-specific-speed.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/turbine-unit-quantities.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/turbine-velocity-triangle.html</loc></url>
-  <url><loc>https://puttuv-hub.github.io/mechcalc/turning-machining-time.html</loc></url>
-  <url><loc>https://puttuv-hub.github.io/mechcalc/turning-mrr.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/unit-converter.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/vcr-cycle.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/vcr-subcooling.html</loc></url>
@@ -230,8 +203,6 @@
   <url><loc>https://puttuv-hub.github.io/mechcalc/volumetric-efficiency-engine.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/watt-governor.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/weight.html</loc></url>
-  <url><loc>https://puttuv-hub.github.io/mechcalc/welding-heat-input.html</loc></url>
-  <url><loc>https://puttuv-hub.github.io/mechcalc/wire-drawing-force.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/work.html</loc></url>
   <url><loc>https://puttuv-hub.github.io/mechcalc/youngs-modulus.html</loc></url>
 </urlset>

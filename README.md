@@ -92,7 +92,3 @@ Added 27 interactive RAC calculators in the current offline checkpoint.
 
 ## Fluid Machinery / Turbomachinery expansion
 Added 25 visual, step-by-step calculators in the offline build.
-
-
-## Manufacturing / Production Engineering expansion
-Added 29 new interactive calculators. See `MANUFACTURING_EXPANSION_GUIDE.md`.
