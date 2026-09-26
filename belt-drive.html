@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Belt Drive Speed Ratio & Slip | MECHCALC</title>
+<meta name="description" content="Calculate driven-pulley speed for an open or crossed belt drive including total percentage slip."><meta name="author" content="Vishnu"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/belt-drive.html"><meta property="og:title" content="Belt Drive Speed Ratio & Slip | MECHCALC"><meta property="og:description" content="Calculate driven-pulley speed for an open or crossed belt drive including total percentage slip."><meta property="og:type" content="website"><meta property="og:site_name" content="MECHCALC"><meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/belt-drive.html">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="calculator.css"><link rel="stylesheet" href="tom.css">
+</head>
+<body>
+<header class="header"><div class="logo"><a href="index.html">⚙ MECHCALC</a></div><nav class="nav"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a></nav></header>
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container"><h1>Belt Drive Speed Ratio & Slip</h1><p>Calculate driven-pulley speed for an open or crossed belt drive including total percentage slip.</p><div class="engineering-quote">“Understand the motion first; then let the equations confirm it.”</div><a href="index.html#calculators" class="back-link">← Back to Calculators</a></div></section>
+<section class="calculator-main"><div class="container"><div class="calculator-layout">
+<form class="input-panel" id="calcForm"><h2>Enter Values</h2><div class="calculator-form-group"><label for="D1">Driver pulley diameter D₁</label><div class="calculator-input-row"><input type="number" id="D1" step="any" value="200" placeholder="Enter value" min="0"><span class="tom-unit-label">mm</span></div></div><div class="calculator-form-group"><label for="D2">Driven pulley diameter D₂</label><div class="calculator-input-row"><input type="number" id="D2" step="any" value="500" placeholder="Enter value" min="0"><span class="tom-unit-label">mm</span></div></div><div class="calculator-form-group"><label for="N1">Driver speed N₁</label><div class="calculator-input-row"><input type="number" id="N1" step="any" value="1000" placeholder="Enter value"><span class="tom-unit-label">rpm</span></div></div><div class="calculator-form-group"><label for="slip">Total slip</label><div class="calculator-input-row"><input type="number" id="slip" step="any" value="2" placeholder="Enter value" min="0" max="99"><span class="tom-unit-label">%</span></div></div><div class="calculator-form-group"><label for="beltType">Belt arrangement</label><div class="calculator-input-row"><select id="beltType"><option value="open" selected>Open belt</option><option value="crossed">Crossed belt</option></select></div></div><div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div><div id="errorMessage" class="calculator-error" style="display:none"></div></form>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">N₂ = N₁(D₁/D₂)(1−s)</div></div><div class="unit-info"><strong>Model / assumption:</strong> Neglect belt thickness; total slip is applied as a single fractional speed loss.</div></aside>
+</div>
+<section class="tom-visual"><h3>Belt and pulley drive</h3><svg class="tom-svg" viewBox="0 0 760 300" role="img" aria-label="Belt and pulley drive"><defs><marker id="tomArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#f59e0b"/></marker></defs><circle cx="220" cy="150" r="60" class="tom-gear"/><circle cx="535" cy="150" r="105" class="tom-gear"/><line x1="220" y1="90" x2="535" y2="45" class="tom-link-thin"/><line x1="220" y1="210" x2="535" y2="255" class="tom-link-thin"/><text x="185" y="155" class="tom-label">Driver</text><text x="500" y="155" class="tom-label">Driven</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none"><h2>Calculation Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+<footer class="footer"><p>MECHCALC • Theory of Machines Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=(v,d=5)=>{if(!Number.isFinite(v))return '—';const a=Math.abs(v);if(a>=1e8||(a>0&&a<1e-6))return v.toExponential(4);return Number(v.toFixed(d)).toLocaleString('en-IN');};
+const rad=d=>d*Math.PI/180; const deg=r=>r*180/Math.PI; const num=id=>Number($(id).value);
+function showError(m){$('errorMessage').textContent=m;$('errorMessage').style.display='block';$('resultBox').style.display='none';}
+function showResult(main,html){$('errorMessage').style.display='none';$('mainResult').innerHTML=main;$('resultDetails').innerHTML=html;$('resultBox').style.display='block';$('resultBox').scrollIntoView({behavior:'smooth',block:'start'});}
+function normDeg(x){x%=360;if(x<0)x+=360;return x;}
+
+
+function calc(){const D1=num('D1'),D2=num('D2'),N1=num('N1'),s=num('slip')/100;if(!(D1>0&&D2>0&&s>=0&&s<1))return showError('Diameters must be positive and slip must be between 0% and 100%.');const N2=N1*D1/D2*(1-s),vr=Math.abs(N1/N2),dir=$('beltType').value==='open'?'same direction':'opposite direction';showResult(`Driven speed = <strong>${fmt(N2,3)} rpm</strong>`,`<p>Ideal speed = N₁D₁/D₂ = ${fmt(N1*D1/D2,3)} rpm.</p><p>After ${fmt(s*100,2)}% slip: N₂ = ${fmt(N2,3)} rpm.</p><p>Actual speed ratio |N₁/N₂| = ${fmt(vr,4)}; pulleys rotate in the <strong>${dir}</strong>.</p>`);}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('calcForm').reset();$('resultBox').style.display='none';$('errorMessage').style.display='none';});</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

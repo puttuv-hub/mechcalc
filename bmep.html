@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brake Mean Effective Pressure (BMEP) | MECHCALC</title>
+<meta name="description" content="Calculate BMEP from torque and total engine displacement for two- or four-stroke engines."><meta name="author" content="Vishnu"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/bmep.html"><meta property="og:title" content="Brake Mean Effective Pressure (BMEP) | MECHCALC"><meta property="og:description" content="Calculate BMEP from torque and total engine displacement for two- or four-stroke engines."><meta property="og:type" content="website"><meta property="og:site_name" content="MECHCALC"><meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/bmep.html">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="calculator.css"><link rel="stylesheet" href="ic-engines.css">
+</head>
+<body>
+<header class="header"><div class="logo"><a href="index.html">⚙ MECHCALC</a></div><nav class="nav"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a></nav></header>
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container"><h1>Brake Mean Effective Pressure (BMEP)</h1><p>Calculate BMEP from torque and total engine displacement for two- or four-stroke engines.</p><div class="engineering-quote">“Understand the cycle, track the units, and let the energy balance tell the story.”</div><a href="index.html#calculators" class="back-link">← Back to Calculators</a></div></section>
+<section class="calculator-main"><div class="container"><div class="calculator-layout">
+<form class="input-panel" id="calcForm"><h2>Enter Engine Data</h2><div class="calculator-form-group"><label for="T">Brake torque T</label><div class="calculator-input-row"><input type="number" id="T" step="any" value="180" placeholder="Enter value"><span class="ice-unit-label">N·m</span></div></div><div class="calculator-form-group"><label for="Vd">Total displacement Vd</label><div class="calculator-input-row"><input type="number" id="Vd" step="any" value="2.0" placeholder="Enter value"><span class="ice-unit-label">L</span></div></div><div class="calculator-form-group"><label for="strokeType">Engine cycle</label><select id="strokeType"><option value="4" selected>Four-stroke</option><option value="2">Two-stroke</option></select></div><div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div><div id="errorMessage" class="calculator-error" style="display:none"></div></form>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">BMEP = (4πT / V<sub>d</sub>) for 4-stroke; (2πT / V<sub>d</sub>) for 2-stroke</div></div><div class="unit-info"><strong>Model / assumption:</strong> Use consistent SI-derived engineering units as indicated. Results are intended for educational problem solving; verify manufacturer/standard data for design work.</div></aside>
+</div>
+<section class="ice-visual"><h3>Engineering visualization</h3><svg class="ice-svg" viewBox="0 0 760 250" role="img" aria-label="Engine power flow"><rect x="70" y="75" width="170" height="95" rx="14" class="ice-fill"/><text x="105" y="130" class="ice-label">Cylinder power</text><line x1="240" y1="122" x2="375" y2="122" class="ice-accent"/><path d="M360 110 L382 122 L360 134" class="ice-accent"/><rect x="385" y="75" width="145" height="95" rx="14" class="ice-fill"/><text x="425" y="115" class="ice-label">Crankshaft</text><text x="430" y="140" class="ice-muted">friction</text><line x1="530" y1="122" x2="660" y2="122" class="ice-accent"/><path d="M645 110 L667 122 L645 134" class="ice-accent"/><text x="610" y="95" class="ice-label">Brake power</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none"><h2>Step-by-Step Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+<footer class="footer"><p>MECHCALC • IC Engine Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const num=id=>Number($(id).value);
+const fmt=(v,d=4)=>{if(!Number.isFinite(v))return "—";const a=Math.abs(v);if(a>=1e8||(a>0&&a<1e-5))return v.toExponential(4);return Number(v.toFixed(d)).toLocaleString("en-IN");};
+function showError(m){$("errorMessage").textContent=m;$("errorMessage").style.display="block";$("resultBox").style.display="none";}
+function showResult(main,html){$("errorMessage").style.display="none";$("mainResult").innerHTML=main;$("resultDetails").innerHTML=html;$("resultBox").style.display="block";$("resultBox").scrollIntoView({behavior:"smooth",block:"start"});}
+
+function calc(){const T=num('T'),V=num('Vd')/1000,s=num('strokeType');if(!(T>=0&&V>0))return showError('Enter non-negative torque and positive displacement.');const factor=s===4?4*Math.PI:2*Math.PI;const p=factor*T/V/1000;showResult(`BMEP = <strong>${fmt(p,1)} kPa (${fmt(p/100,2)} bar)</strong>`,`<p>Vd = ${fmt(V,6)} m³</p><p>BMEP = ${s===4?'4πT/Vd':'2πT/Vd'}</p><p>= ${fmt(p,2)} kPa</p><p class="ice-note">BMEP is a displacement-normalized measure of engine torque output.</p>`);}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('calcForm').reset();$('resultBox').style.display='none';$('errorMessage').style.display='none';});
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

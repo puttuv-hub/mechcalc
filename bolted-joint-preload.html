@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bolted Joint Preload from Tightening Torque | MECHCALC</title>
+<meta name="description" content="Estimate bolt preload and tensile stress using the torque coefficient method."><meta name="author" content="Vishnu"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/bolted-joint-preload.html"><meta property="og:title" content="Bolted Joint Preload from Tightening Torque | MECHCALC"><meta property="og:description" content="Estimate bolt preload and tensile stress using the torque coefficient method."><meta property="og:type" content="website"><meta property="og:site_name" content="MECHCALC"><meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/bolted-joint-preload.html">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="calculator.css"><link rel="stylesheet" href="machine-design.css">
+</head>
+<body>
+<header class="header"><div class="logo"><a href="index.html">⚙ MECHCALC</a></div><nav class="nav"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a></nav></header>
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container"><h1>Bolted Joint Preload from Tightening Torque</h1><p>Estimate bolt preload and tensile stress using the torque coefficient method.</p><div class="engineering-quote">“Design is calculation plus judgement — always check the governing failure mode.”</div><a href="index.html#calculators" class="back-link">← Back to Calculators</a></div></section>
+<section class="calculator-main"><div class="container"><div class="calculator-layout">
+<form class="input-panel" id="calcForm"><h2>Enter Design Values</h2><div class="calculator-form-group"><label for="T">Tightening torque</label><div class="calculator-input-row"><input type="number" id="T" step="any" value="80" placeholder="Enter value"><span class="md-unit-label">N·m</span></div></div><div class="calculator-form-group"><label for="K">Nut factor K</label><div class="calculator-input-row"><input type="number" id="K" step="any" value="0.2" placeholder="Enter value"><span class="md-unit-label">—</span></div></div><div class="calculator-form-group"><label for="d">Nominal bolt diameter</label><div class="calculator-input-row"><input type="number" id="d" step="any" value="12" placeholder="Enter value"><span class="md-unit-label">mm</span></div></div><div class="calculator-form-group"><label for="dr">Approx. root/stress diameter</label><div class="calculator-input-row"><input type="number" id="dr" step="any" value="10.1" placeholder="Enter value"><span class="md-unit-label">mm</span></div></div><div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div><div id="errorMessage" class="calculator-error" style="display:none"></div></form>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">Fᵢ = T/(K d);  σ = Fᵢ / (πdᵣ²/4)</div></div><div class="unit-info"><strong>Model / assumption:</strong> Use consistent SI-derived engineering units as indicated. Results are intended for educational preliminary design; verify detailed standards for production design.</div></aside>
+</div>
+<section class="md-visual"><h3>Design visualization</h3><svg class="md-svg" viewBox="0 0 760 230" role="img" aria-label="Mechanical joint"><rect x="120" y="82" width="520" height="32" class="md-fill"/><rect x="120" y="116" width="520" height="32" class="md-fill"/><circle cx="290" cy="115" r="13" class="md-body"/><circle cx="470" cy="115" r="13" class="md-body"/><path d="M80 115 L25 115" class="md-accent"/><path d="M680 115 L735 115" class="md-accent"/><text x="245" y="205" class="md-label">Joint strength / efficiency check</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none"><h2>Step-by-Step Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+<footer class="footer"><p>MECHCALC • Machine Design Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const num=id=>Number($(id).value);
+const fmt=(v,d=4)=>{if(!Number.isFinite(v))return "—";const a=Math.abs(v);if(a>=1e8||(a>0&&a<1e-5))return v.toExponential(4);return Number(v.toFixed(d)).toLocaleString("en-IN");};
+function showError(m){$("errorMessage").textContent=m;$("errorMessage").style.display="block";$("resultBox").style.display="none";}
+function showResult(main,html){$("errorMessage").style.display="none";$("mainResult").innerHTML=main;$("resultDetails").innerHTML=html;$("resultBox").style.display="block";$("resultBox").scrollIntoView({behavior:"smooth",block:"start"});}
+
+function calc(){const T=num('T')*1000,K=num('K'),d=num('d'),dr=num('dr');if(!(T>0&&K>0&&d>0&&dr>0&&dr<=d))return showError('Enter positive values with root diameter ≤ nominal diameter.');const F=T/(K*d),A=Math.PI*dr*dr/4,s=F/A;showResult(`Estimated preload = <strong>${fmt(F/1000,2)} kN</strong>`,`<div class="md-result-grid"><div class="md-result-card"><strong>Tensile stress</strong>${fmt(s,2)} MPa</div><div class="md-result-card"><strong>Stress area used</strong>${fmt(A,2)} mm²</div></div><p>Fi = T/(Kd) = ${fmt(F/1000,2)} kN</p><p>σ = Fi/A = ${fmt(s,2)} MPa</p><p class="md-note">K is strongly affected by lubrication and surface condition; this is an estimate.</p>`)}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('calcForm').reset();$('resultBox').style.display='none';$('errorMessage').style.display='none';});
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

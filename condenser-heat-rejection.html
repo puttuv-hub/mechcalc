@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Condenser Heat Rejection | MECHCALC</title>
+<meta name="description" content="Calculate condenser heat-rejection rate from mass flow and enthalpy drop."><meta name="author" content="Vishnu"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/condenser-heat-rejection.html"><meta property="og:title" content="Condenser Heat Rejection | MECHCALC"><meta property="og:description" content="Calculate condenser heat-rejection rate from mass flow and enthalpy drop."><meta property="og:type" content="website"><meta property="og:site_name" content="MECHCALC"><meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/condenser-heat-rejection.html">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="calculator.css"><link rel="stylesheet" href="rac.css">
+</head>
+<body>
+<header class="header"><div class="logo"><a href="index.html">⚙ MECHCALC</a></div><nav class="nav"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a></nav></header>
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container"><h1>Condenser Heat Rejection</h1><p>Calculate condenser heat-rejection rate from mass flow and enthalpy drop.</p><div class="engineering-quote">“Follow the energy flow and the air-state changes — RAC problems become much easier.”</div><a href="index.html#calculators" class="back-link">← Back to Calculators</a></div></section>
+<section class="calculator-main"><div class="container"><div class="calculator-layout">
+<form class="input-panel" id="calcForm"><h2>Enter RAC Data</h2><div class="calculator-form-group"><label for="m">Refrigerant mass flow</label><div class="calculator-input-row"><input type="number" id="m" step="any" value="0.08" placeholder="Enter value"><span class="rac-unit-label">kg/s</span></div></div><div class="calculator-form-group"><label for="h2">Condenser inlet h2</label><div class="calculator-input-row"><input type="number" id="h2" step="any" value="280" placeholder="Enter value"><span class="rac-unit-label">kJ/kg</span></div></div><div class="calculator-form-group"><label for="h3">Condenser outlet h3</label><div class="calculator-input-row"><input type="number" id="h3" step="any" value="95" placeholder="Enter value"><span class="rac-unit-label">kJ/kg</span></div></div><div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div><div id="errorMessage" class="calculator-error" style="display:none"></div></form>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">QH = ṁ (h2 − h3)</div></div><div class="unit-info"><strong>Model / assumption:</strong> Educational engineering model using the stated properties and units. For real equipment selection, verify refrigerant property data and manufacturer performance maps.</div></aside>
+</div>
+<section class="rac-visual"><h3>Engineering visualization</h3><svg class="rac-svg" viewBox="0 0 820 300" role="img" aria-label="Vapour compression refrigeration cycle"><rect x="65" y="105" width="155" height="90" rx="15" class="rac-fill"/><text x="95" y="145" class="rac-label">Evaporator</text><text x="100" y="170" class="rac-muted">Qₗ absorbed</text><rect x="335" y="45" width="150" height="90" rx="15" class="rac-fill"/><text x="365" y="85" class="rac-label">Compressor</text><text x="375" y="110" class="rac-muted">W in</text><rect x="605" y="105" width="155" height="90" rx="15" class="rac-fill"/><text x="640" y="145" class="rac-label">Condenser</text><text x="635" y="170" class="rac-muted">Qₕ rejected</text><rect x="335" y="215" width="150" height="60" rx="15" class="rac-fill"/><text x="355" y="250" class="rac-label">Expansion valve</text><path d="M220 135 C270 120 300 90 335 90" class="rac-cold"/><path d="M485 90 C540 90 570 120 605 135" class="rac-hot"/><path d="M680 195 C640 230 550 245 485 245" class="rac-hot"/><path d="M335 245 C260 245 170 215 140 195" class="rac-cold"/><text x="250" y="105" class="rac-muted">1 → 2</text><text x="515" y="112" class="rac-muted">2 → 3</text><text x="520" y="240" class="rac-muted">3 → 4</text><text x="210" y="235" class="rac-muted">4 → 1</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none"><h2>Step-by-Step Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+<footer class="footer"><p>MECHCALC • Refrigeration & Air Conditioning Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const num=id=>Number($(id).value);
+const fmt=(v,d=4)=>{if(!Number.isFinite(v))return "—";const a=Math.abs(v);if(a>=1e8||(a>0&&a<1e-5))return v.toExponential(4);return Number(v.toFixed(d)).toLocaleString("en-IN");};
+function showError(m){$("errorMessage").textContent=m;$("errorMessage").style.display="block";$("resultBox").style.display="none";}
+function showResult(main,html){$("errorMessage").style.display="none";$("mainResult").innerHTML=main;$("resultDetails").innerHTML=html;$("resultBox").style.display="block";$("resultBox").scrollIntoView({behavior:"smooth",block:"start"});}
+function pws(T){return 0.61078*Math.exp(17.2694*T/(T+237.3));}
+function dewPointFromPv(pv){const a=Math.log(pv/0.61078);return 237.3*a/(17.2694-a);}
+
+function calc(){const m=num('m'),h2=num('h2'),h3=num('h3');if(!(m>=0&&h2>=h3))return showError('Enter non-negative mass flow with h2 ≥ h3.');const dh=h2-h3,q=m*dh;showResult(`Condenser load = <strong>${fmt(q,3)} kW</strong>`,`<p>QH = ṁ(h2 − h3) = ${fmt(m,4)} × (${fmt(h2,2)} − ${fmt(h3,2)}) = ${fmt(q,3)} kW</p>`)}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('calcForm').reset();$('resultBox').style.display='none';$('errorMessage').style.display='none';});
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

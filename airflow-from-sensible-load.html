@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Required Airflow from Sensible Load | MECHCALC</title>
+<meta name="description" content="Estimate dry-air mass flow required to meet a sensible cooling load for a chosen supply-room temperature difference."><meta name="author" content="Vishnu"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/airflow-from-sensible-load.html"><meta property="og:title" content="Required Airflow from Sensible Load | MECHCALC"><meta property="og:description" content="Estimate dry-air mass flow required to meet a sensible cooling load for a chosen supply-room temperature difference."><meta property="og:type" content="website"><meta property="og:site_name" content="MECHCALC"><meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/airflow-from-sensible-load.html">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="calculator.css"><link rel="stylesheet" href="rac.css">
+</head>
+<body>
+<header class="header"><div class="logo"><a href="index.html">⚙ MECHCALC</a></div><nav class="nav"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a></nav></header>
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container"><h1>Required Airflow from Sensible Load</h1><p>Estimate dry-air mass flow required to meet a sensible cooling load for a chosen supply-room temperature difference.</p><div class="engineering-quote">“Follow the energy flow and the air-state changes — RAC problems become much easier.”</div><a href="index.html#calculators" class="back-link">← Back to Calculators</a></div></section>
+<section class="calculator-main"><div class="container"><div class="calculator-layout">
+<form class="input-panel" id="calcForm"><h2>Enter RAC Data</h2><div class="calculator-form-group"><label for="Q">Sensible cooling load</label><div class="calculator-input-row"><input type="number" id="Q" step="any" value="12" placeholder="Enter value"><span class="rac-unit-label">kW</span></div></div><div class="calculator-form-group"><label for="cp">Air specific heat</label><div class="calculator-input-row"><input type="number" id="cp" step="any" value="1.02" placeholder="Enter value"><span class="rac-unit-label">kJ/kg·K</span></div></div><div class="calculator-form-group"><label for="Tr">Room temperature</label><div class="calculator-input-row"><input type="number" id="Tr" step="any" value="24" placeholder="Enter value"><span class="rac-unit-label">°C</span></div></div><div class="calculator-form-group"><label for="Ts">Supply temperature</label><div class="calculator-input-row"><input type="number" id="Ts" step="any" value="14" placeholder="Enter value"><span class="rac-unit-label">°C</span></div></div><div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div><div id="errorMessage" class="calculator-error" style="display:none"></div></form>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">ṁda = Qs/[cp(Troom − Tsupply)]</div></div><div class="unit-info"><strong>Model / assumption:</strong> Educational engineering model using the stated properties and units. For real equipment selection, verify refrigerant property data and manufacturer performance maps.</div></aside>
+</div>
+<section class="rac-visual"><h3>Engineering visualization</h3><svg class="rac-svg" viewBox="0 0 820 280" role="img" aria-label="Cooling coil air conditioning schematic"><line x1="55" y1="135" x2="245" y2="135" class="rac-hot"/><path d="M225 123 L250 135 L225 147" class="rac-hot"/><text x="85" y="105" class="rac-label">Warm moist air</text><rect x="250" y="70" width="200" height="135" rx="16" class="rac-fill"/><path d="M280 90 L325 185 M325 90 L370 185 M370 90 L415 185" class="rac-cold"/><text x="305" y="58" class="rac-label">Cooling coil</text><line x1="450" y1="135" x2="725" y2="135" class="rac-cold"/><path d="M705 123 L730 135 L705 147" class="rac-cold"/><text x="530" y="105" class="rac-label">Cooler / drier air</text><path d="M335 205 C335 225 320 235 320 252 C320 260 330 266 340 252 C340 235 325 225 335 205" fill="#38bdf8"/><text x="360" y="245" class="rac-muted">condensate</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none"><h2>Step-by-Step Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+<footer class="footer"><p>MECHCALC • Refrigeration & Air Conditioning Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const num=id=>Number($(id).value);
+const fmt=(v,d=4)=>{if(!Number.isFinite(v))return "—";const a=Math.abs(v);if(a>=1e8||(a>0&&a<1e-5))return v.toExponential(4);return Number(v.toFixed(d)).toLocaleString("en-IN");};
+function showError(m){$("errorMessage").textContent=m;$("errorMessage").style.display="block";$("resultBox").style.display="none";}
+function showResult(main,html){$("errorMessage").style.display="none";$("mainResult").innerHTML=main;$("resultDetails").innerHTML=html;$("resultBox").style.display="block";$("resultBox").scrollIntoView({behavior:"smooth",block:"start"});}
+function pws(T){return 0.61078*Math.exp(17.2694*T/(T+237.3));}
+function dewPointFromPv(pv){const a=Math.log(pv/0.61078);return 237.3*a/(17.2694-a);}
+
+function calc(){const q=num('Q'),cp=num('cp'),tr=num('Tr'),ts=num('Ts');const dt=tr-ts;if(!(q>=0&&cp>0&&dt>0))return showError('Require non-negative load, positive cp and room temperature above supply temperature.');const m=q/(cp*dt),v=m/1.2;showResult(`Required dry-air flow = <strong>${fmt(m,3)} kg/s</strong>`,`<div class="rac-result-grid"><div class="rac-result-card"><strong>ΔT</strong>${fmt(dt,2)} K</div><div class="rac-result-card"><strong>Approx. volume flow*</strong>${fmt(v,3)} m³/s</div></div><p>ṁ = Q/[cpΔT] = ${fmt(m,3)} kg/s</p><p class="rac-note">*Volume-flow estimate uses 1.2 kg/m³ as a convenient air-density approximation; use actual density for precise duct sizing.</p>`)}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('calcForm').reset();$('resultBox').style.display='none';$('errorMessage').style.display='none';});
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

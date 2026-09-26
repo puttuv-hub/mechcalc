@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mixing of Two Moist-Air Streams | MECHCALC</title>
+<meta name="description" content="Calculate mixed-air enthalpy and humidity ratio using dry-air mass balances."><meta name="author" content="Vishnu"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/air-stream-mixing.html"><meta property="og:title" content="Mixing of Two Moist-Air Streams | MECHCALC"><meta property="og:description" content="Calculate mixed-air enthalpy and humidity ratio using dry-air mass balances."><meta property="og:type" content="website"><meta property="og:site_name" content="MECHCALC"><meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/air-stream-mixing.html">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="calculator.css"><link rel="stylesheet" href="rac.css">
+</head>
+<body>
+<header class="header"><div class="logo"><a href="index.html">⚙ MECHCALC</a></div><nav class="nav"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a></nav></header>
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container"><h1>Mixing of Two Moist-Air Streams</h1><p>Calculate mixed-air enthalpy and humidity ratio using dry-air mass balances.</p><div class="engineering-quote">“Follow the energy flow and the air-state changes — RAC problems become much easier.”</div><a href="index.html#calculators" class="back-link">← Back to Calculators</a></div></section>
+<section class="calculator-main"><div class="container"><div class="calculator-layout">
+<form class="input-panel" id="calcForm"><h2>Enter RAC Data</h2><div class="calculator-form-group"><label for="m1">Dry-air flow stream 1</label><div class="calculator-input-row"><input type="number" id="m1" step="any" value="1.0" placeholder="Enter value"><span class="rac-unit-label">kg/s</span></div></div><div class="calculator-form-group"><label for="h1">Enthalpy stream 1</label><div class="calculator-input-row"><input type="number" id="h1" step="any" value="70" placeholder="Enter value"><span class="rac-unit-label">kJ/kg</span></div></div><div class="calculator-form-group"><label for="w1">Humidity ratio stream 1</label><div class="calculator-input-row"><input type="number" id="w1" step="any" value="0.016" placeholder="Enter value"><span class="rac-unit-label">kg/kg</span></div></div><div class="calculator-form-group"><label for="m2">Dry-air flow stream 2</label><div class="calculator-input-row"><input type="number" id="m2" step="any" value="0.5" placeholder="Enter value"><span class="rac-unit-label">kg/s</span></div></div><div class="calculator-form-group"><label for="h2">Enthalpy stream 2</label><div class="calculator-input-row"><input type="number" id="h2" step="any" value="35" placeholder="Enter value"><span class="rac-unit-label">kJ/kg</span></div></div><div class="calculator-form-group"><label for="w2">Humidity ratio stream 2</label><div class="calculator-input-row"><input type="number" id="w2" step="any" value="0.008" placeholder="Enter value"><span class="rac-unit-label">kg/kg</span></div></div><div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div><div id="errorMessage" class="calculator-error" style="display:none"></div></form>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">hm = (m1h1 + m2h2)/(m1+m2);  wm = (m1w1 + m2w2)/(m1+m2)</div></div><div class="unit-info"><strong>Model / assumption:</strong> Educational engineering model using the stated properties and units. For real equipment selection, verify refrigerant property data and manufacturer performance maps.</div></aside>
+</div>
+<section class="rac-visual"><h3>Engineering visualization</h3><svg class="rac-svg" viewBox="0 0 820 270" role="img" aria-label="Mixing of two air streams"><line x1="70" y1="75" x2="330" y2="125" class="rac-hot"/><path d="M310 112 L335 126 L307 134" class="rac-hot"/><text x="90" y="55" class="rac-label">Air stream 1</text><line x1="70" y1="210" x2="330" y2="145" class="rac-cold"/><path d="M308 139 L335 144 L313 158" class="rac-cold"/><text x="90" y="235" class="rac-label">Air stream 2</text><rect x="340" y="90" width="150" height="100" rx="50" class="rac-fill"/><text x="375" y="145" class="rac-label">Mixing</text><line x1="490" y1="140" x2="735" y2="140" class="rac-accent"/><path d="M715 128 L740 140 L715 152" class="rac-accent"/><text x="565" y="115" class="rac-label">Mixed air</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none"><h2>Step-by-Step Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+<footer class="footer"><p>MECHCALC • Refrigeration & Air Conditioning Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const num=id=>Number($(id).value);
+const fmt=(v,d=4)=>{if(!Number.isFinite(v))return "—";const a=Math.abs(v);if(a>=1e8||(a>0&&a<1e-5))return v.toExponential(4);return Number(v.toFixed(d)).toLocaleString("en-IN");};
+function showError(m){$("errorMessage").textContent=m;$("errorMessage").style.display="block";$("resultBox").style.display="none";}
+function showResult(main,html){$("errorMessage").style.display="none";$("mainResult").innerHTML=main;$("resultDetails").innerHTML=html;$("resultBox").style.display="block";$("resultBox").scrollIntoView({behavior:"smooth",block:"start"});}
+function pws(T){return 0.61078*Math.exp(17.2694*T/(T+237.3));}
+function dewPointFromPv(pv){const a=Math.log(pv/0.61078);return 237.3*a/(17.2694-a);}
+
+function calc(){const m1=num('m1'),m2=num('m2'),h1=num('h1'),h2=num('h2'),w1=num('w1'),w2=num('w2');if(!(m1>=0&&m2>=0&&m1+m2>0&&w1>=0&&w2>=0))return showError('Mass flows must be non-negative with positive total flow; humidity ratios must be non-negative.');const mt=m1+m2,hm=(m1*h1+m2*h2)/mt,wm=(m1*w1+m2*w2)/mt;showResult(`Mixed enthalpy = <strong>${fmt(hm,2)} kJ/kg dry air</strong>`,`<div class="rac-result-grid"><div class="rac-result-card"><strong>Total dry-air flow</strong>${fmt(mt,3)} kg/s</div><div class="rac-result-card"><strong>Mixed humidity ratio</strong>${fmt(wm,5)} kg/kg</div></div><p>hm = (m1h1 + m2h2)/(m1+m2) = ${fmt(hm,2)} kJ/kg</p><p>wm = ${fmt(wm,5)} kg/kg</p>`)}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('calcForm').reset();$('resultBox').style.display='none';$('errorMessage').style.display='none';});
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

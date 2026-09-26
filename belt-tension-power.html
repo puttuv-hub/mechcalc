@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Belt Tension & Power | MECHCALC</title>
+<meta name="description" content="Calculate slack-side tension and transmitted power using the belt friction relation."><meta name="author" content="Vishnu"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/belt-tension-power.html"><meta property="og:title" content="Belt Tension & Power | MECHCALC"><meta property="og:description" content="Calculate slack-side tension and transmitted power using the belt friction relation."><meta property="og:type" content="website"><meta property="og:site_name" content="MECHCALC"><meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/belt-tension-power.html">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="calculator.css"><link rel="stylesheet" href="tom.css">
+</head>
+<body>
+<header class="header"><div class="logo"><a href="index.html">⚙ MECHCALC</a></div><nav class="nav"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a></nav></header>
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container"><h1>Belt Tension & Power</h1><p>Calculate slack-side tension and transmitted power using the belt friction relation.</p><div class="engineering-quote">“Understand the motion first; then let the equations confirm it.”</div><a href="index.html#calculators" class="back-link">← Back to Calculators</a></div></section>
+<section class="calculator-main"><div class="container"><div class="calculator-layout">
+<form class="input-panel" id="calcForm"><h2>Enter Values</h2><div class="calculator-form-group"><label for="mu">Coefficient of friction μ</label><div class="calculator-input-row"><input type="number" id="mu" step="any" value="0.3" placeholder="Enter value"></div></div><div class="calculator-form-group"><label for="theta">Angle of wrap θ</label><div class="calculator-input-row"><input type="number" id="theta" step="any" value="180" placeholder="Enter value"><span class="tom-unit-label">deg</span></div></div><div class="calculator-form-group"><label for="T1">Tight-side tension T₁</label><div class="calculator-input-row"><input type="number" id="T1" step="any" value="800" placeholder="Enter value" min="0"><span class="tom-unit-label">N</span></div></div><div class="calculator-form-group"><label for="v">Belt speed v</label><div class="calculator-input-row"><input type="number" id="v" step="any" value="12" placeholder="Enter value" min="0"><span class="tom-unit-label">m/s</span></div></div><div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div><div id="errorMessage" class="calculator-error" style="display:none"></div></form>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">T₁/T₂ = e^{μθ}; P = (T₁−T₂)v</div></div><div class="unit-info"><strong>Model / assumption:</strong> Flat-belt capstan relation; μ and wrap angle are assumed constant.</div></aside>
+</div>
+<section class="tom-visual"><h3>Belt friction and tension</h3><svg class="tom-svg" viewBox="0 0 760 300" role="img" aria-label="Belt friction and tension"><defs><marker id="tomArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#f59e0b"/></marker></defs><circle cx="380" cy="150" r="90" class="tom-gear"/><path d="M150 60 L380 60 A90 90 0 0 1 470 150 L650 150" class="tom-link-thin"/><path d="M150 240 L380 240 A90 90 0 0 0 470 150" class="tom-link-thin"/><line x1="115" y1="60" x2="180" y2="60" class="tom-vector"/><line x1="115" y1="240" x2="180" y2="240" class="tom-vector"/><text x="80" y="55" class="tom-label">T₁</text><text x="80" y="235" class="tom-label">T₂</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none"><h2>Calculation Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+<footer class="footer"><p>MECHCALC • Theory of Machines Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const fmt=(v,d=5)=>{if(!Number.isFinite(v))return '—';const a=Math.abs(v);if(a>=1e8||(a>0&&a<1e-6))return v.toExponential(4);return Number(v.toFixed(d)).toLocaleString('en-IN');};
+const rad=d=>d*Math.PI/180; const deg=r=>r*180/Math.PI; const num=id=>Number($(id).value);
+function showError(m){$('errorMessage').textContent=m;$('errorMessage').style.display='block';$('resultBox').style.display='none';}
+function showResult(main,html){$('errorMessage').style.display='none';$('mainResult').innerHTML=main;$('resultDetails').innerHTML=html;$('resultBox').style.display='block';$('resultBox').scrollIntoView({behavior:'smooth',block:'start'});}
+function normDeg(x){x%=360;if(x<0)x+=360;return x;}
+
+
+function calc(){const mu=num('mu'),th=rad(num('theta')),T1=num('T1'),v=num('v');if(!(mu>=0&&th>0&&T1>=0&&v>=0))return showError('Enter non-negative friction/tension/speed and a positive wrap angle.');const ratio=Math.exp(mu*th),T2=T1/ratio,P=(T1-T2)*v;showResult(`Transmitted power = <strong>${fmt(P/1000,4)} kW</strong>`,`<div class="tom-result-grid"><div class="tom-result-card"><strong>Tension ratio</strong>${fmt(ratio,4)}</div><div class="tom-result-card"><strong>Slack tension T₂</strong>${fmt(T2,3)} N</div><div class="tom-result-card"><strong>Effective pull</strong>${fmt(T1-T2,3)} N</div></div><p>T₁/T₂ = e^(μθ) = ${fmt(ratio,4)}.</p><p>P=(T₁−T₂)v = ${fmt(P,3)} W.</p>`);}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('calcForm').reset();$('resultBox').style.display='none';$('errorMessage').style.display='none';});</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>

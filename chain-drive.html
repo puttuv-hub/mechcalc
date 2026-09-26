@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chain Drive Speed &amp; Chain Velocity | MECHCALC</title>
+<meta name="description" content="Calculate driven sprocket speed and chain linear velocity."><meta name="author" content="Vishnu"><meta name="robots" content="index, follow">
+<link rel="canonical" href="https://puttuv-hub.github.io/mechcalc/chain-drive.html"><meta property="og:title" content="Chain Drive Speed &amp; Chain Velocity | MECHCALC"><meta property="og:description" content="Calculate driven sprocket speed and chain linear velocity."><meta property="og:type" content="website"><meta property="og:site_name" content="MECHCALC"><meta property="og:url" content="https://puttuv-hub.github.io/mechcalc/chain-drive.html">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="calculator.css"><link rel="stylesheet" href="machine-design.css">
+</head>
+<body>
+<header class="header"><div class="logo"><a href="index.html">⚙ MECHCALC</a></div><nav class="nav"><a href="index.html">Home</a><a href="index.html#calculators">Calculators</a><a href="index.html#formulas">Formulas</a><a href="engineering-resources.html">Resources</a><a href="index.html#about">About</a><a href="index.html#account">Login / Sign Up</a></nav></header>
+<main class="calculator-page">
+<section class="calculator-hero"><div class="container"><h1>Chain Drive Speed &amp; Chain Velocity</h1><p>Calculate driven sprocket speed and chain linear velocity.</p><div class="engineering-quote">“Design is calculation plus judgement — always check the governing failure mode.”</div><a href="index.html#calculators" class="back-link">← Back to Calculators</a></div></section>
+<section class="calculator-main"><div class="container"><div class="calculator-layout">
+<form class="input-panel" id="calcForm"><h2>Enter Design Values</h2><div class="calculator-form-group"><label for="N1">Driver speed N1</label><div class="calculator-input-row"><input type="number" id="N1" step="any" value="900" placeholder="Enter value"><span class="md-unit-label">rpm</span></div></div><div class="calculator-form-group"><label for="Z1">Driver teeth Z1</label><div class="calculator-input-row"><input type="number" id="Z1" step="any" value="18" placeholder="Enter value"><span class="md-unit-label">—</span></div></div><div class="calculator-form-group"><label for="Z2">Driven teeth Z2</label><div class="calculator-input-row"><input type="number" id="Z2" step="any" value="54" placeholder="Enter value"><span class="md-unit-label">—</span></div></div><div class="calculator-form-group"><label for="p">Chain pitch p</label><div class="calculator-input-row"><input type="number" id="p" step="any" value="19.05" placeholder="Enter value"><span class="md-unit-label">mm</span></div></div><div class="calculator-buttons"><button type="button" class="calculator-calculate-btn" id="calcBtn">Calculate</button><button type="button" class="calculator-reset-btn" id="resetBtn">Reset</button></div><div id="errorMessage" class="calculator-error" style="display:none"></div></form>
+<aside class="formula-panel"><h2>Engineering Formula</h2><div class="formula-box"><div class="formula-main">N₂ = N₁ Z₁/Z₂;  v = p Z₁ N₁ / 60</div></div><div class="unit-info"><strong>Model / assumption:</strong> Use consistent SI-derived engineering units as indicated. Results are intended for educational preliminary design; verify detailed standards for production design.</div></aside>
+</div>
+<section class="md-visual"><h3>Design visualization</h3><svg class="md-svg" viewBox="0 0 760 240" role="img" aria-label="Chain drive"><circle cx="235" cy="120" r="65" class="md-body"/><circle cx="525" cy="120" r="95" class="md-body"/><line x1="235" y1="55" x2="525" y2="25" class="md-link"/><line x1="235" y1="185" x2="525" y2="215" class="md-link"/><text x="180" y="225" class="md-muted">Sprocket teeth set the speed ratio</text></svg></section>
+<div id="resultBox" class="calculator-result" style="display:none"><h2>Step-by-Step Result</h2><div id="mainResult" class="calculator-result-value"></div><div id="resultDetails" class="calculation-steps"></div></div>
+</div></section></main>
+<footer class="footer"><p>MECHCALC • Machine Design Tools • Created by Vishnu</p></footer>
+<script>
+const $=id=>document.getElementById(id);
+const num=id=>Number($(id).value);
+const fmt=(v,d=4)=>{if(!Number.isFinite(v))return "—";const a=Math.abs(v);if(a>=1e8||(a>0&&a<1e-5))return v.toExponential(4);return Number(v.toFixed(d)).toLocaleString("en-IN");};
+function showError(m){$("errorMessage").textContent=m;$("errorMessage").style.display="block";$("resultBox").style.display="none";}
+function showResult(main,html){$("errorMessage").style.display="none";$("mainResult").innerHTML=main;$("resultDetails").innerHTML=html;$("resultBox").style.display="block";$("resultBox").scrollIntoView({behavior:"smooth",block:"start"});}
+
+function calc(){const N1=num('N1'),Z1=num('Z1'),Z2=num('Z2'),p=num('p')/1000;if(!(N1>=0&&Z1>0&&Z2>0&&p>0))return showError('Enter non-negative speed and positive teeth/pitch.');const N2=N1*Z1/Z2,v=p*Z1*N1/60,ratio=Z2/Z1;showResult(`Driven speed = <strong>${fmt(N2,2)} rpm</strong>`,`<div class="md-result-grid"><div class="md-result-card"><strong>Speed ratio</strong>${fmt(ratio,3)} : 1</div><div class="md-result-card"><strong>Chain velocity</strong>${fmt(v,3)} m/s</div></div><p>N2 = N1 Z1/Z2 = ${fmt(N2,2)} rpm</p><p>v = p Z1 N1/60 = ${fmt(v,3)} m/s</p>`)}
+$('calcBtn').addEventListener('click',calc);$('resetBtn').addEventListener('click',()=>{$('calcForm').reset();$('resultBox').style.display='none';$('errorMessage').style.display='none';});
+</script>
+<script type="module" src="saved-calculations.js"></script>
+</body></html>
