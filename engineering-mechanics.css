@@ -1,0 +1,13 @@
+/* MECHCALC Engineering Mechanics additions — additive only */
+.em-visual{margin:2rem 0;padding:1.25rem;border:1px solid rgba(148,163,184,.28);border-radius:16px;background:rgba(15,23,42,.34)}
+.em-visual h3{margin-top:0}.em-svg{width:100%;height:auto;max-height:340px;display:block}
+.em-body{fill:none;stroke:currentColor;stroke-width:4}.em-link{stroke:currentColor;stroke-width:5;fill:none}
+.em-force{stroke:#ef4444;stroke-width:5;fill:none}.em-vel{stroke:#38bdf8;stroke-width:5;fill:none}.em-good{stroke:#22c55e;stroke-width:5;fill:none}
+.em-thin{stroke:currentColor;stroke-width:2;fill:none}.em-fill{fill:rgba(148,163,184,.14);stroke:currentColor;stroke-width:3}
+.em-label{fill:currentColor;font-size:16px}.em-muted{fill:#94a3b8;font-size:14px}
+.em-unit{min-width:78px;display:inline-flex;align-items:center;justify-content:center;padding:0 .65rem;border-radius:8px;background:rgba(148,163,184,.10);white-space:nowrap}
+.em-result-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.8rem;margin:1rem 0}
+.em-result-card{padding:1rem;border:1px solid rgba(148,163,184,.25);border-radius:12px;background:rgba(148,163,184,.08)}
+.em-result-card strong{display:block;margin-bottom:.35rem}.em-note{padding:.8rem 1rem;border-left:4px solid #38bdf8;background:rgba(56,189,248,.08);border-radius:8px}
+.em-table{width:100%;border-collapse:collapse;margin:1rem 0}.em-table th,.em-table td{padding:.65rem;border:1px solid rgba(148,163,184,.25);text-align:left}
+@media(max-width:620px){.em-unit{min-width:58px}.em-svg{max-height:270px}}

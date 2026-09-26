@@ -106,10 +106,3 @@ Added 29 new interactive calculators. See `MANUFACTURING_EXPANSION_GUIDE.md`.
 
 ## Engineering Mechanics expansion
 Added 21 visual, step-by-step Engineering Mechanics calculators covering statics, force systems, friction, trusses, centroids, kinematics, work-energy, impulse-momentum, collisions and pulley dynamics.
-
-
-## Engineering Materials / Metallurgy Expansion
-
-Added 29 interactive materials calculators covering crystal structure, mechanical testing, hardness, strengthening, fracture/fatigue, creep, diffusion, phase diagrams, composites, thermal expansion and corrosion.
-
-All pages preserve the existing MECHCALC design and load `saved-calculations.js` for authenticated Firestore saving.
